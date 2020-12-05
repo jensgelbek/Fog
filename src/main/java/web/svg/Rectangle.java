@@ -2,13 +2,15 @@ package web.svg;
 
 import java.util.Locale;
 
-public class Rect extends Tag {
+public class Rectangle extends Tag {
+
     private final double x;
     private final double y;
     private final double width;
     private final double height;
 
-    public Rect(double x, double y, double width, double height) {
+
+    protected Rectangle(double x, double y, double width, double height) {
         super("rect");
         this.x = x;
         this.y = y;
@@ -16,8 +18,9 @@ public class Rect extends Tag {
         this.height = height;
     }
 
+
     @Override
-    public String renderAttributes() {
+    protected String renderAttributes() {
         return String.format(Locale.US, "x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\"",
                 x, y, width, height);
     }

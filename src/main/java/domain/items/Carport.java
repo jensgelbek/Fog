@@ -20,8 +20,14 @@ public class Carport {
         this.shedWidth = shedWidth;
         this.shedLength = shedLength;
     }
-
-   
+    public Carport() {
+        this.width = width;
+        this.lenght = lenght;
+        this.tag = tag;
+        this.rejsning = rejsning;
+        this.shedWidth = shedWidth;
+        this.shedLength = shedLength;
+    }
 
 
     public boolean isRejsning() {

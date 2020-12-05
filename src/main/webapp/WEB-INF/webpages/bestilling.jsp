@@ -43,7 +43,10 @@
                         <label for="bredde">Carport bredde</label>
                         <select class="form-control" name="bredde" id="bredde">
                             <option value="">Vælg bredde</option>
-                            <c:forEach  items="${requestScope.carportMeasure}" var="bred">
+                            <%!
+                                private class embed {
+                                }
+                            %><c:forEach items="${requestScope.carportMeasure}" var="bred">
                                 <option value="${bred}">
                                         ${bred}
                                 </option>
@@ -106,9 +109,49 @@
                             </c:forEach>
                         </select>
                     </div>
+                    <button type="submit" class="btn btn-primary">Vis tegning</button>
                     <br>
                     <hr>
                     <br>
+                    <h6> Du har valgt følgende carport mål:<br></h6>
+                    --<br>
+                    <div class="row">
+                        <div class="col-md-3">
+                        Bredde:<br>
+                            Længde:<br>
+                            Tag: <br>
+                            <br>
+                            Redskabsskur bredde: <br>
+                            Redskabsskur længde:
+
+                        </div>
+                        <div class="col-md-9">
+                            ${bredde}<br>
+                                ${langde}<br>
+                                ${tag2}<br>
+                                <br>
+                            N/A<br>
+                            N/A
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="row">
+                        <h6> Tegning af din carport:<br></h6>
+                        ${svg}
+                    </div>
+
+                    <br>
+                    <hr>
+                    <br>
+                    <button type="" class="btn btn-primary">Send bestilling</button>
+
+                </form>
+                <br>
+                <p>* Hvis du f.eks. har valgt en carport med målene 240x360 cm kan redskabsrummet maksimalt måle 210x330 cm.</p>
+
+
 
                     <div class="form-group">
                         <label for="navn">Navn</label>
@@ -145,13 +188,6 @@
                         <input type="text" class="form-control" id="bemærkninger"
                                aria-describedby="kundeBemærkninger" name="bemærkninger">
                     </div>
-
-
-                    <button type="submit" class="btn btn-primary">Send bestilling</button>
-
-                </form>
-                <br>
-                <p>* Hvis du f.eks. har valgt en carport med målene 240x360 cm kan redskabsrummet maksimalt måle 210x330 cm.</p>
 
             </div>
         </div>

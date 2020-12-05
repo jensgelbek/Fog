@@ -43,8 +43,6 @@ public class Lists {
         return shedOutput;
     }
 
-
-
     public ArrayList tagRejs() {
         ArrayList tagRejsOutput = new ArrayList<String>();
         for (int i = 0; i < tagRejs.length; i++) {

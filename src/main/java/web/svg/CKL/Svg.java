@@ -1,4 +1,6 @@
-package web.svg;
+package web.svg.CKL;
+
+import web.svg.Tag;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -38,7 +40,6 @@ public class Svg extends Tag {
 
     public static Tag chessboard() {
         Svg checkboard = new Svg(1000, 1000, "1 1 8 8");
-
         for (int r = 1; r <= 8; r++) {
             for (int c = 1; c <= 8; c++) {
                 checkboard.add(chessfield(r, c));
@@ -47,9 +48,11 @@ public class Svg extends Tag {
         return checkboard;
     }
 
+
+
     public static void main(String[] args) {
-        try (FileWriter writer = new FileWriter("./src/main/java/web/svg/svgOutput/chess.svg")) {
-            writer.write(chessboard().toString());
+        try (FileWriter writer = new FileWriter("./src/main/java/web/svg/svgOutput/carport.svg")) {
+          writer.write(chessboard().toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
