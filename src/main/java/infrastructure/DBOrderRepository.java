@@ -40,6 +40,30 @@ public class DBOrderRepository implements OrderRepository {
     }
 
     @Override
+    public List<Order> findAllWithEmail(String email) throws SQLException {
+        List<Order> orderlist=new ArrayList<>();
+        Connection con = db.getConnection();
+        String SQL = "SELECT * FROM ordre WHERE kundeEmail=(?)";
+        PreparedStatement ps = con.prepareStatement(SQL);
+        ps.setString(1,email);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            int id=rs.getInt("id");
+            LocalDate tilbudsDato= Utils.timestampToLocalDate(rs.getTimestamp("tilbudsDato"));
+            LocalDate ordreDato=Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
+            LocalDate leveringsDato=Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
+            String eamil=rs.getString("kundeEmail");
+            int saelgerId=rs.getInt("sælgerID");
+            int carportId=rs.getInt("carportid");
+            int pris=rs.getInt("pris");
+            String status=rs.getString("status");
+            Order order=new Order (tilbudsDato,ordreDato,leveringsDato,eamil,saelgerId,carportId,pris,status);
+            order.setOrderID(id);
+            orderlist.add(order);
+        }
+        return orderlist;
+    }
+    @Override
     public Order find(int id) throws DBException {
 
         try {

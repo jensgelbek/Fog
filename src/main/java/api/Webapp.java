@@ -36,6 +36,9 @@ public class Webapp {
     }
 
 
+    public  List<Order> findAllOrdersWithEmail(String email) throws SQLException {
+        return orders.findAllWithEmail(email);
+    }
     public Carport findCarport(int Id) throws DBException {return carports.find(Id);}
     public List<Carport> findAlleCarports()throws DBException {return carports.findAll();};
 

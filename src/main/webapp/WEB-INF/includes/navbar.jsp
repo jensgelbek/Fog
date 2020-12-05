@@ -52,6 +52,12 @@
                 <form class="px-3 py-3" method="post" action="<c:url value="/ordrer"/>">
                 </form>
             </button>
+            <a class="navbar-ordrer" href="minSide"> Min side</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <form class="px-3 py-3" method="post" action="<c:url value="/minSide"/>">
+                </form>
+            </button>
             <div class="collapse navbar-collapse" id="navbarCollapse4">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
