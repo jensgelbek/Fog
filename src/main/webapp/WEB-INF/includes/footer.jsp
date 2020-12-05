@@ -1,24 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="<c:url value="/static/style.css"/>"/>
 
-<style>
-    .page-footer{
-        background-color: #003D76;
-        margin-bottom: -20px;
-    }
-    .footerlogo {
-        width: 20%;
-        height: 20%;
-        margin-top: -10px;
-
-    }
-    .footer-copyright {
-        position: center;
-
-
-    }
-
-</style>
 
 <!-- Footer -->
 <footer class="page-footer font-small blue pt-4 position-relative">

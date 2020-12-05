@@ -1,12 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<style>
-    .header-text{
-        margin-left: 10px;
 
-    }
-
-</style>
 <html>
 <head>
     <title>Kontaktside</title>
@@ -14,6 +8,7 @@
 <body>
 
 <div class="header-text">
+    <link rel="stylesheet" href="<c:url value="/static/style.css"/>
     <h1>Kontakt</h1>
     <p> Kontaktoplysninger til Johannes Fog</p>
     <h2> Telefonnummer: </h2>
