@@ -2,9 +2,9 @@ package domain.items;
 
 public class Seller {
     int sellerID;
-    int name;
+    String name;
 
-    public Seller(int sellerID, int name) {
+    public Seller( String name) {
         this.sellerID = sellerID;
         this.name = name;
     }
@@ -17,11 +17,11 @@ public class Seller {
         this.sellerID = sellerID;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

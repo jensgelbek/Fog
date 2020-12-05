@@ -1,34 +1,20 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<style>
-    .body-text{
-        margin-left: 5px;
-
-    }
 
 
-
-    h1 {
-        font-size: xx-large;
-    }
-
-img {
-    position: relative;
-    margin-left: 0px;
-}
-
-</style>
 <html>
 <head>
 
     <title>Forside</title>
 </head>
-<img>
-
-<div class="body-text">
 
 
+<div class="body-text" >
+
+
+    <link rel="stylesheet" href="<c:url value="/static/style.css"/>"/>
 <h1>Velkommen til Johannes Fog</h1>
 
 <p> Her kan du designe din egen carport, så den passer til netop dit behov.<br>

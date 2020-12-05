@@ -1,11 +1,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8"%>
-<style>
-    .container {
-        margin: 5px;
-        margin-right: 5px;
-    }
-</style>
+<p1>
+    Her kan du oprette en bruger. Du skal have oprettet dig som bruger, før du kan bestille
+    en carport.
+    <br>
+    Indtast dine oplysninger:
+
+</p1>
+<br>
+<br>
 <form method="post">
     <input type="hidden" name="oprettelse" value="oprettelse">
 <div class="container">

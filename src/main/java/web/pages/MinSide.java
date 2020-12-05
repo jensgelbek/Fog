@@ -13,13 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingDeque;
 
-@WebServlet("/ordrer")
-public class Ordrer extends BaseServlet {
+@WebServlet("/minSide")
+public class MinSide extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
+        var s = req.getSession();
+        s.setAttribute("kunde","test@morten.dk");//----------
+        String email= (String) s.getAttribute("kunde");
         List<Order> orders = null;
         try {
-            orders = api.findAllOrders();
+            orders = api.findAllOrdersWithEmail(email);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -77,9 +80,10 @@ public class Ordrer extends BaseServlet {
             int orderToShow = Integer.parseInt(req.getParameter("vis"));
             System.out.println(orderToShow);
 
-            resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+orderToShow);
+            resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre="+orderToShow);
 
         }
     }
 
 }
+

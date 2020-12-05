@@ -2,6 +2,6 @@ package domain.items;
 
 public interface CustomerRepository {
     Iterable <Customer> findAll() throws CustomerNotFound, DBException;
-    Customer find(int parseInt) ;
+    Customer findCustomer(String email) throws CustomerNotFound, DBException;
     Customer commitCustomer(Customer customer) throws DBException;
 }

@@ -7,15 +7,34 @@ public class Order {
     LocalDate tilbudsdato;
     LocalDate ordredato;
     LocalDate leveringsDato;
-    int kundeId;
+    String kundeEmail;
     int saelgerId;
     int carportId;
     int price;
     String status;
 
-    public Order(int orderID, int kundeId, int carportId, int price, String status) {
+    public Order(LocalDate tilbudsdato, LocalDate ordredato, LocalDate leveringsDato,String kundeEmail, int saelgerId, int carportId, int price, String status) {
+        this.tilbudsdato = tilbudsdato;
+        this.ordredato = ordredato;
+        this.leveringsDato = leveringsDato;
+
+       this.kundeEmail=kundeEmail;
+        this.saelgerId = saelgerId;
+        this.carportId = carportId;
+        this.price = price;
+        this.status = status;
+    }
+
+    public String getKundeEmail() {
+        return kundeEmail;
+    }
+
+    public void setKundeEmail(String kundeEmail) {
+        this.kundeEmail = kundeEmail;
+    }
+
+    public Order(int orderID, int kundeid, int carportId, int price, String status) {
         this.orderID = orderID;
-        this.kundeId = kundeId;
         this.carportId = carportId;
         this.price = price;
         this.status = status;
@@ -37,9 +56,6 @@ public class Order {
         this.leveringsDato = leveringsDato;
     }
 
-    public void setKundeId(int kundeId) {
-        this.kundeId = kundeId;
-    }
 
     public void setSaelgerId(int saelgerId) {
         this.saelgerId = saelgerId;
@@ -73,8 +89,19 @@ public class Order {
         return leveringsDato;
     }
 
-    public int getKundeId() {
-        return kundeId;
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderID=" + orderID +
+                ", tilbudsdato=" + tilbudsdato +
+                ", ordredato=" + ordredato +
+                ", leveringsDato=" + leveringsDato +
+                ", kundeEmail='" + kundeEmail + '\'' +
+                ", saelgerId=" + saelgerId +
+                ", carportId=" + carportId +
+                ", price=" + price +
+                ", status='" + status + '\'' +
+                '}';
     }
 
     public int getSaelgerId() {

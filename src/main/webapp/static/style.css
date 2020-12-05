@@ -1,0 +1,155 @@
+
+
+
+
+
+ .navbar-oprettelse {
+     overflow: hidden;
+     float: right;
+
+
+ }
+
+.navbar-custom {
+    background-color: #003D76;
+}
+
+.navbar-brand {
+    border-color: #ae142a;
+    text-transform: uppercase;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    color: #fff;
+    background-color: #003D76;
+}
+
+.navbar-home {
+
+    color: #ffffff;
+    background-color: #003D76;
+    margin: 5px;
+
+}
+
+.navbar-ordrer {
+    color: #FFFFFF;
+    margin: 5px;
+
+}
+
+
+
+ .navbar-oprettelse {
+     overflow: hidden;
+     float: right;
+
+
+ }
+
+.navbar-custom {
+    background-color: #003D76;
+}
+
+.navbar-brand {
+    border-color: #ae142a;
+    text-transform: uppercase;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    color: #fff;
+    background-color: #003D76;
+}
+
+.navbar-home {
+
+    color: #ffffff;
+    background-color: #003D76;
+    margin: 5px;
+
+}
+
+.navbar-ordrer {
+    color: #FFFFFF;
+    margin: 5px;
+
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 0%;
+    overflow: auto;
+    margin-top: 0px;
+
+
+}
+
+.navbar-kontakt {
+    color: #ffffff;
+    margin: 5px;
+
+}
+
+.navbar-carporte {
+    color: #FFFFFF;
+    margin: 5px;
+
+}
+
+.nav-item {
+    margin: 5px;
+}
+
+.navbar-kontakt {
+    color: #ffffff;
+    margin: 5px;
+
+}
+
+.navbar-carporte {
+    color: #FFFFFF;
+    margin: 5px;
+
+}
+
+.nav-item {
+    margin: 5px;
+}
+ .page-footer{
+     background-color: #003D76;
+     margin-bottom: -20px;
+ }
+ .footerlogo {
+     width: 20%;
+     height: 20%;
+     margin-top: -10px;
+
+ }
+ .footer-copyright {
+     position: center;
+
+
+ }
+ .body-text{
+     margin-left: 5px;
+
+ }
+
+
+
+ h1 {
+     font-size: xx-large;
+ }
+
+ img {
+     position: relative;
+     margin-left: 0px;
+ }
+
+ .header-text{
+     margin-left: 10px;
+
+ }
+ .container {
+     margin: auto;
+     margin-right: auto;
+ }

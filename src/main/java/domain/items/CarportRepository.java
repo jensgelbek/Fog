@@ -7,6 +7,6 @@ public interface CarportRepository {
 
     List<Carport> findAll() throws DBException;
     Carport find(int parseInt) throws DBException;
-    int commit(Carport carport) throws SQLException;
+    int commit(Carport carport) ;
 
 }

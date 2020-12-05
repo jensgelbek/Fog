@@ -1,8 +1,12 @@
 package domain.items;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface OrderRepository {
-    List<Order> findAll() ;
-    Customer find(int parseInt) ;
+    List<Order> findAll() throws SQLException;
+    List<Order> findAllWithEmail(String email) throws SQLException;
+    Order find(int id) throws DBException;
+    int commit(Order order);
+
 }

@@ -4,8 +4,10 @@ import domain.items.Carport;
 import domain.items.CarportRepository;
 
 import domain.items.DBException;
+import domain.items.Seller;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DBCarportRepository implements CarportRepository {
@@ -18,19 +20,54 @@ public class DBCarportRepository implements CarportRepository {
 
     @Override
     public List<Carport> findAll() throws DBException {
-        return null;
+        List<Carport> carports=new ArrayList<>();
+        try {
+            Connection con = db.getConnection();
+            String SQL = "SELECT * FROM carport";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id=rs.getInt("id");
+                int bredde=rs.getInt("bredde");
+                int laengde=rs.getInt("længde");
+                boolean rejsnin=rs.getBoolean("rejsning");
+                String tag=rs.getString("tag");
+                int skurbredde=rs.getInt("skurBredde");
+                int skurlaengde=rs.getInt("skurlængde");
+                Carport carport=new Carport(bredde,laengde,rejsnin,tag,skurbredde,skurlaengde);
+                carport.setCarportID(id);
+                carports.add(carport);
+            }
+        } catch ( SQLException ex) {
+            throw new DBException(ex.getMessage());
+        }
+        return carports;
     }
 
     @Override
-
-    public Carport find(int parseInt) throws DBException {
-        if (parseInt==1) return new Carport(3500,7000,false,"trapez",0,0);
-        if (parseInt==2) return new Carport(4000,8000,false,"trapez",0,0);
-        if (parseInt==3) return new Carport(4000,8000,true,"tagsten",3700,2000);
-        if (parseInt==4) return new Carport(4000,8000,true,"tagsten",0,0);
-
+    public Carport find(int id) throws DBException {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "SELECT * FROM carport WHERE id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                id=rs.getInt("id");
+                int bredde=rs.getInt("bredde");
+                int laengde=rs.getInt("længde");
+                boolean rejsnin=rs.getBoolean("rejsning");
+                String tag=rs.getString("tag");
+                int skurbredde=rs.getInt("skurBredde");
+                int skurlaengde=rs.getInt("skurlængde");
+                Carport carport=new Carport(bredde,laengde,rejsnin,tag,skurbredde,skurlaengde);
+                carport.setCarportID(id);
+                return carport;
+            }
+        } catch ( SQLException ex) {
+            throw new DBException(ex.getMessage());
+        }
         return null;
-
     }
 
     @Override
@@ -41,13 +78,11 @@ public class DBCarportRepository implements CarportRepository {
             String SQL = "INSERT INTO carport (bredde, længde, rejsning, tag, skurBredde, skurLængde) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, carport.getWidth());
-            System.out.println("4 " + carport.getWidth());
             ps.setInt(2, carport.getLenght());
             ps.setBoolean(3, carport.getRejsning());
             ps.setString(4, carport.getTag());
             ps.setInt(5, carport.getShedWidth());
             ps.setInt(6, carport.getShedLength());
-            System.out.println("5 " + carport.getShedLength());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {

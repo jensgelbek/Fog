@@ -1,12 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8"%>
-<style>
-    .container {
-        margin: 5px;
-        margin-right: 5px;
-    }
-</style>
+
 <div class="container">
+    <link rel="stylesheet" href="<c:url value="/static/style.css"/>"/>
     <br>
     <br>
     <div class="row">
