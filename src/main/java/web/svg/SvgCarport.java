@@ -1,6 +1,8 @@
 package web.svg;
 
 import domain.items.Carport;
+import infrastructure.DBCarportRepository;
+import infrastructure.Database;
 import web.pages.Bestilling;
 import web.svg.CKL.Svg;
 
@@ -28,6 +30,8 @@ public class SvgCarport extends Tag {
         this.height = height;
         this.viewBox = viewBox;
     }
+
+
 
     @Override
     protected String renderAttributes() {
@@ -70,11 +74,13 @@ public class SvgCarport extends Tag {
         return spaers;
     }
 
+    /*
     public static Tag spaer2() {
         Tag carport = new Rectangle(775.5, 0.0, 4.5, 600);
         carport.withStyle("fill: none; stroke: cyan;");
         return carport;
     }
+     */
 
     public static Tag kryds1() {
         Tag kryds1 = new Line(55.0, 35.0, 600.0, 569.5);
@@ -124,15 +130,28 @@ public class SvgCarport extends Tag {
         return stolpe;
     }
 
+    public static Tag lineW() {
+        Tag line = new Line(20.0, 60.0, 20.0, 565.0);
+        line.withStyle("fill: none; stroke: darkblue; darkblue: 5 5;");
+        return line;
+    }
 
     public static Tag carport() {
+        Svg ramme = new Svg( 650, 500, "0 0 850 625");
+        ramme.add(lineW());
+        ramme.add(carport2());
+        return ramme;
+    }
 
-        Svg carport = new Svg(800, 600, "0 0 800 600");
+    public static Tag carport2() {
+        double width = 780.0;
+
+        Svg carport = new Svg(800, 600, "-50 -25 850 625");
         carport.add(ramme());
         carport.add(rem1());
         carport.add(rem2());
 
-        List spaers = spaer1(778.8);
+        List spaers = spaer1(width);
         for (Object o : spaers) {
             carport.add((Tag) o);
         }
