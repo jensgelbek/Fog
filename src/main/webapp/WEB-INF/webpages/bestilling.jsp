@@ -139,6 +139,11 @@
                     <br>
                     <div class="row">
                         <h6> Tegning af din carport:<br></h6>
+                        <p>Bredde & længde udgør 'Stern' (for/bag og siderne) her indkeret med <b><i>Rødt</i></b> <br>
+                            Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
+                        2 x bærende 'Rem' i siderne på langs med <b><i>sort</i></b>  <br>
+                            Stolper er firkanter placeret langs remmene <b><i>sort</i></b> <br>
+                            Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne </p>
                         ${svg}
                     </div>
 

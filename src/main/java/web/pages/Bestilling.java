@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.*;
@@ -34,12 +35,31 @@ public class Bestilling extends BaseServlet {
         return carportList;
     }
 
-    public static int getBredde(HttpServletRequest req){
-        int bredde = 0;
-        var s = req.getSession();
-        bredde = (int) s.getAttribute("bredde");
-        return bredde;
+
+
+
+    /*
+    public static class CarportDTO {
+        public int width = 0;
+        public int height = 0;
+
+        public static CarportDTO fromSession(HttpSession ses) {
+            CarportDTO carport = (CarportDTO) ses.getAttribute("carport");
+            if (carport == null) {
+                carport = new CarportDTO();
+                ses.setAttribute("carport", carport);
+            }
+            System.out.println(carport);
+            return carport;
+        }
+
+        public String getDrawing() {
+            System.out.println("get: " + width);
+            return SvgCarport.carport(width, height).toString();
+        }
     }
+
+     */
 
 
     @Override
@@ -54,7 +74,9 @@ public class Bestilling extends BaseServlet {
             req.setAttribute("carportMeasure", list.carportMeasure());
             req.setAttribute("tag", list.tag());
             req.setAttribute("shed", list.shed());
+
             req.setAttribute("svg", SvgCarport.carport().toString());
+
             req.setAttribute("bredde", req.getSession().getAttribute("bredde"));
             req.setAttribute("langde", req.getSession().getAttribute("langde"));
             req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
@@ -87,6 +109,17 @@ public class Bestilling extends BaseServlet {
                 s.setAttribute("bredde", bredde);
                 s.setAttribute("langde", langde);
                 s.setAttribute("tag2", tag);
+
+
+
+                /*
+                CarportDTO cp = CarportDTO.fromSession(s);
+                cp.width = bredde;
+                System.out.println("cp: " + cp.width);
+                cp.height = langde;
+                System.out.println("cp: " + cp.height);
+                 */
+
 
 
                 try {
