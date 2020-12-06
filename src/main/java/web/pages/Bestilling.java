@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -122,11 +123,15 @@ public class Bestilling extends BaseServlet {
 
 
 
-                try {
+
 
                 Carport carport = new Carport(bredde, langde, rejsning, tag,  shedW, shedL);
                 try {
-                    api.commitCarport(carport);
+                    int carportId =api.commitCarport(carport);
+                    carport.setCarportID(carportId);
+                    Order order=new Order(LocalDate.now(),null,null, (String) s.getAttribute("username"),1,carport.getCarportID(),75000,"tilbud");
+                    api.commitOrder(order);
+
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

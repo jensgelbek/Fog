@@ -26,26 +26,56 @@ public class Oprettelse extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String address = req.getParameter("address");
-        String email = req.getParameter("email");
-        int tlfNummer;
-        try {
-            tlfNummer = Integer.parseInt(req.getParameter("tlfNummer"));
-        } catch(Exception e) { tlfNummer=0;
-        }
-        String password = req.getParameter("password");
-        String passwordrepeat = req.getParameter("passwordrepeat");
-        byte[] salt = Customer.generateSalt();
-        byte[] secret = Customer.calculateSecret(salt, password);
-        Customer customer = new Customer(name, address, email, tlfNummer, false, salt, secret);
-        try {
-            api.commitCustomer(customer);
-        } catch (DBException e) {
-            e.printStackTrace();
+        if (req.getParameter("Opret") != null) {
+            String name = req.getParameter("name");
+            String address = req.getParameter("address");
+            String email = req.getParameter("email");
+            int tlfNummer;
+            try {
+                tlfNummer = Integer.parseInt(req.getParameter("tlfNummer"));
+            } catch (Exception e) {
+                tlfNummer = 0;
+            }
+            String password = req.getParameter("password");
+            String passwordrepeat = req.getParameter("passwordrepeat");
+            byte[] salt = Customer.generateSalt();
+            byte[] secret = Customer.calculateSecret(salt, password);
+            Customer customer = new Customer(name, address, email, tlfNummer, false, salt, secret);
+            try {
+                api.commitCustomer(customer);
+                var s = req.getSession();
+                s.setAttribute("username", email);
+                s.setAttribute("employer", "no");
+            } catch (DBException e) {
+                e.printStackTrace();
+            }
+            resp.sendRedirect(req.getContextPath() + "/frontpage");
+
         }
 
+        if (req.getParameter("Loginemail") != null) {
+            String email = req.getParameter("Loginemail");
+            String password = req.getParameter("Loginpassword");
+            Customer customer = null;
+            try {
+                customer = api.findCustomer(email);
+            } catch (DBException e) {
+                e.printStackTrace();
+            } catch (CustomerNotFound customerNotFound) {
+                customerNotFound.printStackTrace();
+            }
+            if (customer != null) {
+                boolean correctpassword = customer.checkPassword(password);
+                if (correctpassword) {
+                    var s = req.getSession();
+                    s.setAttribute("username", customer.getEmail());
+                    s.setAttribute("employer","no");
+                }
+                resp.sendRedirect(req.getContextPath() + "/frontpage");
+
+            }
+
+
+        }
     }
-
-
 }

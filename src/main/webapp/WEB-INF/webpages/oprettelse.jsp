@@ -54,7 +54,7 @@
 
     <div class="col-md-1">
                 <form method="post" >
-                    <input type="hidden" name="Opret" value="">
+                    <input type="hidden" name="Opret" value="opret">
                     <button type="submit" class="btn btn-primary" >Opret</button>
                 </form>
             </div>

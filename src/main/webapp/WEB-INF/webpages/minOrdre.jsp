@@ -33,7 +33,25 @@
     <c:if test="${requestScope.order.leveringsDato!=null}">
         <b>Leveres</b>${requestScope.order.leveringsDato}<br>
     </c:if>
-
+    <b>carport på</b> ${requestScope.carport.width/1000}*${requestScope.carport.lenght/1000} m
+    <c:if test="${requestScope.carport.shedWidth!=0}">
+        med et skur på ${requestScope.carport.shedWidth/1000}*${requestScope.carport.shedLength/1000}m,
+    </c:if>
+    <c:if test="${requestScope.carport.rejsning==true}">
+        med et fladt tag med
+    </c:if>
+    <c:if test="${requestScope.carport.rejsning==false}">
+        med tag med rejsning med
+    </c:if>
+    ${requestScope.carport.tag}
+    <br>
+        <b> Tegning af din carport:<br></b>
+        <p>Bredde & længde udgør 'Stern' (for/bag og siderne) her indkeret med <b><i>Rødt</i></b> <br>
+            Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
+            2 x bærende 'Rem' i siderne på langs med <b><i>sort</i></b>  <br>
+            Stolper er firkanter placeret langs remmene <b><i>sort</i></b> <br>
+            Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne </p>
+        ${svg}
 
 </body>
 </html>

@@ -4,6 +4,7 @@ import domain.items.Carport;
 import domain.items.DBException;
 import domain.items.Order;
 import web.BaseServlet;
+import web.svg.SvgCarport;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +24,8 @@ public class MinOrdre extends BaseServlet {
             Carport carport= api.findCarport(order.getCarportId());
             req.setAttribute("order",order);
             req.setAttribute("carport",carport);
+            req.setAttribute("svg", SvgCarport.carport().toString());
+
         } catch (DBException e) {
             e.printStackTrace();
         }

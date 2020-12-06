@@ -18,8 +18,7 @@ public class MinSide extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
         var s = req.getSession();
-        s.setAttribute("kunde","test@morten.dk");//----------
-        String email= (String) s.getAttribute("kunde");
+        String email= (String) s.getAttribute("username");
         List<Order> orders = null;
         try {
             orders = api.findAllOrdersWithEmail(email);
