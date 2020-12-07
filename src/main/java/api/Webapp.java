@@ -5,6 +5,7 @@ import domain.items.*;
 
 import java.sql.SQLException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Webapp {
@@ -38,6 +39,27 @@ public class Webapp {
 
     public  List<Order> findAllOrdersWithEmail(String email) throws SQLException {
         return orders.findAllWithEmail(email);
+    }
+    public void updateOrderstatus(int id, String status){
+        try {
+            orders.updateStatus(id,status);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+    }
+    public void setOdreDato(int id, LocalDate ordreDato){
+        try {
+            orders.setOrdreDato(id,ordreDato);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+    }
+    public void setLeveringsDato(int id, LocalDate leveringsdato){
+        try {
+            orders.setLeveringsDato(id,leveringsdato);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
     }
     public Carport findCarport(int Id) throws DBException {return carports.find(Id);}
     public List<Carport> findAlleCarports()throws DBException {return carports.findAll();};
