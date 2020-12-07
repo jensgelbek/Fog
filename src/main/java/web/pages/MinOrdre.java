@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,17 +44,16 @@ public class MinOrdre extends BaseServlet {
        int orderToShow=0;
         if (req.getParameter("bestil")!=null) {
             orderToShow=Integer.parseInt(req.getParameter("bestil"));
-            System.out.println("orderid="+orderToShow);
-            api.updateOrderstatus(orderToShow,"bestil");
+            api.updateOrderstatus(orderToShow,"ordre");
+            api.setOdreDato(orderToShow, LocalDate.now());
+            api.setLeveringsDato(orderToShow,LocalDate.now().plusDays(14));
         }
-        if (req.getParameter("afslå")!=null) {
-            orderToShow=Integer.parseInt(req.getParameter("afslå"));
-            System.out.println("orderid= afslå"+orderToShow);
-            api.updateOrderstatus(orderToShow,"afslå");
+        if (req.getParameter("afslaa")!=null) {
+            orderToShow=Integer.parseInt(req.getParameter("afslaa"));
+            api.updateOrderstatus(orderToShow,"afslået");
         }
         if (req.getParameter("kontakt")!=null) {
             orderToShow=Integer.parseInt(req.getParameter("kontakt"));
-            System.out.println("orderid= kontakt"+orderToShow);
 
             api.updateOrderstatus(orderToShow,"kontakt");
         }

@@ -53,6 +53,9 @@
             Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne </p>
         ${svg}
     <br>
+    <c:if test="${requestScope.order.status!=\"afsluttet\"}">
+        <c:if test="${requestScope.order.status!=\"afslået\"}">
+            <c:if test="${requestScope.order.status!=\"ordre\"}">
     <div class="row">
 
         <div class="col-md-1">
@@ -63,13 +66,12 @@
         </div>
         <div class="col-md-1">
             <form method="post">
-            <input type="hidden" name="afslå" value=${requestScope.order.orderID}>
+            <input type="hidden" name="afslaa" value=${requestScope.order.orderID}>
             <button type="submit" class="btn btn-primary" >Afslå</button>
             </form>
         </div>
         <div class="col-md-2">
             <form method="post">
-
             <input type="hidden" name="kontakt" value=${requestScope.order.orderID}>
             <button type="submit" class="btn btn-primary" >Kontakt mig</button>
             </form>
@@ -77,5 +79,13 @@
         </div>
 
     </div>
+
+    </c:if>
+    </c:if>
+    </c:if>
+<c:if test="${requestScope.order.status==\"ordre\"}">
+  <h1>Her skla vises stykliste...</h1>
+</c:if>
+
 </body>
 </html>

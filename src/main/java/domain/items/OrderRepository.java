@@ -1,6 +1,7 @@
 package domain.items;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderRepository {
@@ -9,5 +10,6 @@ public interface OrderRepository {
     Order find(int id) throws DBException;
     void updateStatus(int id,String status) throws DBException;
     int commit(Order order);
-
+    void setOrdreDato(int id,LocalDate ordreDato) throws DBException;
+    void setLeveringsDato(int id,LocalDate leveringsDato) throws DBException;
 }
