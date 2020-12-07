@@ -56,8 +56,9 @@
                         <label for="længde">Carport længde</label>
                         <select class="form-control" name="length" id="længde">
                             <option value="">Vælg længde</option>
-                            <c:forEach  items="${requestScope.carportMeasure.subList(0, carportMeasure.size()-1)}" var="len">
-                                <option value="${len}">
+                            <c:forEach items="${requestScope.carportMeasure.subList(0, carportMeasure.size()-1)}"
+                                       var="len">
+                                <option value="${len}" <c:if test="${len==carport.length}">selected</c:if>>
                                         ${len}
                                 </option>
                             </c:forEach>
@@ -126,9 +127,12 @@
                             ${sessionScope.carport.length}
                         </div>
                     </div>
+
                     <hr>
                     <div class="row">
-                        <h6>Tegning af din carport:"\"</h6><br>
+                        <h6> Tegning af din carport:</h6>
+                    </div>
+                    <div class="row">
                         <p>Bredde & længde udgør 'Stern' (for/bag og siderne) her indkeret med <b><i>Rødt</i></b> <br>
                             Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
                         2 x bærende 'Rem' i siderne på langs med <b><i>sort</i></b>  <br>
