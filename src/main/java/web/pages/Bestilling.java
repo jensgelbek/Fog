@@ -38,10 +38,10 @@ public class Bestilling extends BaseServlet {
 
 
 
-    /*
+
     public static class CarportDTO {
-        public int width = 0;
-        public int height = 0;
+        public int width = 270;
+        public int length = 270;
 
         public static CarportDTO fromSession(HttpSession ses) {
             CarportDTO carport = (CarportDTO) ses.getAttribute("carport");
@@ -49,17 +49,21 @@ public class Bestilling extends BaseServlet {
                 carport = new CarportDTO();
                 ses.setAttribute("carport", carport);
             }
-            System.out.println(carport);
             return carport;
         }
 
+        public int getLength() {
+            return length;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
         public String getDrawing() {
-            System.out.println("get: " + width);
-            return SvgCarport.carport(width, height).toString();
+            return SvgCarport.carport(width, length).toString();
         }
     }
-
-     */
 
 
     @Override
@@ -75,10 +79,23 @@ public class Bestilling extends BaseServlet {
             req.setAttribute("tag", list.tag());
             req.setAttribute("shed", list.shed());
 
-            req.setAttribute("svg", SvgCarport.carport().toString());
+            CarportDTO.fromSession(req.getSession());
+
+/*
+            Integer width = (Integer) req.getSession().getAttribute("bredde");
+            if (width == null) {
+                width = 400;
+                req.getSession().setAttribute("bredde", width);
+            }
+            Integer length = (Integer) req.getSession().getAttribute("langde");
+            if (length == null) {
+                length = 400;
+                req.getSession().setAttribute("langde", length);
+            }
+            req.setAttribute("svg", SvgCarport.carport(width, length));
 
             req.setAttribute("bredde", req.getSession().getAttribute("bredde"));
-            req.setAttribute("langde", req.getSession().getAttribute("langde"));
+            req.setAttribute("langde", req.getSession().getAttribute("langde")); */
             req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
 
 
@@ -92,43 +109,32 @@ public class Bestilling extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        var carportdto = CarportDTO.fromSession(req.getSession());
+        carportdto.width = Integer.parseInt(req.getParameter("width"));
+        carportdto.length = Integer.parseInt(req.getParameter("length"));
+        //String tag = req.getParameter("tag");
 
-        if (req.getParameter("target") != null)
+        resp.sendRedirect(req.getContextPath() + "/bestilling");
+
+
+        /* if (req.getParameter("target") != null) {
+
             if (req.getParameter("target").equals("bestilling")) {
-
-
-                int bredde = Integer.parseInt(req.getParameter("bredde"));
-                int langde = Integer.parseInt(req.getParameter("laengde"));
-                String tag = req.getParameter("tag");
                 boolean rejsning = false;
                 int shedW = 0;
                 int shedL = 0;
 
-                var s = req.getSession();
-                s.setAttribute("bredde", bredde);
-                s.setAttribute("langde", langde);
-                s.setAttribute("tag2", tag);
-
-
-
-                /*
-                CarportDTO cp = CarportDTO.fromSession(s);
-                cp.width = bredde;
-                System.out.println("cp: " + cp.width);
-                cp.height = langde;
-                System.out.println("cp: " + cp.height);
-                 */
-
-
-
                 try {
-                Carport carport = new Carport(bredde, langde, rejsning, tag,  shedW, shedL);
-                api.commitCarport(carport);
+                    Carport carport = new Carport(carportdto.width, carportdto.length, rejsning, tag, shedW, shedL);
+                    api.commitCarport(carport);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
 
-                resp.sendRedirect(req.getContextPath() + "/bestilling");
+                resp.sendRedirect(req.getContextPath() + "/bestilling/1");
+            } else {
+
             }
+        }*/
     }
 }

@@ -62,7 +62,7 @@ public class SvgCarport extends Tag {
         return rem2;
     }
 
-    public static List<Tag> spaer1(double width) {
+    public static List<Tag> spaer1(int width) {
         List<Tag> spaers = new ArrayList<>();
         double x = 0.0;
         while (x < width) {
@@ -136,15 +136,14 @@ public class SvgCarport extends Tag {
         return line;
     }
 
-    public static Tag carport() {
+    public static Tag carport(int width, int length) {
         Svg ramme = new Svg( 650, 500, "0 0 850 625");
         ramme.add(lineW());
-        ramme.add(carport2());
+        ramme.add(carport2(width, length));
         return ramme;
     }
 
-    public static Tag carport2() {
-        double width = 780.0;
+    public static Tag carport2(int width, int length) {
 
         Svg carport = new Svg(800, 600, "-50 -25 850 625");
         carport.add(ramme());
@@ -173,8 +172,8 @@ public class SvgCarport extends Tag {
 
         try (FileWriter writer = new FileWriter("./src/main/java/web/svg/svgOutput/carport.svg"))
         {
-            writer.write(carport().toString());
-            String svg =  carport().toString();
+            writer.write(carport(800, 600).toString());
+            String svg =  carport(800, 600).toString();
         }
         catch (IOException e) {
             e.printStackTrace();
