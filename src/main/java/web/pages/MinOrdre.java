@@ -40,7 +40,24 @@ public class MinOrdre extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       int orderToShow=0;
+        if (req.getParameter("bestil")!=null) {
+            orderToShow=Integer.parseInt(req.getParameter("bestil"));
+            System.out.println("orderid="+orderToShow);
+            api.updateOrderstatus(orderToShow,"bestil");
+        }
+        if (req.getParameter("afslå")!=null) {
+            orderToShow=Integer.parseInt(req.getParameter("afslå"));
+            System.out.println("orderid= afslå"+orderToShow);
+            api.updateOrderstatus(orderToShow,"afslå");
+        }
+        if (req.getParameter("kontakt")!=null) {
+            orderToShow=Integer.parseInt(req.getParameter("kontakt"));
+            System.out.println("orderid= kontakt"+orderToShow);
 
+            api.updateOrderstatus(orderToShow,"kontakt");
+        }
+        resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre="+orderToShow);
     }
 
 }

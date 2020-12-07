@@ -33,9 +33,9 @@
     <c:if test="${requestScope.order.leveringsDato!=null}">
         <b>Leveres</b>${requestScope.order.leveringsDato}<br>
     </c:if>
-    <b>carport på</b> ${requestScope.carport.width/1000}*${requestScope.carport.lenght/1000} m
+    <b>carport på</b> ${requestScope.carport.width/100}*${requestScope.carport.lenght/100} m
     <c:if test="${requestScope.carport.shedWidth!=0}">
-        med et skur på ${requestScope.carport.shedWidth/1000}*${requestScope.carport.shedLength/1000}m,
+        med et skur på ${requestScope.carport.shedWidth/100}*${requestScope.carport.shedLength/100}m,
     </c:if>
     <c:if test="${requestScope.carport.rejsning==true}">
         med et fladt tag med
@@ -52,6 +52,30 @@
             Stolper er firkanter placeret langs remmene <b><i>sort</i></b> <br>
             Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne </p>
         ${svg}
+    <br>
+    <div class="row">
 
+        <div class="col-md-1">
+            <form method="post">
+                <input type="hidden" name="bestil" value=${requestScope.order.orderID}>
+                <button type="submit" class="btn btn-primary" >Bestil</button>
+            </form>
+        </div>
+        <div class="col-md-1">
+            <form method="post">
+            <input type="hidden" name="afslå" value=${requestScope.order.orderID}>
+            <button type="submit" class="btn btn-primary" >Afslå</button>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <form method="post">
+
+            <input type="hidden" name="kontakt" value=${requestScope.order.orderID}>
+            <button type="submit" class="btn btn-primary" >Kontakt mig</button>
+            </form>
+
+        </div>
+
+    </div>
 </body>
 </html>

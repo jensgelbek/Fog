@@ -5,7 +5,6 @@ import domain.items.*;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,15 +90,21 @@ public class DBOrderRepository implements OrderRepository {
         return null;
     }
 
+    @Override
+    public void updateStatus(int id, String status) throws DBException {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "UPDATE ordre  SET status=(?)WHERE id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1,status);
+            ps.setInt(2,id);
+            ps.executeUpdate();
 
+        } catch (SQLException ex) {
+            throw new DBException("order do not exist");
+        }
 
-
-
-
-
-
-
-
+    }
 
 
     @Override
