@@ -40,7 +40,7 @@ public class Bestilling extends BaseServlet {
 
     public static class CarportDTO {
         public int width = 600;
-        public int length = 600;
+        public int length = 0;
 
         public static CarportDTO fromSession(HttpSession ses) {
             CarportDTO carport = (CarportDTO) ses.getAttribute("carport");

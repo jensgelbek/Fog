@@ -200,6 +200,12 @@ entity Sælger #White {
    <size:13> PK: id
    --
    * <size:12> name
+   --
+   * <size:12> salt
+   --
+   * <size:12> secret
+   --
+   * <size:12> antal
 }
 
 

@@ -50,8 +50,8 @@ public class SvgCarport extends Tag {
         return ramme;
     }
 
-    public static Tag rem1(int length) {
-        Double WD = Double.valueOf(length);
+    public static Tag rem1(int width) {
+        Double WD = Double.valueOf(width);
         System.out.println(WD);
         Tag rem1 = new Rectangle(0.0, 35.0, WD, 4.5);
         rem1.withStyle("fill: none; stroke: black;");
