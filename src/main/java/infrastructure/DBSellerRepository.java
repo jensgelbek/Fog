@@ -6,6 +6,7 @@ import domain.items.Order;
 import domain.items.SellerRepository;
 import domain.items.Seller;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,7 +32,9 @@ public class DBSellerRepository implements SellerRepository{
                 byte[] secret = rs.getBytes("secret");
                 byte[] salt = rs.getBytes("salt");
                 int id=rs.getInt("id");
-                Seller seller=new Seller(navn, userName, salt, secret);
+
+                Seller seller=new Seller("",navn,"".getBytes(StandardCharsets.UTF_8),"".getBytes(StandardCharsets.UTF_8));
+
                 seller.setSellerID(id);
                 sellers.add(seller);
             }
@@ -51,10 +54,9 @@ public class DBSellerRepository implements SellerRepository{
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String navn=rs.getString("name");
-                String userName=rs.getString("userName");
-                byte[] secret = rs.getBytes("secret");
-                byte[] salt = rs.getBytes("salt");
-                Seller seller=new Seller(navn, userName, salt, secret);
+
+                Seller seller=new Seller("",navn,"".getBytes(StandardCharsets.UTF_8),"".getBytes(StandardCharsets.UTF_8));
+
                 seller.setSellerID(id);
                 return seller;
             }

@@ -21,7 +21,7 @@ public class WebappTest extends TestCase {
       //  int id=api.commitOrder(order);
         //order=api.findOrder(id);
         api.findAllOrders();
-        Seller seller=new Seller("morten");
+        //Seller seller=new Seller("morten");
        // api.commitSeller(seller);
         assertEquals("morten",api.findSeller(2).getName());
         System.out.println(api.findSeller(1).getName());
