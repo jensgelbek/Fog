@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,8 @@ public class MinOrdre extends BaseServlet {
             Carport carport= api.findCarport(order.getCarportId());
             req.setAttribute("order",order);
             req.setAttribute("carport",carport);
-            req.setAttribute("svg", SvgCarport.carport().toString());
+
+            req.setAttribute("svg", SvgCarport.carport(carport.getWidth(), carport.getLenght()).toString());
 
         } catch (DBException e) {
             e.printStackTrace();
@@ -40,7 +42,23 @@ public class MinOrdre extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       int orderToShow=0;
+        if (req.getParameter("bestil")!=null) {
+            orderToShow=Integer.parseInt(req.getParameter("bestil"));
+            api.updateOrderstatus(orderToShow,"ordre");
+            api.setOdreDato(orderToShow, LocalDate.now());
+            api.setLeveringsDato(orderToShow,LocalDate.now().plusDays(14));
+        }
+        if (req.getParameter("afslaa")!=null) {
+            orderToShow=Integer.parseInt(req.getParameter("afslaa"));
+            api.updateOrderstatus(orderToShow,"afslået");
+        }
+        if (req.getParameter("kontakt")!=null) {
+            orderToShow=Integer.parseInt(req.getParameter("kontakt"));
 
+            api.updateOrderstatus(orderToShow,"kontakt");
+        }
+        resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre="+orderToShow);
     }
 
 }

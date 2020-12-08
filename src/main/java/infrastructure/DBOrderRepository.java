@@ -5,7 +5,6 @@ import domain.items.*;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,15 +90,21 @@ public class DBOrderRepository implements OrderRepository {
         return null;
     }
 
+    @Override
+    public void updateStatus(int id, String status) throws DBException {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "UPDATE ordre  SET status=(?)WHERE id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1,status);
+            ps.setInt(2,id);
+            ps.executeUpdate();
 
+        } catch (SQLException ex) {
+            throw new DBException("order do not exist");
+        }
 
-
-
-
-
-
-
-
+    }
 
 
     @Override
@@ -137,5 +142,41 @@ public class DBOrderRepository implements OrderRepository {
             e.printStackTrace();
         }
         return id;
+    }
+
+    @Override
+    public void setOrdreDato(int id,LocalDate ordreDato) throws DBException {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "UPDATE ordre  SET ordreDato=(?)WHERE id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            if(ordreDato!=null) {
+                ps.setTimestamp(1, java.sql.Timestamp.valueOf(ordreDato.atStartOfDay()));
+            }else {throw new DBException("no date");}
+            ps.setInt(2,id);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new DBException("order do not exist");
+        }
+
+    }
+
+    @Override
+    public void setLeveringsDato(int id, LocalDate leveringsDato) throws DBException {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "UPDATE ordre  SET leveringsDato=(?)WHERE id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            if(leveringsDato!=null) {
+                ps.setTimestamp(1, java.sql.Timestamp.valueOf(leveringsDato.atStartOfDay()));
+            }else {throw new DBException("no date");}
+            ps.setInt(2,id);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new DBException("order do not exist");
+        }
+
     }
 }

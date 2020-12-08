@@ -66,7 +66,7 @@ public class MinSide extends BaseServlet {
         req.setAttribute("Orders", orders);
         req.setAttribute("navne",navne);
         try {
-            render("Start", "/WEB-INF/webpages/ordrer.jsp", req, resp);
+            render("Start", "/WEB-INF/webpages/minside.jsp", req, resp);
         } catch (ServletException | IOException  e){
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
