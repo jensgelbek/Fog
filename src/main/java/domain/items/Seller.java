@@ -3,10 +3,16 @@ package domain.items;
 public class Seller {
     int sellerID;
     String name;
+    String userName;
+    private byte[] salt;
+    private byte[] secret;
 
-    public Seller( String name) {
+    public Seller(String name, String userName, byte[] salt, byte[] secret) {
         this.sellerID = sellerID;
         this.name = name;
+        this.userName = userName;
+        this.salt = salt;
+        this.secret = secret;
     }
 
     public int getSellerID() {

@@ -38,11 +38,9 @@ public class Bestilling extends BaseServlet {
 
 
 
-
-    /*
     public static class CarportDTO {
-        public int width = 0;
-        public int height = 0;
+        public int width = 600;
+        public int length = 0;
 
         public static CarportDTO fromSession(HttpSession ses) {
             CarportDTO carport = (CarportDTO) ses.getAttribute("carport");
@@ -50,17 +48,21 @@ public class Bestilling extends BaseServlet {
                 carport = new CarportDTO();
                 ses.setAttribute("carport", carport);
             }
-            System.out.println(carport);
             return carport;
         }
 
+        public int getLength() {
+            return length;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
         public String getDrawing() {
-            System.out.println("get: " + width);
-            return SvgCarport.carport(width, height).toString();
+            return SvgCarport.carport(width, length).toString();
         }
     }
-
-     */
 
 
     @Override
@@ -75,11 +77,9 @@ public class Bestilling extends BaseServlet {
             req.setAttribute("carportMeasure", list.carportMeasure());
             req.setAttribute("tag", list.tag());
             req.setAttribute("shed", list.shed());
+            CarportDTO.fromSession(req.getSession());
+            // req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
 
-            req.setAttribute("svg", SvgCarport.carport().toString());
-
-            req.setAttribute("bredde", req.getSession().getAttribute("bredde"));
-            req.setAttribute("langde", req.getSession().getAttribute("langde"));
             req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
 
 
@@ -93,7 +93,12 @@ public class Bestilling extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        var carportdto = CarportDTO.fromSession(req.getSession());
+        carportdto.width = Integer.parseInt(req.getParameter("width"));
+        carportdto.length = Integer.parseInt(req.getParameter("length"));
+        //String tag = req.getParameter("tag");
 
+        /*
         if (req.getParameter("target") != null)
             if (req.getParameter("target").equals("bestilling")) {
 
@@ -113,18 +118,8 @@ public class Bestilling extends BaseServlet {
 
 
 
-                /*
-                CarportDTO cp = CarportDTO.fromSession(s);
-                cp.width = bredde;
-                System.out.println("cp: " + cp.width);
-                cp.height = langde;
-                System.out.println("cp: " + cp.height);
-                 */
 
-
-
-
-
+                // New Carport
                 Carport carport = new Carport(bredde, langde, rejsning, tag,  shedW, shedL);
                 try {
                     int carportId =api.commitCarport(carport);
@@ -136,8 +131,9 @@ public class Bestilling extends BaseServlet {
                     throwables.printStackTrace();
                 }
 
+         */
 
                 resp.sendRedirect(req.getContextPath() + "/bestilling");
             }
     }
-}
+
