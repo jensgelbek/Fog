@@ -1,8 +1,10 @@
 package web.pages;
 
+import api.Utils;
 import domain.items.Customer;
 import domain.items.CustomerNotFound;
 import domain.items.DBException;
+import domain.items.Seller;
 import web.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -18,7 +20,7 @@ public class Oprettelse extends BaseServlet {
         try {
             // req.setAttribute("items", api.findAllItems());
             render("Start", "/WEB-INF/webpages/oprettelse.jsp", req, resp);
-        } catch (ServletException | IOException e){
+        } catch (ServletException | IOException e) {
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
         }
@@ -52,36 +54,59 @@ public class Oprettelse extends BaseServlet {
             resp.sendRedirect(req.getContextPath() + "/frontpage");
 
             if (req.getParameter("Log ud") != null) {
-                req.setAttribute("username", email ==null);
+                req.setAttribute("username", email == null);
             }
-
 
 
         }
 
         if (req.getParameter("Loginemail") != null) {
-            String email = req.getParameter("Loginemail");
-            String password = req.getParameter("Loginpassword");
-            Customer customer = null;
-            try {
-                customer = api.findCustomer(email);
-            } catch (DBException e) {
-                e.printStackTrace();
-            } catch (CustomerNotFound customerNotFound) {
-                customerNotFound.printStackTrace();
-            }
-            if (customer != null) {
-                boolean correctpassword = customer.checkPassword(password);
-                if (correctpassword) {
-                    var s = req.getSession();
-                    s.setAttribute("username", customer.getEmail());
-                    s.setAttribute("employer","no");
+            String userName = req.getParameter("Loginemail");
+            if (userName.contains("@")) {
+                String email = req.getParameter("Loginemail");
+                String password = req.getParameter("Loginpassword");
+                Customer customer = null;
+                try {
+                    customer = api.findCustomer(email);
+                } catch (DBException e) {
+                    e.printStackTrace();
+                } catch (CustomerNotFound customerNotFound) {
+                    customerNotFound.printStackTrace();
                 }
-                resp.sendRedirect(req.getContextPath() + "/frontpage");
+                if (customer != null) {
+                    boolean correctpassword = customer.checkPassword(password);
+                    if (correctpassword) {
+                        var s = req.getSession();
+                        s.setAttribute("username", customer.getEmail());
+                        s.setAttribute("employer", "no");
+                    }
+                    resp.sendRedirect(req.getContextPath() + "/frontpage");
+
+                }
+            } else {
+                String password = req.getParameter("Loginpassword");
+                Seller seller = null;
+                System.out.println(userName);
+                try {
+                    seller = api.findSeller(userName);
+                } catch (DBException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(seller);
+                if (seller != null) {
+                    boolean correctpassword = Utils.checkPassword(password, seller.getSecret(), seller.getSalt());
+                    if (correctpassword) {
+                        var s = req.getSession();
+                        s.setAttribute("username", seller.getUsername());
+                        s.setAttribute("employer", "yes");
+                        System.out.println("gustav er inde");
+                    }
+                    resp.sendRedirect(req.getContextPath() + "/frontpage");
+
+
+                }
 
             }
-
-
         }
     }
 }

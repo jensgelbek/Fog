@@ -126,7 +126,7 @@
                         <form class="px-3 py-3" method="post" action="<c:url value="/oprettelse"/>">
                             <div class="form-group">
                                 <label for="exampleDropdownFormEmail1">Email</label>
-                                <input type="email" class="form-control" id="exampleDropdownFormEmail1"
+                                <input type="text" class="form-control" id="exampleDropdownFormEmail1"
                                        name="Loginemail"
 
                                 >

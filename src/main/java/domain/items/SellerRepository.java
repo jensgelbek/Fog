@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface SellerRepository {
     List<Seller> findAll() throws SQLException, DBException;
-    Seller find(int id) throws DBException;
+    Seller find(String userName) throws DBException;
     int commit(Seller seller);
 
 }

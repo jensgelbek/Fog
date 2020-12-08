@@ -1,14 +1,11 @@
 package infrastructure;
 
-import api.Utils;
 import domain.items.DBException;
-import domain.items.Order;
 import domain.items.SellerRepository;
 import domain.items.Seller;
 
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,17 +42,19 @@ public class DBSellerRepository implements SellerRepository{
     }
 
     @Override
-    public Seller find(int id) throws DBException {
+    public Seller find(String userName) throws DBException {
         try {
             Connection con = db.getConnection();
-            String SQL = "SELECT * FROM sælger WHERE id=(?)";
+            String SQL = "SELECT * FROM sælger WHERE userName=(?)";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1,id);
+            ps.setString(1,userName);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String navn=rs.getString("name");
-
-                Seller seller=new Seller("",navn,"".getBytes(StandardCharsets.UTF_8),"".getBytes(StandardCharsets.UTF_8));
+                int id=rs.getInt("id");
+                byte[] salt=rs.getBytes("salt");
+                byte[] secret=rs.getBytes("secret");
+                Seller seller=new Seller(userName,navn,salt,secret);
 
                 seller.setSellerID(id);
                 return seller;
@@ -71,9 +70,12 @@ public class DBSellerRepository implements SellerRepository{
         int id = 0;
         try {
             Connection con = db.getConnection();
-            String SQL = "INSERT INTO sælger (name) VALUES (?)";
+            String SQL = "INSERT INTO sælger (name,userName,salt,secret) VALUES (?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, seller.getName());
+            ps.setString(2,seller.getUsername());
+            ps.setBytes(3,seller.getSalt());
+            ps.setBytes(4,seller.getSecret());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {

@@ -84,6 +84,6 @@ public class Webapp {
        return carports.commit(carport);
     }
     public int commitSeller(Seller seller){return sellers.commit(seller);}
-    public Seller findSeller(int id) throws DBException {return sellers.find(id);};
+    public Seller findSeller(String userName) throws DBException {return sellers.find(userName);};
     public List<Seller> findAllSellers () throws SQLException, DBException {return sellers.findAll();};
 }
