@@ -4,6 +4,7 @@ public class Seller {
     int sellerID;
     String username;
     String name;
+
     private byte[] salt;
     private byte[] secret;
 
@@ -37,6 +38,7 @@ public class Seller {
 
     public void setSecret(byte[] secret) {
         this.secret = secret;
+
     }
 
     public int getSellerID() {

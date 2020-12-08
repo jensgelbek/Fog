@@ -41,13 +41,10 @@
                     <!-- Dropdown length -->
                     <div class="form-group ">
                         <label for="bredde">Carport bredde</label>
-                        <select class="form-control" name="bredde" id="bredde">
+                        <select class="form-control" name="width" id="bredde">
                             <option value="">Vælg bredde</option>
-                            <%!
-                                private class embed {
-                                }
-                            %><c:forEach items="${requestScope.carportMeasure}" var="bred">
-                                <option value="${bred}">
+                            <c:forEach items="${requestScope.carportMeasure}" var="bred">
+                                <option value="${bred}" <c:if test="${bred==carport.width}">selected</c:if>>
                                         ${bred}
                                 </option>
                             </c:forEach>
@@ -57,10 +54,11 @@
                     <!-- Dropdown width -->
                     <div class="form-group ">
                         <label for="længde">Carport længde</label>
-                        <select class="form-control" name="laengde" id="længde">
+                        <select class="form-control" name="length" id="længde">
                             <option value="">Vælg længde</option>
-                            <c:forEach  items="${requestScope.carportMeasure.subList(0, carportMeasure.size()-1)}" var="len">
-                                <option value="${len}">
+                            <c:forEach items="${requestScope.carportMeasure.subList(0, carportMeasure.size()-1)}"
+                                       var="len">
+                                <option value="${len}" <c:if test="${len==carport.length}">selected</c:if>>
                                         ${len}
                                 </option>
                             </c:forEach>
@@ -110,41 +108,37 @@
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Vis tegning</button>
-                    <br>
                     <hr>
-                    <br>
                     <h6> Du har valgt følgende carport mål:<br></h6>
                     --<br>
                     <div class="row">
                         <div class="col-md-3">
-                        Bredde:<br>
-                            Længde:<br>
-                            Tag: <br>
-                            <br>
-                            Redskabsskur bredde: <br>
-                            Redskabsskur længde:
-
+                            Bredde:
                         </div>
                         <div class="col-md-9">
-                            ${bredde}<br>
-                                ${langde}<br>
-                                ${tag2}<br>
-                                <br>
-                            N/A<br>
-                            N/A
+                            ${sessionScope.carport.width}
                         </div>
                     </div>
-                    <br>
-                    <hr>
-                    <br>
                     <div class="row">
-                        <h6> Tegning af din carport:<br></h6>
+                        <div class="col-md-3">
+                            Længde:
+                        </div>
+                        <div class="col-md-9">
+                            ${sessionScope.carport.length}
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <h6> Tegning af din carport:</h6>
+                    </div>
+                    <div class="row">
                         <p>Bredde & længde udgør 'Stern' (for/bag og siderne) her indkeret med <b><i>Rødt</i></b> <br>
                             Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
                         2 x bærende 'Rem' i siderne på langs med <b><i>sort</i></b>  <br>
                             Stolper er firkanter placeret langs remmene <b><i>sort</i></b> <br>
                             Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne </p>
-                        ${svg}
+                        ${carport.drawing}
                     </div>
 
                     <br>
@@ -155,44 +149,6 @@
                 </form>
                 <br>
                 <p>* Hvis du f.eks. har valgt en carport med målene 240x360 cm kan redskabsrummet maksimalt måle 210x330 cm.</p>
-
-
-
-                    <div class="form-group">
-                        <label for="navn">Navn</label>
-                        <input type="text" class="form-control" id="navn"
-                               aria-describedby="kundeNavn" name="navn">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="adresse">Adresse</label>
-                        <input type="text" class="form-control" id="adresse"
-                               aria-describedby="kundeAdresse" name="adresse">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="postBy">Postnummer & by</label>
-                        <input type="text" class="form-control" id="postBy"
-                               aria-describedby="kundePostBy" name="postBy">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tlfNummer">Telefon</label>
-                        <input type="text" class="form-control" id="tlfNummer"
-                               aria-describedby="kundeTlfNummer" name="tlfNummer">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email adresse</label>
-                        <input type="text" class="form-control" id="email"
-                               aria-describedby="kundeEmail" name="email">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="bemærkninger">Evt. bemærkninger</label>
-                        <input type="text" class="form-control" id="bemærkninger"
-                               aria-describedby="kundeBemærkninger" name="bemærkninger">
-                    </div>
 
             </div>
         </div>

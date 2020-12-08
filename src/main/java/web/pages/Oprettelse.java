@@ -51,6 +51,12 @@ public class Oprettelse extends BaseServlet {
             }
             resp.sendRedirect(req.getContextPath() + "/frontpage");
 
+            if (req.getParameter("Log ud") != null) {
+                req.setAttribute("username", email ==null);
+            }
+
+
+
         }
 
         if (req.getParameter("Loginemail") != null) {

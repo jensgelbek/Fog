@@ -52,20 +52,7 @@
                 <form class="px-3 py-3" method="post" action="<c:url value="/ordrer"/>">
                 </form>
             </button>
-            <a class="navbar-ordrer" href="minSide"> ${sessionScope.username}</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <form class="px-3 py-3" method="post" action="<c:url value="/minSide"/>">
-                </form>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse4">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
 
-
-                    </li>
-
-                </ul>
                 <a class="navbar-kontakt" href="kontakt"> Kontakt</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,6 +68,21 @@
                         </li>
 
                     </ul>
+
+                    <a class="navbar-user" href="minSide"> ${sessionScope.username}</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <form class="px-3 py-3" method="post" action="<c:url value="/minSide"/>">
+                        </form>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse4">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+
+
+                            </li>
+
+                        </ul>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,11 +101,25 @@
                         <a class="nav-link" href="<c:url value="/oprettelse"/>">Opret Bruger</a>
                     </li>
                 </ul>
+                <c:if test="${sessionScope.username != null && sessionScope.username !=\"\"}">
 
+                    <form method="post" action="<c:url value="/frontpage"/>">
+                        <input type="hidden" name="Log ud" >
+                        <button  type="submit" name="Log ud" value="Log ud" class="btn btn-primary">Log ud</button>
+
+                    </form>
+
+                </c:if>
+
+
+
+                    </div>
+            <c:if test="${sessionScope.username == null || sessionScope.username ==\"\"}">
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle btn btn-primary" href="" id="dropdown01" data-toggle="dropdown"
                        aria-haspopup="true"
                        aria-expanded="false">Log Ind</a>
+
 
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-larger">
 
@@ -123,6 +139,8 @@
 
                             </div>
                             <button type="submit" class="btn btn-primary">Log in</button>
+
+                            </c:if>
                         </form>
                     </div>
                 </div>

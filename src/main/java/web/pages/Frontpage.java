@@ -25,7 +25,9 @@ import java.io.IOException;
 
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+            var s = req.getSession();
+            s.setAttribute("username", "");
+            resp.sendRedirect(req.getContextPath() + "/frontpage");
         }
 
 

@@ -136,6 +136,10 @@
 
 
 
+ .navbar-user {
+    color: green;
+
+ }
  h1 {
      font-size: xx-large;
  }
