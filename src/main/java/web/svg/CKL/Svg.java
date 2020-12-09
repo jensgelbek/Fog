@@ -49,10 +49,9 @@ public class Svg extends Tag {
     }
 
 
-
     public static void main(String[] args) {
         try (FileWriter writer = new FileWriter("./src/main/java/web/svg/svgOutput/carport.svg")) {
-          writer.write(chessboard().toString());
+            writer.write(chessboard().toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

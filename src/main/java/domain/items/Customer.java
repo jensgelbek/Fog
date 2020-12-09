@@ -63,36 +63,65 @@ public class Customer {
     }
 
     public boolean checkPassword(String password) {
-        return Arrays.equals(this.secret, calculateSecret(salt, password)); }
+        return Arrays.equals(this.secret, calculateSecret(salt, password));
+    }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getAddress() { return address; }
+    public String getAddress() {
+        return address;
+    }
 
-    public void setAddress(String address) { this.address = address; }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public void setEmail(String email) { this.email = email; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public int getPhoneNumber() { return phoneNumber; }
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
 
-    public void setPhoneNumber(int phoneNumber) { this.phoneNumber = phoneNumber; }
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
 
-    public boolean isAdmin() { return admin; }
+    public boolean isAdmin() {
+        return admin;
+    }
 
-    public void setAdmin(boolean admin) { admin = admin; }
+    public void setAdmin(boolean admin) {
+        admin = admin;
+    }
 
-    public byte[] getSalt() { return salt; }
+    public byte[] getSalt() {
+        return salt;
+    }
 
-    public void setSalt(byte[] salt) { this.salt = salt; }
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
 
-    public byte[] getSecret() { return secret; }
+    public byte[] getSecret() {
+        return secret;
+    }
 
-    public void setSecret(byte[] secret) { this.secret = secret; }
+    public void setSecret(byte[] secret) {
+        this.secret = secret;
+    }
 
     @Override
     public boolean equals(Object o) {

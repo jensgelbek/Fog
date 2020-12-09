@@ -19,7 +19,7 @@ public class SvgInner extends Tag {
     public String renderAttributes() {
         return String.format(
                 "xmlns=\"http://www.w3.org/2000/svg\""
-                        +   " x=\"%f\" y=\"%f\" height=\"%d\" width=\"%d\" viewBox=\"%s\" ",
+                        + " x=\"%f\" y=\"%f\" height=\"%d\" width=\"%d\" viewBox=\"%s\" ",
                 x,
                 y,
                 height,

@@ -13,6 +13,7 @@ import java.util.List;
 public class DBCarportRepository implements CarportRepository {
 
     private final Database db;
+
     public DBCarportRepository(Database db) {
         this.db = db;
     }
@@ -20,25 +21,25 @@ public class DBCarportRepository implements CarportRepository {
 
     @Override
     public List<Carport> findAll() throws DBException {
-        List<Carport> carports=new ArrayList<>();
+        List<Carport> carports = new ArrayList<>();
         try {
             Connection con = db.getConnection();
             String SQL = "SELECT * FROM carport";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int id=rs.getInt("id");
-                int bredde=rs.getInt("bredde");
-                int laengde=rs.getInt("længde");
-                boolean rejsnin=rs.getBoolean("rejsning");
-                String tag=rs.getString("tag");
-                int skurbredde=rs.getInt("skurBredde");
-                int skurlaengde=rs.getInt("skurlængde");
-                Carport carport=new Carport(bredde,laengde,rejsnin,tag,skurbredde,skurlaengde);
+                int id = rs.getInt("id");
+                int bredde = rs.getInt("bredde");
+                int laengde = rs.getInt("længde");
+                boolean rejsnin = rs.getBoolean("rejsning");
+                String tag = rs.getString("tag");
+                int skurbredde = rs.getInt("skurBredde");
+                int skurlaengde = rs.getInt("skurlængde");
+                Carport carport = new Carport(bredde, laengde, rejsnin, tag, skurbredde, skurlaengde);
                 carport.setCarportID(id);
                 carports.add(carport);
             }
-        } catch ( SQLException ex) {
+        } catch (SQLException ex) {
             throw new DBException(ex.getMessage());
         }
         return carports;
@@ -50,21 +51,21 @@ public class DBCarportRepository implements CarportRepository {
             Connection con = db.getConnection();
             String SQL = "SELECT * FROM carport WHERE id=(?)";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                id=rs.getInt("id");
-                int bredde=rs.getInt("bredde");
-                int laengde=rs.getInt("længde");
-                boolean rejsnin=rs.getBoolean("rejsning");
-                String tag=rs.getString("tag");
-                int skurbredde=rs.getInt("skurBredde");
-                int skurlaengde=rs.getInt("skurlængde");
-                Carport carport=new Carport(bredde,laengde,rejsnin,tag,skurbredde,skurlaengde);
+                id = rs.getInt("id");
+                int bredde = rs.getInt("bredde");
+                int laengde = rs.getInt("længde");
+                boolean rejsnin = rs.getBoolean("rejsning");
+                String tag = rs.getString("tag");
+                int skurbredde = rs.getInt("skurBredde");
+                int skurlaengde = rs.getInt("skurlængde");
+                Carport carport = new Carport(bredde, laengde, rejsnin, tag, skurbredde, skurlaengde);
                 carport.setCarportID(id);
                 return carport;
             }
-        } catch ( SQLException ex) {
+        } catch (SQLException ex) {
             throw new DBException(ex.getMessage());
         }
         return null;

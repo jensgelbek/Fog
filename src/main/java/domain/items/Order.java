@@ -13,12 +13,12 @@ public class Order {
     int price;
     String status;
 
-    public Order(LocalDate tilbudsdato, LocalDate ordredato, LocalDate leveringsDato,String kundeEmail, int saelgerId, int carportId, int price, String status) {
+    public Order(LocalDate tilbudsdato, LocalDate ordredato, LocalDate leveringsDato, String kundeEmail, int saelgerId, int carportId, int price, String status) {
         this.tilbudsdato = tilbudsdato;
         this.ordredato = ordredato;
         this.leveringsDato = leveringsDato;
 
-       this.kundeEmail=kundeEmail;
+        this.kundeEmail = kundeEmail;
         this.saelgerId = saelgerId;
         this.carportId = carportId;
         this.price = price;

@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html;charset=UTF-8"%>
+<%@page contentType="text/html;charset=UTF-8" %>
 <p1>
     Her kan du oprette en bruger. Du skal have oprettet dig som bruger, før du kan bestille
     en carport.
@@ -27,9 +27,9 @@
         </div>
 
         <div class="col-md-1">
-            <form method="post" >
+            <form method="post">
                 <input type="hidden" name="Opret" value="opret">
-                <button type="submit" class="btn btn-primary" >Opret</button>
+                <button type="submit" class="btn btn-primary">Opret</button>
             </form>
         </div>
 

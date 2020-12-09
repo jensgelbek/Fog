@@ -43,6 +43,7 @@ public abstract class Tag {
         builder.append(String.format("</%s>", name));
 
     }
+
     protected abstract String renderAttributes();
 
     public void renderSubTags(StringBuilder builder) {
