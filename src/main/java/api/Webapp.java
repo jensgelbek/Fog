@@ -1,6 +1,8 @@
 package api;
 
 import domain.items.*;
+import domain.materials.VolumeMaterial;
+import domain.materials.VolumeMaterialRepository;
 
 
 import java.sql.SQLException;
@@ -16,12 +18,14 @@ public class Webapp {
     private final CustomerRepository customers;
     private final CarportRepository carports;
     private final SellerRepository sellers;
+    private final VolumeMaterialRepository volumeMaterials;
 
-    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers) {
+    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials) {
         this.orders = orders;
         this.customers = customers;
         this.carports = carports;
         this.sellers = sellers;
+        this.volumeMaterials=volumeMaterials;
 
     }
 
@@ -118,5 +122,28 @@ public class Webapp {
         return sellers.findAll();
     }
 
-    ;
+    public VolumeMaterial findVolumeMaterial(int id){
+        try {
+            return volumeMaterials.find(id);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public List<VolumeMaterial> findAllVolumeMaterials(){
+        try {
+            return volumeMaterials.findAll();
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public List<VolumeMaterial> findAllVolumeMaterialsName(String name){
+        try {
+            return volumeMaterials.findAllName(name);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -16,4 +16,15 @@ public class VolumeMaterial extends Material {
     public void setLength(int length) {
         this.length = length;
     }
+
+    @Override
+    public String toString() {
+        return "VolumeMaterial{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", details='" + details + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", length=" + length +
+                '}';
+    }
 }
