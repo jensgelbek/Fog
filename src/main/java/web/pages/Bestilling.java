@@ -3,9 +3,9 @@ package web.pages;
 
 import domain.items.*;
 
-import infrastructure.DBCarportRepository;
 import infrastructure.Lists;
 import web.BaseServlet;
+import web.svg.StykListeLinje;
 import web.svg.SvgCarport;
 
 import javax.servlet.ServletException;
@@ -36,8 +36,6 @@ public class Bestilling extends BaseServlet {
         return carportList;
     }
 
-
-
     public static class CarportDTO {
         public int width = 0;
         public int length = 0;
@@ -62,6 +60,23 @@ public class Bestilling extends BaseServlet {
         public String getDrawing() {
             return SvgCarport.carport(width, length).toString();
         }
+
+        public StykListeLinje sternWidthCalc() {
+            return SvgCarport.sternWidthCalc(width, length);
+        }
+
+        public StykListeLinje sternLengthCalc() {
+            return SvgCarport.sternLengthCalc(width, length);
+        }
+
+        public StykListeLinje spaerCalc() {
+            return SvgCarport.spaerCalc(width, length);
+        }
+
+
+
+
+
     }
 
 
@@ -78,7 +93,9 @@ public class Bestilling extends BaseServlet {
             req.setAttribute("tag", list.tag());
             req.setAttribute("shed", list.shed());
             CarportDTO.fromSession(req.getSession());
-            // req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
+            req.setAttribute("sternWidthCalc", CarportDTO.fromSession(req.getSession()).sternWidthCalc());
+            req.setAttribute("sternLengthCalc", CarportDTO.fromSession(req.getSession()).sternLengthCalc());
+            req.setAttribute("spaerCalc", CarportDTO.fromSession(req.getSession()).spaerCalc());
 
             req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
 
