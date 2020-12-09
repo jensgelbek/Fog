@@ -9,27 +9,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-
-
-    @WebServlet("/frontpage")
-    public class Frontpage extends BaseServlet {
-        @Override
-        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            try {
-                render("Start", "/WEB-INF/webpages/frontpage.jsp", req, resp);
-            } catch (ServletException | IOException  e){
-                log(e.getMessage());
-                resp.sendError(400, e.getMessage());
-            }
+@WebServlet("/frontpage")
+public class Frontpage extends BaseServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            render("Start", "/WEB-INF/webpages/frontpage.jsp", req, resp);
+        } catch (ServletException | IOException e) {
+            log(e.getMessage());
+            resp.sendError(400, e.getMessage());
         }
-
-        @Override
-        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            var s = req.getSession();
-            s.setAttribute("username", "");
-            resp.sendRedirect(req.getContextPath() + "/frontpage");
-        }
-
-
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        var s = req.getSession();
+        s.setAttribute("username", "");
+        resp.sendRedirect(req.getContextPath() + "/frontpage");
+    }
+
+
+}
 

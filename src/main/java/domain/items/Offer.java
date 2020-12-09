@@ -28,6 +28,7 @@ public class Offer {
     public void setMaterials(Material material) {
         this.material = material;
     }
+
     public int getOfferID() {
         return offerID;
     }

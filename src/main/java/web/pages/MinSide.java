@@ -16,23 +16,23 @@ import java.util.concurrent.BlockingDeque;
 @WebServlet("/minSide")
 public class MinSide extends BaseServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         var s = req.getSession();
-        String email= (String) s.getAttribute("username");
+        String email = (String) s.getAttribute("username");
         List<Order> orders = null;
         try {
             orders = api.findAllOrdersWithEmail(email);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        List<String>navne=new ArrayList<>();
-        List<Integer> carportBredder=new ArrayList<>();
-        List<Integer> carportLaengder=new ArrayList<>();
-        List<Integer> skurBredder=new ArrayList<>();
-        List<Integer> skurLaengder=new ArrayList<>();
+        List<String> navne = new ArrayList<>();
+        List<Integer> carportBredder = new ArrayList<>();
+        List<Integer> carportLaengder = new ArrayList<>();
+        List<Integer> skurBredder = new ArrayList<>();
+        List<Integer> skurLaengder = new ArrayList<>();
 
 
-        for (Order o:orders) {
+        for (Order o : orders) {
             try {
                 navne.add(api.findCustomer(o.getKundeEmail()).getName());
             } catch (DBException e) {
@@ -44,13 +44,11 @@ public class MinSide extends BaseServlet {
 
             try {
 
-                Carport c=api.findCarport(o.getCarportId());
+                Carport c = api.findCarport(o.getCarportId());
                 carportBredder.add(c.getWidth());
                 carportLaengder.add(c.getLenght());
                 skurBredder.add(c.getShedWidth());
                 skurLaengder.add(c.getShedLength());
-
-
 
 
             } catch (DBException e) {
@@ -59,15 +57,15 @@ public class MinSide extends BaseServlet {
 
 
         }
-        req.setAttribute("carportbredder",carportBredder);
-        req.setAttribute("carportlaengder",carportLaengder);
-        req.setAttribute("skurbredder",skurBredder);
-        req.setAttribute("skurlaengder",skurLaengder);
+        req.setAttribute("carportbredder", carportBredder);
+        req.setAttribute("carportlaengder", carportLaengder);
+        req.setAttribute("skurbredder", skurBredder);
+        req.setAttribute("skurlaengder", skurLaengder);
         req.setAttribute("Orders", orders);
-        req.setAttribute("navne",navne);
+        req.setAttribute("navne", navne);
         try {
             render("Start", "/WEB-INF/webpages/minside.jsp", req, resp);
-        } catch (ServletException | IOException  e){
+        } catch (ServletException | IOException e) {
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
         }
@@ -79,7 +77,7 @@ public class MinSide extends BaseServlet {
             int orderToShow = Integer.parseInt(req.getParameter("vis"));
             System.out.println(orderToShow);
 
-            resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre="+orderToShow);
+            resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderToShow);
 
         }
     }

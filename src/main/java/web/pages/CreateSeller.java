@@ -15,7 +15,7 @@ public class CreateSeller extends BaseServlet {
         try {
             // req.setAttribute("items", api.findAllItems());
             render("Start", "/WEB-INF/webpages/createSeller.jsp", req, resp);
-        } catch (ServletException | IOException e){
+        } catch (ServletException | IOException e) {
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
         }

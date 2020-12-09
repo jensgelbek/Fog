@@ -2,19 +2,20 @@ package entries;
 
 import infrastructure.Database;
 
-import 	org.apache.ibatis.jdbc.ScriptRunner
+import org.apache.ibatis.jdbc.ScriptRunner
         ;
+
 import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Migrate {
-    
+
     public static void main(String[] args) throws IOException, SQLException {
         runMigrations();
-        
+
     }
-    
+
     public static void runMigrations() throws IOException, SQLException {
         int version = Database.getCurrentVersion();
         while (version < Database.getVersion()) {
@@ -27,10 +28,10 @@ public class Migrate {
             } else {
                 throw new RuntimeException("Something went wrong, version not increased: " + new_version);
             }
-    
+
         }
     }
-    
+
     public static void runMigration(int i) throws IOException, SQLException {
         String migrationFile = String.format("migrate/%d.sql", i);
         System.out.println("Running migration: " + migrationFile);

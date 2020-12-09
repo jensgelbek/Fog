@@ -37,7 +37,6 @@ public class Bestilling extends BaseServlet {
     }
 
 
-
     public static class CarportDTO {
         public int width = 0;
         public int length = 0;
@@ -133,7 +132,7 @@ public class Bestilling extends BaseServlet {
 
          */
 
-                resp.sendRedirect(req.getContextPath() + "/bestilling");
-            }
+        resp.sendRedirect(req.getContextPath() + "/bestilling");
     }
+}
 

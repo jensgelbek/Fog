@@ -10,28 +10,29 @@ import java.util.List;
 
 public class DBOrderRepository implements OrderRepository {
     private final Database db;
+
     public DBOrderRepository(Database db) {
         this.db = db;
     }
 
     @Override
     public List<Order> findAll() throws SQLException {
-        List<Order> orderlist=new ArrayList<>();
+        List<Order> orderlist = new ArrayList<>();
         Connection con = db.getConnection();
         String SQL = "SELECT * FROM ordre";
         PreparedStatement ps = con.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
-        while (rs.next()){
-            int id=rs.getInt("id");
-            LocalDate tilbudsDato= Utils.timestampToLocalDate(rs.getTimestamp("tilbudsDato"));
-            LocalDate ordreDato=Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
-            LocalDate leveringsDato=Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
-            String eamil=rs.getString("kundeEmail");
-            int saelgerId=rs.getInt("sælgerID");
-            int carportId=rs.getInt("carportid");
-            int pris=rs.getInt("pris");
-            String status=rs.getString("status");
-            Order order=new Order (tilbudsDato,ordreDato,leveringsDato,eamil,saelgerId,carportId,pris,status);
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            LocalDate tilbudsDato = Utils.timestampToLocalDate(rs.getTimestamp("tilbudsDato"));
+            LocalDate ordreDato = Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
+            LocalDate leveringsDato = Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
+            String eamil = rs.getString("kundeEmail");
+            int saelgerId = rs.getInt("sælgerID");
+            int carportId = rs.getInt("carportid");
+            int pris = rs.getInt("pris");
+            String status = rs.getString("status");
+            Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, saelgerId, carportId, pris, status);
             order.setOrderID(id);
             orderlist.add(order);
         }
@@ -40,28 +41,29 @@ public class DBOrderRepository implements OrderRepository {
 
     @Override
     public List<Order> findAllWithEmail(String email) throws SQLException {
-        List<Order> orderlist=new ArrayList<>();
+        List<Order> orderlist = new ArrayList<>();
         Connection con = db.getConnection();
         String SQL = "SELECT * FROM ordre WHERE kundeEmail=(?)";
         PreparedStatement ps = con.prepareStatement(SQL);
-        ps.setString(1,email);
+        ps.setString(1, email);
         ResultSet rs = ps.executeQuery();
-        while (rs.next()){
-            int id=rs.getInt("id");
-            LocalDate tilbudsDato= Utils.timestampToLocalDate(rs.getTimestamp("tilbudsDato"));
-            LocalDate ordreDato=Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
-            LocalDate leveringsDato=Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
-            String eamil=rs.getString("kundeEmail");
-            int saelgerId=rs.getInt("sælgerID");
-            int carportId=rs.getInt("carportid");
-            int pris=rs.getInt("pris");
-            String status=rs.getString("status");
-            Order order=new Order (tilbudsDato,ordreDato,leveringsDato,eamil,saelgerId,carportId,pris,status);
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            LocalDate tilbudsDato = Utils.timestampToLocalDate(rs.getTimestamp("tilbudsDato"));
+            LocalDate ordreDato = Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
+            LocalDate leveringsDato = Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
+            String eamil = rs.getString("kundeEmail");
+            int saelgerId = rs.getInt("sælgerID");
+            int carportId = rs.getInt("carportid");
+            int pris = rs.getInt("pris");
+            String status = rs.getString("status");
+            Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, saelgerId, carportId, pris, status);
             order.setOrderID(id);
             orderlist.add(order);
         }
         return orderlist;
     }
+
     @Override
     public Order find(int id) throws DBException {
 
@@ -69,22 +71,22 @@ public class DBOrderRepository implements OrderRepository {
             Connection con = db.getConnection();
             String SQL = "SELECT * FROM ordre WHERE id=(?)";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                LocalDate tilbudsDato= Utils.timestampToLocalDate(rs.getTimestamp("tilbudsDato"));
-                LocalDate ordreDato=Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
-                LocalDate leveringsDato=Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
-                String eamil=rs.getString("kundeEmail");
-                int saelgerId=rs.getInt("sælgerID");
-                int carportId=rs.getInt("carportid");
-                int pris=rs.getInt("pris");
-                String status=rs.getString("status");
-                Order order=new Order (tilbudsDato,ordreDato,leveringsDato,eamil,saelgerId,carportId,pris,status);
+                LocalDate tilbudsDato = Utils.timestampToLocalDate(rs.getTimestamp("tilbudsDato"));
+                LocalDate ordreDato = Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
+                LocalDate leveringsDato = Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
+                String eamil = rs.getString("kundeEmail");
+                int saelgerId = rs.getInt("sælgerID");
+                int carportId = rs.getInt("carportid");
+                int pris = rs.getInt("pris");
+                String status = rs.getString("status");
+                Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, saelgerId, carportId, pris, status);
                 order.setOrderID(id);
                 return order;
             }
-            } catch ( SQLException ex) {
+        } catch (SQLException ex) {
             throw new DBException(ex.getMessage());
         }
         return null;
@@ -96,8 +98,8 @@ public class DBOrderRepository implements OrderRepository {
             Connection con = db.getConnection();
             String SQL = "UPDATE ordre  SET status=(?)WHERE id=(?)";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setString(1,status);
-            ps.setInt(2,id);
+            ps.setString(1, status);
+            ps.setInt(2, id);
             ps.executeUpdate();
 
         } catch (SQLException ex) {
@@ -115,13 +117,17 @@ public class DBOrderRepository implements OrderRepository {
             String SQL = "INSERT INTO ordre (tilbudsDato,ordreDato,leveringsDato,kundeEmail,sælgerId,carportId,pris,status) VALUES (?, ?, ?, ?, ?, ?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setTimestamp(1, java.sql.Timestamp.valueOf(order.getTilbudsdato().atStartOfDay()));
-            if(order.getOrdredato()!=null){
+            if (order.getOrdredato() != null) {
                 ps.setTimestamp(2, java.sql.Timestamp.valueOf(order.getOrdredato().atStartOfDay()));
-            }else {ps.setTimestamp(2,null);}
+            } else {
+                ps.setTimestamp(2, null);
+            }
 
-            if(order.getLeveringsDato()!=null) {
+            if (order.getLeveringsDato() != null) {
                 ps.setTimestamp(3, java.sql.Timestamp.valueOf(order.getLeveringsDato().atStartOfDay()));
-            }else {ps.setTimestamp(3,null);}
+            } else {
+                ps.setTimestamp(3, null);
+            }
             ps.setString(4, order.getKundeEmail());
             ps.setInt(5, order.getSaelgerId());
             ps.setInt(6, order.getCarportId());
@@ -145,15 +151,17 @@ public class DBOrderRepository implements OrderRepository {
     }
 
     @Override
-    public void setOrdreDato(int id,LocalDate ordreDato) throws DBException {
+    public void setOrdreDato(int id, LocalDate ordreDato) throws DBException {
         try {
             Connection con = db.getConnection();
             String SQL = "UPDATE ordre  SET ordreDato=(?)WHERE id=(?)";
             PreparedStatement ps = con.prepareStatement(SQL);
-            if(ordreDato!=null) {
+            if (ordreDato != null) {
                 ps.setTimestamp(1, java.sql.Timestamp.valueOf(ordreDato.atStartOfDay()));
-            }else {throw new DBException("no date");}
-            ps.setInt(2,id);
+            } else {
+                throw new DBException("no date");
+            }
+            ps.setInt(2, id);
             ps.executeUpdate();
 
         } catch (SQLException ex) {
@@ -168,10 +176,12 @@ public class DBOrderRepository implements OrderRepository {
             Connection con = db.getConnection();
             String SQL = "UPDATE ordre  SET leveringsDato=(?)WHERE id=(?)";
             PreparedStatement ps = con.prepareStatement(SQL);
-            if(leveringsDato!=null) {
+            if (leveringsDato != null) {
                 ps.setTimestamp(1, java.sql.Timestamp.valueOf(leveringsDato.atStartOfDay()));
-            }else {throw new DBException("no date");}
-            ps.setInt(2,id);
+            } else {
+                throw new DBException("no date");
+            }
+            ps.setInt(2, id);
             ps.executeUpdate();
 
         } catch (SQLException ex) {

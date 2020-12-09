@@ -32,7 +32,6 @@ public class SvgCarport extends Tag {
     }
 
 
-
     @Override
     protected String renderAttributes() {
         return String.format(
@@ -46,7 +45,7 @@ public class SvgCarport extends Tag {
 
     public static Tag ramme(int width, int length) {
         Tag ramme = new Rectangle(0.0, 0.0, length, width);
-        System.out.println("Length: "+ length);
+        System.out.println("Length: " + length);
         System.out.println("Width: " + width);
         ramme.withStyle("fill: none; stroke: red;");
         return ramme;
@@ -73,7 +72,7 @@ public class SvgCarport extends Tag {
     public static List<Tag> spaer(int width, int length) {
         List<Tag> spaers = new ArrayList<>();
         double x = 0.0;
-        while (x < (length-55.0)) {
+        while (x < (length - 55.0)) {
             x += 55.0;
             Tag spaer = new Rectangle(x, 0.0, 4.5, width);
             spaer.withStyle("fill: none; stroke: purple;");
@@ -91,7 +90,7 @@ public class SvgCarport extends Tag {
         List<Tag> stolper = new ArrayList<>();
         double x1 = 110.0;
         double x = 0.0;
-        while (x < (length-410.0)) {
+        while (x < (length - 410.0)) {
             x += 310.0;
             Tag stolpe1 = new Rectangle(x1, 30.0, 9.7, 9.7);
             Tag stolpe2 = new Rectangle(x, 30.0, 9.7, 9.7);
@@ -106,11 +105,12 @@ public class SvgCarport extends Tag {
 
     public static List<Tag> stolpe2(int width, int length) {
         List<Tag> stolper2 = new ArrayList<>();
-        double x1 = 110.0;;
+        double x1 = 110.0;
+        ;
         Double yLen = Double.valueOf(width) - 35.0;
         double x = 0.0;
-        while (x < (length-410.0)) {
-            x = (x+x1);
+        while (x < (length - 410.0)) {
+            x = (x + x1);
             x += 310.0;
             Tag stolpe1 = new Rectangle(x1, yLen, 9.7, 9.7);
             Tag stolpe2 = new Rectangle(x, yLen, 9.7, 9.7);
@@ -179,7 +179,5 @@ public class SvgCarport extends Tag {
  */
 
 
-
-
-    }
+}
 

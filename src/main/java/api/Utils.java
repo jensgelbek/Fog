@@ -25,12 +25,13 @@ public class Utils {
         return src.replaceAll("\\<.*?\\>", "");
     }
 
-    public static LocalDate timestampToLocalDate(Timestamp timestamp){
-        if (timestamp!=null){
-          return  timestamp.toLocalDateTime().toLocalDate();
+    public static LocalDate timestampToLocalDate(Timestamp timestamp) {
+        if (timestamp != null) {
+            return timestamp.toLocalDateTime().toLocalDate();
         }
         return null;
     }
+
     private static final int PASSWORD_ITERATIONS = 65536;
     private static final int PASSWORD_LENGTH = 256; // 32 bytes
     private static final SecretKeyFactory PASSWORD_FACTORY;
@@ -44,6 +45,7 @@ public class Utils {
         }
         PASSWORD_FACTORY = factory;
     }
+
     public static byte[] generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
@@ -62,7 +64,8 @@ public class Utils {
         }
     }
 
-    public static boolean checkPassword(String password,byte[] secret,byte[] salt) {
-        return Arrays.equals(secret, calculateSecret(salt, password)); }
+    public static boolean checkPassword(String password, byte[] secret, byte[] salt) {
+        return Arrays.equals(secret, calculateSecret(salt, password));
+    }
 
 }
