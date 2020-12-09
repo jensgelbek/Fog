@@ -1,23 +1,24 @@
 package domain.materials;
 
 public class Material {
-    int number;
+    int id;
     String name;
+    String details;
     int unitPrice;
 
-
-    public Material(int number, String name, int unitPrice) {
-        this.number = number;
+    public Material(int id, String name, String details, int unitPrice) {
+        this.id = id;
         this.name = name;
+        this.details = details;
         this.unitPrice = unitPrice;
     }
 
-    public int getNumber() {
-        return number;
+    public int getId() {
+        return id;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -26,6 +27,14 @@ public class Material {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public int getUnitPrice() {
