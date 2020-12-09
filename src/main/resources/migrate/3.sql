@@ -27,16 +27,16 @@ BEGIN;
 INSERT INTO `properties` VALUES ('version', '3');
 COMMIT;
 
-SET FOREIGN_KEY_CHECKS=1;
+
 
 
 DROP TABLE IF EXISTS materialer;
 CREATE TABLE materialer (
     id int AUTO_INCREMENT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    description name VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     pris int not null,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
-
+SET FOREIGN_KEY_CHECKS=1;
 

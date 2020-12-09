@@ -168,58 +168,58 @@ INSERT INTO materialer (id,name,details,pris) VALUES (120,'brædt','19x100 mm. t
 INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (120,7800);
 
 -- reglar
-INSERT INTO materialer (id,name,details,pris) VALUES (100,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (100,1800);
-INSERT INTO materialer (id,name,details,pris) VALUES (101,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (101,2100);
-INSERT INTO materialer (id,name,details,pris) VALUES (102,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (102,2400);
-INSERT INTO materialer (id,name,details,pris) VALUES (103,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (103,2700);
-INSERT INTO materialer (id,name,details,pris) VALUES (104,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (104,2700);
-INSERT INTO materialer (id,name,details,pris) VALUES (105,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (105,3300);
-INSERT INTO materialer (id,name,details,pris) VALUES (106,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (106,3600);
-INSERT INTO materialer (id,name,details,pris) VALUES (107,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (107,3900);
-INSERT INTO materialer (id,name,details,pris) VALUES (108,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (108,4200);
-INSERT INTO materialer (id,name,details,pris) VALUES (109,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (109,4500);
-INSERT INTO materialer (id,name,details,pris) VALUES (110,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (110,4800);
-INSERT INTO materialer (id,name,details,pris) VALUES (111,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (111,5100);
-INSERT INTO materialer (id,name,details,pris) VALUES (112,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (112,5400);
-INSERT INTO materialer (id,name,details,pris) VALUES (113,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (113,5700);
-INSERT INTO materialer (id,name,details,pris) VALUES (114,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (114,6000);
-INSERT INTO materialer (id,name,details,pris) VALUES (115,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (115,6300);
-INSERT INTO materialer (id,name,details,pris) VALUES (116,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (116,6600);
-INSERT INTO materialer (id,name,details,pris) VALUES (117,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (117,6900);
-INSERT INTO materialer (id,name,details,pris) VALUES (118,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (118,7200);
-INSERT INTO materialer (id,name,details,pris) VALUES (119,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (119,7500);
-INSERT INTO materialer (id,name,details,pris) VALUES (120,'reglar','45x95 mm. Reglar ub.',27);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (120,7800);
+INSERT INTO materialer (id,name,details,pris) VALUES (140,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (140,1800);
+INSERT INTO materialer (id,name,details,pris) VALUES (141,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (141,2100);
+INSERT INTO materialer (id,name,details,pris) VALUES (142,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (142,2400);
+INSERT INTO materialer (id,name,details,pris) VALUES (143,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (143,2700);
+INSERT INTO materialer (id,name,details,pris) VALUES (144,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (144,2700);
+INSERT INTO materialer (id,name,details,pris) VALUES (145,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (145,3300);
+INSERT INTO materialer (id,name,details,pris) VALUES (146,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (146,3600);
+INSERT INTO materialer (id,name,details,pris) VALUES (147,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (147,3900);
+INSERT INTO materialer (id,name,details,pris) VALUES (148,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (148,4200);
+INSERT INTO materialer (id,name,details,pris) VALUES (149,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (149,4500);
+INSERT INTO materialer (id,name,details,pris) VALUES (150,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (150,4800);
+INSERT INTO materialer (id,name,details,pris) VALUES (151,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (151,5100);
+INSERT INTO materialer (id,name,details,pris) VALUES (152,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (152,5400);
+INSERT INTO materialer (id,name,details,pris) VALUES (153,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (153,5700);
+INSERT INTO materialer (id,name,details,pris) VALUES (154,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (154,6000);
+INSERT INTO materialer (id,name,details,pris) VALUES (155,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (155,6300);
+INSERT INTO materialer (id,name,details,pris) VALUES (156,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (156,6600);
+INSERT INTO materialer (id,name,details,pris) VALUES (157,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (157,6900);
+INSERT INTO materialer (id,name,details,pris) VALUES (158,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (158,7200);
+INSERT INTO materialer (id,name,details,pris) VALUES (159,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (159,7500);
+INSERT INTO materialer (id,name,details,pris) VALUES (160,'reglar','45x95 mm. Reglar ub.',27);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (160,7800);
 
 -- trapez plader
-INSERT INTO materialer (id,name,details,pris) VALUES (130,'trapez','Plastmo Ecolite blåtonet',40);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (130,3600);
-INSERT INTO materialer (id,name,details,pris) VALUES (131,'trapez','Plastmo Ecolite blåtonet',40);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (131,6000);
+INSERT INTO materialer (id,name,details,pris) VALUES (170,'trapez','Plastmo Ecolite blåtonet',40);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (170,3600);
+INSERT INTO materialer (id,name,details,pris) VALUES (171,'trapez','Plastmo Ecolite blåtonet',40);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (171,6000);
 
 -- lægte
-INSERT INTO materialer (id,name,details,pris) VALUES (132,'lægte','38x73 mm. Lægte ubh.',42);
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (132,3600);
+INSERT INTO materialer (id,name,details,pris) VALUES (172,'lægte','38x73 mm. Lægte ubh.',42);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (172,3600);
 
 -- ----------------------------
 -- Records of properties
