@@ -17,7 +17,7 @@ public class Database {
 
     // Database version
 
-    private static final int version = 3;
+    private static final int version = 4;
     public Database() {
         try {
             Class.forName(JDBC_DRIVER);
