@@ -181,11 +181,11 @@ entity volumeMaterialer #White {
 entity Materialer #White {
    <size:13> PK: id
    --
-   <size:13> PK: name
+   <size:13> PK: name (FK)
  }
 
 entity MaterialeType #White {
- <size:13> PK: name (FK)
+ <size:13> PK: name
  --
  <size:13> details
  --
@@ -206,7 +206,7 @@ entity Sælger #White {
    <size:13> PK: id
    --
    * <size:12> name
-   --
+   --eType
    * <size:12> salt
    --
    * <size:12> secret
@@ -224,7 +224,7 @@ Ordre "1" -- "*" StyklisteLinje
 Materialer "1" - "*" StyklisteLinje
 Materialer "1" <|-- "0..1" volumeMaterialer
 Materialer "1" <|-- "0..1" unitMaterialer
-MaterialeType "*" - "1" Materialer
+MaterialeType "1" - "*" Materialer
 @enduml
 
 

@@ -20,12 +20,6 @@ CREATE TABLE `properties` (
                               PRIMARY KEY (name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of properties
--- ----------------------------
-BEGIN;
-INSERT INTO `properties` VALUES ('version', '3');
-COMMIT;
 
 
 
@@ -39,4 +33,11 @@ CREATE TABLE materialer (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 SET FOREIGN_KEY_CHECKS=1;
+
+-- ----------------------------
+-- Records of properties
+-- ----------------------------
+BEGIN;
+INSERT INTO `properties` VALUES ('version', '3');
+COMMIT;
 
