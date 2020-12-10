@@ -1,6 +1,8 @@
 SET FOREIGN_KEY_CHECKS=0;
+
 DROP TABLE IF EXISTS volumeMaterialer;
 DROP TABLE IF EXISTS unitmaterialer;
+
 DROP TABLE IF EXISTS materialer;
 CREATE TABLE materialer (
                             id int AUTO_INCREMENT NOT NULL,
@@ -8,6 +10,7 @@ CREATE TABLE materialer (
                             details VARCHAR(255) NOT NULL,
                             pris int not null,
                             PRIMARY KEY (id)
+
 ) ENGINE=InnoDB;
 
 
@@ -25,8 +28,17 @@ CREATE TABLE unitMaterialer (
                                 PRIMARY KEY (unitMaterialeId),
                                 KEY materiale2 (unitMaterialeId),
                                 CONSTRAINT materiale2 FOREIGN KEY (unitMaterialeId) REFERENCES materialer(id) ON DELETE CASCADE ON UPDATE CASCADE
+
 ) ENGINE=InnoDB;
 
+DROP TABLE IF EXISTS volumeMaterialer;
+CREATE TABLE volumeMaterialer (
+                                  volumeMaterialeId int,
+                                  length int NOT NULL,
+                                  PRIMARY KEY (volumeMaterialeId),
+                                  KEY materiale (volumeMaterialeId),
+                                  CONSTRAINT materiale FOREIGN KEY (volumeMaterialeId) REFERENCES materialer(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
 -- ----------------------------
 -- Table structure for properties
 -- ----------------------------
@@ -41,7 +53,7 @@ CREATE TABLE `properties` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `properties` VALUES ('version', '4');
-COMMIT;
+
 SET FOREIGN_KEY_CHECKS=1;
 
 

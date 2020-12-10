@@ -1,19 +1,5 @@
 package web.svg;
 
-import domain.items.Carport;
-import infrastructure.DBCarportRepository;
-import infrastructure.Database;
-import web.pages.Bestilling;
-import web.svg.CKL.Svg;
-
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +17,6 @@ public class SvgCarport extends Tag {
         this.viewBox = viewBox;
     }
 
-
     @Override
     protected String renderAttributes() {
         return String.format(
@@ -43,124 +28,284 @@ public class SvgCarport extends Tag {
         );
     }
 
-    public static Tag ramme(int width, int length) {
-        Tag ramme = new Rectangle(0.0, 0.0, length, width);
-        System.out.println("Length: " + length);
-        System.out.println("Width: " + width);
-        ramme.withStyle("fill: none; stroke: red;");
-        return ramme;
+
+    // Stern SVG Draw,
+
+    public static Tag sternDraw(int width, int length) {
+        Tag sternDraw = new Rectangle(0.0, 0.0, length, width);
+        sternDraw.withStyle("fill: none; stroke: red;");
+        return sternDraw;
     }
 
-    public static Tag rem1(int length) {
-        Double WD1 = Double.valueOf(length);
-        System.out.println("WD1 " + length);
-        Tag rem1 = new Rectangle(0.0, 35.0, WD1, 4.5);
+    // Stern calculations, Width: Front + back
+    // Price per meter
+
+    public static StykListeLinje sternWidthCalc(int width, int length) {
+        StykListeLinje sternWidth;
+        String name = "Stern: For og bag stern";
+        Double doubleWidth = Double.valueOf(width);
+        int unit = 2;
+        int price = 50;
+        int sum = (int) ((doubleWidth/100) * price * unit);
+        sternWidth = new StykListeLinje(name, doubleWidth, unit, price, sum);
+        System.out.println(sternWidth);
+        return sternWidth;
+    }
+
+    // Stern calculations, Length: Left + right
+    // Price per meter
+
+    public static StykListeLinje sternLengthCalc(int width, int length) {
+        StykListeLinje sternLength;
+        String name = "Stern: Venstre & højreside stern";
+        Double doubleLength = Double.valueOf(length);
+        int unit = 2;
+        int price = 50;
+        int sum = (int) ((doubleLength/100) * price * unit);
+        sternLength = new StykListeLinje(name, doubleLength, unit, price, sum);
+        System.out.println(sternLength);
+        return sternLength;
+
+    }
+
+
+    // Rem one side SVG Draw.
+
+    public static Tag remOneDraw(int length) {
+        Double remOneLength = Double.valueOf(length);
+        Tag rem1 = new Rectangle(0.0, 35.0, remOneLength, 4.5);
         rem1.withStyle("fill: none; stroke: black;");
         return rem1;
     }
 
-    public static Tag rem2(int width, int length) {
-        Double WD2 = Double.valueOf(length);
-        Double yLen = Double.valueOf(width) - 35.0;
-        System.out.println("WD2 " + length);
-        System.out.println("yLen: " + yLen);
-        Tag rem2 = new Rectangle(0.0, yLen, WD2, 4.5);
+    // Rem other side SVG Draw.
+
+    public static Tag remTwoDraw(int width, int length) {
+        Double remTwoLength = Double.valueOf(length);
+        Double remTwoY = Double.valueOf(width) - 45.0;
+        Tag rem2 = new Rectangle(0.0, remTwoY, remTwoLength, 4.5);
         rem2.withStyle("fill: none; stroke: black;");
         return rem2;
     }
 
-    public static List<Tag> spaer(int width, int length) {
-        List<Tag> spaers = new ArrayList<>();
-        double x = 0.0;
-        while (x < (length - 55.0)) {
-            x += 55.0;
-            Tag spaer = new Rectangle(x, 0.0, 4.5, width);
-            spaer.withStyle("fill: none; stroke: purple;");
-            spaers.add(spaer);
+    // Rem calculations.
+    // Price per meter
+
+    public static StykListeLinje remCalc(int width, int length) {
+        StykListeLinje rem;
+        String name = "Rem i siderne";
+        Double remLength = Double.valueOf(length);
+        int unit;
+        if (length <= 480 ) {
+            unit = 2;
+        } else if (length <= 600 ) {
+            unit = 2;
+        } else {
+            unit = 3;
         }
-        return spaers;
+        int price = 50;
+        int sum = (int) (remLength * price * unit);
+        rem = new StykListeLinje(name, remLength, unit, price, sum);
+        System.out.println(rem);
+        return rem;
     }
 
-    // TODO Kryds ?
+    // Spær SVG Draw.
+    // 0.6m apart
 
-    // TODO Stolper
-
-
-    public static List<Tag> stolpe1(int width, int length) {
-        List<Tag> stolper = new ArrayList<>();
-        double x1 = 110.0;
+    public static List<Tag> spaerDraw(int width, int length) {
+        List<Tag> spaersDraw = new ArrayList<>();
         double x = 0.0;
-        while (x < (length - 410.0)) {
-            x += 310.0;
-            Tag stolpe1 = new Rectangle(x1, 30.0, 9.7, 9.7);
-            Tag stolpe2 = new Rectangle(x, 30.0, 9.7, 9.7);
-            stolpe1.withStyle("fill: none; stroke: #000000; black: 5 5;");
-            stolpe2.withStyle("fill: none; stroke: #000000; black: 5 5;");
-            stolper.add(stolpe1);
-            stolper.add(stolpe2);
 
+        while (x < (length-60.0)) {
+            x += 60.0;
+
+            Tag spaer = new Rectangle(x, 0.0, 4.5, width);
+            spaer.withStyle("fill: none; stroke: purple;");
+            spaersDraw.add(spaer);
+        }
+        return spaersDraw;
+    }
+
+    // Rem calculations.
+    // Price per meter
+
+    public static StykListeLinje spaerCalc(int width, int length) {
+        StykListeLinje spaer;
+        String name = "Spær: Monteres på rem";
+        Double spaerLength = Double.valueOf(length);
+        int unit = (int) (length / 60.0);
+        int price = 50;
+        int sum = (int) ((spaerLength/100) * price * unit);
+        spaer = new StykListeLinje(name, spaerLength, unit, price, sum);
+        System.out.println(spaer);
+        return spaer;
+    }
+
+
+    // Stolper SVG Draw.
+    // 1'st: 110, last( 35 from back ) if more than 6m + 1 ind between 1'st and last
+
+    public static List<Tag> stolperDraw(int width, int length) {
+        List<Tag> stolper = new ArrayList<>();
+
+        Tag stolpeOneFront;
+        Tag stolpeOneMid;
+        Tag stolpeOneLast;
+
+        Tag stolpeTwoFront;
+        Tag stolpeTwoMid;
+        Tag stolpeTwoLast;
+
+        double stolpeFrontXPoint = 110.0;
+        double measureFromBack = 35.0;
+        double stolpeOneYPoint = 30.0;
+        double stolpeTwoYPoint = Double.valueOf(width) - 45.0;
+
+        if ( length > 0.0 ) {
+
+            stolpeOneFront = new Rectangle(stolpeFrontXPoint, stolpeOneYPoint, 9.7, 9.7);
+            stolpeOneLast = new Rectangle(Double.valueOf(length) - measureFromBack, stolpeOneYPoint, 9.7, 9.7);
+
+            stolpeTwoFront = new Rectangle(stolpeFrontXPoint, stolpeTwoYPoint, 9.7, 9.7);
+            stolpeTwoLast = new Rectangle(Double.valueOf(length) - measureFromBack, stolpeTwoYPoint, 9.7, 9.7);
+
+            stolpeOneFront.withStyle("fill: none; stroke: #000000; black: 5 5;");
+            stolpeOneLast.withStyle("fill: none; stroke: #000000; black: 5 5;");
+            stolpeTwoFront.withStyle("fill: none; stroke: #000000; black: 5 5;");
+            stolpeTwoLast.withStyle("fill: none; stroke: #000000; black: 5 5;");
+
+            stolper.add(stolpeOneFront);
+            stolper.add(stolpeOneLast);
+            stolper.add(stolpeTwoFront);
+            stolper.add(stolpeTwoLast);
+
+            if (length >= 600.0) {
+
+                // (stolpeFrontXPoint - ((Double.valueOf(length) - measureFromBack)/2) + stolpeFrontXPoint));
+
+                double stolpeOneMidXPoint = ((Double.valueOf(length) - stolpeFrontXPoint - measureFromBack)/2) + stolpeFrontXPoint;
+                stolpeOneMid = new Rectangle(stolpeOneMidXPoint, stolpeOneYPoint, 9.7, 9.7);
+
+                double stolpeTwoMidXPoint = ((Double.valueOf(length) - stolpeFrontXPoint - measureFromBack)/2) + stolpeFrontXPoint;
+                stolpeTwoMid = new Rectangle(stolpeOneMidXPoint, stolpeTwoYPoint, 9.7, 9.7);
+
+                stolpeOneMid.withStyle("fill: none; stroke: #000000; black: 5 5;");
+                stolper.add(stolpeOneMid);
+
+                stolpeTwoMid.withStyle("fill: none; stroke: #000000; black: 5 5;");
+                stolper.add(stolpeTwoMid);
+
+            }
         }
         return stolper;
     }
 
-    public static List<Tag> stolpe2(int width, int length) {
-        List<Tag> stolper2 = new ArrayList<>();
-        double x1 = 110.0;
-        ;
-        Double yLen = Double.valueOf(width) - 35.0;
-        double x = 0.0;
-        while (x < (length - 410.0)) {
-            x = (x + x1);
-            x += 310.0;
-            Tag stolpe1 = new Rectangle(x1, yLen, 9.7, 9.7);
-            Tag stolpe2 = new Rectangle(x, yLen, 9.7, 9.7);
-            stolpe1.withStyle("fill: none; stroke: #000000; black: 5 5;");
-            stolpe2.withStyle("fill: none; stroke: #000000; black: 5 5;");
-            stolper2.add(stolpe1);
-            stolper2.add(stolpe2);
+
+
+    // Hulbånd SVG Draw.
+
+    public static List<Tag> hulbaandDraw(int width, int length) {
+        List<Tag> hulbaand = new ArrayList<>();
+
+        if ( length > 0.0 ) {
+
+            Tag krydsOne = new Line(60.0, 35.0, length - 60.0, width - 45.0);
+            krydsOne.withStyle("fill: none; stroke: #000000; stroke-dasharray: 5 5;");
+
+            Tag krydsTwo = new Line(60.0, width - 45.0, length - 60.0, 35.0);
+            krydsTwo.withStyle("fill: none; stroke: #000000; stroke-dasharray: 5 5;");
+
+            hulbaand.add(krydsOne);
+            hulbaand.add(krydsTwo);
+
+
         }
-        return stolper2;
+        return hulbaand;
     }
 
-    public static Tag lineW(int length) {
-        Double WD = Double.valueOf(length) - 35.0;
-        Tag line = new Line(20.0, 45.0, 20.0, 575);
+/*
+        double x2 = length - 125.0;
+        // Tag kryds1 = new Line(55.0, 35.0, 600.0, 569.5);
+        Tag kryds1 = new Line(55.0, 35.0, x2, 569.5);
+        kryds1.withStyle("fill: none; stroke: #000000; stroke-dasharray: 5 5;");
+        return kryds1;
+    }
+
+    public static Tag kryds2() {
+        Tag kryds2 = new Line(55.0, 569.5, 600, 35.0);
+        kryds2.withStyle("fill: none; stroke: #000000; stroke-dasharray: 5 5;");
+        return kryds2;
+    }
+
+ */
+
+
+
+    // Carport innner width SVG line Draw.
+
+    public static Tag lineW(int width) {
+        Double WD;
+        if (width > 0 ) {
+            WD = Double.valueOf(width) - 35.0;
+        } else {
+            WD = 49.5;
+        }
+        Tag line = new Line(20.0, 49.5, 20.0, WD);
         line.withStyle("fill: none; stroke: darkblue; darkblue: 5 5;");
         return line;
     }
 
+
+    public static Tag carportCalc(int width, int length) {
+        SvgOuter ramme = new SvgOuter(800, 750, "0 0 855 750");
+        ramme.add(lineW(width));
+        ramme.add(carport2(width, length));
+        return ramme;
+    }
+
+
+
     public static Tag carport(int width, int length) {
         SvgOuter ramme = new SvgOuter(800, 750, "0 0 855 750");
-        // ramme.add(lineW(width));
+        ramme.add(lineW(width));
         ramme.add(carport2(width, length));
         return ramme;
     }
 
     public static Tag carport2(int width, int length) {
         SvgInner carport = new SvgInner(75.0, 10.0, 800, 750, "0 0 800 750");
-        carport.add(ramme(width, length));
-        carport.add(rem1(length));
-        carport.add(rem2(width, length));
+        carport.add(sternDraw(width, length));
+        carport.add(remOneDraw(length));
+        carport.add(remTwoDraw(width, length));
 
-        List spaers = spaer(width, length);
+
+        List spaers = spaerDraw(width, length);
         for (Object o : spaers) {
             carport.add((Tag) o);
         }
 
-        List stolper = stolpe1(width, length);
+        List stolper = stolperDraw(width, length);
         for (Object o : stolper) {
             carport.add((Tag) o);
         }
 
-        List stolper2 = stolpe2(width, length);
-        for (Object o : stolper2) {
+        List hulbaand = hulbaandDraw(width, length);
+        for (Object o : hulbaand) {
             carport.add((Tag) o);
         }
+
 
         return carport;
     }
 
+    public static void main(String[] args) {
+        sternLengthCalc(600, 600);
+        sternWidthCalc(600, 600);
+        remCalc(600, 610);
+        spaerCalc(600, 600);
 
+    }
 
 /*
     public static void main(String[] args) {
