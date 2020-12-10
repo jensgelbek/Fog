@@ -32,6 +32,6 @@ public class WebappTest extends TestCase {
         /*List<Carport> carports = api.findAlleCarports();
         for (Carport carport : carports) {
             System.out.println(carport);*/
-        System.out.println(api.findAllVolumeMaterialsName("spær/rem").size());
+        System.out.println(api.findVolumeMaterialNameLenght("understern",6900));
         }
    }

@@ -9,6 +9,7 @@ public interface VolumeMaterialRepository {
     List<VolumeMaterial> findAllName(String name) throws DBException;
 
     VolumeMaterial find(int parseInt) throws DBException;
+    VolumeMaterial find(String name, int lenght) throws DBException;
 
     int commit(UnitMaterial unitMaterial);
 
