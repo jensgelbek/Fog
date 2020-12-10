@@ -15,4 +15,15 @@ public class UnitMaterial extends Material{
     public void setUnitType(String unitType) {
         this.unitType = unitType;
     }
+
+    @Override
+    public String toString() {
+        return "UnitMaterial{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", details='" + details + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", unitType='" + unitType + '\'' +
+                '}';
+    }
 }

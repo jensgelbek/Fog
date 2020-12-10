@@ -13,5 +13,5 @@ public interface UnitMaterialRepository {
 
     int commit(UnitMaterial unitMaterial);
 
-    void updatePrice(int id,int newPrice);
+    void updatePrice(int id,int newPrice) throws DBException;
 }

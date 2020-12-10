@@ -17,7 +17,7 @@ public class WebappTest extends TestCase {
     public void testCommitOrder() throws DBException, SQLException {
         Order order = new Order(LocalDate.now(), null, null, "jens@gamil.com", 1, 1, 100000, "bestilling");
         Database db = new Database();
-        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db));
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db));
         //  int id=api.commitOrder(order);
         //order=api.findOrder(id);
         //api.findAllOrders();
@@ -32,6 +32,6 @@ public class WebappTest extends TestCase {
         /*List<Carport> carports = api.findAlleCarports();
         for (Carport carport : carports) {
             System.out.println(carport);*/
-        System.out.println(api.findVolumeMaterialNameLenght("understern",6900));
+       api.updateUnitMaterislPrice(200,123);
         }
    }

@@ -1,6 +1,8 @@
 package api;
 
 import domain.items.*;
+import domain.materials.UnitMaterial;
+import domain.materials.UnitMaterialRepository;
 import domain.materials.VolumeMaterial;
 import domain.materials.VolumeMaterialRepository;
 
@@ -19,13 +21,15 @@ public class Webapp {
     private final CarportRepository carports;
     private final SellerRepository sellers;
     private final VolumeMaterialRepository volumeMaterials;
+    private final UnitMaterialRepository unitMaterials;
 
-    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials) {
+    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials) {
         this.orders = orders;
         this.customers = customers;
         this.carports = carports;
         this.sellers = sellers;
         this.volumeMaterials=volumeMaterials;
+        this.unitMaterials=unitMaterials;
 
     }
 
@@ -155,4 +159,35 @@ public class Webapp {
         }
         return null;
     }
+    public UnitMaterial findUnitMaterial(int id){
+        try {
+            return unitMaterials.find(id);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public UnitMaterial findUnitMaterial(String name){
+        try {
+            return unitMaterials.findName(name);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public List<UnitMaterial> findAllUnitMaterilas(){
+        try {
+            return unitMaterials.findAll();
+        } catch (DBException e) {
+            e.printStackTrace();
+        }return null;
+    }
+    public void updateUnitMaterislPrice(int id,int price){
+        try {
+            unitMaterials.updatePrice(id, price);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
