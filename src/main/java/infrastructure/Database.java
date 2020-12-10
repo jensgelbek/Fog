@@ -17,7 +17,7 @@ public class Database {
 
     // Database version
 
-    private static final int version = 4;
+    private static final int version = 6;
 
     public Database() {
         try {
