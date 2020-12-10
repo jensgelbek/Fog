@@ -39,6 +39,15 @@ CREATE TABLE volumeMaterialer (
 
 
 
+-- ----------------------------
+-- Table structure for properties
+-- ----------------------------
+DROP TABLE IF EXISTS `properties`;
+CREATE TABLE `properties` (
+                              name varchar(255) NOT NULL,
+                              value varchar(255) NOT NULL,
+                              PRIMARY KEY (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 -- ----------------------------

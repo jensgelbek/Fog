@@ -220,6 +220,15 @@ INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (171,6000);
 -- lægte
 INSERT INTO materialer (id,name,details,pris) VALUES (172,'lægte','38x73 mm. Lægte ubh.',42);
 INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (172,3600);
+-- ----------------------------
+-- Table structure for properties
+-- ----------------------------
+DROP TABLE IF EXISTS `properties`;
+CREATE TABLE `properties` (
+                              name varchar(255) NOT NULL,
+                              value varchar(255) NOT NULL,
+                              PRIMARY KEY (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of properties

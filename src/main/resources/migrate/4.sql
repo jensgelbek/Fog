@@ -53,7 +53,7 @@ CREATE TABLE `properties` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `properties` VALUES ('version', '4');
-
+COMMIT;
 SET FOREIGN_KEY_CHECKS=1;
 
 

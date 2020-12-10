@@ -5,7 +5,7 @@ INSERT INTO materialer (id,name) VALUES (1,'stolpe');
 INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (1,3000);
 
 -- spær/rem
-INSERT INTO materialetype (name,details,pris) VALUES ('spær/rem','45x195 mm. spærtræ ubh.',70););
+INSERT INTO materialetype (name,details,pris) VALUES ('spær/rem','45x195 mm. spærtræ ubh.',70);
 INSERT INTO materialer (id,name) VALUES (21,'spær/rem');
 INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (21,2400);
 INSERT INTO materialer (id,name) VALUES (22,'spær/rem');
@@ -228,12 +228,21 @@ INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (171,6000);
 INSERT INTO materialetype (name,details,pris) VALUES ('lægte','38x73 mm. Lægte ubh.',42);
 INSERT INTO materialer (id,name) VALUES (172,'lægte');
 INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (172,3600);
+-- ----------------------------
+-- Table structure for properties
+-- ----------------------------
+DROP TABLE IF EXISTS `properties`;
+CREATE TABLE `properties` (
+                              name varchar(255) NOT NULL,
+                              value varchar(255) NOT NULL,
+                              PRIMARY KEY (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of properties
 -- ----------------------------
 BEGIN;
-INSERT INTO `properties` VALUES ('version', '5');
+INSERT INTO `properties` VALUES ('version', '8');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS=1;
