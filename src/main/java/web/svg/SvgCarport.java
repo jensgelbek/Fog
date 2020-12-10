@@ -40,17 +40,7 @@ public class SvgCarport extends Tag {
     // Stern calculations, Width: Front + back
     // Price per meter
 
-    public static StykListeLinje sternWidthCalc(int width, int length) {
-        StykListeLinje sternWidth;
-        String name = "Stern: For og bag stern";
-        Double doubleWidth = Double.valueOf(width);
-        int unit = 2;
-        int price = 50;
-        int sum = (int) ((doubleWidth/100) * price * unit);
-        sternWidth = new StykListeLinje(name, doubleWidth, unit, price, sum);
-        System.out.println(sternWidth);
-        return sternWidth;
-    }
+
 
     // Stern calculations, Length: Left + right
     // Price per meter
@@ -299,13 +289,6 @@ public class SvgCarport extends Tag {
         return carport;
     }
 
-    public static void main(String[] args) {
-        sternLengthCalc(600, 600);
-        sternWidthCalc(600, 600);
-        remCalc(600, 610);
-        spaerCalc(600, 600);
-
-    }
 
 /*
     public static void main(String[] args) {
