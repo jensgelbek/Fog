@@ -130,6 +130,15 @@ public class Webapp {
         }
         return null;
     }
+
+    public VolumeMaterial findVolumeMaterialNameLenght(String name,int lenght){
+        try {
+            return volumeMaterials.find(name,lenght);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public List<VolumeMaterial> findAllVolumeMaterials(){
         try {
             return volumeMaterials.findAll();

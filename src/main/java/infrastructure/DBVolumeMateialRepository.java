@@ -94,6 +94,30 @@ public class DBVolumeMateialRepository implements VolumeMaterialRepository {
     }
 
     @Override
+    public VolumeMaterial find(String name, int lenght) throws DBException {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "SELECT * FROM materialer m INNER JOIN volumematerialer v ON m.id=v.volumeMaterialeId Where m.name=(?) AND v.length=(?);";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, name);
+            ps.setInt(2,lenght);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String navn = rs.getString("name");
+                int id = rs.getInt("id");
+                String details=rs.getString("details");
+                int unitPrice=rs.getInt("pris");
+                int length=rs.getInt("length");
+                VolumeMaterial volumeMaterial=new VolumeMaterial(id,navn,details,unitPrice,length);
+                return volumeMaterial;
+            }
+        } catch (SQLException ex) {
+            throw new DBException(ex.getMessage());
+        }
+        return null;
+    }
+
+    @Override
     public int commit(UnitMaterial unitMaterial) {
         return 0;
     }
