@@ -28,6 +28,7 @@ public class SvgCarport extends Tag {
         );
     }
 
+
     // Stern SVG Draw,
 
     public static Tag sternDraw(int width, int length) {
@@ -64,6 +65,7 @@ public class SvgCarport extends Tag {
         sternLength = new StykListeLinje(name, doubleLength, unit, price, sum);
         System.out.println(sternLength);
         return sternLength;
+
     }
 
 
@@ -114,8 +116,10 @@ public class SvgCarport extends Tag {
     public static List<Tag> spaerDraw(int width, int length) {
         List<Tag> spaersDraw = new ArrayList<>();
         double x = 0.0;
+
         while (x < (length-60.0)) {
             x += 60.0;
+
             Tag spaer = new Rectangle(x, 0.0, 4.5, width);
             spaer.withStyle("fill: none; stroke: purple;");
             spaersDraw.add(spaer);
@@ -198,6 +202,7 @@ public class SvgCarport extends Tag {
     }
 
 
+
     // Hulbånd SVG Draw.
 
     public static List<Tag> hulbaandDraw(int width, int length) {
@@ -213,6 +218,7 @@ public class SvgCarport extends Tag {
 
             hulbaand.add(krydsOne);
             hulbaand.add(krydsTwo);
+
 
         }
         return hulbaand;
@@ -318,7 +324,5 @@ public class SvgCarport extends Tag {
  */
 
 
-
-
-    }
+}
 

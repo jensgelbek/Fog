@@ -1,14 +1,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <div class="container">
 
     <div class="row" style="margin-top: 5em">
 
-        <div class ="col-md-3">
-            <h6><a href="http://localhost:8080/webapptemplate/bestilling"><b style="color: darkblue">CARPORT MED FLADT TAG</b></a></h6>
+        <div class="col-md-3">
+            <h6><a href="http://localhost:8080/webapptemplate/bestilling"><b style="color: darkblue">CARPORT MED FLADT
+                TAG</b></a></h6>
             <hr>
-            <h6><a href="http://localhost:8080/webapptemplate/bestillingRejsning"><b style="color: darkblue">CARPORT MED REJSNING</b></a></h6>
+            <h6><a href="http://localhost:8080/webapptemplate/bestillingRejsning"><b style="color: darkblue">CARPORT MED
+                REJSNING</b></a></h6>
             <hr>
 
         </div>
@@ -20,11 +22,13 @@
             </div>
 
             <div>
-                <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.</p>
+                <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
+                    på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.</p>
             </div>
 
             <div>
-            <p>Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br>Ved bestilling medfølger standardbyggevejledning.</p>
+                <p>Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br>Ved bestilling medfølger
+                    standardbyggevejledning.</p>
             </div>
 
             <p><b>Udfyld nedenstående omhyggeligt og klik på "Bestil tilbud"</b><br>Felter markeret * SKAL udfyldes!</p>
@@ -43,7 +47,7 @@
                         <label for="bredde">Carport bredde</label>
                         <select class="form-control" name="number" id="bredde">
                             <option value="">Vælg bredde</option>
-                            <c:forEach  items="${requestScope.carportMeasure}" var="bred">
+                            <c:forEach items="${requestScope.carportMeasure}" var="bred">
                                 <option value="${bred}">
                                         ${bred}
                                 </option>
@@ -56,7 +60,8 @@
                         <label for="længde">Carport længde</label>
                         <select class="form-control" name="number" id="længde">
                             <option value="">Vælg længde</option>
-                            <c:forEach  items="${requestScope.carportMeasure.subList(0, carportMeasure.size()-1)}" var="len">
+                            <c:forEach items="${requestScope.carportMeasure.subList(0, carportMeasure.size()-1)}"
+                                       var="len">
                                 <option value="${len}">
                                         ${len}
                                 </option>
@@ -68,8 +73,8 @@
                     <div class="form-group ">
                         <label for="tagRejs">Tag</label>
                         <select class="form-control" name="number" id="tagRejs">
-                            <option value="tagRejs">Vælg tagtype/farve </option>
-                            <c:forEach  items="${requestScope.tagRejs}" var="tagRejs">
+                            <option value="tagRejs">Vælg tagtype/farve</option>
+                            <c:forEach items="${requestScope.tagRejs}" var="tagRejs">
                                 <option value="${tagRejs}">
                                         ${tagRejs}
                                 </option>
@@ -81,7 +86,7 @@
                     <div class="form-group ">
                         <label for="tagHald">Taghældning</label>
                         <select class="form-control" name="number" id="tagHald">
-                            <c:forEach  items="${requestScope.tagHald}" var="tagHald">
+                            <c:forEach items="${requestScope.tagHald}" var="tagHald">
                                 <option value="${tagHald}">
 
                                         ${tagHald} grader
@@ -89,7 +94,6 @@
                             </c:forEach>
                         </select>
                     </div>
-
 
 
                     <br>
@@ -101,7 +105,7 @@
                         <label for="shedW">Redskabsskur bredde</label>
                         <select class="form-control" name="number" id="shedW">
                             <option value="shed">Ønsker ikke redskabsskur</option>
-                            <c:forEach  items="${requestScope.shed.subList(2, shed.size())}" var="shedW">
+                            <c:forEach items="${requestScope.shed.subList(2, shed.size())}" var="shedW">
                                 <option value="${shedW}">
                                         ${shedW} cm
                                 </option>
@@ -114,7 +118,7 @@
                         <label for="shedL">Redskabsskur længde</label>
                         <select class="form-control" name="number" id="shedL">
                             <option value="shed">Ønsker ikke redskabsskur</option>
-                            <c:forEach  items="${requestScope.shed.subList(0, shed.size()-1)}" var="shedL">
+                            <c:forEach items="${requestScope.shed.subList(0, shed.size()-1)}" var="shedL">
                                 <option value="${shedL}">
                                         ${shedL} cm
                                 </option>
@@ -162,13 +166,11 @@
                     </div>
 
 
-
-
-
                     <button type="submit" class="btn btn-primary">Send bestilling</button>
                 </form>
                 <br>
-                <p>* Hvis du f.eks. har valgt en carport med målene 240x360 cm kan redskabsrummet maksimalt måle 210x330 cm.</p>
+                <p>* Hvis du f.eks. har valgt en carport med målene 240x360 cm kan redskabsrummet maksimalt måle 210x330
+                    cm.</p>
 
             </div>
         </div>

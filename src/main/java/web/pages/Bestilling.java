@@ -150,7 +150,7 @@ public class Bestilling extends BaseServlet {
 
          */
 
-                resp.sendRedirect(req.getContextPath() + "/bestilling");
-            }
+        resp.sendRedirect(req.getContextPath() + "/bestilling");
     }
+}
 

@@ -17,10 +17,10 @@ import java.util.List;
 public class Ordre extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("ordre",req.getParameter("ordre"));
+        req.setAttribute("ordre", req.getParameter("ordre"));
         try {
             render("Ordre", "/WEB-INF/webpages/ordre.jsp", req, resp);
-        } catch (ServletException | IOException  e){
+        } catch (ServletException | IOException e) {
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
         }

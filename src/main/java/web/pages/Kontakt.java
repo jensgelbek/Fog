@@ -9,15 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-
-
 @WebServlet("/kontakt")
 public class Kontakt extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             render("Start", "/WEB-INF/webpages/kontakt.jsp", req, resp);
-        } catch (ServletException | IOException  e){
+        } catch (ServletException | IOException e) {
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
         }
