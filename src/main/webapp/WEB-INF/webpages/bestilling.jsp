@@ -157,9 +157,13 @@
                     <br>
                     <hr>
                     <br>
-                    <button type="" class="btn btn-primary">Send bestilling</button>
 
-                </form>
+                    <form method="post">
+                        <input type="hidden" name="target" value="BOM">
+                            <button type="" class="btn btn-primary">Se stykliste</button>
+                    </form>
+
+
                 <br>
                 <p>* Hvis du f.eks. har valgt en carport med målene 240x360 cm kan redskabsrummet maksimalt måle 210x330
                     cm.</p>

@@ -12,14 +12,12 @@ public class Stykliste {
         this.unitListe = unitListe;
     }
 
-
     public List<StykListeLinje> volumenListe = new ArrayList<>();
     public List<StykListeLinje> unitListe = new ArrayList<>();
 
     @Override
     public String toString() {
-        return "Stykliste{" +
-                "volumenListe=" + volumenListe +
+        return volumenListe +
                 ", unitListe=" + unitListe +
                 '}';
     }
