@@ -2,6 +2,7 @@
 package api;
 
 import domain.items.Carport;
+import domain.materials.StykListeLinje;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -11,7 +12,9 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Utils {
     /**
@@ -67,5 +70,21 @@ public class Utils {
     public static boolean checkPassword(String password, byte[] secret, byte[] salt) {
         return Arrays.equals(secret, calculateSecret(salt, password));
     }
+
+    List<StykListeLinje> stykListeLinjes = new ArrayList<>();
+
+
+
+    public static List<StykListeLinje> genererStyklister(Carport carport) {
+        List<StykListeLinje> stykListeLinjes = new ArrayList<>();
+        return stykListeLinjes;
+
+    }
+
+
+
+
+
+
 
 }

@@ -20,7 +20,7 @@ public class Webapp {
     private final CustomerRepository customers;
     private final CarportRepository carports;
     private final SellerRepository sellers;
-    private final VolumeMaterialRepository volumeMaterials;
+    private static VolumeMaterialRepository volumeMaterials;
     private final UnitMaterialRepository unitMaterials;
 
     public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials) {
@@ -126,7 +126,11 @@ public class Webapp {
         return sellers.findAll();
     }
 
-    public VolumeMaterial findVolumeMaterial(int id){
+    public static void main(String[] args) {
+        System.out.println(findVolumeMaterial(2));
+    }
+
+    public static VolumeMaterial findVolumeMaterial(int id){
         try {
             return volumeMaterials.find(id);
         } catch (DBException e) {
@@ -135,7 +139,7 @@ public class Webapp {
         return null;
     }
 
-    public VolumeMaterial findVolumeMaterialNameLenght(String name,int lenght){
+    public VolumeMaterial findVolumeMaterialNameLenght(String name, int lenght){
         try {
             return volumeMaterials.find(name,lenght);
         } catch (DBException e) {

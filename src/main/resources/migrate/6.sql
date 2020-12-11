@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS=0;
+
 INSERT INTO materialer (id,name,details,pris) VALUES (200,'tagskruer','plastmo bundskruer 200 stk.',210);
 INSERT INTO unitmaterialer (unitMaterialeId,unitType) VALUES (200,'pakke');
 
@@ -50,12 +52,19 @@ CREATE TABLE `properties` (
 
 
 
-
+-- ----------------------------
+-- Table structure for properties
+-- ----------------------------
+DROP TABLE IF EXISTS `properties`;
+CREATE TABLE `properties` (
+                              name varchar(255) NOT NULL,
+                              value varchar(255) NOT NULL,
+                              PRIMARY KEY (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of properties
 -- ----------------------------
 BEGIN;
 INSERT INTO `properties` VALUES ('version', '6');
-COMMIT;
 
 SET FOREIGN_KEY_CHECKS=1;

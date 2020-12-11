@@ -1,5 +1,6 @@
 package web.svg;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,33 +41,10 @@ public class SvgCarport extends Tag {
     // Stern calculations, Width: Front + back
     // Price per meter
 
-    public static StykListeLinje sternWidthCalc(int width, int length) {
-        StykListeLinje sternWidth;
-        String name = "Stern: For og bag stern";
-        Double doubleWidth = Double.valueOf(width);
-        int unit = 2;
-        int price = 50;
-        int sum = (int) ((doubleWidth/100) * price * unit);
-        sternWidth = new StykListeLinje(name, doubleWidth, unit, price, sum);
-        System.out.println(sternWidth);
-        return sternWidth;
-    }
+
 
     // Stern calculations, Length: Left + right
     // Price per meter
-
-    public static StykListeLinje sternLengthCalc(int width, int length) {
-        StykListeLinje sternLength;
-        String name = "Stern: Venstre & højreside stern";
-        Double doubleLength = Double.valueOf(length);
-        int unit = 2;
-        int price = 50;
-        int sum = (int) ((doubleLength/100) * price * unit);
-        sternLength = new StykListeLinje(name, doubleLength, unit, price, sum);
-        System.out.println(sternLength);
-        return sternLength;
-
-    }
 
 
     // Rem one side SVG Draw.
@@ -91,24 +69,6 @@ public class SvgCarport extends Tag {
     // Rem calculations.
     // Price per meter
 
-    public static StykListeLinje remCalc(int width, int length) {
-        StykListeLinje rem;
-        String name = "Rem i siderne";
-        Double remLength = Double.valueOf(length);
-        int unit;
-        if (length <= 480 ) {
-            unit = 2;
-        } else if (length <= 600 ) {
-            unit = 2;
-        } else {
-            unit = 3;
-        }
-        int price = 50;
-        int sum = (int) (remLength * price * unit);
-        rem = new StykListeLinje(name, remLength, unit, price, sum);
-        System.out.println(rem);
-        return rem;
-    }
 
     // Spær SVG Draw.
     // 0.6m apart
@@ -130,17 +90,7 @@ public class SvgCarport extends Tag {
     // Rem calculations.
     // Price per meter
 
-    public static StykListeLinje spaerCalc(int width, int length) {
-        StykListeLinje spaer;
-        String name = "Spær: Monteres på rem";
-        Double spaerLength = Double.valueOf(length);
-        int unit = (int) (length / 60.0);
-        int price = 50;
-        int sum = (int) ((spaerLength/100) * price * unit);
-        spaer = new StykListeLinje(name, spaerLength, unit, price, sum);
-        System.out.println(spaer);
-        return spaer;
-    }
+
 
 
     // Stolper SVG Draw.
@@ -224,25 +174,8 @@ public class SvgCarport extends Tag {
         return hulbaand;
     }
 
-/*
-        double x2 = length - 125.0;
-        // Tag kryds1 = new Line(55.0, 35.0, 600.0, 569.5);
-        Tag kryds1 = new Line(55.0, 35.0, x2, 569.5);
-        kryds1.withStyle("fill: none; stroke: #000000; stroke-dasharray: 5 5;");
-        return kryds1;
-    }
 
-    public static Tag kryds2() {
-        Tag kryds2 = new Line(55.0, 569.5, 600, 35.0);
-        kryds2.withStyle("fill: none; stroke: #000000; stroke-dasharray: 5 5;");
-        return kryds2;
-    }
-
- */
-
-
-
-    // Carport innner width SVG line Draw.
+    // Carport inner width SVG line Draw.
 
     public static Tag lineW(int width) {
         Double WD;
@@ -263,7 +196,6 @@ public class SvgCarport extends Tag {
         ramme.add(carport2(width, length));
         return ramme;
     }
-
 
 
     public static Tag carport(int width, int length) {
@@ -299,13 +231,6 @@ public class SvgCarport extends Tag {
         return carport;
     }
 
-    public static void main(String[] args) {
-        sternLengthCalc(600, 600);
-        sternWidthCalc(600, 600);
-        remCalc(600, 610);
-        spaerCalc(600, 600);
-
-    }
 
 /*
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS=0;
+
 
 -- stolpe
 INSERT INTO materialer (id,name,details,pris) VALUES (1,'stolpe','97x97 mm. trykimp. Stolpe',40);
@@ -106,6 +108,7 @@ INSERT INTO materialer (id,name,details,pris) VALUES (80,'overstern','25x125mm. 
 INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (80,5100);
 INSERT INTO materialer (id,name,details,pris) VALUES (81,'overstern','25x125mm. trykimp. Brædt',25);
 INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (81,5400);
+
 INSERT INTO materialer (id,name,details,pris) VALUES (82,'overstern','25x125mm. trykimp. Brædt',25);
 INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (82,5700);
 INSERT INTO materialer (id,name,details,pris) VALUES (83,'overstern','25x125mm. trykimp. Brædt',25);
@@ -230,12 +233,22 @@ CREATE TABLE `properties` (
                               PRIMARY KEY (name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+-- ----------------------------
+-- Table structure for properties
+-- ----------------------------
+DROP TABLE IF EXISTS `properties`;
+CREATE TABLE `properties` (
+                              name varchar(255) NOT NULL,
+                              value varchar(255) NOT NULL,
+                              PRIMARY KEY (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of properties
 -- ----------------------------
 BEGIN;
 INSERT INTO `properties` VALUES ('version', '5');
-COMMIT;
 
 SET FOREIGN_KEY_CHECKS=1;
+
 
