@@ -32,6 +32,7 @@ public class WebappTest extends TestCase {
         /*List<Carport> carports = api.findAlleCarports();
         for (Carport carport : carports) {
             System.out.println(carport);*/
-       api.updateUnitMaterislPrice(200,123);
+        api.updateUnitMaterislPrice(201,566);
+        System.out.println(api.findUnitMaterial(201));
         }
    }

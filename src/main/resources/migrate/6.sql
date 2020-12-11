@@ -40,6 +40,15 @@ INSERT INTO unitmaterialer (unitMaterialeId,unitType) VALUES (211,'stk');
 INSERT INTO materialer (id,name,details,pris) VALUES (212,'vinkelbeslag','vinkelbeslag 35',37);
 INSERT INTO unitmaterialer (unitMaterialeId,unitType) VALUES (212,'stk');
 
+-- ----------------------------
+-- Table structure for properties
+-- ----------------------------
+DROP TABLE IF EXISTS `properties`;
+CREATE TABLE `properties` (
+                              name varchar(255) NOT NULL,
+                              value varchar(255) NOT NULL,
+                              PRIMARY KEY (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 

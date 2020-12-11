@@ -1,26 +1,24 @@
-SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS volumeMaterialer;
 DROP TABLE IF EXISTS unitmaterialer;
-
+DROP TABLE IF EXISTS volumematerialer;
 DROP TABLE IF EXISTS materialer;
+DROP TABLE IF EXISTS materialetype;
+
+CREATE TABLE MaterialeType (
+                               name VARCHAR(255) NOT NULL,
+                               details VARCHAR(255) NOT NULL,
+                               pris int,
+                               PRIMARY KEY (name))ENGINE=InnoDB;
+
 CREATE TABLE materialer (
                             id int AUTO_INCREMENT NOT NULL,
                             name VARCHAR(255) NOT NULL,
-                            details VARCHAR(255) NOT NULL,
-                            pris int not null,
-                            PRIMARY KEY (id)
+                            PRIMARY KEY (id),
+                            KEY materiale2 (name),
+                            CONSTRAINT materialetype FOREIGN KEY (name) REFERENCES MaterialeType(name) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB;
 
-
-CREATE TABLE volumeMaterialer (
-                                  volumeMaterialeId int,
-                                  length int NOT NULL,
-                                  PRIMARY KEY (volumeMaterialeId),
-                                  KEY materiale (volumeMaterialeId),
-                                  CONSTRAINT materiale FOREIGN KEY (volumeMaterialeId) REFERENCES materialer(id) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB;
 
 CREATE TABLE unitMaterialer (
                                 unitMaterialeId int,
@@ -31,7 +29,6 @@ CREATE TABLE unitMaterialer (
 
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS volumeMaterialer;
 CREATE TABLE volumeMaterialer (
                                   volumeMaterialeId int,
                                   length int NOT NULL,
@@ -39,6 +36,9 @@ CREATE TABLE volumeMaterialer (
                                   KEY materiale (volumeMaterialeId),
                                   CONSTRAINT materiale FOREIGN KEY (volumeMaterialeId) REFERENCES materialer(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
+
+
+
 -- ----------------------------
 -- Table structure for properties
 -- ----------------------------
@@ -48,14 +48,11 @@ CREATE TABLE `properties` (
                               value varchar(255) NOT NULL,
                               PRIMARY KEY (name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 -- ----------------------------
 -- Records of properties
 -- ----------------------------
 BEGIN;
-INSERT INTO `properties` VALUES ('version', '4');
+INSERT INTO `properties` VALUES ('version', '7');
 COMMIT;
-SET FOREIGN_KEY_CHECKS=1;
-
-
-
-
