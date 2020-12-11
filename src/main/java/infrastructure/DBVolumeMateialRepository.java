@@ -25,7 +25,7 @@ public class DBVolumeMateialRepository implements VolumeMaterialRepository {
         List<VolumeMaterial> volumeMaterialList=new ArrayList<>();
         try {
             Connection con = db.getConnection();
-            String SQL = "SELECT * FROM materialer m INNER JOIN volumematerialer v ON m.id=v.volumeMaterialeId;";
+            String SQL = "SELECT * FROM materialer m INNER JOIN volumematerialer v ON m.id=v.volumeMaterialeId INNER JOIN materialetype t on m.name=t.name;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -49,7 +49,7 @@ public class DBVolumeMateialRepository implements VolumeMaterialRepository {
         List<VolumeMaterial> volumeMaterialList=new ArrayList<>();
         try {
             Connection con = db.getConnection();
-            String SQL = "SELECT * FROM materialer m INNER JOIN volumematerialer v ON m.id=v.volumeMaterialeId WHERE m.name=(?);";
+            String SQL = "SELECT * FROM materialer m INNER JOIN volumematerialer v ON m.id=v.volumeMaterialeId INNER JOIN materialetype t on m.name=t.name WHERE m.name=(?);";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1,name);
             ResultSet rs = ps.executeQuery();
@@ -73,7 +73,7 @@ public class DBVolumeMateialRepository implements VolumeMaterialRepository {
     public VolumeMaterial find(int id) throws DBException {
         try {
             Connection con = db.getConnection();
-            String SQL = "SELECT * FROM materialer m INNER JOIN volumematerialer v ON m.id=v.volumeMaterialeId Where m.id=(?);";
+            String SQL = "SELECT * FROM materialer m INNER JOIN volumematerialer v ON m.id=v.volumeMaterialeId INNER JOIN materialetype t on m.name=t.name Where m.id=(?);";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();

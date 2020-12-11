@@ -25,7 +25,7 @@ public class DBUnitMaterialRepository implements UnitMaterialRepository {
         List<UnitMaterial> unitMaterials=new ArrayList<>();
         try {
             Connection con = db.getConnection();
-            String SQL = "SELECT * FROM materialer m INNER JOIN unitmaterialer u ON m.id=u.unitMaterialeId;";
+            String SQL = "SELECT * FROM materialer m INNER JOIN unitmaterialer u ON m.id=u.unitMaterialeId INNER JOIN materialetype t on m.name=t.name;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -48,7 +48,7 @@ public class DBUnitMaterialRepository implements UnitMaterialRepository {
     public UnitMaterial find(int id) throws DBException {
         try {
             Connection con = db.getConnection();
-            String SQL = "SELECT * FROM materialer m INNER JOIN unitmaterialer u ON m.id=u.unitMaterialeId Where m.id=(?);";
+            String SQL = "SELECT * FROM materialer m INNER JOIN unitmaterialer u ON m.id=u.unitMaterialeId INNER JOIN materialetype t on m.name=t.name Where m.id=(?);";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -71,7 +71,7 @@ public class DBUnitMaterialRepository implements UnitMaterialRepository {
     public UnitMaterial findName(String name) throws DBException {
         try {
             Connection con = db.getConnection();
-            String SQL = "SELECT * FROM materialer m INNER JOIN unitmaterialer u ON m.id=u.unitMaterialeId Where m.name=(?);";
+            String SQL = "SELECT * FROM materialer m INNER JOIN unitmaterialer u ON m.id=u.unitMaterialeId INNER JOIN materialetype t on m.name=t.name Where m.name=(?);";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
@@ -99,10 +99,11 @@ public class DBUnitMaterialRepository implements UnitMaterialRepository {
     public void updatePrice(int id, int newPrice) throws DBException {
         try {
             Connection con = db.getConnection();
-            String SQL = "UPDATE materialer SET pris=(?) WHERE id=(?);";
+            UnitMaterial unitMaterial=find(id);
+            String SQL = "UPDATE materialetype SET pris=(?) WHERE name=(?);";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1,newPrice);
-            ps.setInt(2, id);
+            ps.setString(2, unitMaterial.getName());
             ps.executeUpdate();
         } catch (SQLException ex) {
             throw new DBException(ex.getMessage());
