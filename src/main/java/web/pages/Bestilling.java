@@ -1,11 +1,14 @@
 package web.pages;
 
 
-import domain.items.*;
+import api.Calc;
 
+import domain.items.Carport;
+import domain.items.DBException;
+import domain.materials.StykListeLinje;
+import domain.materials.Stykliste;
 import infrastructure.Lists;
 import web.BaseServlet;
-import web.svg.StykListeLinje;
 import web.svg.SvgCarport;
 
 import javax.servlet.ServletException;
@@ -14,12 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.Serializable;
-import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
+
 
 @WebServlet("/bestilling")
 public class Bestilling extends BaseServlet {
@@ -61,24 +61,16 @@ public class Bestilling extends BaseServlet {
             return SvgCarport.carport(width, length).toString();
         }
 
-        public StykListeLinje sternWidthCalc() {
-            return SvgCarport.sternWidthCalc(width, length);
+        public StykListeLinje sternWidthCalc() throws DBException {
+            return Calc.sternWidthCalc(width, length);
         }
 
-        public StykListeLinje sternLengthCalc() {
-            return SvgCarport.sternLengthCalc(width, length);
-        }
+        // public StykListeLinje sternLengthCalc() {return SvgCarport.sternLengthCalc(width, length);}
 
-        public StykListeLinje spaerCalc() {
-            return SvgCarport.spaerCalc(width, length);
-        }
-
-
-
+//        public StykListeLinje spaerCalc() { return SvgCarport.spaerCalc(width, length);}
 
 
     }
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -94,14 +86,14 @@ public class Bestilling extends BaseServlet {
             req.setAttribute("shed", list.shed());
             CarportDTO.fromSession(req.getSession());
             req.setAttribute("sternWidthCalc", CarportDTO.fromSession(req.getSession()).sternWidthCalc());
-            req.setAttribute("sternLengthCalc", CarportDTO.fromSession(req.getSession()).sternLengthCalc());
-            req.setAttribute("spaerCalc", CarportDTO.fromSession(req.getSession()).spaerCalc());
+            //req.setAttribute("sternLengthCalc", CarportDTO.fromSession(req.getSession()).sternLengthCalc());
+            // req.setAttribute("spaerCalc", CarportDTO.fromSession(req.getSession()).spaerCalc());
 
             req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
 
 
             render("Bestilling", "/WEB-INF/webpages/bestilling.jsp", req, resp);
-        } catch (ServletException | IOException e) {
+        } catch (ServletException | IOException | DBException e) {
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
         }
@@ -115,40 +107,12 @@ public class Bestilling extends BaseServlet {
         carportdto.length = Integer.parseInt(req.getParameter("length"));
         //String tag = req.getParameter("tag");
 
-        /*
-        if (req.getParameter("target") != null)
-            if (req.getParameter("target").equals("bestilling")) {
+        try {
+            Stykliste stykliste = Calc.generereStykliste(carportdto.width, carportdto.length);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
 
-
-                int bredde = Integer.parseInt(req.getParameter("bredde"));
-                int langde = Integer.parseInt(req.getParameter("laengde"));
-                String tag = req.getParameter("tag");
-                boolean rejsning = false;
-                int shedW = 0;
-                int shedL = 0;
-
-
-                var s = req.getSession();
-                s.setAttribute("bredde", bredde);
-                s.setAttribute("langde", langde);
-                s.setAttribute("tag2", tag);
-
-
-
-
-                // New Carport
-                Carport carport = new Carport(bredde, langde, rejsning, tag,  shedW, shedL);
-                try {
-                    int carportId =api.commitCarport(carport);
-                    carport.setCarportID(carportId);
-                    Order order=new Order(LocalDate.now(),null,null, (String) s.getAttribute("username"),1,carport.getCarportID(),75000,"tilbud");
-                    api.commitOrder(order);
-
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-
-         */
 
         resp.sendRedirect(req.getContextPath() + "/bestilling");
     }
