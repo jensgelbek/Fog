@@ -5,7 +5,6 @@ import api.Calc;
 
 import domain.items.Carport;
 import domain.items.DBException;
-import domain.materials.StykListeLinje;
 import domain.materials.Stykliste;
 import infrastructure.Lists;
 import web.BaseServlet;
@@ -61,9 +60,10 @@ public class Bestilling extends BaseServlet {
             return SvgCarport.carport(width, length).toString();
         }
 
-        public StykListeLinje sternWidthCalc() throws DBException {
-            return Calc.sternWidthCalc(width, length);
+        public Stykliste sternWidthCalc() throws DBException {
+            return Calc.generereStykliste(width, length);
         }
+
 
         // public StykListeLinje sternLengthCalc() {return SvgCarport.sternLengthCalc(width, length);}
 
@@ -85,15 +85,14 @@ public class Bestilling extends BaseServlet {
             req.setAttribute("tag", list.tag());
             req.setAttribute("shed", list.shed());
             CarportDTO.fromSession(req.getSession());
-            req.setAttribute("sternWidthCalc", CarportDTO.fromSession(req.getSession()).sternWidthCalc());
-            //req.setAttribute("sternLengthCalc", CarportDTO.fromSession(req.getSession()).sternLengthCalc());
+             //req.setAttribute("sternLengthCalc", CarportDTO.fromSession(req.getSession()).sternLengthCalc());
             // req.setAttribute("spaerCalc", CarportDTO.fromSession(req.getSession()).spaerCalc());
 
             req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
 
 
             render("Bestilling", "/WEB-INF/webpages/bestilling.jsp", req, resp);
-        } catch (ServletException | IOException | DBException e) {
+        } catch (ServletException | IOException e) {
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
         }
@@ -112,9 +111,39 @@ public class Bestilling extends BaseServlet {
         } catch (DBException e) {
             e.printStackTrace();
         }
-
-
         resp.sendRedirect(req.getContextPath() + "/bestilling");
+
+        if (req.getParameter("target") != null)
+            if (req.getParameter("target").equals("BOM")) {
+
+                /*
+
+
+                var s = req.getSession();
+                Stykliste stykliste = s.getAttribute("Customer");
+
+
+                if (customer != null) {
+                    try {
+
+                        int customer_id = customer.getCustomerId();
+                        ordre_id = api.commitShoppingCart(getShoppingCart(req), LocalDate.now(), customer_id);
+                        api.updateSaldo(customer_id, -api.getPrice(ordre_id));
+                    } catch (DBException e) {
+                        e.printStackTrace();
+                    }
+                    s.setAttribute("orderID", ordre_id);
+                    s.setAttribute("shoppingCart", null);
+                    resp.sendRedirect(req.getContextPath() + "/order");
+                } else {
+
+                 */
+                    resp.sendRedirect(req.getContextPath() + "/bom");
+                }
+            }
+
+
+
     }
-}
+
 

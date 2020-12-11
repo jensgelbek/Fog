@@ -17,9 +17,6 @@ public class Calc {
     public Calc() {
     }
 
-
-
-
     public static StykListeLinje sternWidthCalc(int width, int length) throws DBException {
         StykListeLinje sternWidth;
         int widthCalc = width * 10;
@@ -31,7 +28,6 @@ public class Calc {
         sternWidth = new StykListeLinje(volumeMaterial, quantity, description);
         return sternWidth;
     }
-
 
     public static StykListeLinje remCalc(int width, int length) {
         StykListeLinje rem;
@@ -68,7 +64,7 @@ public class Calc {
     public static Stykliste generereStykliste(int width, int length) throws DBException {
         Stykliste stykliste = new Stykliste();
         stykliste.volumenListe.add(sternWidthCalc(width, length));
-        System.out.println(stykliste);
+        System.out.println("generere SL: " + stykliste);
         return stykliste;
     }
 
