@@ -1,10 +1,7 @@
 package api;
 
 import domain.items.*;
-import domain.materials.UnitMaterial;
-import domain.materials.UnitMaterialRepository;
-import domain.materials.VolumeMaterial;
-import domain.materials.VolumeMaterialRepository;
+import domain.materials.*;
 
 
 import java.sql.SQLException;
@@ -22,15 +19,18 @@ public class Webapp {
     private final SellerRepository sellers;
     private static VolumeMaterialRepository volumeMaterials;
     private final UnitMaterialRepository unitMaterials;
+    private final StyklisteLinjeRepository styklisteLinjer;
+    private final StyklisteRepository styklister;
 
-    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials) {
+    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials,StyklisteLinjeRepository styklisteLinjer,StyklisteRepository styklister) {
         this.orders = orders;
         this.customers = customers;
         this.carports = carports;
         this.sellers = sellers;
         this.volumeMaterials=volumeMaterials;
         this.unitMaterials=unitMaterials;
-
+        this.styklisteLinjer=styklisteLinjer;
+        this.styklister=styklister;
     }
 
     public static int getVersion() {
@@ -192,6 +192,19 @@ public class Webapp {
         } catch (DBException e) {
             e.printStackTrace();
         }
+    }
+    public void commitStyklisteLinie(StykListeLinje stykListeLinje, int ordreId){
+        styklisteLinjer.commit(stykListeLinje,ordreId);
+    }
+    public Stykliste findStykliste(int ordreId){
+        try {
+
+            return styklister.findStykliste(ordreId);
+
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return new Stykliste();
     }
 
 }

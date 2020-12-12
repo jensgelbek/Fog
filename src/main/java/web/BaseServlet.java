@@ -6,6 +6,7 @@ import domain.items.DBException;
 import domain.items.Order;
 import domain.items.Seller;
 import domain.items.SellerRepository;
+import domain.materials.StyklisteLinjeRepository;
 import infrastructure.DBCarportRepository;
 import infrastructure.DBOrderRepository;
 import infrastructure.Database;
@@ -32,7 +33,7 @@ public class BaseServlet extends HttpServlet {
     private static Webapp createApplication() {
         Database db = new Database();
 
-        return new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db));
+        return new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db) );
 
     }
 
