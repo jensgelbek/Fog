@@ -21,7 +21,7 @@ public class Calc {
         StykListeLinje sternWidth;
         int widthCalc = width * 10;
         Database db = new Database();
-        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db));
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db),new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db));
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(understern, widthCalc);
         String description = "Stern: For og bag stern";
         int quantity = 2;

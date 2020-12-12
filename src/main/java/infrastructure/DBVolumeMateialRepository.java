@@ -98,7 +98,7 @@ public class DBVolumeMateialRepository implements VolumeMaterialRepository {
     public VolumeMaterial find(String name, int lenght) throws DBException {
         try {
             Connection con = db.getConnection();
-            String SQL = "SELECT * FROM materialer m INNER JOIN volumematerialer v ON m.id=v.volumeMaterialeId Where m.name=(?) AND v.length=(?);";
+            String SQL = "SELECT * FROM materialer m INNER JOIN volumematerialer v ON m.id=v.volumeMaterialeId INNER JOIN materialetype t on m.name=t.name Where m.name=(?) AND v.length=(?);";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, name);
             ps.setInt(2,lenght);

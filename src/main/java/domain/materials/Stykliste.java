@@ -7,17 +7,21 @@ import java.util.List;
 
 public class Stykliste {
 
+    public List<StykListeLinje> volumenListe;
+    public List<StykListeLinje> unitListe;
+
     public Stykliste() {
-        this.volumenListe = volumenListe;
-        this.unitListe = unitListe;
+        this.volumenListe = new ArrayList<>();
+        this.unitListe = new ArrayList<>();
     }
 
-    public List<StykListeLinje> volumenListe = new ArrayList<>();
-    public List<StykListeLinje> unitListe = new ArrayList<>();
+
+
 
     @Override
     public String toString() {
-        return volumenListe +
+        return "Stykliste{" +
+                "volumenListe=" + volumenListe +
                 ", unitListe=" + unitListe +
                 '}';
     }
