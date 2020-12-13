@@ -20,9 +20,8 @@ public class Stykliste {
 
     @Override
     public String toString() {
-        return "Stykliste{" +
-                "volumenListe=" + volumenListe +
-                ", unitListe=" + unitListe +
-                '}';
+        return "Stykliste\n" +
+                "volumenListe=\n" + volumenListe +"\n"+
+                ", unitListe=\n" + unitListe ;
     }
 }
