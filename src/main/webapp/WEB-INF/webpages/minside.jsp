@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html;charset=UTF-8"%>
+<%@page contentType="text/html;charset=UTF-8" %>
 
 <div class="container">
     <link rel="stylesheet" href="<c:url value="/static/style.css"/>"/>
@@ -9,13 +9,13 @@
         <div class="col-md-5">
 
         </div>
-        <div class="col-md-2" align="center" >
+        <div class="col-md-2" align="center">
             carport
         </div>
         <div class="col-md-2" align="center">
             skur
         </div>
-        <div class="col-md-2" >
+        <div class="col-md-2">
 
         </div>
     </div>
@@ -92,9 +92,9 @@
                     ${ordreLinje.status}
             </div>
             <div class="col-md-1">
-                <form method="post" >
+                <form method="post">
                     <input type="hidden" name="vis" value="${ordreLinje.orderID}">
-                    <button type="submit" class="btn btn-primary" >Vis</button>
+                    <button type="submit" class="btn btn-primary">Vis</button>
                 </form>
             </div>
 

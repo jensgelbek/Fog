@@ -17,7 +17,6 @@ public class DBCustomerRepository implements CustomerRepository {
     }
 
 
-
     @Override
     public List<Customer> findAll() throws CustomerNotFound, DBException {
         List<Customer> customerList = new ArrayList<>();
@@ -29,14 +28,14 @@ public class DBCustomerRepository implements CustomerRepository {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               String email = rs.getString("email");
+                String email = rs.getString("email");
                 String name = rs.getString("name");
                 String addresse = rs.getString("addresse");
                 int tlfNummer = rs.getInt("tlfNummer");
                 byte[] secret = rs.getBytes("secret");
                 byte[] salt = rs.getBytes("salt");
 
-                Customer customer = new Customer(name, addresse,email,tlfNummer,false, salt, secret);
+                Customer customer = new Customer(name, addresse, email, tlfNummer, false, salt, secret);
 
                 customerList.add(customer);
 
@@ -44,14 +43,15 @@ public class DBCustomerRepository implements CustomerRepository {
         } catch (SQLException ex) {
             throw new DBException(ex.getMessage());
         }
-       return customerList;
+        return customerList;
     }
 
     @Override
     public Customer findCustomer(String email) throws CustomerNotFound, DBException {
         try {
 
-;            Connection con = db.getConnection();
+            ;
+            Connection con = db.getConnection();
             String SQL = "SELECT * FROM kunde WHERE email=(?)";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, email);
@@ -64,7 +64,7 @@ public class DBCustomerRepository implements CustomerRepository {
                 byte[] secret = rs.getBytes("secret");
                 byte[] salt = rs.getBytes("salt");
 
-                Customer customer = new Customer(name, addresse,email,tlfNummer,false, salt, secret);
+                Customer customer = new Customer(name, addresse, email, tlfNummer, false, salt, secret);
                 return customer;
 
             }
@@ -73,7 +73,6 @@ public class DBCustomerRepository implements CustomerRepository {
         }
         return null;
     }
-
 
 
     public Customer commitCustomer(Customer customer) throws DBException {

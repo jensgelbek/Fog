@@ -1,14 +1,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <div class="container">
 
     <div class="row" style="margin-top: 5em">
 
-        <div class ="col-md-3">
-            <h6><a href="http://localhost:8080/webapptemplate/bestilling"><b style="color: darkblue">CARPORT MED FLADT TAG</b></a></h6>
+        <div class="col-md-3">
+            <h6><a href="http://localhost:8080/webapptemplate/bestilling"><b style="color: darkblue">CARPORT MED FLADT
+                TAG</b></a></h6>
             <hr>
-            <h6><a href="http://localhost:8080/webapptemplate/bestillingRejsning"><b style="color: darkblue">CARPORT MED REJSNING</b></a></h6>
+            <h6><a href="http://localhost:8080/webapptemplate/bestillingRejsning"><b style="color: darkblue">CARPORT MED
+                REJSNING</b></a></h6>
             <hr>
 
         </div>
@@ -20,11 +22,13 @@
             </div>
 
             <div>
-                <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.</p>
+                <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
+                    på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.</p>
             </div>
 
             <div>
-            <p>Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br>Ved bestilling medfølger standardbyggevejledning.</p>
+                <p>Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br>Ved bestilling medfølger
+                    standardbyggevejledning.</p>
             </div>
 
             <p><b>Udfyld nedenstående omhyggeligt og klik på "Bestil tilbud"</b><br>Felter markeret * SKAL udfyldes!</p>
@@ -69,7 +73,7 @@
                     <div class="form-group ">
                         <label for="tag">Tag</label>
                         <select class="form-control" name="tag" id="tag">
-                            <c:forEach  items="${requestScope.tag}" var="tag">
+                            <c:forEach items="${requestScope.tag}" var="tag">
                                 <option value="${tag}">
                                         ${tag}
                                 </option>
@@ -87,7 +91,9 @@
                         <label for="shedW">Redskabsskur bredde</label>
                         <select class="form-control" name="shedWidth" id="shedW">
                             <option value="shed">Ønsker ikke redskabsskur</option>
+
                             <c:forEach  items="${requestScope.shedW}" var="shedW">
+
                                 <option value="${shedW}">
                                         ${shedW} cm
                                 </option>
@@ -98,9 +104,11 @@
                     <!-- Dropdown Shed-width -->
                     <div class="form-group ">
                         <label for="shedL">Redskabsskur længde</label>
+
                         <select class="form-control" name="shedLength" id="shedL">
                             <option value="shedlength">Ønsker ikke redskabsskur</option>
                             <c:forEach  items="${requestScope.shedL}" var="shedL">
+
                                 <option value="${shedL}">
                                         ${shedL} cm
                                 </option>
@@ -136,7 +144,7 @@
                     <div class="row">
                         <p>Bredde & længde udgør 'Stern' (for/bag og siderne) her indkeret med <b><i>Rødt</i></b> <br>
                             Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
-                        2 x bærende 'Rem' i siderne på langs med <b><i>sort</i></b>  <br>
+                            2 x bærende 'Rem' i siderne på langs med <b><i>sort</i></b> <br>
                             Stolper er firkanter placeret langs remmene <b><i>sort</i></b> <br>
                             Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne <br></p>
                     </div>
@@ -157,7 +165,8 @@
 
                 </form>
                 <br>
-                <p>* Hvis du f.eks. har valgt en carport med målene 240x360 cm kan redskabsrummet maksimalt måle 210x330 cm.</p>
+                <p>* Hvis du f.eks. har valgt en carport med målene 240x360 cm kan redskabsrummet maksimalt måle 210x330
+                    cm.</p>
 
             </div>
         </div>

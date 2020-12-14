@@ -19,7 +19,7 @@ public class OpretSeller extends BaseServlet {
         try {
 
             render("Start", "/WEB-INF/webpages/opretSeller.jsp", req, resp);
-        } catch (ServletException | IOException e){
+        } catch (ServletException | IOException e) {
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
         }
@@ -30,10 +30,10 @@ public class OpretSeller extends BaseServlet {
         if (req.getParameter("Opret") != null) {
             String name = req.getParameter("name");
             String userName = req.getParameter("userName");
-            System.out.println(name+"   "+userName);
+            System.out.println(name + "   " + userName);
             byte[] salt = Customer.generateSalt();
             byte[] secret = Customer.calculateSecret(salt, "1234");
-            Seller seller = new Seller(userName,name, salt, secret);
+            Seller seller = new Seller(userName, name, salt, secret);
             try {
                 api.commitSeller(seller);
                 var s = req.getSession();

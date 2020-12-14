@@ -6,6 +6,7 @@ import domain.items.DBException;
 import domain.items.Order;
 import domain.items.Seller;
 import domain.items.SellerRepository;
+import domain.materials.StyklisteLinjeRepository;
 import infrastructure.DBCarportRepository;
 import infrastructure.DBOrderRepository;
 import infrastructure.Database;
@@ -24,20 +25,18 @@ import java.util.List;
 
 public class BaseServlet extends HttpServlet {
     protected static final Webapp api;
-    
+
     static {
         api = createApplication();
     }
-    
+
     private static Webapp createApplication() {
-        Database db=new Database();
+        Database db = new Database();
 
-        return new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db) {
-
-        });
+        return new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db) );
 
     }
-    
+
 
     protected void render(String title, String content, HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -48,9 +47,9 @@ public class BaseServlet extends HttpServlet {
         req.setAttribute("year", LocalDateTime.now().getYear());
         req.getRequestDispatcher("/WEB-INF/includes/base.jsp").forward(req, resp);
     }
-    
-    
-    protected void log(HttpServletRequest req, String str){
+
+
+    protected void log(HttpServletRequest req, String str) {
         System.err.print("(" + LocalDateTime.now() + ")" + this.getClass().getCanonicalName() + " - " + req.getRequestURI() + " - " + str);
     }
 }

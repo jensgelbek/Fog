@@ -20,6 +20,7 @@ public class Carport {
         this.shedWidth = shedWidth;
         this.shedLength = shedLength;
     }
+
     public Carport() {
         this.width = width;
         this.lenght = lenght;
@@ -32,7 +33,6 @@ public class Carport {
     public boolean isRejsning() {
         return rejsning;
     }
-
 
 
     public int getCarportID() {
@@ -67,7 +67,6 @@ public class Carport {
     public void setCarportID(int carportID) {
         this.carportID = carportID;
     }
-
 
 
     @Override

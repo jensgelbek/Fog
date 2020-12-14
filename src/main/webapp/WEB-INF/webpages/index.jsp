@@ -1,12 +1,9 @@
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <style>
-    .body-text{
+    .body-text {
         margin-left: 5px;
 
     }
-
 
 
     h1 {
@@ -38,7 +35,8 @@
 
         <br>
         <br>
-        Klik <a href="http://localhost:8080/webapptemplate_war_exploded/bestilling"> her </a>  for at begynde dit design, eller klik på 'Carport' i toppen af siden.
+        Klik <a href="http://localhost:8080/webapptemplate_war_exploded/bestilling"> her </a> for at begynde dit design,
+        eller klik på 'Carport' i toppen af siden.
         <br>
         <br>
 

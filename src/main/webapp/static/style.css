@@ -1,14 +1,10 @@
 
+.navbar-oprettelse {
+    overflow: hidden;
+    float: right;
 
 
-
-
- .navbar-oprettelse {
-     overflow: hidden;
-     float: right;
-
-
- }
+}
 
 .navbar-custom {
     background-color: #003D76;
@@ -38,13 +34,12 @@
 }
 
 
+.navbar-oprettelse {
+    overflow: hidden;
+    float: right;
 
- .navbar-oprettelse {
-     overflow: hidden;
-     float: right;
 
-
- }
+}
 
 .navbar-custom {
     background-color: #003D76;
@@ -114,46 +109,51 @@
 .nav-item {
     margin: 5px;
 }
- .page-footer{
-     background-color: #003D76;
-     margin-bottom: -20px;
- }
- .footerlogo {
-     width: 20%;
-     height: 20%;
-     margin-top: -10px;
 
- }
- .footer-copyright {
-     position: center;
+.page-footer {
+    background-color: #003D76;
+    margin-bottom: -20px;
+}
 
+.footerlogo {
+    width: 20%;
+    height: 20%;
+    margin-top: -10px;
 
- }
- .body-text{
-     margin-left: 5px;
+}
 
- }
+.footer-copyright {
+    position: center;
 
 
+}
 
- .navbar-user {
+.body-text {
+    margin-left: 5px;
+
+}
+
+
+.navbar-user {
     color: green;
 
- }
- h1 {
-     font-size: xx-large;
- }
+}
 
- img {
-     position: relative;
-     margin-left: 0px;
- }
+h1 {
+    font-size: xx-large;
+}
 
- .header-text{
-     margin-left: 10px;
+img {
+    position: relative;
+    margin-left: 0px;
+}
 
- }
- .container {
-     margin: auto;
-     margin-right: auto;
- }
+.header-text {
+    margin-left: 10px;
+
+}
+
+.container {
+    margin: auto;
+    margin-right: auto;
+}

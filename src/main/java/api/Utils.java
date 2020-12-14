@@ -2,6 +2,7 @@
 package api;
 
 import domain.items.Carport;
+import domain.materials.StykListeLinje;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -11,7 +12,9 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Utils {
     /**
@@ -25,12 +28,13 @@ public class Utils {
         return src.replaceAll("\\<.*?\\>", "");
     }
 
-    public static LocalDate timestampToLocalDate(Timestamp timestamp){
-        if (timestamp!=null){
-          return  timestamp.toLocalDateTime().toLocalDate();
+    public static LocalDate timestampToLocalDate(Timestamp timestamp) {
+        if (timestamp != null) {
+            return timestamp.toLocalDateTime().toLocalDate();
         }
         return null;
     }
+
     private static final int PASSWORD_ITERATIONS = 65536;
     private static final int PASSWORD_LENGTH = 256; // 32 bytes
     private static final SecretKeyFactory PASSWORD_FACTORY;
@@ -44,6 +48,7 @@ public class Utils {
         }
         PASSWORD_FACTORY = factory;
     }
+
     public static byte[] generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
@@ -62,7 +67,24 @@ public class Utils {
         }
     }
 
-    public static boolean checkPassword(String password,byte[] secret,byte[] salt) {
-        return Arrays.equals(secret, calculateSecret(salt, password)); }
+    public static boolean checkPassword(String password, byte[] secret, byte[] salt) {
+        return Arrays.equals(secret, calculateSecret(salt, password));
+    }
+
+    List<StykListeLinje> stykListeLinjes = new ArrayList<>();
+
+
+
+    public static List<StykListeLinje> genererStyklister(Carport carport) {
+        List<StykListeLinje> stykListeLinjes = new ArrayList<>();
+        return stykListeLinjes;
+
+    }
+
+
+
+
+
+
 
 }

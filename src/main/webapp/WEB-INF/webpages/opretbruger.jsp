@@ -1,20 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gustaf
-  Date: 02/12/2020
-  Time: 13.17
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <style>
     .form-group {
         margin-left: 15px;
         margin-right: 40%;
     }
+
     h1 {
         font-size: x-large;
         margin-left: 15px;
     }
+
     p1 {
         font-style: italic;
         margin-left: 15px;
@@ -39,7 +34,7 @@
 <br>
 
 <form>
-    <form method="post" >
+    <form method="post">
         <div class="form-group">
 
             <label for="navn">Fulde navn:</label>
@@ -84,12 +79,10 @@
         <div class="col-md-1">
 
             <input type="hidden" name="Opret" value="opret">
-            <button type="submit" class="btn btn-primary" >Opret</button>
+            <button type="submit" class="btn btn-primary">Opret</button>
         </div>
     </form>
     </div>
-
-
 
 
 </form>

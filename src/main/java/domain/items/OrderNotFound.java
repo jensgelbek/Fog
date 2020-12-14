@@ -1,4 +1,4 @@
 package domain.items;
 
-public class OrderNotFound extends Exception{
+public class OrderNotFound extends Exception {
 }

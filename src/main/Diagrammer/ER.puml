@@ -129,7 +129,7 @@ entity Carport #White {
    --
    * <size:12> længde
    --
-   * <size:12> rejsning
+   - <size:12> rejsning
    --
    * <size:12> tag
    --
@@ -181,9 +181,15 @@ entity volumeMaterialer #White {
 entity Materialer #White {
    <size:13> PK: id
    --
-   * <size:12> name
-   --
-   * <size:12> pris
+   <size:13> PK: name (FK)
+ }
+
+entity MaterialeType #White {
+ <size:13> PK: name
+ --
+ <size:13> details
+ --
+ <size:13> pris
 }
 
 entity StyklisteLinje #White {
@@ -200,7 +206,7 @@ entity Sælger #White {
    <size:13> PK: id
    --
    * <size:12> name
-   --
+   --eType
    * <size:12> salt
    --
    * <size:12> secret
@@ -211,13 +217,14 @@ entity Sælger #White {
 
 
 
-Kunde <|- Ordre
-Sælger <|-- Ordre
-Carport <|-- Ordre
-Ordre <|-- StyklisteLinje
-Materialer <|-- StyklisteLinje
-Materialer <|-- volumeMaterialer
-Materialer <|-- unitMaterialer
+Kunde "1" -- "*" Ordre
+Sælger "0..1" -- "*" Ordre
+Carport "1" -- "1" Ordre
+Ordre "1" -- "*" StyklisteLinje
+Materialer "1" - "*" StyklisteLinje
+Materialer "1" <|-- "0..1" volumeMaterialer
+Materialer "1" <|-- "0..1" unitMaterialer
+MaterialeType "1" - "*" Materialer
 @enduml
 
 
