@@ -40,7 +40,7 @@
 
                 <form method="post">
 
-                    <input type="hidden" name="target" value="bestilling">
+                    <input type="hidden" >
 
                     <!-- Dropdown length -->
                     <div class="form-group ">
@@ -115,7 +115,7 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Vis tegning</button>
+                    <button type="submit" class="btn btn-primary" name="target" value="bestilling">Vis tegning</button>
                     <hr>
                     <h6> Du har valgt følgende carport mål:<br></h6>
                     --<br>
@@ -161,11 +161,10 @@
                     <br>
                     <hr>
                     <br>
+                    <input type="hidden" >
+                    <button type="" class="btn btn-primary" name="target" value="tilbud">Få tilbud</button>
+                </form>
 
-                    <form method="post">
-                        <input type="hidden" name="target" value="BOM">
-                            <button type="" class="btn btn-primary">Se stykliste</button>
-                    </form>
 
 
                 <br>

@@ -228,7 +228,7 @@ public class SvgCarport extends Tag {
 
     public static Tag lineL(int width, int length) {
         Double LD;
-        if (width > 0 ) {
+        if (width > 0) {
             LD = Double.valueOf(length);
         } else {
             LD = 49.5;
@@ -237,7 +237,7 @@ public class SvgCarport extends Tag {
         line.withStyle("fill: none; stroke: darkblue; darkblue: 5 5;");
         return line;
 
-
+    }
 
 
     public static Tag carport(int width, int length, int shedWidth, int shedLength) {

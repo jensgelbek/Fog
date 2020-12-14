@@ -3,8 +3,10 @@ package web.pages;
 
 import api.Calc;
 
+import com.mysql.cj.Session;
 import domain.items.Carport;
 import domain.items.DBException;
+import domain.items.Order;
 import domain.materials.StykListeLinje;
 import domain.materials.Stykliste;
 import infrastructure.Lists;
@@ -22,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +61,7 @@ public class Bestilling extends BaseServlet {
             System.out.println(carport.shedLength);
             return carport;
 
-            }
+        }
 
 
         public int getLength() {
@@ -68,8 +72,13 @@ public class Bestilling extends BaseServlet {
             return width;
         }
 
-        public int getShedWidth() { return shedWidth;}
-        public int getShedLength() {return shedLength;}
+        public int getShedWidth() {
+            return shedWidth;
+        }
+
+        public int getShedLength() {
+            return shedLength;
+        }
 
         public String getDrawing() {
             return SvgCarport.carport(width, length, shedWidth, shedLength).toString();
@@ -90,7 +99,7 @@ public class Bestilling extends BaseServlet {
 
         // public StykListeLinje spaerCalc() { return SvgCarport.spaerCalc(width, length);}
 
-
+    }
 
 
     @Override
@@ -125,50 +134,73 @@ public class Bestilling extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        var carportdto = CarportDTO.fromSession(req.getSession());
-        carportdto.width = Integer.parseInt(req.getParameter("width"));
-        carportdto.length = Integer.parseInt(req.getParameter("length"));
 
-        carportdto.shedLength = Integer.parseInt(req.getParameter("shedWidth"));
-        carportdto.shedWidth= Integer.parseInt(req.getParameter("shedLength"));
+        if (req.getParameter("target").equals("bestilling")) {
+            var carportdto = CarportDTO.fromSession(req.getSession());
+            carportdto.width = Integer.parseInt(req.getParameter("width"));
+            carportdto.length = Integer.parseInt(req.getParameter("length"));
+            try {
+                carportdto.shedLength = Integer.parseInt(req.getParameter("shedWidth"));
+            } catch (Exception e) {
+                carportdto.shedLength = 0;
+            }
+            try {
+                carportdto.shedWidth = Integer.parseInt(req.getParameter("shedLength"));
+            } catch (Exception e) {
+                carportdto.shedWidth = 0;
+            }
+            //String tag = req.getParameter("tag");
 
-        //String tag = req.getParameter("tag");
+            try {
+                Stykliste stykliste = Calc.generereStykliste(carportdto.width, carportdto.length);
+            } catch (DBException e) {
+                e.printStackTrace();
+            }
+            resp.sendRedirect(req.getContextPath() + "/bestilling");
 
-        try {
-            Stykliste stykliste = Calc.generereStykliste(carportdto.width, carportdto.length);
-        } catch (DBException e) {
-            e.printStackTrace();
+
         }
-        resp.sendRedirect(req.getContextPath() + "/bestilling");
+        if (req.getParameter("target").equals("tilbud")) {
+            var carportdto = CarportDTO.fromSession(req.getSession());
+           int width = Integer.parseInt(req.getParameter("width"));
+            int length = Integer.parseInt(req.getParameter("length"));
+            int shedLength = 0;
+            int shedWidth = 0;
+            try {
+                 shedLength = Integer.parseInt(req.getParameter("shedWidth"));
+            } catch (Exception e) {
 
-      
-                /*
+            }
+            try {
+                 shedWidth = Integer.parseInt(req.getParameter("shedLength"));
+            } catch (Exception e) {
 
-
-                var s = req.getSession();
-                Stykliste stykliste = s.getAttribute("Customer");
-
-
-                if (customer != null) {
-                    try {
-
-                        int customer_id = customer.getCustomerId();
-                        ordre_id = api.commitShoppingCart(getShoppingCart(req), LocalDate.now(), customer_id);
-                        api.updateSaldo(customer_id, -api.getPrice(ordre_id));
-                    } catch (DBException e) {
-                        e.printStackTrace();
-                    }
-                    s.setAttribute("orderID", ordre_id);
-                    s.setAttribute("shoppingCart", null);
-                    resp.sendRedirect(req.getContextPath() + "/order");
-                } else {
-
-                 */
-               
             }
 
+            Carport carport = new Carport(width,length,false,"trapez", shedWidth,shedLength);
+            int orderid=0;
+            try {
+                int carportId =api.commitCarport(carport);
+                carport.setCarportID(carportId);
+                var s = req.getSession();
 
 
+                Order order=new Order(LocalDate.now(),null,null, (String) s.getAttribute("username"),1,carport.getCarportID(),0,"tilbud");
+                orderid=api.commitOrder(order);
+                System.out.println(orderid);
+
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
+
+
+        }
+        }
     }
+
+
+
 
 

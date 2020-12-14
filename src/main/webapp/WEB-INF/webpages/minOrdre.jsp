@@ -15,7 +15,7 @@
 <body>
 
 
-<h1>Ordre nummer ${requestScope.order.orderID} </h1>
+<h1>Nummer ${requestScope.order.orderID} </h1>
 <c:if test="${requestScope.order.status==\"tilbud\"}"><b>Status:</b> tilbud modtaget<br></c:if>
 <c:if test="${requestScope.order.status==\"kontakt\"}"><b>Status:</b> venter på at blive kontakter af sælger<br></c:if>
 <c:if test="${requestScope.order.status==\"ordre\"}"><b>Status:</b> carport bestilt og afventer levering<br></c:if>
