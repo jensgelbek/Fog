@@ -207,4 +207,7 @@ public class Webapp {
         return new Stykliste();
     }
 
+    public void commitStykliste(Stykliste stykliste,int orderId){
+        styklister.commitStykliste(stykliste,orderId);
+    }
 }

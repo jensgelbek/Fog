@@ -8,7 +8,12 @@ import domain.items.DBException;
 import domain.materials.StykListeLinje;
 import domain.materials.Stykliste;
 import infrastructure.Lists;
+import org.w3c.dom.ls.LSOutput;
 import web.BaseServlet;
+
+import web.svg.CKL.Svg;
+import web.svg.StykListeLinje;
+
 import web.svg.SvgCarport;
 
 import javax.servlet.ServletException;
@@ -39,6 +44,8 @@ public class Bestilling extends BaseServlet {
     public static class CarportDTO {
         public int width = 0;
         public int length = 0;
+        public int shedWidth = 0;
+        public int shedLength = 0;
 
         public static CarportDTO fromSession(HttpSession ses) {
             CarportDTO carport = (CarportDTO) ses.getAttribute("carport");
@@ -46,8 +53,12 @@ public class Bestilling extends BaseServlet {
                 carport = new CarportDTO();
                 ses.setAttribute("carport", carport);
             }
+            System.out.println(carport.shedWidth);
+            System.out.println(carport.shedLength);
             return carport;
-        }
+
+            }
+
 
         public int getLength() {
             return length;
@@ -57,9 +68,18 @@ public class Bestilling extends BaseServlet {
             return width;
         }
 
+        public int getShedWidth() { return shedWidth;}
+        public int getShedLength() {return shedLength;}
+
         public String getDrawing() {
-            return SvgCarport.carport(width, length).toString();
+            return SvgCarport.carport(width, length, shedWidth, shedLength).toString();
         }
+
+
+        public StykListeLinje sternWidthCalc() {
+            return SvgCarport.sternWidthCalc(width, length);
+        }
+
 
         public Stykliste sternWidthCalc() throws DBException {
             return Calc.generereStykliste(width, length);
@@ -71,7 +91,7 @@ public class Bestilling extends BaseServlet {
         // public StykListeLinje spaerCalc() { return SvgCarport.spaerCalc(width, length);}
 
 
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -80,12 +100,15 @@ public class Bestilling extends BaseServlet {
             Lists list = new Lists();
             list.carportMeasure();
             list.tag();
-            list.shed();
+            list.shedwidth();
+            list.shedlength();
 
             req.setAttribute("carportMeasure", list.carportMeasure());
             req.setAttribute("tag", list.tag());
-            req.setAttribute("shed", list.shed());
+            req.setAttribute("shedW", list.shedwidth());
+            req.setAttribute("shedL", list.shedlength());
             CarportDTO.fromSession(req.getSession());
+
              //req.setAttribute("sternLengthCalc", CarportDTO.fromSession(req.getSession()).sternLengthCalc());
             // req.setAttribute("spaerCalc", CarportDTO.fromSession(req.getSession()).spaerCalc());
 
@@ -105,6 +128,10 @@ public class Bestilling extends BaseServlet {
         var carportdto = CarportDTO.fromSession(req.getSession());
         carportdto.width = Integer.parseInt(req.getParameter("width"));
         carportdto.length = Integer.parseInt(req.getParameter("length"));
+
+        carportdto.shedLength = Integer.parseInt(req.getParameter("shedWidth"));
+        carportdto.shedWidth= Integer.parseInt(req.getParameter("shedLength"));
+
         //String tag = req.getParameter("tag");
 
         try {
@@ -114,9 +141,7 @@ public class Bestilling extends BaseServlet {
         }
         resp.sendRedirect(req.getContextPath() + "/bestilling");
 
-        if (req.getParameter("target") != null)
-            if (req.getParameter("target").equals("BOM")) {
-
+      
                 /*
 
 
@@ -139,8 +164,7 @@ public class Bestilling extends BaseServlet {
                 } else {
 
                  */
-                    resp.sendRedirect(req.getContextPath() + "/bom");
-                }
+               
             }
 
 
