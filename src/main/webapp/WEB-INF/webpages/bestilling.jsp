@@ -85,9 +85,9 @@
                     <!-- Dropdown Shed-width -->
                     <div class="form-group ">
                         <label for="shedW">Redskabsskur bredde</label>
-                        <select class="form-control" name="number" id="shedW">
+                        <select class="form-control" name="shedWidth" id="shedW">
                             <option value="shed">Ønsker ikke redskabsskur</option>
-                            <c:forEach  items="${requestScope.shed.subList(2, shed.size())}" var="shedW">
+                            <c:forEach  items="${requestScope.shedW}" var="shedW">
                                 <option value="${shedW}">
                                         ${shedW} cm
                                 </option>
@@ -98,9 +98,9 @@
                     <!-- Dropdown Shed-width -->
                     <div class="form-group ">
                         <label for="shedL">Redskabsskur længde</label>
-                        <select class="form-control" name="number" id="shedL">
-                            <option value="shed">Ønsker ikke redskabsskur</option>
-                            <c:forEach  items="${requestScope.shed.subList(0, shed.size()-1)}" var="shedL">
+                        <select class="form-control" name="shedLength" id="shedL">
+                            <option value="shedlength">Ønsker ikke redskabsskur</option>
+                            <c:forEach  items="${requestScope.shedL}" var="shedL">
                                 <option value="${shedL}">
                                         ${shedL} cm
                                 </option>

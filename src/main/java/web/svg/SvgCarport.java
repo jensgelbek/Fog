@@ -1,5 +1,7 @@
 package web.svg;
 
+import web.pages.Bestilling;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,12 @@ public class SvgCarport extends Tag {
         sternDraw.withStyle("fill: none; stroke: red;");
         return sternDraw;
     }
+    public static Tag shedDraw(int length,int shedWidth, int shedLength) {
+
+        Tag shedDraw = new Rectangle(length-shedLength,35.0, shedLength, shedWidth);
+        shedDraw.withStyle("fill: none; stroke: darkgreen;");
+        return shedDraw;
+    }
 
     // Stern calculations, Width: Front + back
     // Price per meter
@@ -49,6 +57,31 @@ public class SvgCarport extends Tag {
         sternWidth = new StykListeLinje(name, doubleWidth, unit, price, sum);
         System.out.println(sternWidth);
         return sternWidth;
+    }
+
+        public static StykListeLinje shedWidthCalc(int width) {
+        StykListeLinje shedWidth;
+        String name = "shed width";
+        Double doubleShedWidth = Double.valueOf(width);
+        int unit = 2;
+        int price = 50;
+        int sum = (int) ((doubleShedWidth/100) * price * unit);
+        shedWidth = new StykListeLinje(name, doubleShedWidth, unit, price,sum);
+            System.out.println(shedWidth);
+            return shedWidth;
+
+        }
+    public static StykListeLinje shedLengthCalc(int length) {
+        StykListeLinje shedLength;
+        String name = "shed length";
+        Double doubleShedLength = Double.valueOf(length);
+        int unit = 2;
+        int price = 50;
+        int sum = (int) ((doubleShedLength/100) * price * unit);
+        shedLength = new StykListeLinje(name, doubleShedLength, unit, price,sum);
+        System.out.println(shedLength);
+        return shedLength;
+
     }
 
     // Stern calculations, Length: Left + right
@@ -137,6 +170,7 @@ public class SvgCarport extends Tag {
         System.out.println(spaer);
         return spaer;
     }
+
 
 
     // Stolper SVG Draw.
@@ -251,27 +285,30 @@ public class SvgCarport extends Tag {
     }
 
 
-    public static Tag carportCalc(int width, int length) {
+   /* public static Tag carportCalc(int width, int length) {
         SvgOuter ramme = new SvgOuter(800, 750, "0 0 855 750");
         ramme.add(lineW(width));
         ramme.add(carport2(width, length));
         return ramme;
     }
+*/
 
 
-
-    public static Tag carport(int width, int length) {
+    public static Tag carport(int width, int length, int shedWidth, int shedLength) {
         SvgOuter ramme = new SvgOuter(800, 750, "0 0 855 750");
         ramme.add(lineW(width));
-        ramme.add(carport2(width, length));
+        ramme.add(carport2(width, length, shedWidth, shedLength));
         return ramme;
     }
 
-    public static Tag carport2(int width, int length) {
+    public static Tag carport2(int width, int length, int shedWidth, int shedLength) {
+
+
         SvgInner carport = new SvgInner(75.0, 10.0, 800, 750, "0 0 800 750");
         carport.add(sternDraw(width, length));
         carport.add(remOneDraw(length));
         carport.add(remTwoDraw(width, length));
+        carport.add(shedDraw(length, shedWidth, shedLength));
 
 
         List spaers = spaerDraw(width, length);
@@ -293,13 +330,7 @@ public class SvgCarport extends Tag {
         return carport;
     }
 
-    public static void main(String[] args) {
-        sternLengthCalc(600, 600);
-        sternWidthCalc(600, 600);
-        remCalc(600, 610);
-        spaerCalc(600, 600);
 
-    }
 
 /*
     public static void main(String[] args) {

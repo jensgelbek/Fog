@@ -20,12 +20,14 @@ public class BestillingRejsning extends BaseServlet {
             list.carportMeasure();
             list.tagRejs();
             list.tagHaldning();
-            list.shed();
+            list.shedlength();
+            list.shedwidth();
 
             req.setAttribute("carportMeasure", list.carportMeasure());
             req.setAttribute("tagRejs", list.tagRejs());
             req.setAttribute("tagHald", list.tagHaldning());
-            req.setAttribute("shed", list.shed());
+            req.setAttribute("shedwidth", list.shedwidth());
+            req.setAttribute("shedlength", list.shedlength());
 
             render("Bestilling", "/WEB-INF/webpages/bestillingRejsning.jsp", req, resp);
         } catch (ServletException | IOException e) {
