@@ -37,6 +37,7 @@ public class DBStyklisteRepository implements StyklisteRepository {
                 System.out.println(stykListeLinje);
                 stykliste.volumenListe.add(stykListeLinje);
 
+
             }
         } catch (SQLException | DBException ex) {
             throw new DBException(ex.getMessage());

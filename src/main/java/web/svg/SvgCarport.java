@@ -189,18 +189,25 @@ public class SvgCarport extends Tag {
         return line;
     }
 
+    // Carport inner Length SVG line Draw.
 
-    public static Tag carportCalc(int width, int length) {
-        SvgOuter ramme = new SvgOuter(800, 750, "0 0 855 750");
-        ramme.add(lineW(width));
-        ramme.add(carport2(width, length));
-        return ramme;
+    public static Tag lineL(int width, int length) {
+        Double LD;
+        if (width > 0 ) {
+            LD = Double.valueOf(length);
+        } else {
+            LD = 49.5;
+        }
+        Tag line = new Line(75.0, width + 50.0, LD + 75.0, width + 50.0);
+        line.withStyle("fill: none; stroke: darkblue; darkblue: 5 5;");
+        return line;
     }
 
 
     public static Tag carport(int width, int length) {
         SvgOuter ramme = new SvgOuter(800, 750, "0 0 855 750");
         ramme.add(lineW(width));
+        ramme.add(lineL(width, length));
         ramme.add(carport2(width, length));
         return ramme;
     }

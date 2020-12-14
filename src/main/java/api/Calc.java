@@ -60,7 +60,7 @@ public class Calc {
         return null;
     }
 
-
+    
     public static Stykliste generereStykliste(int width, int length) throws DBException {
         Stykliste stykliste = new Stykliste();
         stykliste.volumenListe.add(sternWidthCalc(width, length));

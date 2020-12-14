@@ -5,6 +5,7 @@ import api.Calc;
 
 import domain.items.Carport;
 import domain.items.DBException;
+import domain.materials.StykListeLinje;
 import domain.materials.Stykliste;
 import infrastructure.Lists;
 import web.BaseServlet;
@@ -65,9 +66,9 @@ public class Bestilling extends BaseServlet {
         }
 
 
-        // public StykListeLinje sternLengthCalc() {return SvgCarport.sternLengthCalc(width, length);}
+        // public StykListeLinje sternLengthCalc() { return SvgCarport.sternLengthCalc(width, length); }
 
-//        public StykListeLinje spaerCalc() { return SvgCarport.spaerCalc(width, length);}
+        // public StykListeLinje spaerCalc() { return SvgCarport.spaerCalc(width, length);}
 
 
     }
