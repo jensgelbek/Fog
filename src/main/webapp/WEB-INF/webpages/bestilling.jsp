@@ -148,19 +148,10 @@
                             Stolper er firkanter placeret langs remmene <b><i>sort</i></b> <br>
                             Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne <br></p>
                     </div>
-
-                        <div class="row">
-                        <p><b><u>Du skal bruge følgende materialer:</u></b></p>
-                        ${requestScope.sternWidthCalc.toString()} <br>
-                        ${requestScope.sternLengthCalc} <br>
-                            ${requestScope.spaerCalc.toString()}
-                        ${carport.drawing}
+                    ${carport.drawing}
                     </div>
-
-
-                    <br>
                     <hr>
-                    <br>
+
                     <input type="hidden" >
                     <button type="" class="btn btn-primary" name="target" value="tilbud">Få tilbud</button>
                 </form>
