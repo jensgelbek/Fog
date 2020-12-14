@@ -37,6 +37,7 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
                     StykListeLinje stykListeLinje=new StykListeLinje(unitMaterial,antal,"");
                     stykliste.unitListe.add(stykListeLinje);}
 
+
             }
         } catch (SQLException | DBException ex) {
             System.out.println("ikke fundet");
