@@ -121,7 +121,7 @@ public class Bestilling extends BaseServlet {
              //req.setAttribute("sternLengthCalc", CarportDTO.fromSession(req.getSession()).sternLengthCalc());
             // req.setAttribute("spaerCalc", CarportDTO.fromSession(req.getSession()).spaerCalc());
 
-            req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
+           // req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
 
 
             render("Bestilling", "/WEB-INF/webpages/bestilling.jsp", req, resp);
@@ -134,7 +134,7 @@ public class Bestilling extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
+        String nextpage="/bestilling";
         if (req.getParameter("target").equals("bestilling")) {
             var carportdto = CarportDTO.fromSession(req.getSession());
             carportdto.width = Integer.parseInt(req.getParameter("width"));
@@ -156,26 +156,49 @@ public class Bestilling extends BaseServlet {
             } catch (DBException e) {
                 e.printStackTrace();
             }
-            resp.sendRedirect(req.getContextPath() + "/bestilling");
+           // resp.sendRedirect(req.getContextPath() + "/bestilling");
 
 
         }
         if (req.getParameter("target").equals("tilbud")) {
-            var carportdto = CarportDTO.fromSession(req.getSession());
-           int width = Integer.parseInt(req.getParameter("width"));
-            int length = Integer.parseInt(req.getParameter("length"));
-            int shedLength = 0;
-            int shedWidth = 0;
-            try {
-                 shedLength = Integer.parseInt(req.getParameter("shedWidth"));
-            } catch (Exception e) {
+            var s = req.getSession();
 
-            }
-            try {
-                 shedWidth = Integer.parseInt(req.getParameter("shedLength"));
-            } catch (Exception e) {
+            if ((String) s.getAttribute("username")!=null) {
+                var carportdto = CarportDTO.fromSession(req.getSession());
+                int width = Integer.parseInt(req.getParameter("width")) * 10;
+                int length = Integer.parseInt(req.getParameter("length")) * 10;
+                String tag = req.getParameter("tag");
+                int shedLength = 0;
+                int shedWidth = 0;
+                try {
+                    shedLength = Integer.parseInt(req.getParameter("shedWidth")) * 10;
+                } catch (Exception e) {
 
+                }
+                try {
+                    shedWidth = Integer.parseInt(req.getParameter("shedLength")) * 10;
+                } catch (Exception e) {
+
+                }
+
+                Carport carport = new Carport(width, length, false, tag, shedWidth, shedLength);
+                int orderid = 0;
+                try {
+                    int carportId = api.commitCarport(carport);
+                    carport.setCarportID(carportId);
+
+                    Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), 1, carport.getCarportID(), 0, "tilbud");
+                    orderid = api.commitOrder(order);
+                    System.out.println(orderid);
+
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                //resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
+                nextpage="/minOrdre?ordre=" + orderid;
             }
+
 
             Carport carport = new Carport(width,length,false,"trapez", shedWidth,shedLength);
             int orderid=0;
@@ -196,7 +219,9 @@ public class Bestilling extends BaseServlet {
             resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
 
 
+
         }
+        resp.sendRedirect(req.getContextPath() + nextpage);
         }
     }
 

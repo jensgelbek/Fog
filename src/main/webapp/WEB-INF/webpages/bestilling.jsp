@@ -93,8 +93,9 @@
                             <option value="shed">Ønsker ikke redskabsskur</option>
 
                             <c:forEach  items="${requestScope.shedW}" var="shedW">
+                                <option value="${shedW}" <c:if test="${shedW==carport.shedWidth}">selected</c:if>>
 
-                                <option value="${shedW}">
+
                                         ${shedW} cm
                                 </option>
                             </c:forEach>
@@ -108,8 +109,7 @@
                         <select class="form-control" name="shedLength" id="shedL">
                             <option value="shedlength">Ønsker ikke redskabsskur</option>
                             <c:forEach  items="${requestScope.shedL}" var="shedL">
-
-                                <option value="${shedL}">
+                                <option value="${shedL}" <c:if test="${shedL==carport.shedLength}">selected</c:if>>
                                         ${shedL} cm
                                 </option>
                             </c:forEach>
