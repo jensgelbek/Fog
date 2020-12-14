@@ -9,6 +9,8 @@ import domain.items.DBException;
 import domain.items.Order;
 import domain.materials.StykListeLinje;
 import domain.materials.Stykliste;
+import infrastructure.DBStyklisteLinjeRepository;
+import infrastructure.Database;
 import infrastructure.Lists;
 import org.w3c.dom.ls.LSOutput;
 import web.BaseServlet;
@@ -84,20 +86,14 @@ public class Bestilling extends BaseServlet {
             return SvgCarport.carport(width, length, shedWidth, shedLength).toString();
         }
 
-/*
-        public StykListeLinje sternWidthCalc() {
-            return SvgCarport.sternWidthCalc(width, length);
-        }
-*/
-
-        public Stykliste sternWidthCalc() throws DBException {
+        /*
+        public Stykliste stykliste() throws DBException {
+            System.out.println("Hej");
+            api.commitStykliste(Calc.generereStykliste(width, length),1);
             return Calc.generereStykliste(width, length);
         }
 
-
-        // public StykListeLinje sternLengthCalc() { return SvgCarport.sternLengthCalc(width, length); }
-
-        // public StykListeLinje spaerCalc() { return SvgCarport.spaerCalc(width, length);}
+         */
 
     }
 
@@ -161,8 +157,9 @@ public class Bestilling extends BaseServlet {
 
         }
         if (req.getParameter("target").equals("tilbud")) {
+           //  if ( api.findCustomer())
             var carportdto = CarportDTO.fromSession(req.getSession());
-           int width = Integer.parseInt(req.getParameter("width"));
+            int width = Integer.parseInt(req.getParameter("width"));
             int length = Integer.parseInt(req.getParameter("length"));
             int shedLength = 0;
             int shedWidth = 0;

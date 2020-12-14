@@ -50,6 +50,7 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
     @Override
     public void commitStykliste(Stykliste stykliste, int orderId) {
         for (StykListeLinje styklistelinje:stykliste.volumenListe) {
+            System.out.println("commitStykliste");
             commit(styklistelinje,orderId);
         }
         for (StykListeLinje styklistelinje:stykliste.unitListe) {
@@ -65,6 +66,7 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
 
     @Override
     public int commit(StykListeLinje stykListeLinje, int orderId) {
+        System.out.println("Så er vi her");
         int id = 0;
         try {
             Connection con = db.getConnection();
@@ -88,4 +90,5 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
         }
         return id;
     }
+
 }

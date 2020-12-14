@@ -51,8 +51,6 @@ entity Ordre  #White {
    --
    <size:13> FK: kundeId
    --
-   <size:13> FK: sælgerId
-   --
    <size:13> FK: carportId
    --
    * <size:12> pris
@@ -150,8 +148,6 @@ entity Ordre  #White {
    --
    <size:13> FK: kundeEmail
    --
-   <size:13> FK: sælgerId
-   --
    <size:13> FK: skurId
    --
    <size:13> FK: carportId
@@ -206,7 +202,7 @@ entity Sælger #White {
    <size:13> PK: id
    --
    * <size:12> name
-   --eType
+   --
    * <size:12> salt
    --
    * <size:12> secret
@@ -218,7 +214,7 @@ entity Sælger #White {
 
 
 Kunde "1" -- "*" Ordre
-Sælger "0..1" -- "*" Ordre
+
 Carport "1" -- "1" Ordre
 Ordre "1" -- "*" StyklisteLinje
 Materialer "1" - "*" StyklisteLinje

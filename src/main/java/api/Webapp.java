@@ -2,6 +2,7 @@ package api;
 
 import domain.items.*;
 import domain.materials.*;
+import infrastructure.DBStyklisteLinjeRepository;
 
 
 import java.sql.SQLException;
@@ -19,8 +20,8 @@ public class Webapp {
     private final SellerRepository sellers;
     private static VolumeMaterialRepository volumeMaterials;
     private final UnitMaterialRepository unitMaterials;
-    private final StyklisteLinjeRepository styklisteLinjer;
-    private final StyklisteRepository styklister;
+    private static StyklisteLinjeRepository styklisteLinjer;
+    private static StyklisteRepository styklister;
 
     public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials,StyklisteLinjeRepository styklisteLinjer,StyklisteRepository styklister) {
         this.orders = orders;
@@ -194,7 +195,8 @@ public class Webapp {
         }
     }
     public void commitStyklisteLinie(StykListeLinje stykListeLinje, int ordreId){
-        styklisteLinjer.commit(stykListeLinje,ordreId);
+        // styklisteLinjer.commit(stykListeLinje,ordreId);
+        // DBStyklisteLinjeRepository.commit(stykListeLinje,ordreId);
     }
     public Stykliste findStykliste(int ordreId){
         try {
@@ -207,7 +209,7 @@ public class Webapp {
         return new Stykliste();
     }
 
-    public void commitStykliste(Stykliste stykliste,int orderId){
+    public void commitStykliste(Stykliste stykliste, int orderId){
         styklister.commitStykliste(stykliste,orderId);
     }
 }
