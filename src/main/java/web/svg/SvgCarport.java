@@ -242,25 +242,20 @@ public class SvgCarport extends Tag {
 
     public static Tag carport(int width, int length, int shedWidth, int shedLength) {
 
-        SvgOuter ramme = new SvgOuter(800, 750, "0 0 855 750");
+        SvgOuter ramme = new SvgOuter(800, 700, "0 0 855 750");
         ramme.add(lineW(width));
-
         ramme.add(lineL(width, length));
-       
         ramme.add(carport2(width, length, shedWidth, shedLength));
-
         return ramme;
     }
 
     public static Tag carport2(int width, int length, int shedWidth, int shedLength) {
-
 
         SvgInner carport = new SvgInner(75.0, 10.0, 800, 750, "0 0 800 750");
         carport.add(sternDraw(width, length));
         carport.add(remOneDraw(length));
         carport.add(remTwoDraw(width, length));
         carport.add(shedDraw(length, shedWidth, shedLength));
-
 
         List spaers = spaerDraw(width, length);
         for (Object o : spaers) {
