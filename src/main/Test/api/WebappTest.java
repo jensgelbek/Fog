@@ -41,13 +41,9 @@ public class WebappTest extends TestCase {
         StykListeLinje stykListeLinje1=new StykListeLinje(api.findVolumeMaterialNameLenght("stolpe",3000),6,"stolper");
         StykListeLinje stykListeLinje2=new StykListeLinje(api.findVolumeMaterialNameLenght("spær/rem",3000),2,"remme");
         StykListeLinje stykListeLinje3=new StykListeLinje(api.findVolumeMaterialNameLenght("understern",2400),4,"understern i enderne");
-        stykliste.volumenListe.add(0,stykListeLinje1);
-        stykliste.volumenListe.add(0,stykListeLinje2);
-        stykliste.volumenListe.add(0,stykListeLinje3);
-        System.out.println( api.findStykliste(1));
-
-
-
-
+        stykliste.volumenListe.add(stykListeLinje1);
+        stykliste.volumenListe.add(stykListeLinje2);
+        stykliste.volumenListe.add(stykListeLinje3);
+        System.out.println(api.findStykliste(1));
     }
 }
