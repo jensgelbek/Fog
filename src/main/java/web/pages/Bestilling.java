@@ -12,7 +12,7 @@ import org.w3c.dom.ls.LSOutput;
 import web.BaseServlet;
 
 import web.svg.CKL.Svg;
-import web.svg.StykListeLinje;
+//import web.svg.StykListeLinje;
 
 import web.svg.SvgCarport;
 
@@ -75,11 +75,11 @@ public class Bestilling extends BaseServlet {
             return SvgCarport.carport(width, length, shedWidth, shedLength).toString();
         }
 
-
+/*
         public StykListeLinje sternWidthCalc() {
             return SvgCarport.sternWidthCalc(width, length);
         }
-
+*/
 
         public Stykliste sternWidthCalc() throws DBException {
             return Calc.generereStykliste(width, length);

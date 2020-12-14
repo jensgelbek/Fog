@@ -2,7 +2,7 @@ package web.svg;
 
 
 import web.pages.Bestilling;
-
+import domain.materials.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class SvgCarport extends Tag {
     // Price per meter
 
 
-
+/*
         public static StykListeLinje shedWidthCalc(int width) {
         StykListeLinje shedWidth;
         String name = "shed width";
@@ -62,8 +62,8 @@ public class SvgCarport extends Tag {
             System.out.println(shedWidth);
             return shedWidth;
 
-        }
-    public static StykListeLinje shedLengthCalc(int length) {
+        }*/
+ /*   public static StykListeLinje shedLengthCalc(int length) {
         StykListeLinje shedLength;
         String name = "shed length";
         Double doubleShedLength = Double.valueOf(length);
@@ -74,7 +74,7 @@ public class SvgCarport extends Tag {
         System.out.println(shedLength);
         return shedLength;
 
-    }
+    }*/
 
     // Stern calculations, Length: Left + right
     // Price per meter

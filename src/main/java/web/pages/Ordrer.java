@@ -75,7 +75,7 @@ public class Ordrer extends BaseServlet {
             int orderToShow = Integer.parseInt(req.getParameter("vis"));
             System.out.println(orderToShow);
 
-            resp.sendRedirect(req.getContextPath() + "/ordre?ordre=" + orderToShow);
+            resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderToShow);
 
         }
     }

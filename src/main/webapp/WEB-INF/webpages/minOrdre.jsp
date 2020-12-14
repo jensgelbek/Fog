@@ -32,9 +32,9 @@
 <c:if test="${requestScope.order.leveringsDato!=null}">
     <b>Leveres</b>${requestScope.order.leveringsDato}<br>
 </c:if>
-<b>carport på</b> ${requestScope.carport.width/100}*${requestScope.carport.lenght/100} m
+<b>carport på</b> ${requestScope.carport.width/1000}*${requestScope.carport.lenght/1000} m
 <c:if test="${requestScope.carport.shedWidth!=0}">
-    med et skur på ${requestScope.carport.shedWidth/100}*${requestScope.carport.shedLength/100}m,
+    med et skur på ${requestScope.carport.shedWidth/1000}*${requestScope.carport.shedLength/1000}m,
 </c:if>
 <c:if test="${requestScope.carport.rejsning==true}">
     med et fladt tag med
