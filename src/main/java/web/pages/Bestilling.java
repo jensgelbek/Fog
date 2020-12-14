@@ -118,10 +118,10 @@ public class Bestilling extends BaseServlet {
             req.setAttribute("shedL", list.shedlength());
             CarportDTO.fromSession(req.getSession());
 
-             //req.setAttribute("sternLengthCalc", CarportDTO.fromSession(req.getSession()).sternLengthCalc());
+            //req.setAttribute("sternLengthCalc", CarportDTO.fromSession(req.getSession()).sternLengthCalc());
             // req.setAttribute("spaerCalc", CarportDTO.fromSession(req.getSession()).spaerCalc());
 
-           // req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
+            // req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
 
 
             render("Bestilling", "/WEB-INF/webpages/bestilling.jsp", req, resp);
@@ -134,7 +134,7 @@ public class Bestilling extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String nextpage="/bestilling";
+        String nextpage = "/bestilling";
         if (req.getParameter("target").equals("bestilling")) {
             var carportdto = CarportDTO.fromSession(req.getSession());
             carportdto.width = Integer.parseInt(req.getParameter("width"));
@@ -156,14 +156,14 @@ public class Bestilling extends BaseServlet {
             } catch (DBException e) {
                 e.printStackTrace();
             }
-           // resp.sendRedirect(req.getContextPath() + "/bestilling");
+            // resp.sendRedirect(req.getContextPath() + "/bestilling");
 
 
         }
         if (req.getParameter("target").equals("tilbud")) {
             var s = req.getSession();
 
-            if ((String) s.getAttribute("username")!=null) {
+            if ((String) s.getAttribute("username") != null) {
                 var carportdto = CarportDTO.fromSession(req.getSession());
                 int width = Integer.parseInt(req.getParameter("width")) * 10;
                 int length = Integer.parseInt(req.getParameter("length")) * 10;
@@ -187,7 +187,7 @@ public class Bestilling extends BaseServlet {
                     int carportId = api.commitCarport(carport);
                     carport.setCarportID(carportId);
 
-                    Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), 1, carport.getCarportID(), 0, "tilbud");
+                    Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
                     orderid = api.commitOrder(order);
                     System.out.println(orderid);
 
@@ -196,35 +196,33 @@ public class Bestilling extends BaseServlet {
                     throwables.printStackTrace();
                 }
                 //resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
-                nextpage="/minOrdre?ordre=" + orderid;
+                nextpage = "/minOrdre?ordre=" + orderid;
+
+
+                carport = new Carport(width, length, false, "trapez", shedWidth, shedLength);
+                orderid = 0;
+                try {
+                    int carportId = api.commitCarport(carport);
+                    carport.setCarportID(carportId);
+                  //  var s = req.getSession();
+
+
+                    Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
+                    orderid = api.commitOrder(order);
+                    System.out.println(orderid);
+
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                nextpage= "/minOrdre?ordre=" + orderid;
+
+
             }
-
-
-            Carport carport = new Carport(width,length,false,"trapez", shedWidth,shedLength);
-            int orderid=0;
-            try {
-                int carportId =api.commitCarport(carport);
-                carport.setCarportID(carportId);
-                var s = req.getSession();
-
-
-                Order order=new Order(LocalDate.now(),null,null, (String) s.getAttribute("username"),carport.getCarportID(),0,"tilbud");
-                orderid=api.commitOrder(order);
-                System.out.println(orderid);
-
-
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
-
-
-
         }
         resp.sendRedirect(req.getContextPath() + nextpage);
-        }
     }
-
+}
 
 
 
