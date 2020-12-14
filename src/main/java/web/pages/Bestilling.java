@@ -198,6 +198,28 @@ public class Bestilling extends BaseServlet {
                 //resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
                 nextpage="/minOrdre?ordre=" + orderid;
             }
+
+
+            Carport carport = new Carport(width,length,false,"trapez", shedWidth,shedLength);
+            int orderid=0;
+            try {
+                int carportId =api.commitCarport(carport);
+                carport.setCarportID(carportId);
+                var s = req.getSession();
+
+
+                Order order=new Order(LocalDate.now(),null,null, (String) s.getAttribute("username"),carport.getCarportID(),0,"tilbud");
+                orderid=api.commitOrder(order);
+                System.out.println(orderid);
+
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
+
+
+
         }
         resp.sendRedirect(req.getContextPath() + nextpage);
         }
