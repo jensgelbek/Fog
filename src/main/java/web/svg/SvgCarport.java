@@ -231,10 +231,10 @@ public class SvgCarport extends Tag {
         if (width > 0) {
             LD = Double.valueOf(length);
         } else {
-            LD = 49.5;
+            LD = 0.0;
         }
         Tag line = new Line(75.0, width + 50.0, LD + 75.0, width + 50.0);
-        line.withStyle("fill: none; stroke: darkblue; darkblue: 5 5;");
+        line.withStyle("fill: none; stroke: darkblue; darkblue: 10 10;");
         return line;
 
     }
