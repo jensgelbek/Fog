@@ -42,7 +42,7 @@ public class SvgCarport extends Tag {
     public static Tag shedDraw(int length,int shedWidth, int shedLength) {
 
         Tag shedDraw = new Rectangle(length-shedLength,35.0, shedLength, shedWidth);
-        shedDraw.withStyle("fill: none; stroke: darkgreen;");
+        shedDraw.withStyle("fill: none; stroke: pink; ");
         return shedDraw;
     }
 
