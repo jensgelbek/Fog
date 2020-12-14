@@ -28,7 +28,6 @@ public class DBOrderRepository implements OrderRepository {
             LocalDate ordreDato = Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
             LocalDate leveringsDato = Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
             String eamil = rs.getString("kundeEmail");
-            int saelgerId = rs.getInt("sælgerID");
             int carportId = rs.getInt("carportid");
             int pris = rs.getInt("pris");
             String status = rs.getString("status");
@@ -53,7 +52,6 @@ public class DBOrderRepository implements OrderRepository {
             LocalDate ordreDato = Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
             LocalDate leveringsDato = Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
             String eamil = rs.getString("kundeEmail");
-            int saelgerId = rs.getInt("sælgerID");
             int carportId = rs.getInt("carportid");
             int pris = rs.getInt("pris");
             String status = rs.getString("status");

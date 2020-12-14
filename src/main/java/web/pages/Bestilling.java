@@ -215,12 +215,12 @@ public class Bestilling extends BaseServlet {
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
-                resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
+                nextpage= "/minOrdre?ordre=" + orderid;
 
 
             }
-            resp.sendRedirect(req.getContextPath() + nextpage);
         }
+        resp.sendRedirect(req.getContextPath() + nextpage);
     }
 }
 
