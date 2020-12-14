@@ -32,7 +32,7 @@ public class DBOrderRepository implements OrderRepository {
             int carportId = rs.getInt("carportid");
             int pris = rs.getInt("pris");
             String status = rs.getString("status");
-            Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, saelgerId, carportId, pris, status);
+            Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, carportId, pris, status);
             order.setOrderID(id);
             orderlist.add(order);
         }
@@ -57,7 +57,7 @@ public class DBOrderRepository implements OrderRepository {
             int carportId = rs.getInt("carportid");
             int pris = rs.getInt("pris");
             String status = rs.getString("status");
-            Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, saelgerId, carportId, pris, status);
+            Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, carportId, pris, status);
             order.setOrderID(id);
             orderlist.add(order);
         }
@@ -82,7 +82,7 @@ public class DBOrderRepository implements OrderRepository {
                 int carportId = rs.getInt("carportid");
                 int pris = rs.getInt("pris");
                 String status = rs.getString("status");
-                Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, saelgerId, carportId, pris, status);
+                Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, carportId, pris, status);
                 order.setOrderID(id);
                 return order;
             }
@@ -129,7 +129,6 @@ public class DBOrderRepository implements OrderRepository {
                 ps.setTimestamp(3, null);
             }
             ps.setString(4, order.getKundeEmail());
-            ps.setInt(5, order.getSaelgerId());
             ps.setInt(6, order.getCarportId());
             ps.setInt(7, order.getPrice());
             ps.setString(8, order.getStatus());

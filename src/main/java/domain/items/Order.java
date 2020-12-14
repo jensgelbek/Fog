@@ -8,18 +8,18 @@ public class Order {
     LocalDate ordredato;
     LocalDate leveringsDato;
     String kundeEmail;
-    int saelgerId;
+
     int carportId;
     int price;
     String status;
 
-    public Order(LocalDate tilbudsdato, LocalDate ordredato, LocalDate leveringsDato, String kundeEmail, int saelgerId, int carportId, int price, String status) {
+    public Order(LocalDate tilbudsdato, LocalDate ordredato, LocalDate leveringsDato, String kundeEmail, int carportId, int price, String status) {
         this.tilbudsdato = tilbudsdato;
         this.ordredato = ordredato;
         this.leveringsDato = leveringsDato;
 
         this.kundeEmail = kundeEmail;
-        this.saelgerId = saelgerId;
+
         this.carportId = carportId;
         this.price = price;
         this.status = status;
@@ -57,9 +57,6 @@ public class Order {
     }
 
 
-    public void setSaelgerId(int saelgerId) {
-        this.saelgerId = saelgerId;
-    }
 
     public void setCarportId(int carportId) {
         this.carportId = carportId;
@@ -97,16 +94,13 @@ public class Order {
                 ", ordredato=" + ordredato +
                 ", leveringsDato=" + leveringsDato +
                 ", kundeEmail='" + kundeEmail + '\'' +
-                ", saelgerId=" + saelgerId +
+
                 ", carportId=" + carportId +
                 ", price=" + price +
                 ", status='" + status + '\'' +
                 '}';
     }
 
-    public int getSaelgerId() {
-        return saelgerId;
-    }
 
     public int getCarportId() {
         return carportId;

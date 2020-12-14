@@ -185,7 +185,7 @@ public class Bestilling extends BaseServlet {
                 var s = req.getSession();
 
 
-                Order order=new Order(LocalDate.now(),null,null, (String) s.getAttribute("username"),1,carport.getCarportID(),0,"tilbud");
+                Order order=new Order(LocalDate.now(),null,null, (String) s.getAttribute("username"),carport.getCarportID(),0,"tilbud");
                 orderid=api.commitOrder(order);
                 System.out.println(orderid);
 
