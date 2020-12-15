@@ -3,8 +3,9 @@ package api;
 import domain.items.DBException;
 import domain.materials.*;
 import infrastructure.*;
+import web.svg.SvgCarport;
 
-public class Calc {
+public class Calc extends Stykliste {
 
     private static String spaer = "spær/rem";
     private static String rem = "spær/rem";
@@ -30,10 +31,15 @@ public class Calc {
     }
 
     public static StykListeLinje remCalc(int width, int length) {
-        StykListeLinje rem;
-        String name = "Rem i siderne";
-        Double remLength = Double.valueOf(length);
-        int unit;
+        StykListeLinje remLength;
+        int lengthCalc = length * 10;
+        Database db = new Database();
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db),new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db));
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(rem, lengthCalc);
+        String description = "Rem i siderne";
+        int quantity = 2;
+
+        /*
         if (length <= 480 ) {
             unit = 2;
         } else if (length <= 600 ) {
@@ -41,36 +47,43 @@ public class Calc {
         } else {
             unit = 3;
         }
+
         int price = 50;
         int sum = (int) (remLength * price * unit);
-        // rem = new StykListeLinje();
-        // System.out.println(rem);
-        return null;
+         */
+        remLength = new StykListeLinje(volumeMaterial, quantity, description);
+        return remLength;
     }
 
     public static StykListeLinje spaerCalc(int width, int length) {
-        StykListeLinje spaer;
-        String name = "Spær: Monteres på rem";
-        Double spaerLength = Double.valueOf(length);
-        int unit = (int) (length / 60.0);
-        int price = 50;
-        int sum = (int) ((spaerLength/100) * price * unit);
-        // spaer = new StykListeLinje(name, spaerLength, unit, price, sum);
-        // System.out.println(spaer);
-        return null;
+        StykListeLinje spaers;
+        int spaerWidth = width * 10;
+        Database db = new Database();
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db),new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db));
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(spaer, spaerWidth);
+        String description = "Spær: Monteres på rem";
+        int quantity = length/60;
+
+        spaers = new StykListeLinje(volumeMaterial, quantity, description);
+        return spaers;
     }
 
     
     public static Stykliste generereStykliste(int width, int length) throws DBException {
         Stykliste stykliste = new Stykliste();
+
+        // Add Stern
         stykliste.volumenListe.add(sternWidthCalc(width, length));
-        System.out.println("generere SL: " + stykliste);
+        // Add Rem
+        stykliste.volumenListe.add(remCalc(width, length));
+        // Add Spaers
+        stykliste.volumenListe.add(spaerCalc(width, length));
+
+        Database db = new Database();
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db), new DBStyklisteRepository(db));
+        api.commitStykliste(stykliste, 1);
+        System.out.println("Stykliste " + stykliste);
         return stykliste;
     }
-
-
-
-
-
 
 }

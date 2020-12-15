@@ -8,7 +8,7 @@ import domain.materials.StyklisteLinjeRepository;
 import java.sql.*;
 
 public class DBStyklisteLinjeRepository implements StyklisteLinjeRepository {
-    private final Database db;
+    public Database db;
     public DBStyklisteLinjeRepository(Database db) {
         this.db = db;
     }
@@ -21,7 +21,7 @@ public class DBStyklisteLinjeRepository implements StyklisteLinjeRepository {
 
 
     @Override
-    public int commit(StykListeLinje stykListeLinje,int ordreId) {
+    public int commit(StykListeLinje stykListeLinje, int ordreId) {
         System.out.println("1");
         int id = 0;
         try {
