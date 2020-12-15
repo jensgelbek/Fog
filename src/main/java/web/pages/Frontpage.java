@@ -25,6 +25,7 @@ public class Frontpage extends BaseServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         var s = req.getSession();
         s.setAttribute("username", "");
+        s.setAttribute("employer","no");
         resp.sendRedirect(req.getContextPath() + "/frontpage");
     }
 

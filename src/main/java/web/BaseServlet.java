@@ -21,11 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseServlet extends HttpServlet {
     protected static final Webapp api;
-
+    List<String > pagesForAll=List.of("/WEB-INF/webpages/bestilling.jsp","/WEB-INF/webpages/bestillingRejsning.jsp","/WEB-INF/webpages/bom.jsp","/WEB-INF/webpages/frontpage.jsp","/WEB-INF/webpages/index.jsp",
+            "/WEB-INF/webpages/kontakt.jsp","/WEB-INF/webpages/minOrdre.jsp","/WEB-INF/webpages/minside.jsp","/WEB-INF/webpages/oprettelse.jsp","/WEB-INF/errorpages/error.jsp");
     static {
         api = createApplication();
     }
@@ -40,12 +42,18 @@ public class BaseServlet extends HttpServlet {
 
     protected void render(String title, String content, HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
-        req.setAttribute("title", Webapp.getTitle() + " - " + title);
-        req.setAttribute("content", content);
-        req.setAttribute("year", LocalDateTime.now().getYear());
-        req.getRequestDispatcher("/WEB-INF/includes/base.jsp").forward(req, resp);
+        var s = req.getSession();
+        String Employee=(String) s.getAttribute("employer");
+        boolean isEmployee=false;
+        if(Employee!=null){isEmployee=s.getAttribute("employer").equals("yes");};
+        if(isEmployee||pagesForAll.contains(content)) {
+            req.setCharacterEncoding("UTF-8");
+            resp.setCharacterEncoding("UTF-8");
+            req.setAttribute("title", Webapp.getTitle() + " - " + title);
+            req.setAttribute("content", content);
+            req.setAttribute("year", LocalDateTime.now().getYear());
+            req.getRequestDispatcher("/WEB-INF/includes/base.jsp").forward(req, resp);
+        }
     }
 
 
