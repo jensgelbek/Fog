@@ -93,4 +93,9 @@ public class DBSellerRepository implements SellerRepository {
         }
         return id;
     }
+
+    @Override
+    public void updatePassword(String name, String password) {
+
+    }
 }

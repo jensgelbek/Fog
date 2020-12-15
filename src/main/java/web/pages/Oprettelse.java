@@ -86,22 +86,23 @@ public class Oprettelse extends BaseServlet {
             } else {
                 String password = req.getParameter("Loginpassword");
                 Seller seller = null;
-                System.out.println(userName);
                 try {
                     seller = api.findSeller(userName);
                 } catch (DBException e) {
                     e.printStackTrace();
                 }
-                System.out.println(seller);
                 if (seller != null) {
                     boolean correctpassword = Utils.checkPassword(password, seller.getSecret(), seller.getSalt());
+                    String nextPage= "/frontpage";
                     if (correctpassword) {
                         var s = req.getSession();
                         s.setAttribute("username", seller.getUsername());
                         s.setAttribute("employer", "yes");
-                        System.out.println("gustav er inde");
+                        if(password.equals("1234")){
+                            nextPage="/nytpassword";
+                        }
                     }
-                    resp.sendRedirect(req.getContextPath() + "/frontpage");
+                    resp.sendRedirect(req.getContextPath() + nextPage);
 
 
                 }
