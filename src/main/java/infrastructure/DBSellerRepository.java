@@ -1,5 +1,6 @@
 package infrastructure;
 
+import api.Utils;
 import domain.items.DBException;
 import domain.items.SellerRepository;
 import domain.items.Seller;
@@ -15,6 +16,16 @@ public class DBSellerRepository implements SellerRepository {
 
     public DBSellerRepository(Database db) {
         this.db = db;
+        try {
+            if(find("admin")==null){
+                byte[]salt= Utils.generateSalt();
+                byte[]secret=Utils.calculateSecret(salt,"1234");
+                Seller seller=new Seller("admin","admin", salt,secret);
+                commit(seller);
+            }
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
