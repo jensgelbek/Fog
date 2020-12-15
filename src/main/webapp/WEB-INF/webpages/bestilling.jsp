@@ -144,9 +144,11 @@
                     <div class="row">
                         <p>Bredde & længde udgør 'Stern' (for/bag og siderne) her indkeret med <b><i>Rødt</i></b> <br>
                             Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
-                            2 x bærende 'Rem' i siderne på langs med <b><i>sort</i></b> <br>
-                            Stolper er firkanter placeret langs remmene <b><i>sort</i></b> <br>
-                            Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne <br></p>
+                            2 x bærende 'Rem' i siderne på langs med <b><i>Sort</i></b> <br>
+                            Stolper er firkanter placeret langs remmene <b><i>Sort</i></b> <br>
+                            Den <b><i>Blå</i></b> linje til venste er bredden indenfor stolperne <br>
+                            Redskabsskuret er tegnet med <b><i>Grøn </i></b>
+                        </p>
                     </div>
 
                         <div class="row">
