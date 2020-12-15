@@ -10,10 +10,10 @@
 
         </div>
         <div class="col-md-2" align="center">
-            carport
+            Carport
         </div>
         <div class="col-md-2" align="center">
-            skur
+            Skur
         </div>
         <div class="col-md-2">
 
@@ -24,34 +24,34 @@
             Ordre nummer
         </div>
         <div class="col-md-1">
-            tilbuds dato
+            Tilbuds dato
         </div>
         <div class="col-md-1">
-            ordre dato
+            Ordre dato
         </div>
         <div class="col-md-1">
-            levering
+            Levering
         </div>
         <div class="col-md-1">
             Navn
         </div>
         <div class="col-md-1">
-            bredde
+            Bredde
         </div>
         <div class="col-md-1">
-            længde
+            Længde
         </div>
         <div class="col-md-1">
-            bredde
+            Bredde
         </div>
         <div class="col-md-1">
-            længde
+            Længde
         </div>
         <div class="col-md-1">
-            pris
+            Pris
         </div>
         <div class="col-md-1">
-            status
+            Status
         </div>
     </div>
     <hr>

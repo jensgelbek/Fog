@@ -46,11 +46,7 @@
             <input type="password" class="form-control" id="password"
                    aria-describedby="kundepassword" name="password">
         </div>
-        <div class="form-group">
-            <label for="passwordrepeat">Gentag Password:</label>
-            <input type="password" class="form-control" id="passwordrepeat"
-                   aria-describedby="passwordrepeat" name="passwordrepeat">
-        </div>
+
 
         <div class="col-md-1">
             <form method="post">
