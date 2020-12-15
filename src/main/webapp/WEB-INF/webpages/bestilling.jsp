@@ -144,14 +144,25 @@
                     <div class="row">
                         <p>Bredde & længde udgør 'Stern' (for/bag og siderne) her indkeret med <b><i>Rødt</i></b> <br>
                             Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
-                            2 x bærende 'Rem' i siderne på langs med <b><i>sort</i></b> <br>
-                            Stolper er firkanter placeret langs remmene <b><i>sort</i></b> <br>
-                            Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne <br></p>
+                            2 x bærende 'Rem' i siderne på langs med <b><i>Sort</i></b> <br>
+                            Stolper er firkanter placeret langs remmene <b><i>Sort</i></b> <br>
+                            Den <b><i>Blå</i></b> linje til venste er bredden indenfor stolperne <br>
+                            Redskabsskuret er tegnet med <b><i>Grøn </i></b>
+                        </p>
                     </div>
-                    ${carport.drawing}
-                    </div>
-                    <hr>
 
+                        <div class="row">
+                        <p><b><u>Du skal bruge følgende materialer:</u></b></p>
+                        ${requestScope.sternWidthCalc.toString()} <br>
+                        ${requestScope.sternLengthCalc} <br>
+                            ${requestScope.spaerCalc.toString()}
+                        ${carport.drawing}
+                    </div>
+
+
+                    <br>
+                    <hr>
+                    <br>
                     <input type="hidden" >
                     <button type="" class="btn btn-primary" name="target" value="tilbud">Få tilbud</button>
 
