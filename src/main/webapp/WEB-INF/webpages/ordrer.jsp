@@ -5,20 +5,7 @@
     <link rel="stylesheet" href="<c:url value="/static/style.css"/>"/>
     <br>
     <br>
-    <div class="row">
-        <div class="col-md-5">
 
-        </div>
-        <div class="col-md-2" align="center">
-            carport
-        </div>
-        <div class="col-md-2" align="center">
-            skur
-        </div>
-        <div class="col-md-2">
-
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-1">
             Ordre nummer
@@ -32,14 +19,8 @@
         <div class="col-md-1">
             levering
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
             Navn
-        </div>
-        <div class="col-md-1">
-            bredde
-        </div>
-        <div class="col-md-1">
-            længde
         </div>
         <div class="col-md-1">
             bredde
@@ -69,7 +50,7 @@
             <div class="col-md-1">
                     ${ordreLinje.leveringsDato}
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                     ${requestScope.navne[loop.index]}
             </div>
             <div class="col-md-1">
@@ -79,13 +60,7 @@
                     ${requestScope.carportlaengder[loop.index]}
 
             </div>
-            <div class="col-md-1">
-                    ${requestScope.skurbredder[loop.index]}
-            </div>
-            <div class="col-md-1">
-                    ${requestScope.skurlaengder[loop.index]}
-            </div>
-            <div class="col-md-1">
+           <div class="col-md-1">
                     ${ordreLinje.price}
             </div>
             <div class="col-md-1">
@@ -97,7 +72,12 @@
                     <button type="submit" class="btn btn-primary">Vis</button>
                 </form>
             </div>
-
+            <div class="col-md-1">
+                <form method="post">
+                    <input type="hidden" name="afslut" value="${ordreLinje.orderID}">
+                    <button type="submit" class="btn btn-primary">afslut</button>
+                </form>
+            </div>
         </div>
     </c:forEach>
 

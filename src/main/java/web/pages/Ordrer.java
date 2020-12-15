@@ -71,13 +71,18 @@ public class Ordrer extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String nextPage="";
         if (req.getParameter("vis") != null) {
             int orderToShow = Integer.parseInt(req.getParameter("vis"));
             System.out.println(orderToShow);
-
-            resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderToShow);
-
+            nextPage="/minOrdre?ordre=" + orderToShow;
         }
+        if (req.getParameter("afslut") != null) {
+            int orderToUpdate = Integer.parseInt(req.getParameter("afslut"));
+            api.updateOrderstatus(orderToUpdate,"afsluttet");
+            nextPage="/ordrer";
+        }
+        resp.sendRedirect(req.getContextPath() +nextPage);
     }
 
 }

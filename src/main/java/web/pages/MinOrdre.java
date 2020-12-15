@@ -26,7 +26,7 @@ public class MinOrdre extends BaseServlet {
             req.setAttribute("order", order);
             req.setAttribute("carport", carport);
 
-            req.setAttribute("svg", SvgCarport.carport(carport.getWidth(), carport.getLenght(), carport.getShedWidth(), carport.getShedLength()).toString());
+            req.setAttribute("svg", SvgCarport.carport(carport.getWidth()/10, carport.getLenght()/10, carport.getShedWidth()/10, carport.getShedLength()/10).toString());
 
         } catch (DBException e) {
             e.printStackTrace();

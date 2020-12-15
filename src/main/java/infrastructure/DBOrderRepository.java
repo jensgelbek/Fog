@@ -28,11 +28,10 @@ public class DBOrderRepository implements OrderRepository {
             LocalDate ordreDato = Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
             LocalDate leveringsDato = Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
             String eamil = rs.getString("kundeEmail");
-            int saelgerId = rs.getInt("sælgerID");
             int carportId = rs.getInt("carportid");
             int pris = rs.getInt("pris");
             String status = rs.getString("status");
-            Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, saelgerId, carportId, pris, status);
+            Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, carportId, pris, status);
             order.setOrderID(id);
             orderlist.add(order);
         }
@@ -53,11 +52,10 @@ public class DBOrderRepository implements OrderRepository {
             LocalDate ordreDato = Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
             LocalDate leveringsDato = Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
             String eamil = rs.getString("kundeEmail");
-            int saelgerId = rs.getInt("sælgerID");
             int carportId = rs.getInt("carportid");
             int pris = rs.getInt("pris");
             String status = rs.getString("status");
-            Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, saelgerId, carportId, pris, status);
+            Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, carportId, pris, status);
             order.setOrderID(id);
             orderlist.add(order);
         }
@@ -78,11 +76,10 @@ public class DBOrderRepository implements OrderRepository {
                 LocalDate ordreDato = Utils.timestampToLocalDate(rs.getTimestamp("ordreDato"));
                 LocalDate leveringsDato = Utils.timestampToLocalDate(rs.getTimestamp("leveringsDato"));
                 String eamil = rs.getString("kundeEmail");
-                int saelgerId = rs.getInt("sælgerID");
                 int carportId = rs.getInt("carportid");
                 int pris = rs.getInt("pris");
                 String status = rs.getString("status");
-                Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, saelgerId, carportId, pris, status);
+                Order order = new Order(tilbudsDato, ordreDato, leveringsDato, eamil, carportId, pris, status);
                 order.setOrderID(id);
                 return order;
             }
@@ -114,7 +111,7 @@ public class DBOrderRepository implements OrderRepository {
         int id = 0;
         try {
             Connection con = db.getConnection();
-            String SQL = "INSERT INTO ordre (tilbudsDato,ordreDato,leveringsDato,kundeEmail,sælgerId,carportId,pris,status) VALUES (?, ?, ?, ?, ?, ?,?,?)";
+            String SQL = "INSERT INTO ordre (tilbudsDato,ordreDato,leveringsDato,kundeEmail,carportId,pris,status) VALUES (?, ?, ?, ?, ?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setTimestamp(1, java.sql.Timestamp.valueOf(order.getTilbudsdato().atStartOfDay()));
             if (order.getOrdredato() != null) {
@@ -129,10 +126,9 @@ public class DBOrderRepository implements OrderRepository {
                 ps.setTimestamp(3, null);
             }
             ps.setString(4, order.getKundeEmail());
-            ps.setInt(5, order.getSaelgerId());
-            ps.setInt(6, order.getCarportId());
-            ps.setInt(7, order.getPrice());
-            ps.setString(8, order.getStatus());
+            ps.setInt(5, order.getCarportId());
+            ps.setInt(6, order.getPrice());
+            ps.setString(7, order.getStatus());
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
