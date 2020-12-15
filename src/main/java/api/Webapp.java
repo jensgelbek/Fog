@@ -214,8 +214,8 @@ public class Webapp {
         styklister.commitStykliste(stykliste,orderId);
     }
 
-    public void updateSellerPassword(String name, String password){
-        sellers.updatePassword(name,password);
+    public void updateSellerPassword(String name,String oldPassword, String newPassword){
+        sellers.updatePassword(name,oldPassword,newPassword);
 
     }
 }
