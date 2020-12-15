@@ -11,6 +11,7 @@
     <title>vælg nyt password</title>
 </head>
 <body>
+her skal man vælge nyt password
 
 </body>
 </html>
