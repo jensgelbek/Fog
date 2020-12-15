@@ -9,5 +9,5 @@ public interface SellerRepository {
     Seller find(String userName) throws DBException;
 
     int commit(Seller seller);
-
+    void updatePassword(String name, String password);
 }

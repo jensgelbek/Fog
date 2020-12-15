@@ -220,4 +220,9 @@ public class Webapp {
     public void commitStykliste(Stykliste stykliste,int orderId){
         styklister.commitStykliste(stykliste,orderId);
     }
+
+    public void updateSellerPassword(String name, String password){
+        sellers.updatePassword(name,password);
+
+    }
 }
