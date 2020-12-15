@@ -32,16 +32,7 @@ public class Webapp {
         this.unitMaterials=unitMaterials;
         this.styklisteLinjer=styklisteLinjer;
         this.styklister=styklister;
-        try {
-            if(sellers.find("admin")==null){
-                byte[]salt=Utils.generateSalt();
-                byte[]secret=Utils.calculateSecret(salt,"1234");
-                Seller seller=new Seller("admin","admin", salt,secret);
-                sellers.commit(seller);
-            }
-        } catch (DBException e) {
-            e.printStackTrace();
-        }
+
     }
 
     public static int getVersion() {
