@@ -106,7 +106,23 @@ public class DBSellerRepository implements SellerRepository {
     }
 
     @Override
-    public void updatePassword(String name, String password) {
+    public void updatePassword(String name,String oldPassword, String newPassword) {
 
+        try {
+            Connection con = db.getConnection();
+            Seller seller=find(name);
+            byte[]secret=Utils.calculateSecret(seller.getSalt(),newPassword);
+            if(Utils.checkPassword(oldPassword,seller.getSecret(),seller.getSalt())) {
+                String SQL = "UPDATE sælger  SET secret=(?)WHERE name=(?)";
+                PreparedStatement ps = con.prepareStatement(SQL);
+                ps.setBytes(1, secret);
+                ps.setString(2, name);
+                ps.executeUpdate();
+            }else{
+                System.out.println("wrong password");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }
