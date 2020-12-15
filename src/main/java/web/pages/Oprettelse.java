@@ -55,6 +55,7 @@ public class Oprettelse extends BaseServlet {
 
             if (req.getParameter("Log ud") != null) {
                 req.setAttribute("username", email == null);
+
             }
 
 
