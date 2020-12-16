@@ -67,12 +67,14 @@ public class Webapp {
         }
     }
 
-    public void setLeveringsDato(int id, LocalDate leveringsdato) {
+    public void setLeveringsDato(int id, LocalDate leveringsdato)  {
+
         try {
             orders.setLeveringsDato(id, leveringsdato);
         } catch (DBException e) {
             e.printStackTrace();
         }
+
     }
 
     public Carport findCarport(int Id) throws DBException {
