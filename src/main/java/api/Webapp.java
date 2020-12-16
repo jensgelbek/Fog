@@ -190,9 +190,9 @@ public class Webapp {
             e.printStackTrace();
         }return null;
     }
-    public void updateUnitMaterislPrice(int id,int price){
+    public void updateUnitMaterislPrice(String name,int price){
         try {
-            unitMaterials.updatePrice(id, price);
+            unitMaterials.updatePrice(name, price);
         } catch (DBException e) {
             e.printStackTrace();
         }
