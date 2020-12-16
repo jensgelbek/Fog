@@ -36,9 +36,9 @@ public class OpretSeller extends BaseServlet {
             Seller seller = new Seller(userName, name, salt, secret);
             try {
                 api.commitSeller(seller);
-                var s = req.getSession();
+                /*var s = req.getSession();
                 s.setAttribute("username", userName);
-                s.setAttribute("employer", "yes");
+                s.setAttribute("employer", "yes");*/
             } catch (Exception e) {
                 e.printStackTrace();
             }

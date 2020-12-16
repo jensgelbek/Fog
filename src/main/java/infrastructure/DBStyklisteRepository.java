@@ -28,13 +28,14 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
                 orderId=rs.getInt("ordreid");
                 int materialeId=rs.getInt("materialid");
                 int antal=rs.getInt("antal");
+                String description=rs.getString("description");
                 VolumeMaterial volumeMaterial=dbVolumeMateialRepository.find(materialeId);
                 if (volumeMaterial!=null){
-                StykListeLinje stykListeLinje=new StykListeLinje(volumeMaterial,antal,"");
+                StykListeLinje stykListeLinje=new StykListeLinje(volumeMaterial,antal,description);
                 stykliste.volumenListe.add(stykListeLinje);}
                 UnitMaterial unitMaterial=dbUnitMaterialRepository.find(materialeId);
                 if(unitMaterial!=null){
-                    StykListeLinje stykListeLinje=new StykListeLinje(unitMaterial,antal,"");
+                    StykListeLinje stykListeLinje=new StykListeLinje(unitMaterial,antal,description);
                     stykliste.unitListe.add(stykListeLinje);}
 
 
@@ -70,11 +71,12 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
         int id = 0;
         try {
             Connection con = db.getConnection();
-            String SQL = "INSERT INTO styklistelinje (ordreid,materialid,antal) VALUES (?,?,?)";
+            String SQL = "INSERT INTO styklistelinje (ordreid,materialid,antal,description) VALUES (?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,orderId);
             ps.setInt(2,stykListeLinje.getMateriale().getId());
             ps.setInt(3,stykListeLinje.getQuantity());
+            ps.setString(4,stykListeLinje.getDescription());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
