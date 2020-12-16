@@ -113,7 +113,7 @@ public class DBSellerRepository implements SellerRepository {
             Seller seller=find(name);
             byte[]secret=Utils.calculateSecret(seller.getSalt(),newPassword);
             if(Utils.checkPassword(oldPassword,seller.getSecret(),seller.getSalt())) {
-                String SQL = "UPDATE sælger  SET secret=(?)WHERE name=(?)";
+                String SQL = "UPDATE sælger SET secret=(?) WHERE username=(?);";
                 PreparedStatement ps = con.prepareStatement(SQL);
                 ps.setBytes(1, secret);
                 ps.setString(2, name);
