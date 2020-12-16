@@ -53,6 +53,10 @@ public class BaseServlet extends HttpServlet {
             req.setAttribute("content", content);
             req.setAttribute("year", LocalDateTime.now().getYear());
             req.getRequestDispatcher("/WEB-INF/includes/base.jsp").forward(req, resp);
+
+        }
+        else {
+            resp.sendError(401,"Du må ikke tilgå denne side!");
         }
     }
 

@@ -113,7 +113,7 @@ public class Oprettelse extends BaseServlet {
             System.out.println(seller+" "+customer);
             if(seller==null&&customer==null){
                 System.out.println("fejl");
-                resp.sendError(501, "password og brugernavn passer ikke sammen");
+                resp.sendError(401, "password og brugernavn passer ikke sammen");
                 }else {
                 resp.sendRedirect(req.getContextPath() + nextPage);
             }
