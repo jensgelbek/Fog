@@ -31,6 +31,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static api.Calc.generereStykliste;
+
 
 @WebServlet("/bestilling")
 public class Bestilling extends BaseServlet {
@@ -59,8 +61,7 @@ public class Bestilling extends BaseServlet {
                 carport = new CarportDTO();
                 ses.setAttribute("carport", carport);
             }
-            System.out.println(carport.shedWidth);
-            System.out.println(carport.shedLength);
+
             return carport;
 
         }
@@ -148,7 +149,7 @@ public class Bestilling extends BaseServlet {
             //String tag = req.getParameter("tag");
 
             try {
-                Stykliste stykliste = Calc.generereStykliste(carportdto.width, carportdto.length);
+                Stykliste stykliste = generereStykliste(carportdto.width, carportdto.length);
             } catch (DBException e) {
                 e.printStackTrace();
             }
@@ -187,10 +188,15 @@ public class Bestilling extends BaseServlet {
 
                     Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
                     orderid = api.commitOrder(order);
-                    System.out.println(orderid);
+                    System.out.println("orderid: " + orderid);
 
+                    Stykliste stykliste = new Stykliste();
+                    stykliste = Calc.generereStykliste(width, length);
+                    System.out.println("Hej");
+                    api.commitStykliste(stykliste,orderid);
+                    System.out.println(stykliste);
 
-                } catch (SQLException throwables) {
+                } catch (SQLException | DBException throwables) {
                     throwables.printStackTrace();
                 }
                 //resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
@@ -202,6 +208,7 @@ public class Bestilling extends BaseServlet {
                 try {
                     int carportId = api.commitCarport(carport);
                     carport.setCarportID(carportId);
+                    System.out.println(carportId);
                   //  var s = req.getSession();
 
 

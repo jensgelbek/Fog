@@ -78,11 +78,14 @@ public class Calc extends Stykliste {
         stykliste.volumenListe.add(remCalc(width, length));
         // Add Spaers
         stykliste.volumenListe.add(spaerCalc(width, length));
+        /*
 
         Database db = new Database();
         Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db), new DBStyklisteRepository(db));
         api.commitStykliste(stykliste, 1);
-        System.out.println("Stykliste " + stykliste);
+
+         */
+        // System.out.println("Stykliste " + stykliste);
         return stykliste;
     }
 
