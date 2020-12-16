@@ -22,7 +22,7 @@ public class Calc extends Stykliste {
         StykListeLinje sternWidth;
         int widthCalc = width * 10;
         Database db = new Database();
-        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db),new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db));
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db),new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db));
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(understern, widthCalc);
         String description = "Stern: For og bag stern";
         int quantity = 2;
@@ -34,7 +34,7 @@ public class Calc extends Stykliste {
         StykListeLinje remLength;
         int lengthCalc = length * 10;
         Database db = new Database();
-        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db),new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db));
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db),new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db));
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(rem, lengthCalc);
         String description = "Rem i siderne";
         int quantity = 2;
@@ -59,7 +59,7 @@ public class Calc extends Stykliste {
         StykListeLinje spaers;
         int spaerWidth = width * 10;
         Database db = new Database();
-        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db),new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db));
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db),new DBVolumeMateialRepository(db),new DBUnitMaterialRepository(db),new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db));
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(spaer, spaerWidth);
         String description = "Spær: Monteres på rem";
         int quantity = length/60;
@@ -80,7 +80,7 @@ public class Calc extends Stykliste {
         stykliste.volumenListe.add(spaerCalc(width, length));
 
         Database db = new Database();
-        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db), new DBStyklisteRepository(db));
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db), new DBStyklisteRepository(db),new DBMaterialRepository(db));
         api.commitStykliste(stykliste, 1);
         System.out.println("Stykliste " + stykliste);
         return stykliste;

@@ -1,6 +1,6 @@
 package domain.materials;
 
-public abstract class Material {
+public  class Material {
     int id;
     String name;
     String details;
@@ -44,5 +44,16 @@ public abstract class Material {
     public void setUnitPrice(int unitPrice) {
         this.unitPrice = unitPrice;
     }
-    public abstract int getprice ();
+
+    public  int getprice (){return unitPrice;};
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", details='" + details + '\'' +
+                ", unitPrice=" + unitPrice +
+                '}';
+    }
 }

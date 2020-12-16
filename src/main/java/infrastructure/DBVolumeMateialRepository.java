@@ -122,7 +122,7 @@ public class DBVolumeMateialRepository implements VolumeMaterialRepository {
     public int commit(UnitMaterial unitMaterial) {
         return 0;
     }
-
+/*
     @Override
     public void updatePrice(String name, int newPrice) throws DBException {
         try {
@@ -135,5 +135,5 @@ public class DBVolumeMateialRepository implements VolumeMaterialRepository {
         } catch (SQLException ex) {
             throw new DBException(ex.getMessage());
         }
-    }
+    }*/
 }

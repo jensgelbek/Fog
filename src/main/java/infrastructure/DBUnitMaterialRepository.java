@@ -94,7 +94,7 @@ public class DBUnitMaterialRepository implements UnitMaterialRepository {
     public int commit(UnitMaterial unitMaterial) {
         return 0;
     }
-
+/*
     @Override
     public void updatePrice(String name, int newPrice) throws DBException {
         try {
@@ -107,5 +107,5 @@ public class DBUnitMaterialRepository implements UnitMaterialRepository {
         } catch (SQLException ex) {
             throw new DBException(ex.getMessage());
         }
-    }
+    }*/
 }
