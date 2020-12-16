@@ -1,28 +1,17 @@
 package api;
 
-import domain.items.Carport;
 import domain.items.DBException;
-import domain.items.Order;
-import domain.items.Seller;
-import domain.materials.StykListeLinje;
-import domain.materials.Stykliste;
-import domain.materials.StyklisteRepository;
+import domain.materials.Material;
 import infrastructure.*;
 import junit.framework.TestCase;
-import api.Calc;
+
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class WebappTest extends TestCase {
 
     public void testCommitOrder() throws DBException, SQLException {
         Database db = new Database();
-        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db), new DBStyklisteRepository(db) {
-
-
-        });
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db), new DBStyklisteRepository(db),new DBMaterialRepository(db));
         //  int id=api.commitOrder(order);
         //order=api.findOrder(id);
         //api.findAllOrders();
@@ -45,6 +34,7 @@ public class WebappTest extends TestCase {
         stykliste.volumenListe.add(stykListeLinje2);
         stykliste.volumenListe.add(stykListeLinje3);
         System.out.println(api.findStykliste(1));*/
-        System.out.println(Calc.sternWidthCalc(330,360));
+        System.out.println(api.findAllMaterailTypes());
+
     }
 }
