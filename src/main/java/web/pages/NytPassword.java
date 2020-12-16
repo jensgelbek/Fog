@@ -1,5 +1,6 @@
 package web.pages;
 
+import api.Utils;
 import web.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -33,8 +34,9 @@ public class NytPassword extends BaseServlet {
 
         if (gammeltpassword.equals(nytpassword)) {
             resp.sendError(500, "Det nye password skal være forskelligt fra det gamle!");
-       return;
+             return;
         }
+
         api.updateSellerPassword(name, gammeltpassword, nytpassword);
         resp.sendRedirect(req.getContextPath() + "/ordrer");
     }

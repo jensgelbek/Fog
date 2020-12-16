@@ -56,4 +56,13 @@ public class Seller {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Seller{" +
+                "sellerID=" + sellerID +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

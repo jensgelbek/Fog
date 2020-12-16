@@ -34,7 +34,7 @@ public class WebappTest extends TestCase {
         stykliste.volumenListe.add(stykListeLinje2);
         stykliste.volumenListe.add(stykListeLinje3);
         System.out.println(api.findStykliste(1));*/
-        System.out.println(api.findAllMaterailTypes());
+        api.updateSellerPassword("jg","1234","123");
 
     }
 }
