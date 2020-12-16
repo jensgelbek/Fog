@@ -28,6 +28,7 @@ public class Oprettelse extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       // OPRET BRUGER !!!!
         if (req.getParameter("Opret") != null) {
             String name = req.getParameter("name");
             String address = req.getParameter("address");
@@ -52,21 +53,21 @@ public class Oprettelse extends BaseServlet {
                 e.printStackTrace();
             }
             resp.sendRedirect(req.getContextPath() + "/frontpage");
-
+/*
             if (req.getParameter("Log ud") != null) {
                 req.setAttribute("username", email == null);
-
-            }
-
-
+            }*/
         }
-
+//          LOGIN !!!!!
         if (req.getParameter("Loginemail") != null) {
             String userName = req.getParameter("Loginemail");
+            Customer customer = null;
+            Seller seller=null;
+            String nextPage="/frontpage";
+            //USER LOGIN
             if (userName.contains("@")) {
                 String email = req.getParameter("Loginemail");
                 String password = req.getParameter("Loginpassword");
-                Customer customer = null;
                 try {
                     customer = api.findCustomer(email);
                 } catch (DBException e) {
@@ -80,13 +81,15 @@ public class Oprettelse extends BaseServlet {
                         var s = req.getSession();
                         s.setAttribute("username", customer.getEmail());
                         s.setAttribute("employer", "no");
+                    }else{
+                        customer=null;
                     }
-                    resp.sendRedirect(req.getContextPath() + "/frontpage");
-
+                    nextPage= "/frontpage";
                 }
-            } else {
+            } else
+                //SELLER LOGIN
+                {
                 String password = req.getParameter("Loginpassword");
-                Seller seller = null;
                 try {
                     seller = api.findSeller(userName);
                 } catch (DBException e) {
@@ -94,21 +97,26 @@ public class Oprettelse extends BaseServlet {
                 }
                 if (seller != null) {
                     boolean correctpassword = Utils.checkPassword(password, seller.getSecret(), seller.getSalt());
-                    String nextPage= "/frontpage";
+
                     if (correctpassword) {
                         var s = req.getSession();
                         s.setAttribute("username", seller.getUsername());
                         s.setAttribute("employer", "yes");
                         if(password.equals("1234")){
                             nextPage="/nytpassword";
+                        }}else{
+                            seller=null;
                         }
+
                     }
-                    resp.sendRedirect(req.getContextPath() + nextPage);
-
-
                 }
-
+            System.out.println(seller+" "+customer);
+            if(seller==null&&customer==null){
+                System.out.println("fejl");
+                resp.sendError(401, "password og brugernavn passer ikke sammen");
+                }else {
+                resp.sendRedirect(req.getContextPath() + nextPage);
             }
         }
+        }
     }
-}

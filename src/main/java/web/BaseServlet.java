@@ -35,7 +35,7 @@ public class BaseServlet extends HttpServlet {
     private static Webapp createApplication() {
         Database db = new Database();
 
-        return new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db) );
+        return new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db) );
 
     }
 
@@ -53,6 +53,10 @@ public class BaseServlet extends HttpServlet {
             req.setAttribute("content", content);
             req.setAttribute("year", LocalDateTime.now().getYear());
             req.getRequestDispatcher("/WEB-INF/includes/base.jsp").forward(req, resp);
+
+        }
+        else {
+            resp.sendError(401,"Du må ikke tilgå denne side!");
         }
     }
 

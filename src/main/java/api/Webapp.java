@@ -2,6 +2,7 @@ package api;
 
 import domain.items.*;
 import domain.materials.*;
+import infrastructure.DBMaterialRepository;
 import infrastructure.DBStyklisteLinjeRepository;
 
 
@@ -20,10 +21,11 @@ public class Webapp {
     private final SellerRepository sellers;
     private static VolumeMaterialRepository volumeMaterials;
     private final UnitMaterialRepository unitMaterials;
+    private final MaterialRepository materials;
     private static StyklisteLinjeRepository styklisteLinjer;
     private static StyklisteRepository styklister;
 
-    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials,StyklisteLinjeRepository styklisteLinjer,StyklisteRepository styklister) {
+    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials, StyklisteLinjeRepository styklisteLinjer, StyklisteRepository styklister, DBMaterialRepository materials) {
         this.orders = orders;
         this.customers = customers;
         this.carports = carports;
@@ -32,6 +34,7 @@ public class Webapp {
         this.unitMaterials=unitMaterials;
         this.styklisteLinjer=styklisteLinjer;
         this.styklister=styklister;
+        this.materials=materials;
 
     }
 
@@ -68,12 +71,14 @@ public class Webapp {
         }
     }
 
-    public void setLeveringsDato(int id, LocalDate leveringsdato) {
+    public void setLeveringsDato(int id, LocalDate leveringsdato)  {
+
         try {
             orders.setLeveringsDato(id, leveringsdato);
         } catch (DBException e) {
             e.printStackTrace();
         }
+
     }
 
     public Carport findCarport(int Id) throws DBException {
@@ -188,9 +193,9 @@ public class Webapp {
             e.printStackTrace();
         }return null;
     }
-    public void updateUnitMaterislPrice(int id,int price){
+    public void updateMaterialPrice(String name, int price){
         try {
-            unitMaterials.updatePrice(id, price);
+            materials.updatePrice(name, price);
         } catch (DBException e) {
             e.printStackTrace();
         }
@@ -217,5 +222,13 @@ public class Webapp {
     public void updateSellerPassword(String name,String oldPassword, String newPassword){
         sellers.updatePassword(name,oldPassword,newPassword);
 
+    }
+    public List<Material> findAllMaterailTypes(){
+        try {
+            return materials.getAllTypes();
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

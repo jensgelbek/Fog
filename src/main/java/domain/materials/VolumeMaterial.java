@@ -27,4 +27,9 @@ public class VolumeMaterial extends Material {
                 ", length=" + length +
                 '}';
     }
+
+    @Override
+    public int getprice() {
+        return this.unitPrice*this.length/1000;
+    }
 }

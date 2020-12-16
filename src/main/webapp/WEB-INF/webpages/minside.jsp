@@ -36,16 +36,16 @@
             Navn
         </div>
         <div class="col-md-1">
-            Bredde
+            Bredde mm
         </div>
         <div class="col-md-1">
-            Længde
+            Længde mm
         </div>
         <div class="col-md-1">
-            Bredde
+            Bredde mm
         </div>
         <div class="col-md-1">
-            Længde
+            Længde mm
         </div>
         <div class="col-md-1">
             Pris

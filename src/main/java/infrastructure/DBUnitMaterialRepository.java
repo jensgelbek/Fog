@@ -94,19 +94,18 @@ public class DBUnitMaterialRepository implements UnitMaterialRepository {
     public int commit(UnitMaterial unitMaterial) {
         return 0;
     }
-
+/*
     @Override
-    public void updatePrice(int id, int newPrice) throws DBException {
+    public void updatePrice(String name, int newPrice) throws DBException {
         try {
             Connection con = db.getConnection();
-            UnitMaterial unitMaterial=find(id);
             String SQL = "UPDATE materialetype SET pris=(?) WHERE name=(?);";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1,newPrice);
-            ps.setString(2, unitMaterial.getName());
+            ps.setString(2, name);
             ps.executeUpdate();
         } catch (SQLException ex) {
             throw new DBException(ex.getMessage());
         }
-    }
+    }*/
 }
