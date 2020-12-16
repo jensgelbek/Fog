@@ -1,21 +1,15 @@
 package web.pages;
 
 
-import api.Calc;
+import api.StyklisteCalculator;
 
-import com.mysql.cj.Session;
 import domain.items.Carport;
 import domain.items.DBException;
 import domain.items.Order;
-import domain.materials.StykListeLinje;
 import domain.materials.Stykliste;
-import infrastructure.DBStyklisteLinjeRepository;
-import infrastructure.Database;
 import infrastructure.Lists;
-import org.w3c.dom.ls.LSOutput;
 import web.BaseServlet;
 
-import web.svg.CKL.Svg;
 //import web.svg.StykListeLinje;
 
 import web.svg.SvgCarport;
@@ -30,8 +24,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static api.Calc.generereStykliste;
 
 
 @WebServlet("/bestilling")
@@ -87,14 +79,6 @@ public class Bestilling extends BaseServlet {
             return SvgCarport.carport(width, length, shedWidth, shedLength).toString();
         }
 
-        /*
-        public Stykliste stykliste() throws DBException {
-            System.out.println("Hej");
-            api.commitStykliste(Calc.generereStykliste(width, length),1);
-            return Calc.generereStykliste(width, length);
-        }
-
-         */
 
     }
 
@@ -148,11 +132,6 @@ public class Bestilling extends BaseServlet {
             }
             //String tag = req.getParameter("tag");
 
-            try {
-                Stykliste stykliste = generereStykliste(carportdto.width, carportdto.length);
-            } catch (DBException e) {
-                e.printStackTrace();
-            }
             // resp.sendRedirect(req.getContextPath() + "/bestilling");
 
 
@@ -161,21 +140,23 @@ public class Bestilling extends BaseServlet {
 
             var s = req.getSession();
 
-
             if ((String) s.getAttribute("username") != null) {
                 var carportdto = CarportDTO.fromSession(req.getSession());
-                int width = Integer.parseInt(req.getParameter("width")) * 10;
-                int length = Integer.parseInt(req.getParameter("length")) * 10;
+                int width = Integer.parseInt(req.getParameter("width"));
+
+                System.out.println(width);
+
+                int length = Integer.parseInt(req.getParameter("length"));
                 String tag = req.getParameter("tag");
                 int shedLength = 0;
                 int shedWidth = 0;
                 try {
-                    shedLength = Integer.parseInt(req.getParameter("shedWidth")) * 10;
+                    shedLength = Integer.parseInt(req.getParameter("shedWidth"));
                 } catch (Exception e) {
 
                 }
                 try {
-                    shedWidth = Integer.parseInt(req.getParameter("shedLength")) * 10;
+                    shedWidth = Integer.parseInt(req.getParameter("shedLength"));
                 } catch (Exception e) {
 
                 }
@@ -190,8 +171,7 @@ public class Bestilling extends BaseServlet {
                     orderid = api.commitOrder(order);
                     System.out.println("orderid: " + orderid);
 
-                    Stykliste stykliste = new Stykliste();
-                    stykliste = Calc.generereStykliste(width, length);
+                    Stykliste stykliste = api.calculateStykliste(carport);
                     System.out.println("Hej");
                     api.commitStykliste(stykliste,orderid);
                     System.out.println(stykliste);
@@ -208,13 +188,13 @@ public class Bestilling extends BaseServlet {
                 try {
                     int carportId = api.commitCarport(carport);
                     carport.setCarportID(carportId);
-                    System.out.println(carportId);
+                    System.out.println("Bestilling carportId: " + carportId);
                   //  var s = req.getSession();
 
 
                     Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
                     orderid = api.commitOrder(order);
-                    System.out.println(orderid);
+                    System.out.println("Bestilling orderId: " + orderid);
 
 
                 } catch (SQLException throwables) {
