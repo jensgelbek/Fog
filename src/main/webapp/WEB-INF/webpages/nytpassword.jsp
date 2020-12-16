@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: PC
@@ -9,9 +10,30 @@
 <html>
 <head>
     <title>vælg nyt password</title>
+    <h1>
+            Skift venligst dit password:
+        <br>
+        <br>
+        <br>
+    </h1>
 </head>
 <body>
-her skal man vælge nyt password
+<form method="post">
+<div class="form-group">
+    <label for="gammeltpassword">Indtast nuværende password:</label>
+    <input type="password" class="form-control" id="gammeltpassword"
+           aria-describedby="gammeltpassword" name="gammeltpassword">
 
+    <label for="nytpassword">Indtast dit nye password:</label>
+    <input type="password" class="form-control" id="nytpassword"
+           aria-describedby="nytpassword" name="nytpassword">
+
+
+        <input type="hidden" name="OK" value="">
+        <button type="submit" class="btn btn-primary">OK</button>
+
+
+</div>
+</form>
 </body>
 </html>
