@@ -26,4 +26,9 @@ public class UnitMaterial extends Material{
                 ", unitType='" + unitType + '\'' +
                 '}';
     }
+
+    @Override
+    public int getprice() {
+        return this.unitPrice;
+    }
 }

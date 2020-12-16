@@ -33,6 +33,11 @@
     </style>
 </head>
 <body class="d-flex flex-column h-100">
+<header>
+    <!-- Navbar start -->
+    <jsp:include page="/WEB-INF/includes/navbar.jsp" flush="true"/>
+    <!-- Navbar end -->
+</header>
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <!-- Content start -->

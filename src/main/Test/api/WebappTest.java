@@ -9,7 +9,7 @@ import domain.materials.Stykliste;
 import domain.materials.StyklisteRepository;
 import infrastructure.*;
 import junit.framework.TestCase;
-
+import api.Calc;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -45,6 +45,6 @@ public class WebappTest extends TestCase {
         stykliste.volumenListe.add(stykListeLinje2);
         stykliste.volumenListe.add(stykListeLinje3);
         System.out.println(api.findStykliste(1));*/
-        api.updateSellerPassword("admin","123","456");
+        System.out.println(Calc.sternWidthCalc(330,360));
     }
 }

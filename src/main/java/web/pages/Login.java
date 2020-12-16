@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/createSeller")
-public class CreateSeller extends BaseServlet {
+@WebServlet("/login")
+public class Login extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             // req.setAttribute("items", api.findAllItems());
-            render("Start", "/WEB-INF/webpages/createSeller.jsp", req, resp);
+            render("Start", "/WEB-INF/webpages/frontpage.jsp", req, resp);
         } catch (ServletException | IOException e) {
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
@@ -25,7 +25,6 @@ public class CreateSeller extends BaseServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
-
 
 
 }
