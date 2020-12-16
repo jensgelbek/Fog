@@ -19,11 +19,12 @@ public class Webapp {
     private final CustomerRepository customers;
     private final CarportRepository carports;
     private final SellerRepository sellers;
-    private static VolumeMaterialRepository volumeMaterials;
+    private final VolumeMaterialRepository volumeMaterials;
     private final UnitMaterialRepository unitMaterials;
     private final MaterialRepository materials;
-    private static StyklisteLinjeRepository styklisteLinjer;
-    private static StyklisteRepository styklister;
+    private final StyklisteLinjeRepository styklisteLinjer;
+    private final StyklisteRepository styklister;
+    private final StyklisteCalculator styklisteCalculator;
 
     public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials, StyklisteLinjeRepository styklisteLinjer, StyklisteRepository styklister, DBMaterialRepository materials) {
         this.orders = orders;
@@ -35,6 +36,7 @@ public class Webapp {
         this.styklisteLinjer=styklisteLinjer;
         this.styklister=styklister;
         this.materials=materials;
+        this.styklisteCalculator = new StyklisteCalculator(this);
 
     }
 
@@ -99,17 +101,13 @@ public class Webapp {
         return (List<Customer>) customers.findAll();
     }
 
-
     public int commitOrder(Order order) {
         return orders.commit(order);
     }
 
-    ;
-
     public Order findOrder(int id) throws DBException {
         return orders.find(id);
     }
-
 
     public Customer commitCustomer(Customer customer) throws DBException {
         return customers.commitCustomer(customer);
@@ -133,11 +131,7 @@ public class Webapp {
         return sellers.findAll();
     }
 
-    public static void main(String[] args) {
-        System.out.println(findVolumeMaterial(2));
-    }
-
-    public static VolumeMaterial findVolumeMaterial(int id){
+    public VolumeMaterial findVolumeMaterial(int id){
         try {
             return volumeMaterials.find(id);
         } catch (DBException e) {
@@ -201,8 +195,7 @@ public class Webapp {
         }
     }
     public void commitStyklisteLinie(StykListeLinje stykListeLinje, int ordreId){
-        // styklisteLinjer.commit(stykListeLinje,ordreId);
-        // DBStyklisteLinjeRepository.commit(stykListeLinje,ordreId);
+        styklisteLinjer.commit(stykListeLinje,ordreId);
     }
     public Stykliste findStykliste(int ordreId){
         try {
@@ -230,5 +223,9 @@ public class Webapp {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Stykliste calculateStykliste(Carport carport) throws DBException {
+        return styklisteCalculator.generereStykliste(carport.getWidth(), carport.getLenght());
     }
 }

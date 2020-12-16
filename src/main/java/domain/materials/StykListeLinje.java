@@ -4,7 +4,7 @@ public class StykListeLinje {
 
     private Material materiale;
     private int quantity;
-    private  String description;
+    private String description;
 
 
     public StykListeLinje(Material materiale, int quantity, String description) {

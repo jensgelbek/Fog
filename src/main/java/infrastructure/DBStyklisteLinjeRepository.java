@@ -1,7 +1,5 @@
 package infrastructure;
 
-import api.Calc;
-import domain.items.DBException;
 import domain.materials.StykListeLinje;
 import domain.materials.StyklisteLinjeRepository;
 
@@ -36,7 +34,6 @@ public class DBStyklisteLinjeRepository implements StyklisteLinjeRepository {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 id = rs.getInt(1);
-                System.out.println("2");
             } else {
                 System.out.println("else");
                 throw new RuntimeException("Unexpected error");

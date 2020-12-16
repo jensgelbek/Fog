@@ -46,35 +46,8 @@ public class SvgCarport extends Tag {
         return shedDraw;
     }
 
-    // Stern calculations, Width: Front + back
-    // Price per meter
 
 
-/*
-        public static StykListeLinje shedWidthCalc(int width) {
-        StykListeLinje shedWidth;
-        String name = "shed width";
-        Double doubleShedWidth = Double.valueOf(width);
-        int unit = 2;
-        int price = 50;
-        int sum = (int) ((doubleShedWidth/100) * price * unit);
-        shedWidth = new StykListeLinje(name, doubleShedWidth, unit, price,sum);
-            System.out.println(shedWidth);
-            return shedWidth;
-
-        }*/
- /*   public static StykListeLinje shedLengthCalc(int length) {
-        StykListeLinje shedLength;
-        String name = "shed length";
-        Double doubleShedLength = Double.valueOf(length);
-        int unit = 2;
-        int price = 50;
-        int sum = (int) ((doubleShedLength/100) * price * unit);
-        shedLength = new StykListeLinje(name, doubleShedLength, unit, price,sum);
-        System.out.println(shedLength);
-        return shedLength;
-
-    }*/
 
     // Stern calculations, Length: Left + right
     // Price per meter
@@ -274,24 +247,6 @@ public class SvgCarport extends Tag {
 
         return carport;
     }
-
-
-/*
-    public static void main(String[] args) {
-
-        try (FileWriter writer = new FileWriter("./src/main/java/web/svg/svgOutput/carport.svg"))
-        {
-            writer.write(carport(1,1).toString());
-            String svg =  carport(1,1).toString();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
- */
-
 
 }
 
