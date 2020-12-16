@@ -13,6 +13,6 @@ public interface VolumeMaterialRepository {
 
     int commit(UnitMaterial unitMaterial);
 
-    void updateNameWithPrice(String name,int newPrice);
+    void updatePrice(String name,int newPrice) throws DBException;
 }
 
