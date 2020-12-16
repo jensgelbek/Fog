@@ -22,15 +22,16 @@ public class DBStyklisteLinjeRepository implements StyklisteLinjeRepository {
 
     @Override
     public int commit(StykListeLinje stykListeLinje, int ordreId) {
-        System.out.println("1");
+
         int id = 0;
         try {
             Connection con = db.getConnection();
-            String SQL = "INSERT INTO styklistelinje (ordreid,materialid,antal) VALUES (?,?,?)";
+            String SQL = "INSERT INTO styklistelinje (ordreid,materialid,antal,description) VALUES (?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, ordreId);
             ps.setInt(2, stykListeLinje.getMateriale().getId());
             ps.setInt(3, stykListeLinje.getQuantity());
+            ps.setString(4,stykListeLinje.getDescription());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
