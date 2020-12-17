@@ -137,23 +137,18 @@ public class Bestilling extends BaseServlet {
 
             if ((String) s.getAttribute("username") != null) {
                 var carportdto = CarportDTO.fromSession(req.getSession());
-                int width = Integer.parseInt(req.getParameter("width"));
-
-                System.out.println(width);
-
-                int length = Integer.parseInt(req.getParameter("length"));
+                int width = Integer.parseInt(req.getParameter("width"))*10;
+                int length = Integer.parseInt(req.getParameter("length"))*10;
                 String tag = req.getParameter("tag");
                 int shedLength = 0;
                 int shedWidth = 0;
                 try {
-                    shedLength = Integer.parseInt(req.getParameter("shedWidth"));
+                    shedLength = Integer.parseInt(req.getParameter("shedWidth"))*10;
                 } catch (Exception e) {
-
                 }
                 try {
-                    shedWidth = Integer.parseInt(req.getParameter("shedLength"));
+                    shedWidth = Integer.parseInt(req.getParameter("shedLength"))*10;
                 } catch (Exception e) {
-
                 }
 
                 Carport carport = new Carport(width, length, false, tag, shedWidth, shedLength);
@@ -171,14 +166,7 @@ public class Bestilling extends BaseServlet {
                 } catch (SQLException | DBException throwables) {
                     throwables.printStackTrace();
                 }
-
-
-
-
-
                 nextpage= "/minOrdre?ordre=" + orderid;
-
-
             } else {
                 System.out.println("TODO Kunde skal være logget ind");
             }
