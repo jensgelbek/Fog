@@ -5,12 +5,28 @@ public class StykListeLinje {
     private Material materiale;
     private int quantity;
     private String description;
+    private int id;
 
 
     public StykListeLinje(Material materiale, int quantity, String description) {
         this.materiale = materiale;
         this.quantity = quantity;
         this.description = description;
+    }
+
+    public StykListeLinje(Material materiale, int quantity, String description, int id) {
+        this.materiale = materiale;
+        this.quantity = quantity;
+        this.description = description;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Material getMateriale() {
@@ -35,6 +51,10 @@ public class StykListeLinje {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setMateriale(Material materiale) {
+        this.materiale = materiale;
     }
 
     @Override

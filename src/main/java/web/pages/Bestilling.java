@@ -137,17 +137,17 @@ public class Bestilling extends BaseServlet {
 
             if ((String) s.getAttribute("username") != null) {
                 var carportdto = CarportDTO.fromSession(req.getSession());
-                int width = Integer.parseInt(req.getParameter("width"))*10;
-                int length = Integer.parseInt(req.getParameter("length"))*10;
+                int width = Integer.parseInt(req.getParameter("width"));
+                int length = Integer.parseInt(req.getParameter("length"));
                 String tag = req.getParameter("tag");
                 int shedLength = 0;
                 int shedWidth = 0;
                 try {
-                    shedLength = Integer.parseInt(req.getParameter("shedWidth"))*10;
+                    shedLength = Integer.parseInt(req.getParameter("shedWidth"));
                 } catch (Exception e) {
                 }
                 try {
-                    shedWidth = Integer.parseInt(req.getParameter("shedLength"))*10;
+                    shedWidth = Integer.parseInt(req.getParameter("shedLength"));
                 } catch (Exception e) {
                 }
 

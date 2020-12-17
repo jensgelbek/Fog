@@ -31,11 +31,11 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
                 String description=rs.getString("description");
                 VolumeMaterial volumeMaterial=dbVolumeMateialRepository.find(materialeId);
                 if (volumeMaterial!=null){
-                StykListeLinje stykListeLinje=new StykListeLinje(volumeMaterial,antal,description);
+                StykListeLinje stykListeLinje=new StykListeLinje(volumeMaterial,antal,description,id);
                 stykliste.volumenListe.add(stykListeLinje);}
                 UnitMaterial unitMaterial=dbUnitMaterialRepository.find(materialeId);
                 if(unitMaterial!=null){
-                    StykListeLinje stykListeLinje=new StykListeLinje(unitMaterial,antal,description);
+                    StykListeLinje stykListeLinje=new StykListeLinje(unitMaterial,antal,description,id);
                     stykliste.unitListe.add(stykListeLinje);}
 
 
