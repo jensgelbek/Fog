@@ -37,7 +37,7 @@ public class Bestilling extends BaseServlet {
             carportList = new ArrayList<Carport>();
             s.setAttribute("carportList", carportList);
         }
-        System.out.println(carportList);
+        // System.out.println(carportList);
         return carportList;
     }
 
@@ -139,8 +139,6 @@ public class Bestilling extends BaseServlet {
                 var carportdto = CarportDTO.fromSession(req.getSession());
                 int width = Integer.parseInt(req.getParameter("width"));
 
-                System.out.println(width);
-
                 int length = Integer.parseInt(req.getParameter("length"));
                 String tag = req.getParameter("tag");
                 int shedLength = 0;
@@ -164,7 +162,6 @@ public class Bestilling extends BaseServlet {
 
                     Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
                     orderid = api.commitOrder(order);
-                    System.out.println("orderid: " + orderid);
 
                     Stykliste stykliste = api.calculateStykliste(carport);
                     api.commitStykliste(stykliste,orderid);
@@ -181,13 +178,13 @@ public class Bestilling extends BaseServlet {
                 try {
                     int carportId = api.commitCarport(carport);
                     carport.setCarportID(carportId);
-                    System.out.println("Bestilling carportId: " + carportId);
+
                   //  var s = req.getSession();
 
 
                     Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
                     orderid = api.commitOrder(order);
-                    System.out.println("Bestilling orderId: " + orderid);
+
 
 
                 } catch (SQLException throwables) {

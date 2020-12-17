@@ -51,7 +51,7 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
     @Override
     public void commitStykliste(Stykliste stykliste, int orderId) {
         for (StykListeLinje styklistelinje:stykliste.volumenListe) {
-            System.out.println("commitStykliste");
+
             commit(styklistelinje,orderId);
         }
         for (StykListeLinje styklistelinje:stykliste.unitListe) {
@@ -67,17 +67,15 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
 
     @Override
     public int commit(StykListeLinje stykListeLinje, int orderId) {
-        System.out.println("Så er vi her");
+
         int id = 0;
         try {
             Connection con = db.getConnection();
             String SQL = "INSERT INTO styklistelinje (ordreid,materialid,antal,description) VALUES (?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,orderId);
-            System.out.println("commitStykListe fra DB: 1");
-            System.out.println(stykListeLinje.getMateriale());
+
             ps.setInt(2, stykListeLinje.getMateriale().getId());
-            System.out.println("commitStykListe fra DB: 2");
             ps.setInt(3,stykListeLinje.getQuantity());
 
             ps.setString(4,stykListeLinje.getDescription());
@@ -85,7 +83,7 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                System.out.println("commitStykListe fra DB: 4");
+
                 id = rs.getInt(1);
             } else {
                 System.out.println("else");
@@ -96,7 +94,7 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
-        System.out.println("StyklisteID fra DB: " + id);
+
         return id;
     }
 
