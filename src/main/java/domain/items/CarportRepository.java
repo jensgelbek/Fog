@@ -11,4 +11,6 @@ public interface CarportRepository {
 
     int commit(Carport carport);
 
+    void update(Carport carport);
+
 }

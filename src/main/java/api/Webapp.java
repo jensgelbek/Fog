@@ -226,4 +226,7 @@ public class Webapp {
     public Stykliste calculateStykliste(Carport carport) throws DBException {
         return styklisteCalculator.generereStykliste(carport.getWidth(), carport.getLenght());
     }
+    public void updateCarport(Carport carport){
+        carports.update(carport);
+    }
 }

@@ -16,7 +16,7 @@
 
 
 <h1>Ordrenummer ${requestScope.order.orderID} </h1>
-<b>Kunde ${requestScope.customer.name}</b>
+<b>Kunde ${requestScope.customer.name}</b><br>
 <c:if test="${requestScope.order.status==\"tilbud\"}"><b>Status:</b> tilbud modtaget<br></c:if>
 <c:if test="${requestScope.order.status==\"kontakt\"}"><b>Status:</b> venter på at blive kontakter af sælger<br></c:if>
 <c:if test="${requestScope.order.status==\"ordre\"}"><b>Status:</b> carport bestilt og afventer levering<br></c:if>
@@ -44,23 +44,138 @@
 <c:if test="${requestScope.carport.rejsning==false}">
     med tag med rejsning med
 </c:if>
-${requestScope.carport.tag}
-<br>
-<b> Tegning af din carport:<br></b>
-<p>Bredde & længde udgør 'Stern' (for/bag og siderne), her indikeret med <b><i>Rødt</i></b> <br>
-    Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
-    2 x bærende 'Rem' i siderne på langs med <b><i>sort</i></b> <br>
-    Stolper er firkanter placeret langs remmene <b><i>sort</i></b> <br>
-    Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne<br>
-    Skuret er indikeret med <b><i>Grøn</i></b>
-</p>
-${svg}
+${requestScope.carport.tag}<br>
 
 <br>
 <hr>
+<form method="post">
+<div class="row">
+    <div class="col-md-1">
+        carport
+    </div>
+    <div class="col-md-2">
+        carport
+    </div>
+    <div class="col-md-1">
+        carport
+    </div>
+    <div class="col-md-2">
+        carport
+    </div>
+    <div class="col-md-1">
+        skur
+    </div>
+    <div class="col-md-2">
+        skur
+    </div>
+    <div class="col-md-1">
+        skur
+    </div>
+    <div class="col-md-2">
+        skur
+    </div>
+</div>
 
-${requestScope.stykliste.volumenListe[0].description}
-
+<div class="row">
+    <div class="col-md-1">
+        længde
+    </div>
+    <div class="col-md-2">
+        ny længde
+    </div>
+    <div class="col-md-1">
+        bredde
+    </div>
+    <div class="col-md-2">
+        ny bredde
+    </div>
+    <div class="col-md-1">
+        længde
+    </div>
+    <div class="col-md-2">
+        ny længde
+    </div>
+    <div class="col-md-1">
+        bredde
+    </div>
+    <div class="col-md-2">
+        ny bredde
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1">
+        ${requestScope.carport.lenght}
+    </div>
+    <div class="col-md-2">
+        <div class="form-group ">
+            <select class="form-control" name="length" id="længde">
+                <option value=""></option>
+                <c:forEach items="${requestScope.carportMeasure}" var="len">
+                    <option value="${len}" <c:if test="${len==requestScope.carport.lenght}">selected</c:if>>
+                            ${len}
+                    </option>
+                </c:forEach>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-1">
+        ${requestScope.carport.width}
+    </div>
+    <div class="col-md-2">
+        <div class="form-group ">
+            <select class="form-control" name="width" id="bredde">
+                <option value=""></option>
+                <c:forEach items="${requestScope.carportMeasure}" var="len">
+                    <option value="${len}" <c:if test="${len==requestScope.carport.width}">selected</c:if>>
+                    ${len}
+                    </option>
+                </c:forEach>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-1">
+        ${requestScope.carport.shedLength}
+    </div>
+    <div class="col-md-2">
+        <div class="form-group ">
+            <select class="form-control" name="shedlength" id="skurlængde">
+                <option value=""></option>
+                <c:forEach items="${requestScope.shedL}" var="len">
+                    <option value="${len}" <c:if test="${len==requestScope.carport.shedLength}">selected</c:if>>
+                            ${len}
+                    </option>
+                </c:forEach>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-1">
+        ${requestScope.carport.shedWidth}
+    </div>
+    <div class="col-md-2">
+        <div class="form-group ">
+            <select class="form-control" name="shedwidth" id="skurbredde">
+                <option value=""></option>
+                <c:forEach items="${requestScope.shedW}" var="len">
+                    <option value="${len}" <c:if test="${len==requestScope.carport.shedWidth}">selected</c:if>>
+                            ${len}
+                    </option>
+                </c:forEach>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <form method="post">
+            <input type="hidden" name="edit" value=${requestScope.order.orderID}>
+            <button type="submit" class="btn btn-primary">Gem</button>
+        </form>
+    </div>
+    <div class="col-md-3">
+        Gemmer nye mål og beregner ny stykliste
+    </div>
+</div>
+</form>
+<br>
+<br>
 
 <c:if test="${requestScope.order.status!=\"afsluttet\"}">
     <c:if test="${requestScope.order.status!=\"afslået\"}">

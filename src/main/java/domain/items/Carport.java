@@ -34,6 +34,29 @@ public class Carport {
         return rejsning;
     }
 
+    public void setShedWidth(int shedWidth) {
+        this.shedWidth = shedWidth;
+    }
+
+    public void setShedLength(int shedLength) {
+        this.shedLength = shedLength;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setLenght(int lenght) {
+        this.lenght = lenght;
+    }
+
+    public void setRejsning(boolean rejsning) {
+        this.rejsning = rejsning;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 
     public int getCarportID() {
         return carportID;

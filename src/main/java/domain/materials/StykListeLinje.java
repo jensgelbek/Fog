@@ -62,7 +62,8 @@ public class StykListeLinje {
         return "StykListeLinje{" +
                 "materiale=" + materiale +
                 ", quantity=" + quantity +
-                ", description='" + description + '\'' +
+                ", description=" + description + '\'' +
+                ", id="+id+
                 '}';
     }
 }

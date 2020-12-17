@@ -2,6 +2,7 @@ package web.pages;
 
 import domain.items.*;
 import domain.materials.Stykliste;
+import infrastructure.Lists;
 import web.BaseServlet;
 import web.svg.SvgCarport;
 
@@ -20,6 +21,12 @@ public class Ordre extends BaseServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int ordreId = Integer.parseInt(req.getParameter("ordre"));
         try {
+            Lists list = new Lists();
+            req.setAttribute("carportMeasure", list.carportMeasure());
+            req.setAttribute("tag", list.tag());
+            req.setAttribute("shedW", list.shedwidth());
+            req.setAttribute("shedL", list.shedlength());
+
             Order order = api.findOrder(ordreId);
             Carport carport = api.findCarport(order.getCarportId());
             Stykliste stykliste = api.findStykliste(ordreId);
@@ -43,7 +50,22 @@ public class Ordre extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getParameter("edit") != null) {
+            int orderId= Integer.parseInt(req.getParameter("edit"));
+            Carport carport= null;
+            try {
+                carport = api.findCarport(api.findOrder(orderId).getCarportId());
+            } catch (DBException e) {
+                e.printStackTrace();
+            }
 
+           carport.setLenght(Integer.parseInt(req.getParameter("length")));
+           carport.setShedWidth(Integer.parseInt(req.getParameter("width")));
+           carport.setShedLength(Integer.parseInt(req.getParameter("shedlength")));
+           carport.setShedWidth(Integer.parseInt(req.getParameter("shedwidth")));
+            System.out.println(carport);
+           api.updateCarport(carport);
+            resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+orderId);
+        }
     }
-
 }
