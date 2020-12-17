@@ -135,16 +135,39 @@ public class StyklisteCalculator {
         }
         int tagFladtLength = tempLength;
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(fladtTag, tagFladtLength);
-        String description = "tagplader";
+        String description = "Tagplader monteres på spær";
 
         int quantity = (int) Math.ceil(width / 100.0);
 
         tagFladt = new StykListeLinje(volumeMaterial, quantity, description);
         System.out.println("tagFladt: " + tagFladt);
 
+        int b = length * 10 - tagFladtLength;
+        System.out.println(b);
+
+
         return tagFladt;
     }
 
+    public StykListeLinje tagFladtResidueCalc(int width, int length) {
+        StykListeLinje tagFladt2;
+        int tempLength = 0;
+        if (length * 10 < 3600) {
+            tempLength = 3600;
+        } else {
+            tempLength = 6000;
+        }
+        int tagFladtLength = tempLength;
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(fladtTag, tagFladtLength);
+        String description = "Tagplader monteres på spær";
+
+        int quantity = (int) Math.ceil(width / 100.0);
+
+        tagFladt2 = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println("tagFladt2: " + tagFladt2);
+
+        return tagFladt2;
+    }
 
     
     public Stykliste generereStykliste(int width, int length) throws DBException {
@@ -168,6 +191,11 @@ public class StyklisteCalculator {
         stykliste.unitListe.add(hulbaandCalc());
         // Add Tag
         stykliste.volumenListe.add(tagFladtCalc(width, length));
+
+        if (length * 10 - 6000 > 0) {
+            length = length * 10 - 6000;
+            stykliste.volumenListe.add(tagFladtResidueCalc(width, length));
+        }
 
         return stykliste;
     }
