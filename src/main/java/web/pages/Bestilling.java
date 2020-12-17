@@ -164,7 +164,6 @@ public class Bestilling extends BaseServlet {
 
                     Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
                     orderid = api.commitOrder(order);
-                    System.out.println("orderid: " + orderid);
 
                     Stykliste stykliste = api.calculateStykliste(carport);
                     api.commitStykliste(stykliste,orderid);
@@ -172,27 +171,11 @@ public class Bestilling extends BaseServlet {
                 } catch (SQLException | DBException throwables) {
                     throwables.printStackTrace();
                 }
-                //resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
-                nextpage = "/minOrdre?ordre=" + orderid;
 
 
-                carport = new Carport(width, length, false, "trapez", shedWidth, shedLength);
-                orderid = 0;
-                try {
-                    int carportId = api.commitCarport(carport);
-                    carport.setCarportID(carportId);
-                    System.out.println("Bestilling carportId: " + carportId);
-                  //  var s = req.getSession();
 
 
-                    Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
-                    orderid = api.commitOrder(order);
-                    System.out.println("Bestilling orderId: " + orderid);
 
-
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
                 nextpage= "/minOrdre?ordre=" + orderid;
 
 
