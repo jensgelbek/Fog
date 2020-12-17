@@ -23,12 +23,12 @@ public class StyklisteCalculator {
 
     public StykListeLinje sternWidthCalc(int width, int length) throws DBException {
         StykListeLinje sternWidth;
-        int widthCalc = width;
-        System.out.println("widthCalc " + widthCalc);
-        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(understern, widthCalc);
-        String description = "Stern: For og bag stern";
+        int widthCalc = width * 10;
+         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(understern, widthCalc);
+        String description = "Understernbrædder til for og bag ende";
         int quantity = 2;
         sternWidth = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println(sternWidth);
         return sternWidth;
     }
 
@@ -77,7 +77,6 @@ public class StyklisteCalculator {
         // Add Spaers
         stykliste.volumenListe.add(spaerCalc(width, length));
 
-        System.out.println("Calc: " + stykliste);
 
         return stykliste;
     }

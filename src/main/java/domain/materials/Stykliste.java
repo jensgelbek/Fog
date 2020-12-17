@@ -15,8 +15,21 @@ public class Stykliste {
         this.unitListe = new ArrayList<>();
     }
 
+    public List<StykListeLinje> getVolumenListe() {
+        return volumenListe;
+    }
 
+    public void setVolumenListe(List<StykListeLinje> volumenListe) {
+        this.volumenListe = volumenListe;
+    }
 
+    public List<StykListeLinje> getUnitListe() {
+        return unitListe;
+    }
+
+    public void setUnitListe(List<StykListeLinje> unitListe) {
+        this.unitListe = unitListe;
+    }
 
     @Override
     public String toString() {

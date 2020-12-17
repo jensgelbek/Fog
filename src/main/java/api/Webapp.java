@@ -199,9 +199,7 @@ public class Webapp {
     }
     public Stykliste findStykliste(int ordreId){
         try {
-
             return styklister.findStykliste(ordreId);
-
         } catch (DBException e) {
             e.printStackTrace();
         }

@@ -53,7 +53,13 @@ ${requestScope.carport.tag}
     Skuret er indikeret med <b><i>Grøn</i></b>
 </p>
 ${svg}
+
 <br>
+<hr>
+
+${requestScope.stykliste.volumenListe[0].description}
+
+
 <c:if test="${requestScope.order.status!=\"afsluttet\"}">
     <c:if test="${requestScope.order.status!=\"afslået\"}">
         <c:if test="${requestScope.order.status!=\"ordre\"}">
