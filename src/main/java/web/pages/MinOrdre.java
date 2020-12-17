@@ -1,8 +1,11 @@
 package web.pages;
 
+import api.StyklisteCalculator;
 import domain.items.Carport;
 import domain.items.DBException;
 import domain.items.Order;
+import domain.materials.StykListeLinje;
+import domain.materials.Stykliste;
 import web.BaseServlet;
 import web.svg.SvgCarport;
 
@@ -23,10 +26,15 @@ public class MinOrdre extends BaseServlet {
         try {
             Order order = api.findOrder(ordreId);
             Carport carport = api.findCarport(order.getCarportId());
+            Stykliste stykliste = api.findStykliste(ordreId);
             req.setAttribute("order", order);
             req.setAttribute("carport", carport);
+            req.setAttribute("stykliste", stykliste);
 
-            req.setAttribute("svg", SvgCarport.carport(carport.getWidth()/10, carport.getLenght()/10, carport.getShedWidth()/10, carport.getShedLength()/10).toString());
+            req.setAttribute("svg", SvgCarport.carport(carport.getWidth(), carport.getLenght(), carport.getShedWidth(), carport.getShedLength()).toString());
+
+
+
 
         } catch (DBException e) {
             e.printStackTrace();

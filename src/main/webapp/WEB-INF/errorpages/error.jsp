@@ -45,6 +45,7 @@
     <div class="container">
         <h1 class="mt-5">${pageContext.response.status}</h1>
         <p class="lead"><%=request.getAttribute("javax.servlet.error.message")%>
+        <p> Error forklaring </p>
         </p>
     </div>
 
