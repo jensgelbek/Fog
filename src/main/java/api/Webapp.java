@@ -229,4 +229,7 @@ public class Webapp {
     public void updateCarport(Carport carport){
         carports.update(carport);
     }
+    public void updateStykListeLinjeAntal(int id,int antal){
+        styklisteLinjer.updateAntal(id,antal);
+    }
 }

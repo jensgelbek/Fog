@@ -1,6 +1,7 @@
 package web.pages;
 
 import domain.items.*;
+import domain.materials.StykListeLinje;
 import domain.materials.Stykliste;
 import infrastructure.Lists;
 import web.BaseServlet;
@@ -19,7 +20,9 @@ import java.util.List;
 public class Ordre extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        var s = req.getSession();
         int ordreId = Integer.parseInt(req.getParameter("ordre"));
+        s.setAttribute("ordreId",ordreId);
         try {
             Lists list = new Lists();
             req.setAttribute("carportMeasure", list.carportMeasure());
@@ -33,7 +36,8 @@ public class Ordre extends BaseServlet {
             Customer customer= api.findCustomer(order.getKundeEmail());
             req.setAttribute("order", order);
             req.setAttribute("carport", carport);
-            req.setAttribute("stykliste", stykliste);
+            req.setAttribute("volumenliste", stykliste.volumenListe);
+            req.setAttribute("unitliste",stykliste.unitListe);
             req.setAttribute("customer",customer);
             req.setAttribute("svg", SvgCarport.carport(carport.getWidth(), carport.getLenght(), carport.getShedWidth(), carport.getShedLength()).toString());
         } catch (DBException | CustomerNotFound e) {
@@ -50,6 +54,8 @@ public class Ordre extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        var s = req.getSession();
+        int ordreId= (int) s.getAttribute("ordreId");
         if (req.getParameter("edit") != null) {
             int orderId= Integer.parseInt(req.getParameter("edit"));
             Carport carport= null;
@@ -67,5 +73,24 @@ public class Ordre extends BaseServlet {
            api.updateCarport(carport);
             resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+orderId);
         }
+        if (req.getParameter("editunit") != null) {
+            int styklistelinjeid= Integer.parseInt(req.getParameter("editunit"));
+
+            int antal= Integer.parseInt(req.getParameter("antalunit"));
+
+            api.updateStykListeLinjeAntal(styklistelinjeid, antal);
+            resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+ordreId);
+        }
+        if (req.getParameter("editvolumen") != null) {
+            System.out.println("editvolumen");
+            int styklistelinjeid= Integer.parseInt(req.getParameter("editvolumen"));
+            System.out.println(styklistelinjeid);
+            int antal= Integer.parseInt(req.getParameter("antal"));
+            System.out.println(antal);
+            api.updateStykListeLinjeAntal(styklistelinjeid, antal);
+            System.out.println("snart redirect");
+            resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+ordreId);
+        }
     }
+
 }

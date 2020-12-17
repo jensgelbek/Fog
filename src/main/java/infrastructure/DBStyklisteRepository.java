@@ -1,6 +1,8 @@
 package infrastructure;
 
+import api.Utils;
 import domain.items.DBException;
+import domain.items.Seller;
 import domain.materials.*;
 
 import java.sql.*;
@@ -98,6 +100,23 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
         }
         System.out.println("StyklisteID fra DB: " + id);
         return id;
+    }
+
+    @Override
+    public void updateAntal(int id, int antal) {
+        try {
+            Connection con = db.getConnection();
+
+                String SQL = "UPDATE styklistelinje antal=(?) WHERE id=(?);";
+                PreparedStatement ps = con.prepareStatement(SQL);
+                ps.setInt(1, antal);
+                ps.setInt(2, id);
+                ps.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
 }

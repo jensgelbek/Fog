@@ -176,7 +176,80 @@ ${requestScope.carport.tag}<br>
 </form>
 <br>
 <br>
+<b>Styk materialer</b><br>
 
+    <div class="row">
+        <div class="col-md-3">
+            beskrivelse
+        </div>
+        <div class="col-md-2">
+            antal
+        </div>
+
+    </div>
+<c:forEach items="${requestScope.unitliste}" var="stykListeLinje" varStatus="loop">
+<form method="post">
+    <div class="row">
+        <div class="col-md-3">
+            ${stykListeLinje.materiale.details}
+        </div>
+            <div class="col-md-2">
+                <input type="number" class="form-control" id="antalunit" min="1" step="1" value="${stykListeLinje.quantity}"
+                       aria-describedby="pris" name="antalunit">
+            </div>
+
+        <div class="col-md-1">
+            <form method="post">
+                <input type="hidden" name="editunit" value=${stykListeLinje.id}>
+                <button type="submit" class="btn btn-primary">Gem</button>
+            </form>
+        </div>
+    </div>
+</form>
+</c:forEach>
+
+<br>
+<b>Meter materialer</b><br>
+</form>
+
+<div class="row">
+    <div class="col-md-3">
+        beskrivelse
+    </div>
+    <div class="col-md-1">
+        længde
+    </div>
+    <div class="col-md-2">
+        antal
+    </div>
+</div>
+<c:forEach items="${requestScope.volumenliste}" var="stykListeLinje" varStatus="loop">
+<form method="post">
+    <div class="row">
+        <div class="col-md-3">
+                ${stykListeLinje.materiale.details}
+        </div>
+        <div class="col-md-1">
+                ${stykListeLinje.materiale.length}
+        </div>
+        <div class="col-md-2">
+            <input type="number" class="form-control" id="antalvolumen" min="1" step="1" value="${stykListeLinje.quantity}"
+                   aria-describedby="pris" name="antal">
+        </div>
+
+        <div class="col-md-1">
+            <div class="col-md-1">
+                <form method="post">
+                    <input type="hidden" name="editvolumen" value=${stykListeLinje.id}>
+                    <button type="submit" class="btn btn-primary">Gem</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</form>
+</c:forEach>
+
+<br>
 <c:if test="${requestScope.order.status!=\"afsluttet\"}">
     <c:if test="${requestScope.order.status!=\"afslået\"}">
         <c:if test="${requestScope.order.status!=\"ordre\"}">

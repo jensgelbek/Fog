@@ -46,4 +46,20 @@ public class DBStyklisteLinjeRepository implements StyklisteLinjeRepository {
         return id;
     }
 
+    @Override
+    public void updateAntal(int id, int antal) {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "UPDATE styklistelinje SET antal=(?) WHERE id=(?);";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, antal);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
 }
