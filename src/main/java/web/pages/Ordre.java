@@ -70,7 +70,15 @@ public class Ordre extends BaseServlet {
            carport.setShedLength(Integer.parseInt(req.getParameter("shedlength")));
            carport.setShedWidth(Integer.parseInt(req.getParameter("shedwidth")));
             System.out.println(carport);
-           api.updateCarport(carport);
+            api.updateCarport(carport);
+            try {
+                api.deletStykliste(orderId);
+                Stykliste stykliste= api.calculateStykliste(carport);
+                api.commitStykliste(stykliste,orderId);
+            } catch (DBException e) {
+                e.printStackTrace();
+            }
+
             resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+orderId);
         }
         if (req.getParameter("editunit") != null) {
