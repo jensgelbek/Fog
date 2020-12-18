@@ -233,7 +233,13 @@ public class Webapp {
         styklisteLinjer.updateAntal(id,antal);
     }
 
+    public void updateStykListeLinjeMaterialeId(int id,int materialId){styklisteLinjer.updateMaterial(id,materialId);}
+
     public void deletStykliste(int orderId){
         styklister.deleteStykliste(orderId);
+    }
+
+    public StykListeLinje findStykListeLinje(int id){
+       return styklisteLinjer.find(id);
     }
 }

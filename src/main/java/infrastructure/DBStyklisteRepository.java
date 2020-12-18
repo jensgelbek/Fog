@@ -135,4 +135,9 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
 
     }
 
+    @Override
+    public void updateMaterial(int id, int materialId) {
+
+    }
+
 }
