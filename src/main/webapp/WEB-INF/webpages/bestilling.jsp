@@ -152,10 +152,6 @@
                     </div>
 
                         <div class="row">
-                        <p><b><u>Du skal bruge følgende materialer:</u></b></p>
-                        ${requestScope.sternWidthCalc.toString()} <br>
-                        ${requestScope.sternLengthCalc} <br>
-                            ${requestScope.spaerCalc.toString()}
                         ${carport.drawing}
                     </div>
 

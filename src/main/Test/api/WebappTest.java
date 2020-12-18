@@ -44,7 +44,7 @@ public class WebappTest extends TestCase {
         int carporttId=order.getCarportId();
         Carport carport=api.findCarport(carporttId);
         Stykliste stykliste=(api.calculateStykliste(carport));
-        System.out.println(stykliste);
-        api.commitStykliste(stykliste,3);
+        // System.out.println(stykliste);
+        // api.commitStykliste(stykliste,3);
     }
 }

@@ -91,7 +91,7 @@ public class StyklisteCalculator {
         int spaerWidth = width;
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(spaer, spaerWidth);
         String description = "Spær: Monteres på rem";
-        int quantity = (length / 60) - 1;
+        int quantity = (length / 600) - 1;
         spaers = new StykListeLinje(volumeMaterial, quantity, description);
         // System.out.println("spaers: " + spaers);
         return spaers;
@@ -101,7 +101,7 @@ public class StyklisteCalculator {
         StykListeLinje stolper;
         int carportLength = length;
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(stolpe, 3000);
-        String description = "Stolper";
+        String description = "Stolper nedgraves 90cm. i jord";
         int tempQuantity = 0;
         if (carportLength >= 6000) {
             tempQuantity = 6;
@@ -182,8 +182,39 @@ public class StyklisteCalculator {
 
         int quantity =  (tempQuantityLength + tempQuantityWidth);
         shedBoards = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("shedBoards: " + shedBoards);
+        //System.out.println("shedBoards: " + shedBoards);
         return shedBoards;
+    }
+
+
+    public StykListeLinje shedStolperCalc(int width, int shedWidth, int shedLength) {
+        StykListeLinje shedStolper;
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(stolpe, 3000);
+        String description = "Stolper nedgraves 90cm. i jord";
+
+        int tempQuantityWidth = 0;
+        if (shedWidth > 3000) {
+            tempQuantityWidth = 6;
+        } else if (shedWidth == width ) {
+            tempQuantityWidth = -1;
+        } else {
+            tempQuantityWidth = 4;
+        }
+
+        int tempQuantityLength = 0;
+        if (shedLength > 3000) {
+            tempQuantityLength = 6;
+        } else {
+            tempQuantityLength = 4;
+        }
+
+        // Korrigerring for dobbelberegning stolper i hjørner = -4
+        int quantity = (tempQuantityLength + tempQuantityWidth) - 4;
+
+
+        shedStolper = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println("shedStolper: " + shedStolper);
+        return shedStolper;
     }
 
     
@@ -215,6 +246,8 @@ public class StyklisteCalculator {
         }
         // Add Skurbrædder
         stykliste.volumenListe.add(shedBoards(shedWidth, shedLength));
+        // Add Shed stolper
+        stykliste.volumenListe.add(shedStolperCalc(width, shedWidth, shedLength));
 
         return stykliste;
     }
