@@ -46,6 +46,9 @@ public  class Material {
     }
 
     public  int getprice (){return unitPrice;};
+    public int getLength() {
+        return 0;
+    }
 
     @Override
     public String toString() {
