@@ -63,6 +63,11 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
     }
 
     @Override
+    public void deleteStykliste(int orderId) {
+
+    }
+
+    @Override
     public StykListeLinje find(int styklisteLinjeId) {
         return null;
     }

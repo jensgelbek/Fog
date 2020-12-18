@@ -232,4 +232,8 @@ public class Webapp {
     public void updateStykListeLinjeAntal(int id,int antal){
         styklisteLinjer.updateAntal(id,antal);
     }
+
+    public void deletStykliste(int orderId){
+        styklister.deleteStykliste(orderId);
+    }
 }
