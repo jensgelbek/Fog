@@ -74,8 +74,10 @@ public class Ordrer extends BaseServlet {
         String nextPage="";
         if (req.getParameter("vis") != null) {
             int orderToShow = Integer.parseInt(req.getParameter("vis"));
+
             // System.out.println(orderToShow);
             nextPage="/minOrdre?ordre=" + orderToShow;
+
         }
         if (req.getParameter("afslut") != null) {
             int orderToUpdate = Integer.parseInt(req.getParameter("afslut"));

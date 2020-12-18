@@ -1,6 +1,8 @@
 package infrastructure;
 
+import api.Utils;
 import domain.items.DBException;
+import domain.items.Seller;
 import domain.materials.*;
 
 import java.sql.*;
@@ -31,11 +33,11 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
                 String description=rs.getString("description");
                 VolumeMaterial volumeMaterial=dbVolumeMateialRepository.find(materialeId);
                 if (volumeMaterial!=null){
-                StykListeLinje stykListeLinje=new StykListeLinje(volumeMaterial,antal,description);
+                StykListeLinje stykListeLinje=new StykListeLinje(volumeMaterial,antal,description,id);
                 stykliste.volumenListe.add(stykListeLinje);}
                 UnitMaterial unitMaterial=dbUnitMaterialRepository.find(materialeId);
                 if(unitMaterial!=null){
-                    StykListeLinje stykListeLinje=new StykListeLinje(unitMaterial,antal,description);
+                    StykListeLinje stykListeLinje=new StykListeLinje(unitMaterial,antal,description,id);
                     stykliste.unitListe.add(stykListeLinje);}
 
 
@@ -96,6 +98,23 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
         }
 
         return id;
+    }
+
+    @Override
+    public void updateAntal(int id, int antal) {
+        try {
+            Connection con = db.getConnection();
+
+                String SQL = "UPDATE styklistelinje antal=(?) WHERE id=(?);";
+                PreparedStatement ps = con.prepareStatement(SQL);
+                ps.setInt(1, antal);
+                ps.setInt(2, id);
+                ps.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
 }

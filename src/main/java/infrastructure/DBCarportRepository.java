@@ -99,4 +99,26 @@ public class DBCarportRepository implements CarportRepository {
         }
         return id;
     }
+
+    @Override
+    public void update(Carport carport) {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "UPDATE carport SET bredde=(?),længde=(?),rejsning=(?),tag=(?),skurBredde=(?),skurLængde=(?) WHERE id=(?);";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, carport.getWidth());
+            ps.setInt(2, carport.getLenght());
+            ps.setBoolean(3, carport.getRejsning());
+            ps.setString(4, carport.getTag());
+            ps.setInt(5, carport.getShedWidth());
+            ps.setInt(6, carport.getShedLength());
+            ps.setInt(7,carport.getCarportID());
+            ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+    }
 }

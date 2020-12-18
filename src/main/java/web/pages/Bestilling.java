@@ -146,12 +146,10 @@ public class Bestilling extends BaseServlet {
                 try {
                     shedLength = Integer.parseInt(req.getParameter("shedWidth"));
                 } catch (Exception e) {
-
                 }
                 try {
                     shedWidth = Integer.parseInt(req.getParameter("shedLength"));
                 } catch (Exception e) {
-
                 }
 
                 Carport carport = new Carport(width, length, false, tag, shedWidth, shedLength);
@@ -170,11 +168,7 @@ public class Bestilling extends BaseServlet {
                     throwables.printStackTrace();
                 }
 
-
-
                 nextpage= "/minOrdre?ordre=" + orderid;
-
-
             } else {
                 System.out.println("TODO Kunde skal være logget ind");
             }
