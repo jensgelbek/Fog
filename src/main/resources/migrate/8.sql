@@ -184,38 +184,49 @@ INSERT INTO materialer (id,name) VALUES (143,'reglar');
 INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (143,2700);
 INSERT INTO materialer (id,name) VALUES (144,'reglar');
 INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (144,2700);
+
 INSERT INTO materialer (id,name) VALUES (145,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (145,3300);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (145,3000);
+
 INSERT INTO materialer (id,name) VALUES (146,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (146,3600);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (146,3300);
+
 INSERT INTO materialer (id,name) VALUES (147,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (147,3900);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (147,3600);
+
 INSERT INTO materialer (id,name) VALUES (148,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (148,4200);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (148,3900);
+
 INSERT INTO materialer (id,name) VALUES (149,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (149,4500);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (149,4200);
+
 INSERT INTO materialer (id,name) VALUES (150,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (150,4800);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (150,4500);
+
 INSERT INTO materialer (id,name) VALUES (151,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (151,5100);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (151,4800);
+
 INSERT INTO materialer (id,name) VALUES (152,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (152,5400);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (152,5100);
+
 INSERT INTO materialer (id,name) VALUES (153,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (153,5700);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (153,5400);
 INSERT INTO materialer (id,name) VALUES (154,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (154,6000);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (154,5700);
 INSERT INTO materialer (id,name) VALUES (155,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (155,6300);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (155,6000);
 INSERT INTO materialer (id,name) VALUES (156,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (156,6600);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (156,6300);
 INSERT INTO materialer (id,name) VALUES (157,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (157,6900);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (157,6600);
 INSERT INTO materialer (id,name) VALUES (158,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (158,7200);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (158,6900);
 INSERT INTO materialer (id,name) VALUES (159,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (159,7500);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (159,7200);
 INSERT INTO materialer (id,name) VALUES (160,'reglar');
-INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (160,7800);
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (160,7500);
+INSERT INTO materialer (id,name) VALUES (161,'reglar');
+INSERT INTO volumematerialer (volumeMaterialeId,length) VALUES (161,7800);
 
 -- trapez plader
 INSERT INTO materialetype (name,details,pris) VALUES ('trapez','Plastmo Ecolite blåtonet',40);
