@@ -28,7 +28,8 @@ public class StyklisteCalculator {
     // Stern calculations, Width: Front + back
     public StykListeLinje sternWidthCalc(int width) throws DBException {
         StykListeLinje sternWidth;
-        int widthCalc = width * 10;
+        int widthCalc = width;
+        System.out.println(widthCalc);
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(understern, widthCalc);
         String description = "Understernbrædder til for og bag ende";
         int quantity = 2;
@@ -40,7 +41,7 @@ public class StyklisteCalculator {
     // Stern calculations, Length: 2, one on each side
     public StykListeLinje sternLengthCalc(int length) throws DBException {
         StykListeLinje sternLength;
-        int lengthCalc = length * 10;
+        int lengthCalc = length;
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(understern, lengthCalc);
         String description = "Understernbrædder til siderne.";
         int quantity = 2;
@@ -52,7 +53,7 @@ public class StyklisteCalculator {
     // Overstern calculations. Length: 2, one on each side
     public StykListeLinje overSternLengthCalc(int length) throws DBException {
         StykListeLinje overSternLength;
-        int lengthCalc = length * 10;
+        int lengthCalc = length;
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(overstern, lengthCalc);
         String description = "Oversternbrædder til siderne.";
         int quantity = 2;
@@ -64,7 +65,7 @@ public class StyklisteCalculator {
     // Overstern calculations. Width: One in front
     public StykListeLinje overSternWidthCalc(int width) throws DBException {
         StykListeLinje overSternWidth;
-        int widthCalc = width * 10;
+        int widthCalc = width;
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(overstern, widthCalc);
         String description = "Understernbrædt til front.";
         int quantity = 1;
@@ -76,7 +77,7 @@ public class StyklisteCalculator {
     // Rem calculations, Length: 2, one on each side
     public StykListeLinje remCalc(int length) {
         StykListeLinje remLength;
-        int lengthCalc = length * 10;
+        int lengthCalc = length;
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(rem, lengthCalc);
         String description = "Rem i siderne";
         int quantity = 2;
@@ -87,7 +88,7 @@ public class StyklisteCalculator {
 
     public StykListeLinje spaerCalc(int width, int length) {
         StykListeLinje spaers;
-        int spaerWidth = width * 10;
+        int spaerWidth = width;
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(spaer, spaerWidth);
         String description = "Spær: Monteres på rem";
         int quantity = (length / 60) - 1;
@@ -98,8 +99,8 @@ public class StyklisteCalculator {
 
     public StykListeLinje stolperCalc(int length) {
         StykListeLinje stolper;
-        int carportLength = length * 10;
-        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(stolpe, carportLength);
+        int carportLength = length;
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(stolpe, 3000);
         String description = "Stolper";
         int tempQuantity = 0;
         if (carportLength >= 6000) {
@@ -129,7 +130,7 @@ public class StyklisteCalculator {
         StykListeLinje tagFladt;
         int tempLength = 0;
 
-        if (length * 10 < 3600) {
+        if (length  < 3600) {
             tempLength = 3600;
         } else {
             tempLength = 6000;
@@ -139,7 +140,7 @@ public class StyklisteCalculator {
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(fladtTag, tagFladtLength);
         String description = "Tagplader monteres på spær";
 
-        int quantity = (int) Math.ceil(width / 100.0);
+        int quantity = (int) Math.ceil(width / 1000.0);
 
         tagFladt = new StykListeLinje(volumeMaterial, quantity, description);
         return tagFladt;
@@ -149,7 +150,7 @@ public class StyklisteCalculator {
         StykListeLinje tagFladtResidue;
         int tempLength = 0;
 
-        if (length * 10 < 3600) {
+        if (length < 3600) {
             tempLength = 3600;
         } else {
             tempLength = 6000;
@@ -160,7 +161,7 @@ public class StyklisteCalculator {
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(fladtTag, tagFladtLength);
         String description = "Tagplader monteres på spær";
 
-        int quantity = (int) Math.ceil(width / 100.0);
+        int quantity = (int) Math.ceil(width / 1000.0);
 
         tagFladtResidue = new StykListeLinje(volumeMaterial, quantity, description);
         return tagFladtResidue;
@@ -168,15 +169,15 @@ public class StyklisteCalculator {
 
     public StykListeLinje shedBoards(int shedWidth, int shedLength) {
         StykListeLinje shedBoards;
-        int length = shedLength * 10;
-        int width = shedWidth * 10;
+        int length = shedLength;
+        int width = shedWidth;
 
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(braedt, 2100);
         String description = "Brædder til beklædning af skur 1 på 2";
 
-        int tempQuantityLength = ((shedLength / 15) *2)*2;
+        int tempQuantityLength = ((shedLength / 150) *2)*2;
         System.out.println("tempQuantityLength: " + tempQuantityLength);
-        int tempQuantityWidth = ((shedWidth / 15) *2)*2;
+        int tempQuantityWidth = ((shedWidth / 150) *2)*2;
         System.out.println("tempQuantityWidth: " + tempQuantityWidth);
 
         int quantity =  (tempQuantityLength + tempQuantityWidth);
@@ -208,8 +209,8 @@ public class StyklisteCalculator {
         // Add Tag
         stykliste.volumenListe.add(tagFladtCalc(width, length));
         // Add Tag
-        if (length - 600 > 0) {
-            length = length - 600;
+        if (length - 6000 > 0) {
+            length = length - 6000;
             stykliste.volumenListe.add(tagFladtResidueCalc(width, length));
         }
         // Add Skurbrædder

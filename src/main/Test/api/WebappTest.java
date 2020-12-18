@@ -2,11 +2,13 @@ package api;
 
 import domain.items.Carport;
 import domain.items.DBException;
+import domain.items.Order;
 import domain.materials.Material;
 import domain.materials.StykListeLinje;
 import domain.materials.Stykliste;
 import infrastructure.*;
 import junit.framework.TestCase;
+import org.apache.tools.ant.taskdefs.condition.Or;
 
 import java.sql.SQLException;
 
@@ -38,10 +40,11 @@ public class WebappTest extends TestCase {
         stykliste.volumenListe.add(stykListeLinje3);
 
        api.commitStykliste(stykliste,1);*/
-        Carport carport= api.findCarport(1);
-        carport.setShedLength(1800);
-        carport.setShedWidth(1800);
-        api.updateCarport(carport);
-
+        Order order=api.findOrder(3);
+        int carporttId=order.getCarportId();
+        Carport carport=api.findCarport(carporttId);
+        Stykliste stykliste=(api.calculateStykliste(carport));
+        System.out.println(stykliste);
+        api.commitStykliste(stykliste,3);
     }
 }
