@@ -46,15 +46,7 @@ public class SvgCarport extends Tag {
         return shedDraw;
     }
 
-
-
-
-    // Stern calculations, Length: Left + right
-    // Price per meter
-
-
     // Rem one side SVG Draw.
-
     public static Tag remOneDraw(int length) {
         Double remOneLength = Double.valueOf(length);
         Tag rem1 = new Rectangle(0.0, 35.0, remOneLength, 4.5);
@@ -63,7 +55,6 @@ public class SvgCarport extends Tag {
     }
 
     // Rem other side SVG Draw.
-
     public static Tag remTwoDraw(int width, int length) {
         Double remTwoLength = Double.valueOf(length);
         Double remTwoY = Double.valueOf(width) - 45.0;
@@ -72,13 +63,8 @@ public class SvgCarport extends Tag {
         return rem2;
     }
 
-    // Rem calculations.
-    // Price per meter
-
-
     // Spær SVG Draw.
     // 0.6m apart
-
     public static List<Tag> spaerDraw(int width, int length) {
         List<Tag> spaersDraw = new ArrayList<>();
         double x = 0.0;
@@ -93,16 +79,8 @@ public class SvgCarport extends Tag {
         return spaersDraw;
     }
 
-    // Rem calculations.
-    // Price per meter
-
-
-
-
-
     // Stolper SVG Draw.
     // 1'st: 110, last( 35 from back ) if more than 6m + 1 ind between 1'st and last
-
     public static List<Tag> stolperDraw(int width, int length) {
         List<Tag> stolper = new ArrayList<>();
 
@@ -158,10 +136,7 @@ public class SvgCarport extends Tag {
         return stolper;
     }
 
-
-
     // Hulbånd SVG Draw.
-
     public static List<Tag> hulbaandDraw(int width, int length) {
         List<Tag> hulbaand = new ArrayList<>();
 
@@ -181,9 +156,7 @@ public class SvgCarport extends Tag {
         return hulbaand;
     }
 
-
     // Carport inner width SVG line Draw.
-
     public static Tag lineW(int width) {
         Double WD;
         if (width > 0 ) {
@@ -197,8 +170,6 @@ public class SvgCarport extends Tag {
     }
 
     // Carport inner Length SVG line Draw.
-
-
     public static Tag lineL(int width, int length) {
         Double LD;
         if (width > 0) {
@@ -218,8 +189,6 @@ public class SvgCarport extends Tag {
         ramme.add(carport2(width, length, shedWidth, shedLength));
         return ramme;
     }
-
-
 
     public static Tag carport2(int width, int length, int shedWidth, int shedLength) {
 
