@@ -1,6 +1,7 @@
 package web.pages;
 
 import domain.items.*;
+import domain.materials.Material;
 import domain.materials.StykListeLinje;
 import domain.materials.Stykliste;
 import infrastructure.Lists;
@@ -92,11 +93,17 @@ public class Ordre extends BaseServlet {
         if (req.getParameter("editvolumen") != null) {
             System.out.println("editvolumen");
             int styklistelinjeid= Integer.parseInt(req.getParameter("editvolumen"));
-            System.out.println(styklistelinjeid);
+            //opdater antal
             int antal= Integer.parseInt(req.getParameter("antal"));
-            System.out.println(antal);
             api.updateStykListeLinjeAntal(styklistelinjeid, antal);
-            System.out.println("snart redirect");
+            //opdater materiale (med ny længde)
+            StykListeLinje stykListeLinje=api.findStykListeLinje(styklistelinjeid);
+            int length= Integer.parseInt(req.getParameter("length"));
+            System.out.println(styklistelinjeid+" "+length+" "+stykListeLinje.getMateriale().getName());
+            Material material=api.findVolumeMaterialNameLenght(stykListeLinje.getMateriale().getName(),length);
+            System.out.println(material);
+            api.updateStykListeLinjeMaterialeId(styklistelinjeid,material.getId());
+
             resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+ordreId);
         }
     }
