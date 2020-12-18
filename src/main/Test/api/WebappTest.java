@@ -36,7 +36,6 @@ public class WebappTest extends TestCase {
         stykliste.volumenListe.add(stykListeLinje2);
         stykliste.volumenListe.add(stykListeLinje3);
        api.commitStykliste(stykliste,1);
-        System.out.println(api.findStykliste(1));
 
     }
 }

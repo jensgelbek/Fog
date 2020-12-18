@@ -75,7 +75,7 @@ public class MinSide extends BaseServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getParameter("vis") != null) {
             int orderToShow = Integer.parseInt(req.getParameter("vis"));
-            System.out.println(orderToShow);
+            // System.out.println(orderToShow);
 
             resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderToShow);
 
