@@ -110,7 +110,7 @@ public class Oprettelse extends BaseServlet {
 
                     }
                 }
-            System.out.println(seller+" "+customer);
+            // System.out.println(seller+" "+customer);
             if(seller==null&&customer==null){
                 System.out.println("fejl");
                 resp.sendError(401, "password og brugernavn passer ikke sammen");

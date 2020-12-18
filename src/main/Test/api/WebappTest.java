@@ -36,6 +36,7 @@ public class WebappTest extends TestCase {
         stykliste.volumenListe.add(stykListeLinje1);
         stykliste.volumenListe.add(stykListeLinje2);
         stykliste.volumenListe.add(stykListeLinje3);
+
        api.commitStykliste(stykliste,1);*/
         Carport carport= api.findCarport(1);
         carport.setShedLength(1800);
