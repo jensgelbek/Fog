@@ -16,7 +16,7 @@ public class WebappTest extends TestCase {
 
     public void testCommitOrder() throws DBException, SQLException {
         Database db = new Database();
-        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db), new DBStyklisteRepository(db),new DBMaterialRepository(db));
+        Webapp api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db), new DBStyklisteRepository(db), new DBMaterialRepository(db));
         //  int id=api.commitOrder(order);
         //order=api.findOrder(id);
         //api.findAllOrders();
@@ -40,11 +40,14 @@ public class WebappTest extends TestCase {
         stykliste.volumenListe.add(stykListeLinje3);
 
        api.commitStykliste(stykliste,1);*/
-        Order order=api.findOrder(3);
+      /*  Order order=api.findOrder(3);
         int carporttId=order.getCarportId();
         Carport carport=api.findCarport(carporttId);
         Stykliste stykliste=(api.calculateStykliste(carport));
-        // System.out.println(stykliste);
-        // api.commitStykliste(stykliste,3);
+
+        System.out.println(stykliste);
+        api.commitStykliste(stykliste,3);*/
+        api.deletStykliste(16);
+
     }
 }
