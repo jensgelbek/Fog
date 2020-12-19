@@ -516,7 +516,7 @@ public class StyklisteCalculator {
         // Add tag bundskruer
         stykliste.unitListe.add(bundskrueCalc(width, length));
         // Add universal right
-        stykliste.unitListe.add(universalLeftCalc(length));
+        stykliste.unitListe.add(universalRigthCalc(length));
         // Add universal left
         stykliste.unitListe.add(universalLeftCalc(length));
         // Add Skruer til Stern og vandbrædt

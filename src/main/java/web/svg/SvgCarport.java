@@ -40,11 +40,7 @@ public class SvgCarport extends Tag {
     }
     public static Tag shedDraw(int length,int shedWidth, int shedLength) {
 
-        System.out.println("ShedWidth: " + shedWidth);
-        System.out.println("ShedLength: " + shedLength);
-        System.out.println("Length: " + length);
-
-        Tag shedDraw = new Rectangle(length-shedLength,35.0, shedLength, shedWidth );
+        Tag shedDraw = new Rectangle(length-(shedLength+25.0),35.0, shedLength, shedWidth );
         shedDraw.withStyle("fill: lightgrey; stroke: darkgreen; ");
         return shedDraw;
     }
