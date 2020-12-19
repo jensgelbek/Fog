@@ -116,14 +116,14 @@ public class Bestilling extends BaseServlet {
             carportdto.width = Integer.parseInt(req.getParameter("width"));
             carportdto.length = Integer.parseInt(req.getParameter("length"));
             try {
-                carportdto.shedLength = Integer.parseInt(req.getParameter("shedWidth"));
-            } catch (Exception e) {
-                carportdto.shedLength = 0;
-            }
-            try {
-                carportdto.shedWidth = Integer.parseInt(req.getParameter("shedLength"));
+                carportdto.shedWidth = Integer.parseInt(req.getParameter("shedWidth"));
             } catch (Exception e) {
                 carportdto.shedWidth = 0;
+            }
+            try {
+                carportdto.shedLength = Integer.parseInt(req.getParameter("shedLength"));
+            } catch (Exception e) {
+                carportdto.shedLength = 0;
             }
             //String tag = req.getParameter("tag");
 
@@ -144,11 +144,11 @@ public class Bestilling extends BaseServlet {
                 int shedLength = 0;
                 int shedWidth = 0;
                 try {
-                    shedLength = Integer.parseInt(req.getParameter("shedWidth"));
+                    shedWidth = Integer.parseInt(req.getParameter("shedWidth"));
                 } catch (Exception e) {
                 }
                 try {
-                    shedWidth = Integer.parseInt(req.getParameter("shedLength"));
+                    shedLength = Integer.parseInt(req.getParameter("shedLength"));
                 } catch (Exception e) {
                 }
 

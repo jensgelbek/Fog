@@ -216,7 +216,7 @@ ${requestScope.carport.tag}<br>
     <div class="col-md-3">
         beskrivelse
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
         længde
     </div>
     <div class="col-md-2">
@@ -229,8 +229,15 @@ ${requestScope.carport.tag}<br>
         <div class="col-md-3">
                 ${stykListeLinje.materiale.details}
         </div>
-        <div class="col-md-1">
-                ${stykListeLinje.materiale.length}
+        <div class="col-md-2">
+            <select class="form-control" name="length" id="length">
+                <option value=""></option>
+                <c:forEach items="${requestScope.carportMeasure}" var="len">
+                    <option value="${len}" <c:if test="${len==stykListeLinje.materiale.length}">selected</c:if>>
+                            ${len}
+                    </option>
+                </c:forEach>
+            </select>
         </div>
         <div class="col-md-2">
             <input type="number" class="form-control" id="antalvolumen" min="1" step="1" value="${stykListeLinje.quantity}"

@@ -65,7 +65,17 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
 
     @Override
     public void deleteStykliste(int orderId) {
+        try {
+            Connection con = db.getConnection();
 
+            String SQL = "DELETE FROM styklistelinje WHERE ordreid=(?);";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, orderId);
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -119,6 +129,11 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+    }
+
+    @Override
+    public void updateMaterial(int id, int materialId) {
 
     }
 
