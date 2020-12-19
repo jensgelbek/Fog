@@ -34,7 +34,7 @@ public class StyklisteCalculator {
         String description = "Understernbrædder til for og bag ende";
         int quantity = 2;
         sternWidth = new StykListeLinje(volumeMaterial, quantity, description);
-        // System.out.println("sternWidth: " + sternWidth);
+        System.out.println("sternWidth: " + sternWidth);
         return sternWidth;
     }
 
@@ -46,7 +46,7 @@ public class StyklisteCalculator {
         String description = "Understernbrædder til siderne.";
         int quantity = 2;
         sternLength = new StykListeLinje(volumeMaterial, quantity, description);
-        // System.out.println("sternLength: " + sternLength);
+        System.out.println("sternLength: " + sternLength);
         return sternLength;
     }
 
@@ -58,7 +58,7 @@ public class StyklisteCalculator {
         String description = "Oversternbrædder til siderne.";
         int quantity = 2;
         overSternLength = new StykListeLinje(volumeMaterial, quantity, description);
-        // System.out.println("overSternLength: " + overSternLength);
+        System.out.println("overSternLength: " + overSternLength);
         return overSternLength;
     }
 
@@ -70,7 +70,7 @@ public class StyklisteCalculator {
         String description = "Understernbrædt til front.";
         int quantity = 1;
         overSternWidth = new StykListeLinje(volumeMaterial, quantity, description);
-        // System.out.println("overSternWidth: " + overSternWidth);
+        System.out.println("overSternWidth: " + overSternWidth);
         return overSternWidth;
     }
 
@@ -82,7 +82,7 @@ public class StyklisteCalculator {
         String description = "Rem i siderne";
         int quantity = 2;
         remLength = new StykListeLinje(volumeMaterial, quantity, description);
-        // System.out.println("remLength: " + remLength);
+        System.out.println("remLength: " + remLength);
         return remLength;
     }
 
@@ -111,7 +111,7 @@ public class StyklisteCalculator {
 
         int quantity = tempQuantity;
         stolper = new StykListeLinje(volumeMaterial, quantity, description);
-        // System.out.println("stolper: " + stolper);
+        System.out.println("stolper: " + stolper);
         return stolper;
     }
 
@@ -121,10 +121,9 @@ public class StyklisteCalculator {
         String description = "Hulbånd";
         int quantity = 1;
         hulbaandRulle = new StykListeLinje(unitMaterial, quantity, description);
-        // System.out.println("Hulbånd: " + hulbaandRulle);
+        System.out.println("Hulbånd: " + hulbaandRulle);
         return hulbaandRulle;
     }
-
 
     public StykListeLinje tagFladtCalc(int width, int length) {
         StykListeLinje tagFladt;
@@ -143,6 +142,7 @@ public class StyklisteCalculator {
         int quantity = (int) Math.ceil(width / 1000.0);
 
         tagFladt = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println("tagFladt: " + tagFladt);
         return tagFladt;
     }
 
@@ -164,6 +164,7 @@ public class StyklisteCalculator {
         int quantity = (int) Math.ceil(width / 1000.0);
 
         tagFladtResidue = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println("tagFladtResidue: " + tagFladtResidue);
         return tagFladtResidue;
     }
 
@@ -176,13 +177,11 @@ public class StyklisteCalculator {
         String description = "Brædder til beklædning af skur 1 på 2";
 
         int tempQuantityLength = ((shedLength / 150) *2)*2;
-        System.out.println("tempQuantityLength: " + tempQuantityLength);
         int tempQuantityWidth = ((shedWidth / 150) *2)*2;
-        System.out.println("tempQuantityWidth: " + tempQuantityWidth);
 
         int quantity =  (tempQuantityLength + tempQuantityWidth);
         shedBoards = new StykListeLinje(volumeMaterial, quantity, description);
-        //System.out.println("shedBoards: " + shedBoards);
+        System.out.println("shedBoards: " + shedBoards);
         return shedBoards;
     }
 
@@ -210,6 +209,7 @@ public class StyklisteCalculator {
         // Korrigerring for dobbelberegning stolper i hjørner = -4
         int quantity = (tempQuantityLength + tempQuantityWidth) - 4;
         shedStolper = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println("shedStolper: " + shedStolper);
         return shedStolper;
     }
 
@@ -267,13 +267,196 @@ public class StyklisteCalculator {
         return waterBoardEnd;
     }
 
+    public StykListeLinje bundskrueCalc(int width, int length) {
+        StykListeLinje bundskruer;
+        UnitMaterial unitMaterial = api.findUnitMaterial("tagskruer");
+        String description = "Skruer til tagplader. plastmo bundskruer 200 stk.";
 
+        int skruerPerPakke = 200;
+        double m2 = (width/1000) * (length/1000);
+        double skruerPerM2 = 12.0;
+        double skruerTotalM2 = m2*skruerPerM2;
 
+        int quantity = (int) Math.ceil(skruerTotalM2/skruerPerPakke);
 
+        bundskruer = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("bundskruer: " +  bundskruer);
+        return bundskruer;
+    }
 
+    public StykListeLinje universalRigthCalc(int length) {
+        StykListeLinje universalRigth;
+        UnitMaterial unitMaterial = api.findUnitMaterial("universal højre");
+        String description = "Universalbeslag 190mm højre. Til montering af spær på rem";
 
+        // Number of Spærs
+        int quantity = (length / 600) - 1;
 
+        universalRigth = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("universalRigth: " +  universalRigth);
+        return universalRigth;
+    }
 
+    public StykListeLinje universalLeftCalc(int length) {
+        StykListeLinje universalLeft;
+        UnitMaterial unitMaterial = api.findUnitMaterial("universal venstre");
+        String description = "Universalbeslag 190mm venstre. Til montering af spær på rem";
+
+        // Number of Spærs
+        int quantity = (length / 600) - 1;
+
+        universalLeft = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("universalLeft: " +  universalLeft);
+        return universalLeft;
+    }
+
+    public StykListeLinje skruerCalc(int length) {
+        StykListeLinje skruer;
+        UnitMaterial unitMaterial = api.findUnitMaterial("4,5*60 skruer");
+        String description = "Til montering af stern & vandbrædt. 200 stk.";
+        int quantity = 1;
+        skruer = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("skruer: " +  skruer);
+        return skruer;
+    }
+
+    public StykListeLinje beslagSkruerCalc(int length) {
+        StykListeLinje beslagSkruer;
+        UnitMaterial unitMaterial = api.findUnitMaterial("beslag skruer");
+        String description = "4,0 x 50 mm. Til montering af universalbeslag + hulbånd. 250 stk./pakke";
+
+        int skruerPerPakke = 250;
+        // Estimatet 40
+        int skruerPerSpaer = 40;
+        int spaer = (length / 600) - 1;
+
+        int quantity = (int) Math.ceil((skruerPerSpaer*spaer)/skruerPerPakke);
+
+        beslagSkruer = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("beslagSkruer: " +  beslagSkruer);
+        return beslagSkruer;
+    }
+
+    public StykListeLinje braeddeboltCalc(int length, int shedLength) {
+        StykListeLinje braeddebolt;
+        UnitMaterial unitMaterial = api.findUnitMaterial("bræddebolt");
+        String description = "10 x 120 mm. Til montering af rem på stolper.";
+
+        // Carport antal stolper
+        int tempQuantity = 0;
+        if (length >= 6000) {
+            tempQuantity = 6;
+        } else {
+            tempQuantity = 4;
+        }
+
+        // Shed antal stolper længde ( - 1 fra Carport )
+        int tempQuantityShed = 0;
+        if (shedLength > 3000) {
+            tempQuantityShed = 6-1;
+        } else {
+            tempQuantityShed = 4-1;
+        }
+
+        // 2 stk per stolpe
+        int quantity = (tempQuantity + tempQuantityShed)*2;
+
+        braeddebolt = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("braeddebolt: " +  braeddebolt);
+        return braeddebolt;
+    }
+
+    public StykListeLinje firkantskiverCalc(int length) {
+        StykListeLinje firkantskiver;
+        UnitMaterial unitMaterial = api.findUnitMaterial("firkantskive");
+        String description = "40x40x11mm. Til montering af rem på stolper.";
+
+        // Carport antal stolper
+        int tempQuantity = 0;
+        if (length >= 6000) {
+            tempQuantity = 6;
+        } else {
+            tempQuantity = 4;
+        }
+        // 2 stk per stolpe
+        int quantity = tempQuantity *2;
+
+        firkantskiver = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("firkantskiver: " +  firkantskiver);
+        return firkantskiver;
+    }
+
+    public StykListeLinje skruerOuterShedCalc(int shedWidth, int shedLength) {
+        StykListeLinje skruerOuterShed;
+        UnitMaterial unitMaterial = api.findUnitMaterial("4,5*70 skruer");
+        String description = "Til montering af yderste beklædning. 400 stk/pakke";
+
+        int tempQuantityLength = ((shedLength / 150) *2)*2;
+        int tempQuantityWidth = ((shedWidth / 150) *2)*2;
+
+        // 4 stk per brædt 400 stk/pakke
+        int quantity = (int) (Math.ceil((tempQuantityLength + tempQuantityWidth)*4)/400);
+
+        skruerOuterShed = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("skruerOuterShed: " +  skruerOuterShed);
+        return skruerOuterShed;
+    }
+
+    public StykListeLinje skruerInnerShedCalc(int shedWidth, int shedLength) {
+        StykListeLinje skruerInnerShed;
+        UnitMaterial unitMaterial = api.findUnitMaterial("4,5*70 skruer");
+        String description = "Til montering af inderste beklædning. 300 stk/pakke";
+
+        int tempQuantityLength = ((shedLength / 150) *2)*2;
+        int tempQuantityWidth = ((shedWidth / 150) *2)*2;
+
+        // 3 stk per brædt
+        int quantity = (int) (Math.ceil((tempQuantityLength + tempQuantityWidth)*3)/300);
+
+        skruerInnerShed = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("skruerInnerShed: " +  skruerInnerShed);
+        return skruerInnerShed;
+    }
+
+    public StykListeLinje stalddoergrebCalc() {
+        StykListeLinje stalddoergreb;
+        UnitMaterial unitMaterial = api.findUnitMaterial("dør greb");
+        String description = "Stalddørsgreb 50x75. Til lås på dør til skur";
+
+        int quantity = 1;
+
+        stalddoergreb = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("stalddoergreb: " +  stalddoergreb);
+        return stalddoergreb;
+    }
+
+    public StykListeLinje haengselCalc() {
+        StykListeLinje haengsel;
+        UnitMaterial unitMaterial = api.findUnitMaterial("t hængsel");
+        String description = "390mm. Til skurdør";
+
+        int quantity = 2;
+
+        haengsel = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("haengsel: " +  haengsel);
+        return haengsel;
+    }
+
+    public StykListeLinje vinkelbeslagCalc(int shedWidth, int shedLangth) {
+        StykListeLinje vinkelbeslag;
+        UnitMaterial unitMaterial = api.findUnitMaterial("vinkelbeslag");
+        String description = "vinkelbeslag 35. Til montering af løsholter i skur";
+
+        // Et beslag per 50 cm.
+        int tempQuantityWidth = (shedWidth/500)*2;
+        int tempQuantityLength = (shedWidth/500)*2;
+
+        int quantity = tempQuantityWidth + tempQuantityLength;
+
+        vinkelbeslag = new StykListeLinje(unitMaterial, quantity, description);
+        System.out.println("vinkelbeslag: " +  vinkelbeslag);
+        return vinkelbeslag;
+    }
 
     
     public Stykliste generereStykliste(int width, int length, int shedWidth, int shedLength) throws DBException {
@@ -302,22 +485,48 @@ public class StyklisteCalculator {
             length = length - 6000;
             stykliste.volumenListe.add(tagFladtResidueCalc(width, length));
         }
-        // Add Skurbrædder
-        stykliste.volumenListe.add(shedBoards(shedWidth, shedLength));
-        // Add Shed stolper
-        stykliste.volumenListe.add(shedStolperCalc(width, shedWidth, shedLength));
-        // Add z back of the door
-        stykliste.volumenListe.add(zBackOfDoorCalc());
-        // Add Reglar gavl
-        stykliste.volumenListe.add(shedReglaerGavlCalc(shedWidth));
-        // Add Reglar sides
-        stykliste.volumenListe.add(shedReglaerSideCalc(shedLength));
+
+        if (shedLength > 0 ) {
+            // Add Skurbrædder
+            stykliste.volumenListe.add(shedBoards(shedWidth, shedLength));
+            // Add Shed stolper
+            stykliste.volumenListe.add(shedStolperCalc(width, shedWidth, shedLength));
+            // Add z back of the door
+            stykliste.volumenListe.add(zBackOfDoorCalc());
+            // Add Reglar gavl
+            stykliste.volumenListe.add(shedReglaerGavlCalc(shedWidth));
+            // Add Reglar sides
+            stykliste.volumenListe.add(shedReglaerSideCalc(shedLength));
+            // Add Skruer til yderbeklædning
+            stykliste.unitListe.add(skruerOuterShedCalc(shedWidth, shedLength));
+            // Add Skruer til inderbeklædning
+            stykliste.unitListe.add(skruerInnerShedCalc(shedWidth, shedLength));
+            // Add Staldørsgreb
+            stykliste.unitListe.add(stalddoergrebCalc());
+            // Add Hængsler
+            stykliste.unitListe.add(haengselCalc());
+            // Add Vinkelbeslag
+            stykliste.unitListe.add(vinkelbeslagCalc(shedWidth, shedLength));
+        }
+
         // Add waterboard sides
         stykliste.volumenListe.add(waterBoardSidesCalc(length));
         // Add waterboard front
         stykliste.volumenListe.add(waterBoardEndCalc(width));
-
-
+        // Add tag bundskruer
+        stykliste.unitListe.add(bundskrueCalc(width, length));
+        // Add universal right
+        stykliste.unitListe.add(universalLeftCalc(length));
+        // Add universal left
+        stykliste.unitListe.add(universalLeftCalc(length));
+        // Add Skruer til Stern og vandbrædt
+        stykliste.unitListe.add(skruerCalc(length));
+        // Add Beslagskruer
+        stykliste.unitListe.add(beslagSkruerCalc(length));
+        // Add Breddebolt
+        stykliste.unitListe.add(braeddeboltCalc(length, shedLength));
+        // Add Firkantskiver
+        stykliste.unitListe.add(firkantskiverCalc(length));
 
 
         return stykliste;
