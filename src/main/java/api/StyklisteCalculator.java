@@ -91,9 +91,9 @@ public class StyklisteCalculator {
         int spaerWidth = width;
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(spaer, spaerWidth);
         String description = "Spær: Monteres på rem";
-        int quantity = (length / 60) - 1;
+        int quantity = (length / 600) - 1;
         spaers = new StykListeLinje(volumeMaterial, quantity, description);
-        // System.out.println("spaers: " + spaers);
+        System.out.println("spaers: " + spaers);
         return spaers;
     }
 
@@ -101,7 +101,7 @@ public class StyklisteCalculator {
         StykListeLinje stolper;
         int carportLength = length;
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(stolpe, 3000);
-        String description = "Stolper";
+        String description = "Stolper nedgraves 90cm. i jord";
         int tempQuantity = 0;
         if (carportLength >= 6000) {
             tempQuantity = 6;
@@ -182,9 +182,98 @@ public class StyklisteCalculator {
 
         int quantity =  (tempQuantityLength + tempQuantityWidth);
         shedBoards = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("shedBoards: " + shedBoards);
+        //System.out.println("shedBoards: " + shedBoards);
         return shedBoards;
     }
+
+
+    public StykListeLinje shedStolperCalc(int width, int shedWidth, int shedLength) {
+        StykListeLinje shedStolper;
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(stolpe, 3000);
+        String description = "Stolper nedgraves 90cm. i jord";
+
+        int tempQuantityWidth = 0;
+        if (shedWidth > 3000) {
+            tempQuantityWidth = 6;
+        } else if (shedWidth == width ) {
+            tempQuantityWidth = -1;
+        } else {
+            tempQuantityWidth = 4;
+        }
+
+        int tempQuantityLength = 0;
+        if (shedLength > 3000) {
+            tempQuantityLength = 6;
+        } else {
+            tempQuantityLength = 4;
+        }
+        // Korrigerring for dobbelberegning stolper i hjørner = -4
+        int quantity = (tempQuantityLength + tempQuantityWidth) - 4;
+        shedStolper = new StykListeLinje(volumeMaterial, quantity, description);
+        return shedStolper;
+    }
+
+
+    public StykListeLinje zBackOfDoorCalc() {
+        StykListeLinje zBackOfDoorCalc;
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght("lægte", 3600);
+        String description = "til z på bagside af dør";
+        int quantity = 1;
+        zBackOfDoorCalc = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println(" zBackOfDoorCalc: " +  zBackOfDoorCalc);
+        return zBackOfDoorCalc;
+    }
+
+
+    public StykListeLinje shedReglaerGavlCalc(int shedWidth) {
+        StykListeLinje shedReglarGavl;
+
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(reglar, shedWidth);
+        String description = "løsholter til skur gavle";
+        int quantity = 2;
+        shedReglarGavl = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println("shedReglarGavl: " +  shedReglarGavl);
+        return shedReglarGavl;
+    }
+
+    public StykListeLinje shedReglaerSideCalc(int shedLength) {
+        StykListeLinje shedReglarSide;
+
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(reglar, shedLength);
+        String description = "løsholter til skur sider";
+        int quantity = 2;
+        shedReglarSide = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println("shedReglarSide: " +  shedReglarSide);
+        return shedReglarSide;
+    }
+
+    public StykListeLinje waterBoardSidesCalc(int length) {
+        StykListeLinje waterBoardSides;
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(braedt, length);
+        String description = "vandbrædt på stern i sider";
+        int quantity = 2;
+        waterBoardSides = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println("waterBoardSides: " +  waterBoardSides);
+        return waterBoardSides;
+    }
+
+    public StykListeLinje waterBoardEndCalc(int width) {
+        StykListeLinje waterBoardEnd;
+        VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(braedt, width);
+        String description = "vandbrædt på stern i forende";
+        int quantity = 1;
+        waterBoardEnd = new StykListeLinje(volumeMaterial, quantity, description);
+        System.out.println("waterBoardSides: " +  waterBoardEnd);
+        return waterBoardEnd;
+    }
+
+
+
+
+
+
+
+
 
     
     public Stykliste generereStykliste(int width, int length, int shedWidth, int shedLength) throws DBException {
@@ -215,6 +304,21 @@ public class StyklisteCalculator {
         }
         // Add Skurbrædder
         stykliste.volumenListe.add(shedBoards(shedWidth, shedLength));
+        // Add Shed stolper
+        stykliste.volumenListe.add(shedStolperCalc(width, shedWidth, shedLength));
+        // Add z back of the door
+        stykliste.volumenListe.add(zBackOfDoorCalc());
+        // Add Reglar gavl
+        stykliste.volumenListe.add(shedReglaerGavlCalc(shedWidth));
+        // Add Reglar sides
+        stykliste.volumenListe.add(shedReglaerSideCalc(shedLength));
+        // Add waterboard sides
+        stykliste.volumenListe.add(waterBoardSidesCalc(length));
+        // Add waterboard front
+        stykliste.volumenListe.add(waterBoardEndCalc(width));
+
+
+
 
         return stykliste;
     }

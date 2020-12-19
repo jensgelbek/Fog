@@ -12,7 +12,6 @@ public class SvgCarport extends Tag {
     private final int height;
     private final String viewBox;
 
-
     public SvgCarport(int width, int height, String viewBox) {
         super("svg");
         this.width = width;
@@ -41,7 +40,11 @@ public class SvgCarport extends Tag {
     }
     public static Tag shedDraw(int length,int shedWidth, int shedLength) {
 
-        Tag shedDraw = new Rectangle(length-shedLength,35.0, shedLength, shedWidth);
+        System.out.println("ShedWidth: " + shedWidth);
+        System.out.println("ShedLength: " + shedLength);
+        System.out.println("Length: " + length);
+
+        Tag shedDraw = new Rectangle(length-shedLength,35.0, shedLength, shedWidth );
         shedDraw.withStyle("fill: lightgrey; stroke: darkgreen; ");
         return shedDraw;
     }
@@ -183,6 +186,19 @@ public class SvgCarport extends Tag {
 
     }
     public static Tag carport(int width, int length, int shedWidth, int shedLength) {
+
+        int newWidth = width/10;
+        width = newWidth;
+
+        int newLength = length/10;
+        length = newLength;
+
+        int newShedWidth = shedWidth/10;
+        shedWidth = newShedWidth;
+
+        int newShedLength = shedLength/10;
+        shedLength = newShedLength;
+
         SvgOuter ramme = new SvgOuter(800, 700, "0 0 855 750");
         ramme.add(lineW(width));
         ramme.add(lineL(width, length));

@@ -92,9 +92,6 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
             String SQL = "INSERT INTO styklistelinje (ordreid,materialid,antal,description) VALUES (?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,orderId);
-            System.out.println(stykListeLinje);
-            System.out.println(stykListeLinje.getMateriale());
-            System.out.println(stykListeLinje.getMateriale().getId());
 
             ps.setInt(2, stykListeLinje.getMateriale().getId());
             ps.setInt(3,stykListeLinje.getQuantity());
