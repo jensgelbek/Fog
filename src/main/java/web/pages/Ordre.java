@@ -96,13 +96,13 @@ public class Ordre extends BaseServlet {
             //opdater antal
             int antal= Integer.parseInt(req.getParameter("antal"));
             api.updateStykListeLinjeAntal(styklistelinjeid, antal);
-            //opdater materiale (med ny længde)
+           /* //opdater materiale (med ny længde)
             StykListeLinje stykListeLinje=api.findStykListeLinje(styklistelinjeid);
             int length= Integer.parseInt(req.getParameter("length"));
             System.out.println(styklistelinjeid+" "+length+" "+stykListeLinje.getMateriale().getName());
             Material material=api.findVolumeMaterialNameLenght(stykListeLinje.getMateriale().getName(),length);
             System.out.println(material);
-            api.updateStykListeLinjeMaterialeId(styklistelinjeid,material.getId());
+            api.updateStykListeLinjeMaterialeId(styklistelinjeid,material.getId());*/
 
             resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+ordreId);
         }
