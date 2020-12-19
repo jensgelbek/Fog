@@ -483,7 +483,7 @@ public class StyklisteCalculator {
         // Add Tag
         if (length - 6000 > 0) {
             length = length - 6000;
-            stykliste.volumenListe.add(tagFladtResidueCalc(width, length));
+            stykliste.volumenListe.add(tagFladtResidueCalc(width, length-6000));
         }
 
         if (shedLength > 0 ) {
