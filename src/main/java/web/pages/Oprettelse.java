@@ -18,7 +18,6 @@ public class Oprettelse extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            // req.setAttribute("items", api.findAllItems());
             render("Start", "/WEB-INF/webpages/oprettelse.jsp", req, resp);
         } catch (ServletException | IOException e) {
             log(e.getMessage());

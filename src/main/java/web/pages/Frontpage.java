@@ -26,6 +26,7 @@ public class Frontpage extends BaseServlet {
         var s = req.getSession();
         s.setAttribute("username", "");
         s.setAttribute("employer","no");
+        s.setAttribute("carport",null);
         resp.sendRedirect(req.getContextPath() + "/frontpage");
     }
 
