@@ -96,7 +96,6 @@ public class Ordre extends BaseServlet {
             resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+ordreId);
         }
         if (req.getParameter("editvolumen") != null) {
-            System.out.println("editvolumen");
             int styklistelinjeid= Integer.parseInt(req.getParameter("editvolumen"));
             //opdater antal
             int antal= Integer.parseInt(req.getParameter("antal"));
@@ -109,6 +108,13 @@ public class Ordre extends BaseServlet {
             System.out.println(material);
             api.updateStykListeLinjeMaterialeId(styklistelinjeid,material.getId());*/
 
+            resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+ordreId);
+        }
+        if (req.getParameter("editprice") != null) {
+            System.out.println("erinde");
+            int newPrice= Integer.parseInt(req.getParameter("pris"));
+            System.out.println("new price: "+newPrice+ " orderid: "+ordreId);
+            api.updateOrderPrice(ordreId,newPrice);
             resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+ordreId);
         }
     }
