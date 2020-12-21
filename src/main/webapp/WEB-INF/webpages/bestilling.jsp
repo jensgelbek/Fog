@@ -146,7 +146,7 @@
                             Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
                             2 x bærende 'Rem' i siderne på langs med <b><i>Sort</i></b> <br>
                             Stolper er firkanter placeret langs remmene <b><i>Sort</i></b> <br>
-                            Den <b><i>Blå</i></b> linje til venste er bredden indenfor stolperne <br>
+                            Linje til venste er bredden indenfor stolperne, tegnet med<b><i> Blå</i></b><br><br>
                             Redskabsskuret er tegnet med <b><i>Grøn </i></b>
                         </p>
                     </div>

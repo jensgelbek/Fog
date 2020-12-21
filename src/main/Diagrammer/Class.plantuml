@@ -1,0 +1,550 @@
+@startuml
+
+title __ITEMS's Class Diagram__\n
+
+
+      class domain.items.Carport {
+          ~ carportID : int
+          ~ lenght : int
+          ~ rejsning : boolean
+          ~ shedLength : int
+          ~ shedWidth : int
+          ~ tag : String
+          ~ width : int
+          + Carport()
+          + Carport()
+          + getCarportID()
+          + getLenght()
+          + getRejsning()
+          + getShedLength()
+          + getShedWidth()
+          + getTag()
+          + getWidth()
+          + isRejsning()
+          + setCarportID()
+          + toString()
+      }
+
+  
+
+
+
+
+
+      class domain.items.Customer {
+          ~ address : String
+          ~ admin : boolean
+          ~ email : String
+          ~ name : String
+          ~ phoneNumber : int
+          {static} - PASSWORD_FACTORY : SecretKeyFactory
+          {static} - PASSWORD_ITERATIONS : int
+          {static} - PASSWORD_LENGTH : int
+          - salt : byte[]
+          - secret : byte[]
+          + Customer()
+          {static} + calculateSecret()
+          + checkPassword()
+          + equals()
+          {static} + generateSalt()
+          + getAddress()
+          + getEmail()
+          + getName()
+          + getPhoneNumber()
+          + getSalt()
+          + getSecret()
+          + hashCode()
+          + isAdmin()
+          + setAddress()
+          + setAdmin()
+          + setEmail()
+          + setName()
+          + setPhoneNumber()
+          + setSalt()
+          + setSecret()
+          + toString()
+      }
+
+  
+
+
+
+
+      class domain.items.Offer {
+          ~ date : LocalDate
+          ~ offerID : int
+          ~ openOffer : boolean
+          ~ price : int
+          + Offer()
+          + getCustomer()
+          + getDate()
+          + getMaterials()
+          + getOfferID()
+          + getPrice()
+          + isOpenOffer()
+          + setCustomer()
+          + setDate()
+          + setMaterials()
+          + setOfferID()
+          + setOpenOffer()
+          + setPrice()
+      }
+
+
+
+
+      class domain.items.Order {
+          ~ carportId : int
+          ~ kundeEmail : String
+          ~ leveringsDato : LocalDate
+          ~ orderID : int
+          ~ ordredato : LocalDate
+          ~ price : int
+          ~ status : String
+          ~ tilbudsdato : LocalDate
+          + Order()
+          + Order()
+          + getCarportId()
+          + getKundeEmail()
+          + getLeveringsDato()
+          + getOrderID()
+          + getOrdredato()
+          + getPrice()
+          + getStatus()
+          + getTilbudsdato()
+          + setCarportId()
+          + setKundeEmail()
+          + setLeveringsDato()
+          + setOrderID()
+          + setOrdredato()
+          + setPrice()
+          + setStatus()
+          + setTilbudsdato()
+          + toString()
+      }
+
+
+      class domain.items.Seller {
+          ~ name : String
+          ~ sellerID : int
+          ~ username : String
+          - salt : byte[]
+          - secret : byte[]
+          + Seller()
+          + getName()
+          + getSalt()
+          + getSecret()
+          + getSellerID()
+          + getUsername()
+          + setName()
+          + setSalt()
+          + setSecret()
+          + setSellerID()
+          + setUsername()
+      }
+
+  domain.items.Offer o-- domain.items.Customer : customer
+  domain.items.Offer o-- domain.materials.Material : material
+
+ class api.Calc {
+          {static} - braedt : String
+          {static} - overstern : String
+          {static} - reglar : String
+          {static} - rem : String
+          {static} - spaer : String
+          {static} - understern : String
+          + Calc()
+          {static} + generereStykliste()
+          {static} + remCalc()
+          {static} + spaerCalc()
+          {static} + sternWidthCalc()
+      }
+
+      class api.Utils {
+          ~ stykListeLinjes : List<StykListeLinje>
+          {static} - PASSWORD_FACTORY : SecretKeyFactory
+          {static} - PASSWORD_ITERATIONS : int
+          {static} - PASSWORD_LENGTH : int
+          {static} + calculateSecret()
+          {static} + checkPassword()
+          {static} + generateSalt()
+          {static} + genererStyklister()
+          {static} + removeHtml()
+          {static} + timestampToLocalDate()
+      }
+
+      class api.Webapp {
+          {static} - TITLE : String
+          {static} - VERSION : int
+          {static} - styklisteLinjer : StyklisteLinjeRepository
+          {static} - styklister : StyklisteRepository
+          {static} - volumeMaterials : VolumeMaterialRepository
+          + Webapp()
+          + commitCarport()
+          + commitCustomer()
+          + commitOrder()
+          + commitSeller()
+          + commitStykliste()
+          + commitStyklisteLinie()
+          + findAllCustomers()
+          + findAllOrders()
+          + findAllOrdersWithEmail()
+          + findAllSellers()
+          + findAllUnitMaterilas()
+          + findAllVolumeMaterials()
+          + findAllVolumeMaterialsName()
+          + findAlleCarports()
+          + findCarport()
+          + findCustomer()
+          + findOrder()
+          + findSeller()
+          + findStykliste()
+          + findUnitMaterial()
+          + findUnitMaterial()
+          {static} + findVolumeMaterial()
+          + findVolumeMaterialNameLenght()
+          {static} + getTitle()
+          {static} + getVersion()
+          {static} + main()
+          + setLeveringsDato()
+          + setOdreDato()
+          + updateOrderstatus()
+          + updateSellerPassword()
+          + updateUnitMaterislPrice()
+      }
+
+
+      class entries.Migrate {
+          {static} + main()
+          {static} + runMigration()
+          {static} + runMigrations()
+      }
+     class infrastructure.DBCarportRepository {
+             + DBCarportRepository()
+             + commit()
+             + find()
+             + findAll()
+         }
+
+         class infrastructure.DBCustomerRepository {
+             + DBCustomerRepository()
+             + commitCustomer()
+             + findAll()
+             + findCustomer()
+         }
+
+         class infrastructure.DBOrderRepository {
+             + DBOrderRepository()
+             + commit()
+             + find()
+             + findAll()
+             + findAllWithEmail()
+             + setLeveringsDato()
+             + setOrdreDato()
+             + updateStatus()
+         }
+
+         class infrastructure.DBSellerRepository {
+             + DBSellerRepository()
+             + commit()
+             + find()
+             + findAll()
+             + updatePassword()
+         }
+
+         class infrastructure.DBStyklisteLinjeRepository {
+             + DBStyklisteLinjeRepository()
+             + commit()
+             + find()
+
+         class infrastructure.DBStyklisteRepository {
+             + DBStyklisteRepository()
+             + commit()
+             + commitStykliste()
+             + find()
+             + findStykliste()
+         }
+
+         class infrastructure.DBUnitMaterialRepository {
+             + DBUnitMaterialRepository()
+             + commit()
+             + find()
+             + findAll()
+             + findName()
+             + updatePrice()
+       }
+         class infrastructure.DBVolumeMateialRepository {
+             + DBVolumeMateialRepository()
+             + commit()
+             + find()
+             + find()
+             + findAll()
+             + findAllName()
+             + updateNameWithPrice()
+         }
+
+         class infrastructure.Database {
+             {static} ~ DB_PASS : String
+             {static} ~ DB_SERVER : String
+             {static} ~ DB_URL : String
+             {static} ~ DB_USER : String
+             {static} ~ JDBC_DRIVER : String
+             {static} ~ SCHEMA_NAME : String
+             {static} - version : int
+             + Database()
+             {static} + getConnection()
+             {static} + getCurrentVersion()
+             {static} + getVersion()
+         }
+
+         class infrastructure.Lists {
+             ~ carportMeasure : int[]
+             ~ shedLengthArr : int[]
+             ~ shedWidthArr : int[]
+             ~ tag : String[]
+             ~ tagHaldning : int[]
+             ~ tagRejs : String[]
+             + Lists()
+             + carportMeasure()
+             + getCarportMeasure()
+             + getShedLengthArr()
+             + getShedWidthArr()
+             + getTag()
+             + getTagHaldning()
+             + getTagRejs()
+             + shedlength()
+             + shedwidth()
+             + tag()
+             + tagHaldning()
+             + tagRejs()
+         }
+               class web.pages.Bestilling {
+                   {static} + getCarport()
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.Bestilling.CarportDTO {
+                   + length : int
+                   + shedLength : int
+                   + shedWidth : int
+                   + width : int
+                   {static} + fromSession()
+                   + getDrawing()
+                   + getLength()
+                   + getShedLength()
+                   + getShedWidth()
+                   + getWidth()
+               }
+
+               class web.pages.BestillingRejsning {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.CreateSeller {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.Frontpage {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.Index {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.Kontakt {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.Login {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.MinOrdre {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.MinSide {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.NytPassword {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.OpretSeller {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.Oprettelse {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.Ordre {
+                   # doGet()
+                   # doPost()
+               }
+
+               class web.pages.Ordrer {
+                   # doGet()
+                   # doPost()
+               }
+
+        class web.svg.Line {
+            - x1 : double
+            - x2 : double
+            - y1 : double
+            - y2 : double
+            + Line()
+            # renderAttributes()
+        }
+
+        class web.svg.Rectangle {
+            - height : double
+            - width : double
+            - x : double
+            - y : double
+            # Rectangle()
+            # renderAttributes()
+        }
+
+        class web.svg.SvgCarport {
+            - height : int
+            - viewBox : String
+            - width : int
+            + SvgCarport()
+            {static} + carport()
+            {static} + carport2()
+            {static} + hulbaandDraw()
+            {static} + lineL()
+            {static} + lineW()
+            {static} + remOneDraw()
+            {static} + remTwoDraw()
+            {static} + shedDraw()
+            {static} + spaerDraw()
+            {static} + sternDraw()
+            {static} + stolperDraw()
+            # renderAttributes()
+        }
+
+        class web.svg.SvgInner {
+            - height : int
+            - viewBox : String
+            - width : int
+            - x : double
+            - y : double
+            + SvgInner()
+            + renderAttributes()
+        }
+
+        class web.svg.SvgOuter {
+            - height : int
+            - viewBox : String
+            - width : int
+            + SvgOuter()
+            {static} + chessboard()
+            {static} + chessfield()
+            {static} + main()
+            + renderAttributes()
+        }
+
+        abstract class web.svg.Tag {
+            # subTags : List<Tag>
+            - clazz : String
+            - name : String
+            - style : String
+            + add()
+            + render()
+            + renderSubTags()
+            + toString()
+            + withClass()
+            + withStyle()
+            # Tag()
+            {abstract} # renderAttributes()
+        }
+
+      class web.BaseServlet {
+          {static} # api : Webapp
+          ~ pagesForAll : List<String>
+          # log()
+          # render()
+          {static} - createApplication()
+      }
+
+
+  web.BaseServlet -up-|> javax.servlet.http.HttpServlet
+
+
+
+
+  web.svg.Line -up-|> web.svg.Tag
+  web.svg.Rectangle -up-|> web.svg.Tag
+  web.svg.SvgCarport -up-|> web.svg.Tag
+  web.svg.SvgInner -up-|> web.svg.Tag
+  web.svg.SvgOuter -up-|> web.svg.Tag
+
+
+
+
+         web.pages.Bestilling -up-|> web.BaseServlet
+         web.pages.Bestilling +-down- web.pages.Bestilling.CarportDTO
+         web.pages.BestillingRejsning -up-|> web.BaseServlet
+         web.pages.CreateSeller -up-|> web.BaseServlet
+         web.pages.Frontpage -up-|> web.BaseServlet
+         web.pages.Index -up-|> web.BaseServlet
+         web.pages.Kontakt -up-|> web.BaseServlet
+         web.pages.Login -up-|> web.BaseServlet
+         web.pages.MinOrdre -up-|> web.BaseServlet
+         web.pages.MinSide -up-|> web.BaseServlet
+         web.pages.NytPassword -up-|> web.BaseServlet
+         web.pages.OpretSeller -up-|> web.BaseServlet
+         web.pages.Oprettelse -up-|> web.BaseServlet
+         web.pages.Ordre -up-|> web.BaseServlet
+         web.pages.Ordrer -up-|> web.BaseServlet
+
+
+
+
+     infrastructure.DBCarportRepository .up.|> domain.items.CarportRepository
+     infrastructure.DBCarportRepository o-- infrastructure.Database : db
+     infrastructure.DBCustomerRepository .up.|> domain.items.CustomerRepository
+     infrastructure.DBCustomerRepository o-- infrastructure.Database : db
+     infrastructure.DBOrderRepository .up.|> domain.items.OrderRepository
+     infrastructure.DBOrderRepository o-- infrastructure.Database : db
+     infrastructure.DBSellerRepository .up.|> domain.items.SellerRepository
+     infrastructure.DBSellerRepository o-- infrastructure.Database : db
+     infrastructure.DBStyklisteLinjeRepository .up.|> domain.materials.StyklisteLinjeRepository
+     infrastructure.DBStyklisteLinjeRepository o-- infrastructure.Database : db
+     infrastructure.DBStyklisteRepository .up.|> domain.materials.StyklisteLinjeRepository
+     infrastructure.DBStyklisteRepository .up.|> domain.materials.StyklisteRepository
+     infrastructure.DBStyklisteRepository o-- infrastructure.Database : db
+     infrastructure.DBUnitMaterialRepository .up.|> domain.materials.UnitMaterialRepository
+     infrastructure.DBUnitMaterialRepository o-- infrastructure.Database : db
+     infrastructure.DBVolumeMateialRepository .up.|> domain.materials.VolumeMaterialRepository
+     infrastructure.DBVolumeMateialRepository o-- infrastructure.Database : db
+
+
+
+   @enduml
+  api.Calc -up-|> domain.materials.Stykliste
+  api.Webapp o-- domain.items.CarportRepository : carports
+  api.Webapp o-- domain.items.CustomerRepository : customers
+  api.Webapp o-- domain.items.OrderRepository : orders
+  api.Webapp o-- domain.items.SellerRepository : sellers
+  api.Webapp o-- domain.materials.UnitMaterialRepository : unitMaterials
+
+
+@enduml
+

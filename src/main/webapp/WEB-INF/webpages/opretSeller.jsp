@@ -1,10 +1,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8" %>
+<h1>
+    Opret ny sælger
+</h1>
+
 <p1>
-    Her kan du oprette en bruger. Du skal have oprettet dig som bruger, før du kan bestille
-    en carport.
+    Her kan du oprette en ny sælger. Sælgeren skal ændre sit password, første gang der logges ind.
     <br>
-    Indtast dine oplysninger:
+    Indtast sælgers oplysninger:
 
 </p1>
 <br>
