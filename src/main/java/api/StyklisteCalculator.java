@@ -267,15 +267,6 @@ public class StyklisteCalculator {
         return waterBoardEnd;
     }
 
-
-
-
-
-
-
-
-
-    
     public Stykliste generereStykliste(int width, int length, int shedWidth, int shedLength) throws DBException {
         Stykliste stykliste = new Stykliste();
 
@@ -299,8 +290,7 @@ public class StyklisteCalculator {
         stykliste.volumenListe.add(tagFladtCalc(width, length));
         // Add Tag
         if (length - 6000 > 0) {
-            length = length - 6000;
-            stykliste.volumenListe.add(tagFladtResidueCalc(width, length));
+           stykliste.volumenListe.add(tagFladtResidueCalc(width, length-6000));
         }
         // Add Skurbrædder
         stykliste.volumenListe.add(shedBoards(shedWidth, shedLength));
@@ -316,9 +306,6 @@ public class StyklisteCalculator {
         stykliste.volumenListe.add(waterBoardSidesCalc(length));
         // Add waterboard front
         stykliste.volumenListe.add(waterBoardEndCalc(width));
-
-
-
 
         return stykliste;
     }

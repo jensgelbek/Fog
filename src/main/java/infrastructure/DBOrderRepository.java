@@ -105,6 +105,21 @@ public class DBOrderRepository implements OrderRepository {
 
     }
 
+    @Override
+    public void updatePrice(int id, int newPrice) throws DBException {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "UPDATE ordre  SET pris=(?)WHERE id=(?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, newPrice);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new DBException("order do not exist");
+        }
+    }
+
 
     @Override
     public int commit(Order order) {

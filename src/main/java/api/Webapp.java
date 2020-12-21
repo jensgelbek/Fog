@@ -242,4 +242,12 @@ public class Webapp {
     public StykListeLinje findStykListeLinje(int id){
        return styklisteLinjer.find(id);
     }
+
+    public void updateOrderPrice(int id, int newPrice){
+        try {
+            orders.updatePrice(id,newPrice);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+    }
 }
