@@ -34,7 +34,7 @@
     <b>Leveres</b>${requestScope.order.leveringsDato}<br>
 </c:if>
 
-<b>carport på</b> ${requestScope.carport.width/1000}*${requestScope.carport.lenght/1000} m
+<b>Carport på</b> ${requestScope.carport.width/1000}*${requestScope.carport.lenght/1000} m
 <c:if test="${requestScope.carport.shedWidth!=0}">
     med et skur på ${requestScope.carport.shedWidth/1000}*${requestScope.carport.shedLength/1000}m,
 </c:if>
@@ -45,6 +45,7 @@
     med tag med rejsning med
 </c:if>
 ${requestScope.carport.tag}<br>
+<b>Pris: </b> ${requestScope.order.price}<br>
 
 <br>
 <hr>
@@ -216,7 +217,7 @@ ${requestScope.carport.tag}<br>
     <div class="col-md-3">
         beskrivelse
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
         længde
     </div>
     <div class="col-md-2">
@@ -229,15 +230,8 @@ ${requestScope.carport.tag}<br>
         <div class="col-md-3">
                 ${stykListeLinje.materiale.details}
         </div>
-        <div class="col-md-2">
-            <select class="form-control" name="length" id="length">
-                <option value=""></option>
-                <c:forEach items="${requestScope.carportMeasure}" var="len">
-                    <option value="${len}" <c:if test="${len==stykListeLinje.materiale.length}">selected</c:if>>
-                            ${len}
-                    </option>
-                </c:forEach>
-            </select>
+        <div class="col-md-1">
+                ${stykListeLinje.materiale.length}
         </div>
         <div class="col-md-2">
             <input type="number" class="form-control" id="antalvolumen" min="1" step="1" value="${stykListeLinje.quantity}"

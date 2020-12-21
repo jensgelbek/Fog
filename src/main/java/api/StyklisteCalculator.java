@@ -267,6 +267,7 @@ public class StyklisteCalculator {
         return waterBoardEnd;
     }
 
+
     public StykListeLinje bundskrueCalc(int width, int length) {
         StykListeLinje bundskruer;
         UnitMaterial unitMaterial = api.findUnitMaterial("tagskruer");
@@ -459,6 +460,7 @@ public class StyklisteCalculator {
     }
 
     
+
     public Stykliste generereStykliste(int width, int length, int shedWidth, int shedLength) throws DBException {
         Stykliste stykliste = new Stykliste();
 
@@ -482,8 +484,9 @@ public class StyklisteCalculator {
         stykliste.volumenListe.add(tagFladtCalc(width, length));
         // Add Tag
         if (length - 6000 > 0) {
-            length = length - 6000;
-            stykliste.volumenListe.add(tagFladtResidueCalc(width, length-6000));
+
+           stykliste.volumenListe.add(tagFladtResidueCalc(width, length-6000));
+
         }
 
         if (shedLength > 0 ) {
@@ -513,6 +516,7 @@ public class StyklisteCalculator {
         stykliste.volumenListe.add(waterBoardSidesCalc(length));
         // Add waterboard front
         stykliste.volumenListe.add(waterBoardEndCalc(width));
+
         // Add tag bundskruer
         stykliste.unitListe.add(bundskrueCalc(width, length));
         // Add universal right

@@ -1,5 +1,6 @@
 package web.pages;
 
+import api.Utils;
 import domain.items.*;
 import domain.materials.Material;
 import domain.materials.StykListeLinje;
@@ -67,14 +68,18 @@ public class Ordre extends BaseServlet {
             }
 
            carport.setLenght(Integer.parseInt(req.getParameter("length")));
-           carport.setShedWidth(Integer.parseInt(req.getParameter("width")));
+            System.out.println(req.getParameter("length")+req.getParameter("width")+req.getParameter("shedlength")+req.getParameter("shedwidth"));
+           carport.setWidth(Integer.parseInt(req.getParameter("width")));
+            System.out.println(Integer.parseInt(req.getParameter("width")));
            carport.setShedLength(Integer.parseInt(req.getParameter("shedlength")));
            carport.setShedWidth(Integer.parseInt(req.getParameter("shedwidth")));
-            System.out.println(carport);
+            System.out.println("ny carport"+ carport);
             api.updateCarport(carport);
             try {
                 api.deletStykliste(orderId);
                 Stykliste stykliste= api.calculateStykliste(carport);
+                int newPrice= Utils.calculatePrice(stykliste);
+                api.updateOrderPrice(orderId,newPrice);
                 api.commitStykliste(stykliste,orderId);
             } catch (DBException e) {
                 e.printStackTrace();
@@ -96,13 +101,13 @@ public class Ordre extends BaseServlet {
             //opdater antal
             int antal= Integer.parseInt(req.getParameter("antal"));
             api.updateStykListeLinjeAntal(styklistelinjeid, antal);
-            //opdater materiale (med ny længde)
+           /* //opdater materiale (med ny længde)
             StykListeLinje stykListeLinje=api.findStykListeLinje(styklistelinjeid);
             int length= Integer.parseInt(req.getParameter("length"));
             System.out.println(styklistelinjeid+" "+length+" "+stykListeLinje.getMateriale().getName());
             Material material=api.findVolumeMaterialNameLenght(stykListeLinje.getMateriale().getName(),length);
             System.out.println(material);
-            api.updateStykListeLinjeMaterialeId(styklistelinjeid,material.getId());
+            api.updateStykListeLinjeMaterialeId(styklistelinjeid,material.getId());*/
 
             resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+ordreId);
         }

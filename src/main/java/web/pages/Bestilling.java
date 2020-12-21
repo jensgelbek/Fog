@@ -3,6 +3,7 @@ package web.pages;
 
 import api.StyklisteCalculator;
 
+import api.Utils;
 import domain.items.Carport;
 import domain.items.DBException;
 import domain.items.Order;
@@ -159,9 +160,10 @@ public class Bestilling extends BaseServlet {
                     carport.setCarportID(carportId);
 
                     Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
-                    orderid = api.commitOrder(order);
-
                     Stykliste stykliste = api.calculateStykliste(carport);
+                    int price=Utils.calculatePrice(stykliste);
+                    order.setPrice(price);
+                    orderid = api.commitOrder(order);
                     api.commitStykliste(stykliste,orderid);
 
                 } catch (SQLException | DBException throwables) {

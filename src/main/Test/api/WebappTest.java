@@ -47,7 +47,7 @@ public class WebappTest extends TestCase {
 
         System.out.println(stykliste);
         api.commitStykliste(stykliste,3);*/
-        api.deletStykliste(16);
+        System.out.println(Utils.calculatePrice(api.findStykliste(1)));
 
     }
 }
