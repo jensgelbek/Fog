@@ -1,7 +1,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8" %>
-
+<h1>
+    Ordreside
+</h1>
 <div class="container">
+
     <link rel="stylesheet" href="<c:url value="/static/style.css"/>"/>
     <br>
     <br>

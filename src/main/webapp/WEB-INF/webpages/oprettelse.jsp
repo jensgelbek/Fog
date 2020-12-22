@@ -43,7 +43,7 @@
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password"
+            <input type="password" class="form-control" id="password" required="required"
                    aria-describedby="kundepassword" name="password">
         </div>
 

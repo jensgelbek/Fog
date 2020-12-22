@@ -177,6 +177,39 @@ ${requestScope.carport.tag}<br>
 </form>
 <br>
 <br>
+<form method="post">
+    <div class="row">
+
+        <div class="col-md-1">
+            Pris
+        </div>
+        <div class="col-md-2">
+            Ny pris
+        </div>
+
+
+    </div>
+    <div class="row">
+
+        <div class="col-md-1">
+            ${requestScope.order.price}
+        </div>
+        <div class="col-md-2">
+            <input type="number" class="form-control" id="pris" min="1" step="1" value="${requestScope.order.price}"
+                   aria-describedby="pris" name="pris">
+        </div>
+
+
+            <div class="col-md-2">
+                <form method="post">
+                    <input type="hidden" name="editprice" value="pris">
+                    <button type="submit" class="btn btn-primary">Gem ny pris</button>
+                </form>
+            </div>
+
+    </div>
+</form>
+<br>
 <b>Styk materialer</b><br>
 
     <div class="row">
@@ -281,9 +314,7 @@ ${requestScope.carport.tag}<br>
         </c:if>
     </c:if>
 </c:if>
-<c:if test="${requestScope.order.status==\"ordre\"}">
-    <h1>Her skla vises stykliste...</h1>
-</c:if>
+
 
 </body>
 </html>

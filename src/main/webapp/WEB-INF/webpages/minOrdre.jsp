@@ -44,6 +44,10 @@
 </c:if>
 ${requestScope.carport.tag}
 <br>
+<b>Pris: </b>${requestScope.order.price}
+<br>
+
+
 <b> Tegning af din carport:<br></b>
 <p>Bredde & længde udgør 'Stern' (for/bag og siderne), her indikeret med <b><i>Rødt</i></b> <br>
     Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
@@ -55,43 +59,85 @@ ${requestScope.carport.tag}
 ${svg}
 
 <br>
-<hr>
-
-${requestScope.stykliste.volumenListe[0].description}
 
 
-<c:if test="${requestScope.order.status!=\"afsluttet\"}">
-    <c:if test="${requestScope.order.status!=\"afslået\"}">
-        <c:if test="${requestScope.order.status!=\"ordre\"}">
-            <div class="row">
 
-                <div class="col-md-1">
-                    <form method="post">
-                        <input type="hidden" name="bestil" value=${requestScope.order.orderID}>
-                        <button type="submit" class="btn btn-primary">Bestil</button>
-                    </form>
-                </div>
-                <div class="col-md-1">
-                    <form method="post">
-                        <input type="hidden" name="afslaa" value=${requestScope.order.orderID}>
-                        <button type="submit" class="btn btn-primary">Afslå</button>
-                    </form>
-                </div>
-                <div class="col-md-2">
-                    <form method="post">
-                        <input type="hidden" name="kontakt" value=${requestScope.order.orderID}>
-                        <button type="submit" class="btn btn-primary">Kontakt mig</button>
-                    </form>
+<c:if test="${requestScope.order.status==\"afsluttet\"||requestScope.order.status==\"ordre\"}">
+    <h1>Stykliste</h1>
+    <b>Træ og træplader</b>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Beskrivelse</th>
+            <th scope="col">længde</th>
+            <th scope="col">Antal</th>
+            <th scope="col">Beskrivelse</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${requestScope.stykliste.volumenListe}" var="styklisteLinje">
+            <tr>
+                <td>${styklisteLinje.materiale.details}</td>
+                <td>${styklisteLinje.materiale.length}</td>
+                <td>${styklisteLinje.quantity}</td>
+                <td>${styklisteLinje.description}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <br>
+    <b>Beslag og skruer</b>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Beskrivelse</th>
+            <th scope="col">Antal</th>
+            <th scope="col">Enhed</th>
+            <th scope="col">Beskrivelse</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${requestScope.stykliste.unitListe}" var="styklisteLinje">
+            <tr>
+                <td>${styklisteLinje.materiale.details}</td>
+                <td>${styklisteLinje.quantity}</td>
+                <td>${styklisteLinje.materiale.unitType}</td>
+                <td>${styklisteLinje.description}</td>
+            </tr>
+        </c:forEach>
 
-                </div>
+        </tbody>
+    </table>
+</c:if>
+
+<c:if test="${requestScope.order.status==\"tilbud\"||requestScope.order.status==\"kontakt\"}">
+    <div class="row">
+
+        <div class="col-md-1">
+            <form method="post">
+                <input type="hidden" name="bestil" value=${requestScope.order.orderID}>
+                <button type="submit" class="btn btn-primary">Bestil</button>
+            </form>
+        </div>
+        <div class="col-md-1">
+            <form method="post">
+                <input type="hidden" name="afslaa" value=${requestScope.order.orderID}>
+                <button type="submit" class="btn btn-primary">Afslå</button>
+            </form>
+        </div>
+        <c:if test="${requestScope.order.status==\"tilbud\"}">
+
+            <div class="col-md-2">
+                <form method="post">
+                    <input type="hidden" name="kontakt" value=${requestScope.order.orderID}>
+                    <button type="submit" class="btn btn-primary">Kontakt mig</button>
+                </form>
 
             </div>
-
         </c:if>
-    </c:if>
-</c:if>
-<c:if test="${requestScope.order.status==\"ordre\"}">
-    <h1>Her skla vises stykliste...</h1>
+    </div>
+
+
 </c:if>
 
 </body>

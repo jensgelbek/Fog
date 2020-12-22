@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS volumematerialer;
 DROP TABLE IF EXISTS materialer;
 DROP TABLE IF EXISTS materialetype;
 
-CREATE TABLE MaterialeType (
+CREATE TABLE materialetype (
                                name VARCHAR(255) NOT NULL,
                                details VARCHAR(255) NOT NULL,
                                pris int,
@@ -15,12 +15,12 @@ CREATE TABLE materialer (
                             name VARCHAR(255) NOT NULL,
                             PRIMARY KEY (id),
                             KEY materiale2 (name),
-                            CONSTRAINT materialetype FOREIGN KEY (name) REFERENCES MaterialeType(name) ON DELETE CASCADE ON UPDATE CASCADE
+                            CONSTRAINT materialetype FOREIGN KEY (name) REFERENCES materialetype(name) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE unitMaterialer (
+CREATE TABLE unitmaterialer (
                                 unitMaterialeId int,
                                 unitType VARCHAR(255) NOT NULL,
                                 PRIMARY KEY (unitMaterialeId),
@@ -29,7 +29,7 @@ CREATE TABLE unitMaterialer (
 
 ) ENGINE=InnoDB;
 
-CREATE TABLE volumeMaterialer (
+CREATE TABLE volumematerialer (
                                   volumeMaterialeId int,
                                   length int NOT NULL,
                                   PRIMARY KEY (volumeMaterialeId),

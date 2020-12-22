@@ -83,7 +83,7 @@
 
 
                     <br>
-
+                    <c:if test="${carport.length>0}">
                     <P><b>Redskabsrum:</b><br>NB! Der skal beregnes 15 cm tagudhæng på hver side af redskabsrummet*</P>
 
                     <!-- Dropdown Shed-width -->
@@ -93,11 +93,11 @@
                             <option value="shed">Ønsker ikke redskabsskur</option>
 
                             <c:forEach  items="${requestScope.shedW}" var="shedW">
+                                <c:if test="${shedW<=carport.width-600}">
                                 <option value="${shedW}" <c:if test="${shedW==carport.shedWidth}">selected</c:if>>
-
-
                                         ${shedW} cm
                                 </option>
+                                </c:if>
                             </c:forEach>
                         </select>
                     </div>
@@ -108,17 +108,22 @@
 
                         <select class="form-control" name="shedLength" id="shedL">
                             <option value="shedlength">Ønsker ikke redskabsskur</option>
+
                             <c:forEach  items="${requestScope.shedL}" var="shedL">
+                                <c:if test="${shedL<=carport.length-600}">
                                 <option value="${shedL}" <c:if test="${shedL==carport.shedLength}">selected</c:if>>
                                         ${shedL} cm
                                 </option>
+                                </c:if>
                             </c:forEach>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary" name="target" value="bestilling">Vis tegning</button>
+                    </c:if>
+                    <button type="submit" class="btn btn-primary" name="target" value="bestilling">Vælg</button>
                     <hr>
+                    <c:if test="${carport.length>0}">
                     <h6> Du har valgt følgende carport mål:<br></h6>
-                    --<br>
+
                     <div class="row">
                         <div class="col-md-3">
                             Bredde:
@@ -136,7 +141,10 @@
 
                         </div>
                     </div>
-
+                    <c:if test="${sessionScope.price!=null}">
+                        <b>Pris: </b>${sessionScope.price}
+                        <br>
+                    </c:if>
                     <hr>
                     <div class="row">
                         <h6> Tegning af din carport:</h6>
@@ -146,7 +154,7 @@
                             Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
                             2 x bærende 'Rem' i siderne på langs med <b><i>Sort</i></b> <br>
                             Stolper er firkanter placeret langs remmene <b><i>Sort</i></b> <br>
-                            Den <b><i>Blå</i></b> linje til venste er bredden indenfor stolperne <br>
+                            Linje til venste er bredden indenfor stolperne, tegnet med<b><i> Blå</i></b><br><br>
                             Redskabsskuret er tegnet med <b><i>Grøn </i></b>
                         </p>
                     </div>
@@ -171,7 +179,7 @@
                 <br>
                 <p>* Hvis du f.eks. har valgt en carport med målene 240x360 cm kan redskabsrummet maksimalt måle 210x330
                     cm.</p>
-
+                </c:if>
             </div>
         </div>
     </div>

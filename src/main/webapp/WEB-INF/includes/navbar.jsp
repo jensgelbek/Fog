@@ -134,7 +134,7 @@
 
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-larger">
 
-                    <form class="px-3 py-3" method="post" action="<c:url value="/oprettelse"/>">
+                    <form class="px-3 py-3" method="post" action="<c:url value="/frontpage"/>">
                         <div class="form-group">
                             <label for="exampleDropdownFormEmail1">Email</label>
                             <input type="text" class="form-control" id="exampleDropdownFormEmail1"
