@@ -195,7 +195,7 @@ public class SvgCarport extends Tag {
         int newShedLength = shedLength/10;
         shedLength = newShedLength;
 
-        SvgOuter ramme = new SvgOuter(800, 780, "0 0 855 750");
+        SvgOuter ramme = new SvgOuter(800, 800, "0 0 855 750");
         ramme.add(lineW(width));
         ramme.add(lineL(width, length));
         ramme.add(carport2(width, length, shedWidth, shedLength));
