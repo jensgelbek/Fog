@@ -18,7 +18,6 @@ public class Oprettelse extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            // req.setAttribute("items", api.findAllItems());
             render("Start", "/WEB-INF/webpages/oprettelse.jsp", req, resp);
         } catch (ServletException | IOException e) {
             log(e.getMessage());
@@ -110,7 +109,7 @@ public class Oprettelse extends BaseServlet {
 
                     }
                 }
-            System.out.println(seller+" "+customer);
+            // System.out.println(seller+" "+customer);
             if(seller==null&&customer==null){
                 System.out.println("fejl");
                 resp.sendError(401, "password og brugernavn passer ikke sammen");

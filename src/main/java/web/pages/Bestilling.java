@@ -1,21 +1,16 @@
 package web.pages;
 
 
-import api.Calc;
+import api.StyklisteCalculator;
 
-import com.mysql.cj.Session;
+import api.Utils;
 import domain.items.Carport;
 import domain.items.DBException;
 import domain.items.Order;
-import domain.materials.StykListeLinje;
 import domain.materials.Stykliste;
-import infrastructure.DBStyklisteLinjeRepository;
-import infrastructure.Database;
 import infrastructure.Lists;
-import org.w3c.dom.ls.LSOutput;
 import web.BaseServlet;
 
-import web.svg.CKL.Svg;
 //import web.svg.StykListeLinje;
 
 import web.svg.SvgCarport;
@@ -43,7 +38,7 @@ public class Bestilling extends BaseServlet {
             carportList = new ArrayList<Carport>();
             s.setAttribute("carportList", carportList);
         }
-        System.out.println(carportList);
+        // System.out.println(carportList);
         return carportList;
     }
 
@@ -59,12 +54,8 @@ public class Bestilling extends BaseServlet {
                 carport = new CarportDTO();
                 ses.setAttribute("carport", carport);
             }
-            System.out.println(carport.shedWidth);
-            System.out.println(carport.shedLength);
             return carport;
-
         }
-
 
         public int getLength() {
             return length;
@@ -85,16 +76,6 @@ public class Bestilling extends BaseServlet {
         public String getDrawing() {
             return SvgCarport.carport(width, length, shedWidth, shedLength).toString();
         }
-
-        /*
-        public Stykliste stykliste() throws DBException {
-            System.out.println("Hej");
-            api.commitStykliste(Calc.generereStykliste(width, length),1);
-            return Calc.generereStykliste(width, length);
-        }
-
-         */
-
     }
 
 
@@ -136,22 +117,17 @@ public class Bestilling extends BaseServlet {
             carportdto.width = Integer.parseInt(req.getParameter("width"));
             carportdto.length = Integer.parseInt(req.getParameter("length"));
             try {
-                carportdto.shedLength = Integer.parseInt(req.getParameter("shedWidth"));
-            } catch (Exception e) {
-                carportdto.shedLength = 0;
-            }
-            try {
-                carportdto.shedWidth = Integer.parseInt(req.getParameter("shedLength"));
+                carportdto.shedWidth = Integer.parseInt(req.getParameter("shedWidth"));
             } catch (Exception e) {
                 carportdto.shedWidth = 0;
             }
+            try {
+                carportdto.shedLength = Integer.parseInt(req.getParameter("shedLength"));
+            } catch (Exception e) {
+                carportdto.shedLength = 0;
+            }
             //String tag = req.getParameter("tag");
 
-            try {
-                Stykliste stykliste = Calc.generereStykliste(carportdto.width, carportdto.length);
-            } catch (DBException e) {
-                e.printStackTrace();
-            }
             // resp.sendRedirect(req.getContextPath() + "/bestilling");
 
 
@@ -160,23 +136,21 @@ public class Bestilling extends BaseServlet {
 
             var s = req.getSession();
 
-
             if ((String) s.getAttribute("username") != null) {
                 var carportdto = CarportDTO.fromSession(req.getSession());
-                int width = Integer.parseInt(req.getParameter("width")) * 10;
-                int length = Integer.parseInt(req.getParameter("length")) * 10;
+                int width = Integer.parseInt(req.getParameter("width"));
+
+                int length = Integer.parseInt(req.getParameter("length"));
                 String tag = req.getParameter("tag");
                 int shedLength = 0;
                 int shedWidth = 0;
                 try {
-                    shedLength = Integer.parseInt(req.getParameter("shedWidth")) * 10;
+                    shedWidth = Integer.parseInt(req.getParameter("shedWidth"));
                 } catch (Exception e) {
-
                 }
                 try {
-                    shedWidth = Integer.parseInt(req.getParameter("shedLength")) * 10;
+                    shedLength = Integer.parseInt(req.getParameter("shedLength"));
                 } catch (Exception e) {
-
                 }
 
                 Carport carport = new Carport(width, length, false, tag, shedWidth, shedLength);
@@ -186,36 +160,19 @@ public class Bestilling extends BaseServlet {
                     carport.setCarportID(carportId);
 
                     Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
+                    Stykliste stykliste = api.calculateStykliste(carport);
+                    int price=Utils.calculatePrice(stykliste);
+                    order.setPrice(price);
                     orderid = api.commitOrder(order);
-                    System.out.println(orderid);
+                    api.commitStykliste(stykliste,orderid);
 
-
-                } catch (SQLException throwables) {
+                } catch (SQLException | DBException throwables) {
                     throwables.printStackTrace();
                 }
-                //resp.sendRedirect(req.getContextPath() + "/minOrdre?ordre=" + orderid);
-                nextpage = "/minOrdre?ordre=" + orderid;
 
-
-                carport = new Carport(width, length, false, "trapez", shedWidth, shedLength);
-                orderid = 0;
-                try {
-                    int carportId = api.commitCarport(carport);
-                    carport.setCarportID(carportId);
-                  //  var s = req.getSession();
-
-
-                    Order order = new Order(LocalDate.now(), null, null, (String) s.getAttribute("username"), carport.getCarportID(), 0, "tilbud");
-                    orderid = api.commitOrder(order);
-                    System.out.println(orderid);
-
-
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
                 nextpage= "/minOrdre?ordre=" + orderid;
-
-
+            } else {
+                System.out.println("TODO Kunde skal være logget ind");
             }
         }
         resp.sendRedirect(req.getContextPath() + nextpage);

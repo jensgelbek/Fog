@@ -24,7 +24,7 @@ public class Migrate {
             int new_version = Database.getCurrentVersion();
             if (new_version > version) {
                 version = new_version;
-                System.out.println("Updated database to version: " + new_version);
+                // System.out.println("Updated database to version: " + new_version);
             } else {
                 throw new RuntimeException("Something went wrong, version not increased: " + new_version);
             }
@@ -34,7 +34,6 @@ public class Migrate {
 
     public static void runMigration(int i) throws IOException, SQLException {
         String migrationFile = String.format("migrate/%d.sql", i);
-        System.out.println("Running migration: " + migrationFile);
         InputStream stream = Migrate.class.getClassLoader().getResourceAsStream(migrationFile);
         if (stream == null) {
             System.out.println("Migration file, does not exist: " + migrationFile);

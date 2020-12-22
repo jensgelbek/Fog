@@ -56,6 +56,13 @@
                     <form class="px-3 py-3" method="post" action="<c:url value="/opretSeller"/>">
                     </form>
                 </button>
+                <a class="navbar-ordrer" href="redigermaterialer">Materialer</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <form class="px-3 py-3" method="post" action="<c:url value="/redigermaterialer"/>">
+                    </form>
+                </button>
             </c:if>
             <a class="navbar-kontakt" href="kontakt"> Kontakt</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"

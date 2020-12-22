@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-@WebServlet("/frontpage")
-public class Frontpage extends BaseServlet {
+@WebServlet("/redigermaterialer")
+public class RedigerMaterialer extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            render("Start", "/WEB-INF/webpages/frontpage.jsp", req, resp);
+            req.setAttribute("materialer", api.findAllMaterailTypes());
+            render("Start", "/WEB-INF/webpages/redigermaterialer.jsp", req, resp);
         } catch (ServletException | IOException e) {
             log(e.getMessage());
             resp.sendError(400, e.getMessage());
@@ -23,13 +23,13 @@ public class Frontpage extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        var s = req.getSession();
-        s.setAttribute("username", "");
-        s.setAttribute("employer","no");
-        s.setAttribute("carport",null);
-        resp.sendRedirect(req.getContextPath() + "/frontpage");
+        String name=req.getParameter("navn");
+        int pris=Integer.parseInt(req.getParameter("pris"));
+        // System.out.println(name+pris);
+        api.updateMaterialPrice(name,pris);
+        resp.sendRedirect(req.getContextPath() + "/redigermaterialer");
+
     }
 
 
 }
-

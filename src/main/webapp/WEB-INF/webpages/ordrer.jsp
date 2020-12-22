@@ -8,53 +8,34 @@
     <link rel="stylesheet" href="<c:url value="/static/style.css"/>"/>
     <br>
     <br>
-    <div class="row">
-        <div class="col-md-5">
 
-        </div>
-        <div class="col-md-2" align="center">
-            Carport
-        </div>
-        <div class="col-md-2" align="center">
-            Skur
-        </div>
-        <div class="col-md-2">
-
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-1">
             Ordre nummer
         </div>
         <div class="col-md-1">
-            Tilbuds dato
+            tilbuds dato
         </div>
         <div class="col-md-1">
-            Ordre dato
+            ordre dato
         </div>
         <div class="col-md-1">
-            Levering
+            levering
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
             Navn
         </div>
         <div class="col-md-1">
-            Bredde mm
+            bredde
         </div>
         <div class="col-md-1">
-            Længde mm
+            længde
         </div>
         <div class="col-md-1">
-            Bredde mm
+            pris
         </div>
         <div class="col-md-1">
-            Længde mm
-        </div>
-        <div class="col-md-1">
-            Pris
-        </div>
-        <div class="col-md-1">
-            Status
+            status
         </div>
     </div>
     <hr>
@@ -72,7 +53,7 @@
             <div class="col-md-1">
                     ${ordreLinje.leveringsDato}
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                     ${requestScope.navne[loop.index]}
             </div>
             <div class="col-md-1">
@@ -81,12 +62,6 @@
             <div class="col-md-1">
                     ${requestScope.carportlaengder[loop.index]}
 
-            </div>
-            <div class="col-md-1">
-                    ${requestScope.skurbredder[loop.index]}
-            </div>
-            <div class="col-md-1">
-                    ${requestScope.skurlaengder[loop.index]}
             </div>
             <div class="col-md-1">
                     ${ordreLinje.price}
@@ -100,7 +75,12 @@
                     <button type="submit" class="btn btn-primary">Vis</button>
                 </form>
             </div>
-
+            <div class="col-md-1">
+                <form method="post">
+                    <input type="hidden" name="afslut" value="${ordreLinje.orderID}">
+                    <button type="submit" class="btn btn-primary">afslut</button>
+                </form>
+            </div>
         </div>
     </c:forEach>
 

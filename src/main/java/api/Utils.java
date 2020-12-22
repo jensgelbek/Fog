@@ -3,6 +3,7 @@ package api;
 
 import domain.items.Carport;
 import domain.materials.StykListeLinje;
+import domain.materials.Stykliste;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -81,7 +82,16 @@ public class Utils {
 
     }
 
-
+    public static int calculatePrice(Stykliste stykliste){
+        int price=0;
+        for (StykListeLinje styklistelinje:stykliste.volumenListe) {
+            price=price+styklistelinje.getMateriale().getprice()*styklistelinje.getQuantity();
+        }
+        for (StykListeLinje styklistelinje:stykliste.unitListe) {
+            price=price+styklistelinje.getMateriale().getprice()*styklistelinje.getQuantity();
+        }
+        return price;
+    }
 
 
 

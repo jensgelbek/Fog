@@ -122,9 +122,18 @@ public class DBVolumeMateialRepository implements VolumeMaterialRepository {
     public int commit(UnitMaterial unitMaterial) {
         return 0;
     }
-
+/*
     @Override
-    public void updateNameWithPrice(String name, int newPrice) {
-
-    }
+    public void updatePrice(String name, int newPrice) throws DBException {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "UPDATE materialetype SET pris=(?) WHERE name=(?);";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,newPrice);
+            ps.setString(2, name);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw new DBException(ex.getMessage());
+        }
+    }*/
 }

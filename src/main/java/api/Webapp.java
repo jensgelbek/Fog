@@ -2,6 +2,7 @@ package api;
 
 import domain.items.*;
 import domain.materials.*;
+import infrastructure.DBMaterialRepository;
 import infrastructure.DBStyklisteLinjeRepository;
 
 
@@ -18,12 +19,14 @@ public class Webapp {
     private final CustomerRepository customers;
     private final CarportRepository carports;
     private final SellerRepository sellers;
-    private static VolumeMaterialRepository volumeMaterials;
+    private final VolumeMaterialRepository volumeMaterials;
     private final UnitMaterialRepository unitMaterials;
-    private static StyklisteLinjeRepository styklisteLinjer;
-    private static StyklisteRepository styklister;
+    private final MaterialRepository materials;
+    private final StyklisteLinjeRepository styklisteLinjer;
+    private final StyklisteRepository styklister;
+    private final StyklisteCalculator styklisteCalculator;
 
-    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials,StyklisteLinjeRepository styklisteLinjer,StyklisteRepository styklister) {
+    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials, StyklisteLinjeRepository styklisteLinjer, StyklisteRepository styklister, DBMaterialRepository materials) {
         this.orders = orders;
         this.customers = customers;
         this.carports = carports;
@@ -32,6 +35,8 @@ public class Webapp {
         this.unitMaterials=unitMaterials;
         this.styklisteLinjer=styklisteLinjer;
         this.styklister=styklister;
+        this.materials=materials;
+        this.styklisteCalculator = new StyklisteCalculator(this);
 
     }
 
@@ -96,17 +101,13 @@ public class Webapp {
         return (List<Customer>) customers.findAll();
     }
 
-
     public int commitOrder(Order order) {
         return orders.commit(order);
     }
 
-    ;
-
     public Order findOrder(int id) throws DBException {
         return orders.find(id);
     }
-
 
     public Customer commitCustomer(Customer customer) throws DBException {
         return customers.commitCustomer(customer);
@@ -130,11 +131,7 @@ public class Webapp {
         return sellers.findAll();
     }
 
-    public static void main(String[] args) {
-        System.out.println(findVolumeMaterial(2));
-    }
-
-    public static VolumeMaterial findVolumeMaterial(int id){
+    public VolumeMaterial findVolumeMaterial(int id){
         try {
             return volumeMaterials.find(id);
         } catch (DBException e) {
@@ -190,22 +187,19 @@ public class Webapp {
             e.printStackTrace();
         }return null;
     }
-    public void updateUnitMaterislPrice(int id,int price){
+    public void updateMaterialPrice(String name, int price){
         try {
-            unitMaterials.updatePrice(id, price);
+            materials.updatePrice(name, price);
         } catch (DBException e) {
             e.printStackTrace();
         }
     }
     public void commitStyklisteLinie(StykListeLinje stykListeLinje, int ordreId){
-        // styklisteLinjer.commit(stykListeLinje,ordreId);
-        // DBStyklisteLinjeRepository.commit(stykListeLinje,ordreId);
+        styklisteLinjer.commit(stykListeLinje,ordreId);
     }
     public Stykliste findStykliste(int ordreId){
         try {
-
             return styklister.findStykliste(ordreId);
-
         } catch (DBException e) {
             e.printStackTrace();
         }
@@ -219,5 +213,41 @@ public class Webapp {
     public void updateSellerPassword(String name,String oldPassword, String newPassword){
         sellers.updatePassword(name,oldPassword,newPassword);
 
+    }
+    public List<Material> findAllMaterailTypes(){
+        try {
+            return materials.getAllTypes();
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Stykliste calculateStykliste(Carport carport) throws DBException {
+        return styklisteCalculator.generereStykliste(carport.getWidth(), carport.getLenght(), carport.getShedWidth(), carport.getShedLength());
+    }
+    public void updateCarport(Carport carport){
+        carports.update(carport);
+    }
+    public void updateStykListeLinjeAntal(int id,int antal){
+        styklisteLinjer.updateAntal(id,antal);
+    }
+
+    public void updateStykListeLinjeMaterialeId(int id,int materialId){styklisteLinjer.updateMaterial(id,materialId);}
+
+    public void deletStykliste(int orderId){
+        styklister.deleteStykliste(orderId);
+    }
+
+    public StykListeLinje findStykListeLinje(int id){
+       return styklisteLinjer.find(id);
+    }
+
+    public void updateOrderPrice(int id, int newPrice){
+        try {
+            orders.updatePrice(id,newPrice);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
     }
 }

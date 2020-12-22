@@ -13,6 +13,8 @@ public interface OrderRepository {
 
     void updateStatus(int id, String status) throws DBException;
 
+    void updatePrice(int id,int newPrice)throws DBException;
+
     int commit(Order order);
 
     void setOrdreDato(int id, LocalDate ordreDato) throws DBException;

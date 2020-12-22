@@ -30,15 +30,15 @@ public class OpretSeller extends BaseServlet {
         if (req.getParameter("Opret") != null) {
             String name = req.getParameter("name");
             String userName = req.getParameter("userName");
-            System.out.println(name + "   " + userName);
+            // System.out.println(name + "   " + userName);
             byte[] salt = Customer.generateSalt();
             byte[] secret = Customer.calculateSecret(salt, "1234");
             Seller seller = new Seller(userName, name, salt, secret);
             try {
                 api.commitSeller(seller);
-                var s = req.getSession();
+                /*var s = req.getSession();
                 s.setAttribute("username", userName);
-                s.setAttribute("employer", "yes");
+                s.setAttribute("employer", "yes");*/
             } catch (Exception e) {
                 e.printStackTrace();
             }
