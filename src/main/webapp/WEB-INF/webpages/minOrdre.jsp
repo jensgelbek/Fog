@@ -59,7 +59,8 @@ ${requestScope.carport.tag}
 ${svg}
 
 <br>
-<hr>
+
+
 
 <c:if test="${requestScope.order.status==\"afsluttet\"||requestScope.order.status==\"ordre\"}">
     <h1>Stykliste</h1>
