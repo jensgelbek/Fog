@@ -62,6 +62,7 @@ ${svg}
 <hr>
 
 <c:if test="${requestScope.order.status==\"afsluttet\"||requestScope.order.status==\"ordre\"}">
+   <h1>Stykliste</h1>
    <b>Træ og træplader</b>
     <table class="table table-bordered">
         <thead>
