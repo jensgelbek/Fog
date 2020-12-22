@@ -136,7 +136,10 @@
 
                         </div>
                     </div>
-
+                    <c:if test="${sessionScope.price!=null}">
+                        <b>Pris: </b>${sessionScope.price}
+                        <br>
+                    </c:if>
                     <hr>
                     <div class="row">
                         <h6> Tegning af din carport:</h6>

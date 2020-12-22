@@ -38,6 +38,10 @@
 </c:if>
 ${requestScope.carport.tag}
 <br>
+<b>Pris: </b>${requestScope.order.price}
+<br>
+
+
 <b> Tegning af din carport:<br></b>
 <p>Bredde & længde udgør 'Stern' (for/bag og siderne), her indikeret med <b><i>Rødt</i></b> <br>
     Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
