@@ -1,13 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<style>
-    .header-text {
-        margin-left: 10px;
 
-    }
-
-</style>
 <html>
 <head>
     <title>Ordreside</title>
@@ -16,11 +10,11 @@
 
 
 <h1>Nummer ${requestScope.order.orderID} </h1>
-<c:if test="${requestScope.order.status==\"tilbud\"}"><b>Status:</b> tilbud modtaget<br></c:if>
-<c:if test="${requestScope.order.status==\"kontakt\"}"><b>Status:</b> venter på at blive kontakter af sælger<br></c:if>
-<c:if test="${requestScope.order.status==\"ordre\"}"><b>Status:</b> carport bestilt og afventer levering<br></c:if>
-<c:if test="${requestScope.order.status==\"afsluttet\"}"><b>Status:</b> ordren er afsluttet<br></c:if>
-<c:if test="${requestScope.order.status==\"afslået\"}"><b>Status:</b> tilbud afslået<br></c:if>
+<c:if test="${requestScope.order.status==\"tilbud\"}"><b>Status:</b> Tilbud modtaget<br></c:if>
+<c:if test="${requestScope.order.status==\"kontakt\"}"><b>Status:</b> Venter på at blive kontakter af sælger<br></c:if>
+<c:if test="${requestScope.order.status==\"ordre\"}"><b>Status:</b> Carport bestilt og afventer levering<br></c:if>
+<c:if test="${requestScope.order.status==\"afsluttet\"}"><b>Status:</b> Ordren er afsluttet<br></c:if>
+<c:if test="${requestScope.order.status==\"afslået\"}"><b>Status:</b> Tilbud afslået<br></c:if>
 
 
 <c:if test="${requestScope.order.tilbudsdato!=null}">
@@ -32,7 +26,7 @@
 <c:if test="${requestScope.order.leveringsDato!=null}">
     <b>Leveres</b>${requestScope.order.leveringsDato}<br>
 </c:if>
-<b>carport på</b> ${requestScope.carport.width/1000}*${requestScope.carport.lenght/1000} m
+<b>Carport på</b> ${requestScope.carport.width/1000}*${requestScope.carport.lenght/1000} m
 <c:if test="${requestScope.carport.shedWidth!=0}">
     med et skur på ${requestScope.carport.shedWidth/1000}*${requestScope.carport.shedLength/1000}m,
 </c:if>
@@ -51,14 +45,14 @@ ${requestScope.carport.tag}
 <b> Tegning af din carport:<br></b>
 <p>Bredde & længde udgør 'Stern' (for/bag og siderne), her indikeret med <b><i>Rødt</i></b> <br>
     Tværgående 'Spær' med <b><i>Lilla</i></b>. <br>
-    2 x bærende 'Rem' i siderne på langs med <b><i>sort</i></b> <br>
-    Stolper er firkanter placeret langs remmene <b><i>sort</i></b> <br>
-    Den <b><i>blå</i></b> linje til venste er bredden indenfor stolperne<br>
+    2 x bærende 'Rem' i siderne på langs med <b><i>Sort</i></b> <br>
+    Stolper er firkanter placeret langs remmene <b><i>Sort</i></b> <br>
+    Linje til venste er bredden indenfor stolperne, tegnet med<b><i> Blå</i></b><br>
     Skuret er indikeret med <b><i>Grøn</i></b>
 </p>
 ${svg}
-
 <br>
+
 <hr>
 
 <c:if test="${requestScope.order.status==\"afsluttet\"||requestScope.order.status==\"ordre\"}">
@@ -112,6 +106,7 @@ ${svg}
 <c:if test="${requestScope.order.status==\"tilbud\"||requestScope.order.status==\"kontakt\"}">
            <div class="row">
 
+
                 <div class="col-md-1">
                     <form method="post">
                         <input type="hidden" name="bestil" value=${requestScope.order.orderID}>
@@ -124,19 +119,21 @@ ${svg}
                         <button type="submit" class="btn btn-primary">Afslå</button>
                     </form>
                 </div>
-    <c:if test="${requestScope.order.status==\"tilbud\"}">
-
-    <div class="col-md-2">
+                <div class="col-md-2">
                     <form method="post">
                         <input type="hidden" name="kontakt" value=${requestScope.order.orderID}>
                         <button type="submit" class="btn btn-primary">Kontakt mig</button>
                     </form>
 
                 </div>
-    </c:if>
+
             </div>
 
-
+        </c:if>
+    </c:if>
+</c:if>
+<c:if test="${requestScope.order.status==\"ordre\"}">
+    <h1>Her skal vises stykliste...</h1>
 </c:if>
 
 </body>

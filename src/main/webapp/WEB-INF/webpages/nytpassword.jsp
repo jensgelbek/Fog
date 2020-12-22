@@ -26,7 +26,7 @@
 
     <label for="nytpassword">Indtast dit nye password:</label>
     <input type="password" class="form-control" id="nytpassword"
-           aria-describedby="nytpassword" name="nytpassword">
+           aria-describedby="nytpassword" name="nytpassword" required="required">
 
 
         <input type="hidden" name="OK" value="">

@@ -1,54 +1,35 @@
 @startuml
 
 object Kunde
-Kunde : <size:12>name
-Kunde : <size:12>addresse
-Kunde : <size:12>telfNummer
-Kunde : <size:12>email
+
 
 object Sælger
-Sælger : <size:12>name
+
 
 object Materialer
-Materialer : <size:12>name
-Materialer : <size:12>længde
-Materialer : <size:12>bredde
-Materialer : <size:12>stkPris
+
 
 object Ordre {
-dato
-}
-object Tilbud {
-dato
-pris
-}
-object Bestilling {
-dato
+
 }
 
-object Ordre2
-Ordre2 : <size:12>pris
-Ordre2 : <size:12>tilbusDato
-Ordre2 : <size:12>kunde
-Ordre2 : <size:12>ordreDato
-Ordre2 : <size:12>status
+object Tilbud {
+
+}
+object Bestilling {
+
+}
 
 
 object Carport
-Carport : <size:12>længde
-Carport : <size:12>bredde
-Carport : <size:12>rejsning
+
 
 object Skur
-Skur : <size:12>længde
-Skur : <size:12>bredde
+
 
 object Stykliste
 
 object StyklisteLinje
-StyklisteLinje : <size:12>beskrivelse
-StyklisteLinje : <size:12>antal
-StyklisteLinje : <size:12>pris
 
 Stykliste "1" -- "1" Bestilling
 
@@ -62,6 +43,6 @@ Tilbud "1" -- "0..1" Ordre
 
 Carport "1" -- "1" Bestilling
 
-Sælger "0..1" -- "1" Bestilling
+Sælger "1" -- "*" Bestilling
 Skur "0..1" -- "1" Carport
 @enduml

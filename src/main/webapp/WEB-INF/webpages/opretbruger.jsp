@@ -1,20 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<style>
-    .form-group {
-        margin-left: 15px;
-        margin-right: 40%;
-    }
 
-    h1 {
-        font-size: x-large;
-        margin-left: 15px;
-    }
-
-    p1 {
-        font-style: italic;
-        margin-left: 15px;
-    }
-</style>
 <html>
 <head>
     <title>Title</title>
@@ -36,6 +21,8 @@
 <form>
     <form method="post">
         <div class="form-group">
+            <link rel="stylesheet" href="<c:url value="/static/style.css"/>"/>
+
 
             <label for="navn">Fulde navn:</label>
             <input type="text" class="form-control" id="navn"

@@ -5,7 +5,34 @@
 
 
 }
+.body-text {
+    margin-left: 5px;
 
+}
+
+
+h1 {
+    font-size: xx-large;
+}
+
+img {
+    position: relative;
+    margin-left: 0px;
+}
+.form-group {
+    margin-left: 15px;
+    margin-right: 40%;
+}
+
+h1 {
+    font-size: x-large;
+    margin-left: 15px;
+}
+
+p1 {
+    font-style: italic;
+    margin-left: 15px;
+}
 .navbar-custom {
     background-color: #003D76;
 }
