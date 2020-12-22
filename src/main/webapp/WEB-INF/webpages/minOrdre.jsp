@@ -52,10 +52,60 @@ ${requestScope.carport.tag}
 </p>
 ${svg}
 <br>
-<c:if test="${requestScope.order.status!=\"afsluttet\"}">
-    <c:if test="${requestScope.order.status!=\"afslået\"}">
-        <c:if test="${requestScope.order.status!=\"ordre\"}">
-            <div class="row">
+
+<hr>
+
+<c:if test="${requestScope.order.status==\"afsluttet\"||requestScope.order.status==\"ordre\"}">
+   <h1>Stykliste</h1>
+   <b>Træ og træplader</b>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Beskrivelse</th>
+            <th scope="col">længde</th>
+            <th scope="col">Antal</th>
+            <th scope="col">Beskrivelse</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${requestScope.stykliste.volumenListe}" var="styklisteLinje">
+            <tr>
+                <td>${styklisteLinje.materiale.details}</td>
+                <td>${styklisteLinje.materiale.length}</td>
+                <td>${styklisteLinje.quantity}</td>
+                <td>${styklisteLinje.description}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+        <br>
+        <b>Beslag og skruer</b>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Beskrivelse</th>
+                <th scope="col">Antal</th>
+                <th scope="col">Enhed</th>
+                <th scope="col">Beskrivelse</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${requestScope.stykliste.unitListe}" var="styklisteLinje">
+                <tr>
+                    <td>${styklisteLinje.materiale.details}</td>
+                    <td>${styklisteLinje.quantity}</td>
+                    <td>${styklisteLinje.materiale.unitType}</td>
+                    <td>${styklisteLinje.description}</td>
+                </tr>
+            </c:forEach>
+
+        </tbody>
+    </table>
+</c:if>
+
+<c:if test="${requestScope.order.status==\"tilbud\"||requestScope.order.status==\"kontakt\"}">
+           <div class="row">
+
 
                 <div class="col-md-1">
                     <form method="post">
