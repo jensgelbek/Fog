@@ -1,6 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS volumeMaterialer;
+DROP TABLE IF EXISTS volumematerialer;
 DROP TABLE IF EXISTS unitmaterialer;
 
 DROP TABLE IF EXISTS materialer;
@@ -14,7 +14,7 @@ CREATE TABLE materialer (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE volumeMaterialer (
+CREATE TABLE volumematerialer (
                                   volumeMaterialeId int,
                                   length int NOT NULL,
                                   PRIMARY KEY (volumeMaterialeId),
@@ -22,7 +22,7 @@ CREATE TABLE volumeMaterialer (
                                   CONSTRAINT materiale FOREIGN KEY (volumeMaterialeId) REFERENCES materialer(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
-CREATE TABLE unitMaterialer (
+CREATE TABLE unitmaterialer (
                                 unitMaterialeId int,
                                 unitType VARCHAR(255) NOT NULL,
                                 PRIMARY KEY (unitMaterialeId),
@@ -31,8 +31,8 @@ CREATE TABLE unitMaterialer (
 
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS volumeMaterialer;
-CREATE TABLE volumeMaterialer (
+DROP TABLE IF EXISTS volumematerialer;
+CREATE TABLE volumematerialer (
                                   volumeMaterialeId int,
                                   length int NOT NULL,
                                   PRIMARY KEY (volumeMaterialeId),

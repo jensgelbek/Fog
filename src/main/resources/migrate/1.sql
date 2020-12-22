@@ -29,8 +29,8 @@ CREATE TABLE materialer
 ) ENGINE = InnoDB;
 
 
-DROP TABLE IF EXISTS unitMaterialer;
-CREATE TABLE unitMaterialer
+DROP TABLE IF EXISTS unitmaterialer;
+CREATE TABLE unitmaterialer
 (
     unitMaterialeId int,
     unitType        VARCHAR(255) NOT NULL,
@@ -40,8 +40,8 @@ CREATE TABLE unitMaterialer
 ) ENGINE = InnoDB;
 
 
-DROP TABLE IF EXISTS volumeMaterialer;
-CREATE TABLE volumeMaterialer
+DROP TABLE IF EXISTS volumematerialer;
+CREATE TABLE volumematerialer
 (
     volumeMaterialeId int,
     bredde            int NOT NULL,
