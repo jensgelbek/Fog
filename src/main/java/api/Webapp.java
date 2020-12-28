@@ -93,11 +93,11 @@ public class Webapp {
 
     ;
 
-    public Customer findCustomer(String email) throws DBException, CustomerNotFound {
+    public Customer findCustomer(String email) throws DBException{
         return customers.findCustomer(email);
     }
 
-    public List<Customer> findAllCustomers() throws DBException, CustomerNotFound {
+    public List<Customer> findAllCustomers() throws DBException {
         return (List<Customer>) customers.findAll();
     }
 

@@ -18,7 +18,7 @@ public class DBCustomerRepository implements CustomerRepository {
 
 
     @Override
-    public List<Customer> findAll() throws CustomerNotFound, DBException {
+    public List<Customer> findAll() throws DBException {
         List<Customer> customerList = new ArrayList<>();
         try {
 
@@ -47,10 +47,8 @@ public class DBCustomerRepository implements CustomerRepository {
     }
 
     @Override
-    public Customer findCustomer(String email) throws CustomerNotFound, DBException {
+    public Customer findCustomer(String email) throws  DBException {
         try {
-
-            ;
             Connection con = db.getConnection();
             String SQL = "SELECT * FROM kunde WHERE email=(?)";
             PreparedStatement ps = con.prepareStatement(SQL);
