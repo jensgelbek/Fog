@@ -52,8 +52,6 @@ public class Frontpage extends BaseServlet {
                     customer = api.findCustomer(email);
                 } catch (DBException e) {
                     e.printStackTrace();
-                } catch (CustomerNotFound customerNotFound) {
-                    customerNotFound.printStackTrace();
                 }
                 if (customer != null) {
                     boolean correctpassword = customer.checkPassword(password);

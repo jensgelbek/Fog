@@ -72,7 +72,7 @@ public class Utils {
         return Arrays.equals(secret, calculateSecret(salt, password));
     }
 
-    List<StykListeLinje> stykListeLinjes = new ArrayList<>();
+
 
 
 
