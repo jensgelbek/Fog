@@ -42,7 +42,7 @@ public class Ordre extends BaseServlet {
             req.setAttribute("unitliste",stykliste.unitListe);
             req.setAttribute("customer",customer);
             req.setAttribute("svg", SvgCarport.carport(carport.getWidth(), carport.getLenght(), carport.getShedWidth(), carport.getShedLength()).toString());
-        } catch (DBException | CustomerNotFound e) {
+        } catch (DBException  e) {
             e.printStackTrace();
         }
 

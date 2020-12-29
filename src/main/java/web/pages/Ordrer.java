@@ -35,8 +35,6 @@ public class Ordrer extends BaseServlet {
                 navne.add(api.findCustomer(o.getKundeEmail()).getName());
             } catch (DBException e) {
                 e.printStackTrace();
-            } catch (CustomerNotFound customerNotFound) {
-                customerNotFound.printStackTrace();
             }
 
 

@@ -177,7 +177,7 @@ public class SvgCarport extends Tag {
         }
         Tag line = new Line(75.0, width + 50.0, LD + 75.0, width + 50.0);
         line.withStyle("fill: none; stroke: darkblue; darkblue: 10 10;");
-
+    
         return line;
     }
 
@@ -191,6 +191,7 @@ public class SvgCarport extends Tag {
         String textW = "Bredde: " + Double.toString(width-70) + " mm";
         Tag text = new Text(textW, -(width/2)-10, 15.0);
         text.withStyle("transform: rotate(-90deg)");
+
         return text;
     }
 
@@ -227,7 +228,6 @@ public class SvgCarport extends Tag {
         carport.add(remOneDraw(length));
         carport.add(remTwoDraw(width, length));
         carport.add(shedDraw(length, shedWidth, shedLength));
-
 
 
         List spaers = spaerDraw(width, length);

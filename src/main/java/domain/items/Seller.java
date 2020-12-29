@@ -1,5 +1,8 @@
 package domain.items;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Seller {
     int sellerID;
     String username;
@@ -64,5 +67,21 @@ public class Seller {
                 ", username='" + username + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Seller)) return false;
+        Seller seller = (Seller) o;
+        return sellerID == seller.sellerID && Objects.equals(username, seller.username) && Objects.equals(name, seller.name) && Arrays.equals(salt, seller.salt) && Arrays.equals(secret, seller.secret);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(sellerID, username, name);
+        result = 31 * result + Arrays.hashCode(salt);
+        result = 31 * result + Arrays.hashCode(secret);
+        return result;
     }
 }
