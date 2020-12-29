@@ -1,6 +1,7 @@
 package domain.items;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Order {
     int orderID;
@@ -112,5 +113,18 @@ public class Order {
 
     public String getStatus() {
         return status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return orderID == order.orderID && carportId == order.carportId && price == order.price && Objects.equals(tilbudsdato, order.tilbudsdato) && Objects.equals(ordredato, order.ordredato) && Objects.equals(leveringsDato, order.leveringsDato) && Objects.equals(kundeEmail, order.kundeEmail) && Objects.equals(status, order.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderID, tilbudsdato, ordredato, leveringsDato, kundeEmail, carportId, price, status);
     }
 }

@@ -1,5 +1,7 @@
 package domain.items;
 
+import java.util.Objects;
+
 public class Carport {
 
     int carportID;
@@ -103,5 +105,18 @@ public class Carport {
                 ", shedWidth=" + shedWidth +
                 ", shedLength=" + shedLength +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Carport)) return false;
+        Carport carport = (Carport) o;
+        return carportID == carport.carportID && width == carport.width && lenght == carport.lenght && rejsning == carport.rejsning && shedWidth == carport.shedWidth && shedLength == carport.shedLength && Objects.equals(tag, carport.tag);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(carportID, width, lenght, rejsning, tag, shedWidth, shedLength);
     }
 }
