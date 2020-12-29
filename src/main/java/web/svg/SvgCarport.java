@@ -32,14 +32,14 @@ public class SvgCarport extends Tag {
 
 
     // Stern SVG Draw,
-
     public static Tag sternDraw(int width, int length) {
         Tag sternDraw = new Rectangle(0.0, 0.0, length, width);
         sternDraw.withStyle("fill: none; stroke: red;");
         return sternDraw;
     }
-    public static Tag shedDraw(int length,int shedWidth, int shedLength) {
 
+    // Stern SVG Draw,
+    public static Tag shedDraw(int length,int shedWidth, int shedLength) {
         Tag shedDraw = new Rectangle(length-(shedLength+25.0),35.0, shedLength, shedWidth );
         shedDraw.withStyle("fill: lightgrey; stroke: darkgreen; ");
         return shedDraw;
@@ -150,7 +150,6 @@ public class SvgCarport extends Tag {
             hulbaand.add(krydsOne);
             hulbaand.add(krydsTwo);
 
-
         }
         return hulbaand;
     }
@@ -178,9 +177,18 @@ public class SvgCarport extends Tag {
         }
         Tag line = new Line(75.0, width + 50.0, LD + 75.0, width + 50.0);
         line.withStyle("fill: none; stroke: darkblue; darkblue: 10 10;");
-        return line;
+        // <text style="text-anchor: middle" x="502" y="670">780 cm</text>
 
+        return line;
     }
+
+    public static Tag textL() {
+        String x = "Hej";
+        Tag text = new Text(x,120.0, 100.0);
+        return text;
+    }
+
+    // Draw outer viewbox
     public static Tag carport(int width, int length, int shedWidth, int shedLength) {
 
         int newWidth = width/10;
@@ -198,10 +206,12 @@ public class SvgCarport extends Tag {
         SvgOuter ramme = new SvgOuter(800, 800, "0 0 855 750");
         ramme.add(lineW(width));
         ramme.add(lineL(width, length));
+
         ramme.add(carport2(width, length, shedWidth, shedLength));
         return ramme;
     }
 
+    // Draw inner viewbox
     public static Tag carport2(int width, int length, int shedWidth, int shedLength) {
 
         SvgInner carport = new SvgInner(75.0, 10.0, 800, 750, "0 0 800 750");
@@ -209,6 +219,8 @@ public class SvgCarport extends Tag {
         carport.add(remOneDraw(length));
         carport.add(remTwoDraw(width, length));
         carport.add(shedDraw(length, shedWidth, shedLength));
+
+        carport.add(textL());
 
         List spaers = spaerDraw(width, length);
         for (Object o : spaers) {
@@ -224,8 +236,6 @@ public class SvgCarport extends Tag {
         for (Object o : hulbaand) {
             carport.add((Tag) o);
         }
-
-
         return carport;
     }
 
