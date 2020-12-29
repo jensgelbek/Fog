@@ -9,6 +9,7 @@ public abstract class Tag {
     private final String name;
     private String style;
     private String clazz;
+    private String content;
 
     protected Tag(String name) {
         this.name = name;
@@ -36,12 +37,17 @@ public abstract class Tag {
         if (this.style != null) {
             builder.append(String.format(" style=\"%s\"", this.style));
         }
-        builder.append(" ");
-        builder.append(renderAttributes());
+        String attributes = renderAttributes();
+        if (!attributes.isEmpty()) {
+            builder.append(" ");
+            builder.append(attributes);
+        }
         builder.append(">");
+        if (this.content != null) {
+            builder.append(this.content);
+        }
         renderSubTags(builder);
         builder.append(String.format("</%s>", name));
-
     }
 
     protected abstract String renderAttributes();
@@ -56,5 +62,9 @@ public abstract class Tag {
         StringBuilder builder = new StringBuilder();
         render(builder);
         return builder.toString();
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }
