@@ -1,5 +1,7 @@
 package domain.materials;
 
+import java.util.Objects;
+
 public class UnitMaterial extends Material{
     String unitType;
 
@@ -27,5 +29,16 @@ public class UnitMaterial extends Material{
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UnitMaterial)) return false;
+        UnitMaterial that = (UnitMaterial) o;
+        return Objects.equals(unitType, that.unitType);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(unitType);
+    }
 }
