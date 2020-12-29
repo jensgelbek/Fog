@@ -2,10 +2,7 @@ package Integration;
 
 import api.Utils;
 import api.Webapp;
-import domain.items.Customer;
-import domain.items.CustomerNotFound;
-import domain.items.DBException;
-import domain.items.Seller;
+import domain.items.*;
 import infrastructure.*;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.junit.Before;
@@ -55,14 +52,14 @@ public class UserStories {
 
     @Before
     public void setup() {
+        //lav ny test tom DB
         resetTestDatabase();
-
         String url = "jdbc:mysql://localhost:3306/fogtest?serverTimezone=CET";
         String user = "fogtest";
 
+        //kør migration script på test DB
         Database db = new Database(url, user);
         try {
-            System.out.println("runs migrations");
             runMigrations(db);
         } catch (IOException e) {
             System.out.println("iofejl");
@@ -71,13 +68,17 @@ public class UserStories {
             System.out.println("sqlfejl");
             throwables.printStackTrace();
         }
-
-
+        //instantier alle repos med DB repos med test DB
         api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db) );
-
     }
+
     @Test
     public void opretBruger() throws DBException {
+        //denne test dækker user stories:
+        //#25 Som bruger vil jeg gerne kunne oprette mig i systemet
+        //#26 som kunde vil jeg gerne kunne logge ind i systemet
+
+        //Lav den customer der skal oprettes i DB
         String password="123456";
         String email="jens@hansen.dk";
         byte[] salt= Utils.generateSalt();
@@ -96,16 +97,34 @@ public class UserStories {
         //hent i DB igen
         Customer DBCustomer= api.findCustomer(email);
 
-        //tjek om den hentede er ens med den gemte
+        //tjek om den hentede er ens med den gemte  #25
         assertEquals(customer,DBCustomer);
 
-        //tjek om der en customer mere i DB
+        //tjek om der en customer mere i DB  #25
         int nytAntal=api.findAllCustomers().size();
         assertEquals(nytAntal,antal+1);
 
-
-        //tjek om customer kan logge ind med password.
+        //tjek om customer kan logge ind med ønskede password.  #26
         assertTrue(Utils.checkPassword(password,DBCustomer.getSecret(),DBCustomer.getSalt()));
 
+        //tjek at customer ikke kan logge ind med forkert password   #26
+        assertTrue(!Utils.checkPassword("wrongpassword",DBCustomer.getSecret(),DBCustomer.getSalt()));
+
+    }
+
+    @Test
+    public void opretCarport() throws DBException, SQLException {
+        //denne test dækker user stories:
+        //#17 Som kunde vil jeg gerne kunne oprette en carport med fladt tag
+        //#23 som kunde vil jeg gerne kunne se den carport jeg har bestilt
+
+        // Lav en carport og gem den
+        Carport carport=new Carport(3600,6300,false,"trapez",0,0);
+        int carportId= api.commitCarport(carport);
+        carport.setCarportID(carportId);
+
+        //hent carporten igen
+        Carport DBCarport=api.findCarport(carportId);
+        assertEquals(carport,DBCarport);
     }
 }
