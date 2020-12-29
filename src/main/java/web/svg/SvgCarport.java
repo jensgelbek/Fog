@@ -162,7 +162,7 @@ public class SvgCarport extends Tag {
         } else {
             WD = 49.5;
         }
-        Tag line = new Line(20.0, 49.5, 20.0, WD);
+        Tag line = new Line(30.0, 49.5, 30.0, WD);
         line.withStyle("fill: none; stroke: darkblue; darkblue: 5 5;");
         return line;
     }
@@ -177,20 +177,20 @@ public class SvgCarport extends Tag {
         }
         Tag line = new Line(75.0, width + 50.0, LD + 75.0, width + 50.0);
         line.withStyle("fill: none; stroke: darkblue; darkblue: 10 10;");
-        // <text style="text-anchor: middle" x="502" y="670">780 cm</text>
 
         return line;
     }
 
     public static Tag textL(int width, int length) {
         String textL = "Længde: " + Double.toString(Math.abs(length*10)) + " mm";
-        Tag text = new Text(textL, length/2, width + 70.0);
+        Tag text = new Text(textL, (length/2)-10, width + 70.0);
         return text;
    }
 
     public static Tag textW(int width) {
-        String textW = "Bredde: " + Double.toString(width-700) + " mm";
-        Tag text = new Text(textW, 10.0, width/2);
+        String textW = "Bredde: " + Double.toString(width-70) + " mm";
+        Tag text = new Text(textW, -(width/2)-10, 15.0);
+        text.withStyle("transform: rotate(-90deg)");
         return text;
     }
 
