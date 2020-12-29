@@ -182,9 +182,15 @@ public class SvgCarport extends Tag {
         return line;
     }
 
-    public static Tag textL() {
-        String x = "Hej";
-        Tag text = new Text(x,120.0, 100.0);
+    public static Tag textL(int width, int length) {
+        String textL = "Længde: " + Double.toString(Math.abs(length*10)) + " mm";
+        Tag text = new Text(textL, length/2, width + 70.0);
+        return text;
+   }
+
+    public static Tag textW(int width) {
+        String textW = "Bredde: " + Double.toString(width-700) + " mm";
+        Tag text = new Text(textW, 10.0, width/2);
         return text;
     }
 
@@ -206,6 +212,8 @@ public class SvgCarport extends Tag {
         SvgOuter ramme = new SvgOuter(800, 800, "0 0 855 750");
         ramme.add(lineW(width));
         ramme.add(lineL(width, length));
+        ramme.add(textL(width, length));
+        ramme.add(textW(width));
 
         ramme.add(carport2(width, length, shedWidth, shedLength));
         return ramme;
@@ -220,7 +228,7 @@ public class SvgCarport extends Tag {
         carport.add(remTwoDraw(width, length));
         carport.add(shedDraw(length, shedWidth, shedLength));
 
-        carport.add(textL());
+
 
         List spaers = spaerDraw(width, length);
         for (Object o : spaers) {

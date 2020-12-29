@@ -16,6 +16,6 @@ public class Text extends Tag {
     @Override
     protected String renderAttributes() {
         return String.format(Locale.US, "x=\"%f\" y=\"%f\"",
-                x, y);
+                 x, y);
     }
 }
