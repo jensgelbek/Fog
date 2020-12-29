@@ -28,7 +28,6 @@ hs_err_pid*
 src/main/Diagrammer/png/resources3/
 src/main/webapp/META-INF/
 src/main/webapp/assets/
-src/test/
 /target/
 target/
 target/*
