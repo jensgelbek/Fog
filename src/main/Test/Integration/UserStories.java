@@ -35,10 +35,15 @@ public class UserStories {
      * GRANT ALL PRIVILEGES ON fogtest.* TO fogtest@localhost;
      * </pre>
      */
-    private Order order;
-    private Customer customer;
+    Order order;
+    Order order2;
+    Order order3;
+    Customer customer;
+    Customer customer2;
     Seller seller;
     Carport carport;
+    Carport carport2;
+    Carport carport3;
     Stykliste stykliste;
     Material unitMaterial;
     StykListeLinje unitstykListeLinje;
@@ -87,12 +92,25 @@ public class UserStories {
         byte[] secret=Utils.calculateSecret(salt,"password");
         customer=new Customer("customer","et sted","customer@jorden.dk",123,false,salt,secret);
         customer= api.commitCustomer(customer);
+        byte[] salt2=Utils.generateSalt();
+        byte[] secret2=Utils.calculateSecret(salt2,"password2");
+        customer2=new Customer("customer2","et sted","customer2@jorden.dk",456,false,salt2,secret2);
+        customer2= api.commitCustomer(customer2);
         seller=new Seller("seller","Morten Olsen",salt,secret);
         seller.setSellerID(api.commitSeller(seller));
         carport=new Carport(3600,6300,false,"trapez",2100,2100);
         carport.setCarportID(api.commitCarport(carport));
+        carport2=new Carport(3000,6000,false,"trapez",2400,2100);
+        carport2.setCarportID(api.commitCarport(carport2));
+        carport3=new Carport(5400,6300,false,"trapez",0,0);
+        carport3.setCarportID(api.commitCarport(carport3));
         order=new Order(LocalDate.now(),null,null,"customer@jorden.dk",carport.getCarportID(),100000,"tilbud");
         order.setOrderID(api.commitOrder(order));
+        order2=new Order(LocalDate.now().minusDays(2),LocalDate.now(),null,"customer2@jorden.dk",carport2.getCarportID(),5000,"ordre");
+        order2.setOrderID(api.commitOrder(order2));
+        order3=new Order(LocalDate.now().minusDays(2),LocalDate.now(),LocalDate.now().plusDays(10),"customer2@jorden.dk",carport3.getCarportID(),5000,"ordre");
+        order3.setOrderID(api.commitOrder(order3));
+
         stykliste=new Stykliste();
         unitMaterial=api.findUnitMaterial(201);
         unitstykListeLinje=new StykListeLinje(unitMaterial,10,"unit materiale");
@@ -106,6 +124,31 @@ public class UserStories {
         volumestykListeLinje=stykliste.volumenListe.get(0);
     }
 
+
+
+    @Test
+    public void userstory17og23() throws DBException, SQLException {
+        //denne test dækker user stories:
+        //#17 Som kunde vil jeg gerne kunne oprette en carport med fladt tag
+        //#23 som kunde vil jeg gerne kunne se den carport jeg har bestilt
+
+        // find antal carporte inden den nye bliver gemt
+        int antal=api.findAlleCarports().size();
+
+        // Lav en carport og gem den
+        Carport carport=new Carport(3600,6300,false,"trapez",0,0);
+        int carportId= api.commitCarport(carport);
+        carport.setCarportID(carportId);
+
+        //hent carporten igen og tjek om det er den samme: #17 + #23
+        Carport DBCarport=api.findCarport(carportId);
+        assertEquals(carport,DBCarport);
+
+        // find antal carporte efetr den nye er tilføjet og tjek om det er en højere
+        int nytAntal=api.findAlleCarports().size();
+        assertEquals(antal+1,nytAntal);
+
+    }
     @Test
     public void userstory25og26() throws DBException {
         //denne test dækker user stories:
@@ -145,30 +188,6 @@ public class UserStories {
         assertTrue(!Utils.checkPassword("wrongpassword",DBCustomer.getSecret(),DBCustomer.getSalt()));
 
     }
-
-    @Test
-    public void userstory17og23() throws DBException, SQLException {
-        //denne test dækker user stories:
-        //#17 Som kunde vil jeg gerne kunne oprette en carport med fladt tag
-        //#23 som kunde vil jeg gerne kunne se den carport jeg har bestilt
-
-        // find antal carporte inden den nye bliver gemt
-        int antal=api.findAlleCarports().size();
-
-        // Lav en carport og gem den
-        Carport carport=new Carport(3600,6300,false,"trapez",0,0);
-        int carportId= api.commitCarport(carport);
-        carport.setCarportID(carportId);
-
-        //hent carporten igen og tjek om det er den samme: #17 + #23
-        Carport DBCarport=api.findCarport(carportId);
-        assertEquals(carport,DBCarport);
-
-        // find antal carporte efetr den nye er tilføjet og tjek om det er en højere
-        int nytAntal=api.findAlleCarports().size();
-        assertEquals(antal+1,nytAntal);
-
-    }
     @Test
     public void userstory27og28() throws DBException, SQLException {
         //denne test dækker user story:
@@ -177,10 +196,14 @@ public class UserStories {
         newOrder.setOrderID(api.commitOrder(newOrder));
         List<Order> orderlist=api.findAllOrders();
         //er der 2 ordrer i listen...
-        assertEquals(2,orderlist.size());
+        assertEquals(4,orderlist.size());
 
         //er den  ordre i listen der lige er lagt der..
         assertTrue(orderlist.indexOf(newOrder)>-1);
+
+        //kan jeg hente den lige lagte ordre i DB
+        Order hentetOrder=api.findOrder(newOrder.getOrderID());
+        assertEquals(newOrder,hentetOrder);
     }
 
     @Test
@@ -272,6 +295,27 @@ public class UserStories {
         material= api.findUnitMaterial(name);
         //tjek om prisen er ændret til det ønskede
         assertEquals(price+100,material.getprice());
+
+    }
+
+    @Test
+    public void userstory44() throws DBException, SQLException {
+        //denne test dækker user stories:
+        //#44 som kunde vil jeg gerne kunne se mine ordrer
+
+        //kan vi finde en liste over alle ordrfer kun fra denne kunde.
+        List<Order> orderList=api.findAllOrdersWithEmail("customer2@jorden.dk");
+        for (Order o : orderList) {
+            assertEquals("customer2@jorden.dk",o.getKundeEmail());
+        }
+        int antalMedEmail=orderList.size();
+
+        //find alle ordrer.
+        int  antalAlle=api.findAllOrders().size();
+
+        //vi forventer at antal ,ed rette email er mindre end anatal af alle
+        assertTrue(antalAlle>antalMedEmail);
+
 
     }
 
