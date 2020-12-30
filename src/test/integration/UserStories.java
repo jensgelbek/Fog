@@ -1,4 +1,5 @@
-package Integration;
+package integration;
+
 
 import api.Utils;
 import api.Webapp;
@@ -6,10 +7,8 @@ import domain.items.*;
 import domain.materials.*;
 import infrastructure.*;
 import org.apache.ibatis.jdbc.ScriptRunner;
-import org.apache.tools.ant.taskdefs.condition.Or;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -88,7 +87,7 @@ public class UserStories {
         }
         //instantier alle repos med DB repos med test DB
         api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db) );
-        byte[] salt=Utils.generateSalt();
+        byte[] salt= Utils.generateSalt();
         byte[] secret=Utils.calculateSecret(salt,"password");
         customer=new Customer("customer","et sted","customer@jorden.dk",123,false,salt,secret);
         customer= api.commitCustomer(customer);
