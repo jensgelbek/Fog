@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Webapp {
+public class Fog {
     private final static int VERSION = 1;
     private final static String TITLE = "Fog";
 
@@ -26,7 +26,7 @@ public class Webapp {
     private final StyklisteRepository styklister;
     private final StyklisteCalculator styklisteCalculator;
 
-    public Webapp(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials, StyklisteLinjeRepository styklisteLinjer, StyklisteRepository styklister, DBMaterialRepository materials) {
+    public Fog(OrderRepository orders, CustomerRepository customers, CarportRepository carports, SellerRepository sellers, VolumeMaterialRepository volumeMaterials, UnitMaterialRepository unitMaterials, StyklisteLinjeRepository styklisteLinjer, StyklisteRepository styklister, DBMaterialRepository materials) {
         this.orders = orders;
         this.customers = customers;
         this.carports = carports;

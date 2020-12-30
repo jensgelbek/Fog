@@ -1,10 +1,7 @@
 package api;
 
-import domain.items.Carport;
 import domain.items.DBException;
 import domain.materials.*;
-import infrastructure.*;
-import web.pages.Bestilling;
 
 public class StyklisteCalculator {
 
@@ -19,9 +16,9 @@ public class StyklisteCalculator {
     private static final String fladtTag = "trapez";
 
 
-    private final Webapp api;
+    private final Fog api;
 
-    public StyklisteCalculator(Webapp api) {
+    public StyklisteCalculator(Fog api) {
         this.api = api;
     }
 

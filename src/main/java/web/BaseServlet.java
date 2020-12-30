@@ -1,12 +1,7 @@
 package web;
 
-import api.Webapp;
+import api.Fog;
 
-import domain.items.DBException;
-import domain.items.Order;
-import domain.items.Seller;
-import domain.items.SellerRepository;
-import domain.materials.StyklisteLinjeRepository;
 import infrastructure.DBCarportRepository;
 import infrastructure.DBOrderRepository;
 import infrastructure.Database;
@@ -19,23 +14,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BaseServlet extends HttpServlet {
-    protected static final Webapp api;
+    protected static final Fog api;
     List<String > pagesForAll=List.of("/WEB-INF/webpages/bestilling.jsp","/WEB-INF/webpages/bestillingRejsning.jsp","/WEB-INF/webpages/bom.jsp","/WEB-INF/webpages/frontpage.jsp","/WEB-INF/webpages/index.jsp",
             "/WEB-INF/webpages/kontakt.jsp","/WEB-INF/webpages/minOrdre.jsp","/WEB-INF/webpages/minside.jsp","/WEB-INF/webpages/oprettelse.jsp","/WEB-INF/errorpages/error.jsp");
     static {
         api = createApplication();
     }
 
-    private static Webapp createApplication() {
+    private static Fog createApplication() {
         Database db = new Database();
 
-        return new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db) );
+        return new Fog(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db) );
 
     }
 
@@ -49,7 +42,7 @@ public class BaseServlet extends HttpServlet {
         if(isEmployee||pagesForAll.contains(content)) {
             req.setCharacterEncoding("UTF-8");
             resp.setCharacterEncoding("UTF-8");
-            req.setAttribute("title", Webapp.getTitle() + " - " + title);
+            req.setAttribute("title", Fog.getTitle() + " - " + title);
             req.setAttribute("content", content);
             req.setAttribute("year", LocalDateTime.now().getYear());
             req.getRequestDispatcher("/WEB-INF/includes/base.jsp").forward(req, resp);
