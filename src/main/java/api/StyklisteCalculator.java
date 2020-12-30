@@ -29,12 +29,10 @@ public class StyklisteCalculator {
     public StykListeLinje sternWidthCalc(int width) throws DBException {
         StykListeLinje sternWidth;
         int widthCalc = width;
-        System.out.println(widthCalc);
         VolumeMaterial volumeMaterial = api.findVolumeMaterialNameLenght(understern, widthCalc);
         String description = "Understernbrædder til for og bag ende";
         int quantity = 2;
         sternWidth = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("sternWidth: " + sternWidth);
         return sternWidth;
     }
 
@@ -46,7 +44,6 @@ public class StyklisteCalculator {
         String description = "Understernbrædder til siderne.";
         int quantity = 2;
         sternLength = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("sternLength: " + sternLength);
         return sternLength;
     }
 
@@ -58,7 +55,6 @@ public class StyklisteCalculator {
         String description = "Oversternbrædder til siderne.";
         int quantity = 2;
         overSternLength = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("overSternLength: " + overSternLength);
         return overSternLength;
     }
 
@@ -70,7 +66,6 @@ public class StyklisteCalculator {
         String description = "Understernbrædt til front.";
         int quantity = 1;
         overSternWidth = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("overSternWidth: " + overSternWidth);
         return overSternWidth;
     }
 
@@ -82,7 +77,6 @@ public class StyklisteCalculator {
         String description = "Rem i siderne";
         int quantity = 2;
         remLength = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("remLength: " + remLength);
         return remLength;
     }
 
@@ -93,7 +87,6 @@ public class StyklisteCalculator {
         String description = "Spær: Monteres på rem";
         int quantity = (length / 600) - 1;
         spaers = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("spaers: " + spaers);
         return spaers;
     }
 
@@ -111,7 +104,6 @@ public class StyklisteCalculator {
 
         int quantity = tempQuantity;
         stolper = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("stolper: " + stolper);
         return stolper;
     }
 
@@ -121,7 +113,6 @@ public class StyklisteCalculator {
         String description = "Hulbånd";
         int quantity = 1;
         hulbaandRulle = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("Hulbånd: " + hulbaandRulle);
         return hulbaandRulle;
     }
 
@@ -142,7 +133,6 @@ public class StyklisteCalculator {
         int quantity = (int) Math.ceil(width / 1000.0);
 
         tagFladt = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("tagFladt: " + tagFladt);
         return tagFladt;
     }
 
@@ -164,7 +154,6 @@ public class StyklisteCalculator {
         int quantity = (int) Math.ceil(width / 1000.0);
 
         tagFladtResidue = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("tagFladtResidue: " + tagFladtResidue);
         return tagFladtResidue;
     }
 
@@ -181,7 +170,6 @@ public class StyklisteCalculator {
 
         int quantity =  (tempQuantityLength + tempQuantityWidth);
         shedBoards = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("shedBoards: " + shedBoards);
         return shedBoards;
     }
 
@@ -209,7 +197,6 @@ public class StyklisteCalculator {
         // Korrigerring for dobbelberegning stolper i hjørner = -4
         int quantity = (tempQuantityLength + tempQuantityWidth) - 4;
         shedStolper = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("shedStolper: " + shedStolper);
         return shedStolper;
     }
 
@@ -220,7 +207,6 @@ public class StyklisteCalculator {
         String description = "til z på bagside af dør";
         int quantity = 1;
         zBackOfDoorCalc = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println(" zBackOfDoorCalc: " +  zBackOfDoorCalc);
         return zBackOfDoorCalc;
     }
 
@@ -232,7 +218,6 @@ public class StyklisteCalculator {
         String description = "løsholter til skur gavle";
         int quantity = 2;
         shedReglarGavl = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("shedReglarGavl: " +  shedReglarGavl);
         return shedReglarGavl;
     }
 
@@ -243,7 +228,6 @@ public class StyklisteCalculator {
         String description = "løsholter til skur sider";
         int quantity = 2;
         shedReglarSide = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("shedReglarSide: " +  shedReglarSide);
         return shedReglarSide;
     }
 
@@ -253,7 +237,6 @@ public class StyklisteCalculator {
         String description = "vandbrædt på stern i sider";
         int quantity = 2;
         waterBoardSides = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("waterBoardSides: " +  waterBoardSides);
         return waterBoardSides;
     }
 
@@ -263,7 +246,6 @@ public class StyklisteCalculator {
         String description = "vandbrædt på stern i forende";
         int quantity = 1;
         waterBoardEnd = new StykListeLinje(volumeMaterial, quantity, description);
-        System.out.println("waterBoardSides: " +  waterBoardEnd);
         return waterBoardEnd;
     }
 
@@ -280,7 +262,6 @@ public class StyklisteCalculator {
         int quantity = (int) Math.ceil(skruerTotalM2/skruerPerPakke);
 
         bundskruer = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("bundskruer: " +  bundskruer);
         return bundskruer;
     }
 
@@ -293,7 +274,6 @@ public class StyklisteCalculator {
         int quantity = (length / 600) - 1;
 
         universalRigth = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("universalRigth: " +  universalRigth);
         return universalRigth;
     }
 
@@ -306,7 +286,6 @@ public class StyklisteCalculator {
         int quantity = (length / 600) - 1;
 
         universalLeft = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("universalLeft: " +  universalLeft);
         return universalLeft;
     }
 
@@ -316,7 +295,6 @@ public class StyklisteCalculator {
         String description = "Til montering af stern & vandbrædt. 200 stk.";
         int quantity = 1;
         skruer = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("skruer: " +  skruer);
         return skruer;
     }
 
@@ -333,7 +311,6 @@ public class StyklisteCalculator {
         int quantity = (int) Math.ceil((skruerPerSpaer*spaer)/skruerPerPakke);
 
         beslagSkruer = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("beslagSkruer: " +  beslagSkruer);
         return beslagSkruer;
     }
 
@@ -362,7 +339,6 @@ public class StyklisteCalculator {
         int quantity = (tempQuantity + tempQuantityShed)*2;
 
         braeddebolt = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("braeddebolt: " +  braeddebolt);
         return braeddebolt;
     }
 
@@ -382,7 +358,6 @@ public class StyklisteCalculator {
         int quantity = tempQuantity *2;
 
         firkantskiver = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("firkantskiver: " +  firkantskiver);
         return firkantskiver;
     }
 
@@ -398,7 +373,6 @@ public class StyklisteCalculator {
         int quantity = (int) (Math.ceil((tempQuantityLength + tempQuantityWidth)*4)/400);
 
         skruerOuterShed = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("skruerOuterShed: " +  skruerOuterShed);
         return skruerOuterShed;
     }
 
@@ -414,7 +388,6 @@ public class StyklisteCalculator {
         int quantity = (int) (Math.ceil((tempQuantityLength + tempQuantityWidth)*3)/300);
 
         skruerInnerShed = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("skruerInnerShed: " +  skruerInnerShed);
         return skruerInnerShed;
     }
 
@@ -426,7 +399,6 @@ public class StyklisteCalculator {
         int quantity = 1;
 
         stalddoergreb = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("stalddoergreb: " +  stalddoergreb);
         return stalddoergreb;
     }
 
@@ -438,7 +410,6 @@ public class StyklisteCalculator {
         int quantity = 2;
 
         haengsel = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("haengsel: " +  haengsel);
         return haengsel;
     }
 
@@ -454,7 +425,6 @@ public class StyklisteCalculator {
         int quantity = tempQuantityWidth + tempQuantityLength;
 
         vinkelbeslag = new StykListeLinje(unitMaterial, quantity, description);
-        System.out.println("vinkelbeslag: " +  vinkelbeslag);
         return vinkelbeslag;
     }
 

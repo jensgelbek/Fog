@@ -1,4 +1,4 @@
-package java.api;
+package api;
 
 import api.StyklisteCalculator;
 import api.Webapp;

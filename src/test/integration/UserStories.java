@@ -1,4 +1,5 @@
-package java.integration;
+package integration;
+
 
 import api.Utils;
 import api.Webapp;
@@ -21,9 +22,8 @@ import java.util.List;
 
 import static entries.Migrate.runMigrations;
 import static org.junit.Assert.*;
-import static org.junit.Assert.*;
 
-public class Userstory {
+public class UserStories {
     Webapp api;
     /**
      * Before you run this script create a user 'fogtest' and grant access to the database:
