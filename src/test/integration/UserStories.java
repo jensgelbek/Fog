@@ -2,7 +2,7 @@ package integration;
 
 
 import api.Utils;
-import api.Webapp;
+import api.Fog;
 import domain.items.*;
 import domain.materials.*;
 import infrastructure.*;
@@ -24,7 +24,7 @@ import static entries.Migrate.runMigrations;
 import static org.junit.Assert.*;
 
 public class UserStories {
-    Webapp api;
+    Fog api;
     /**
      * Before you run this script create a user 'fogtest' and grant access to the database:
      *
@@ -86,7 +86,7 @@ public class UserStories {
             throwables.printStackTrace();
         }
         //instantier alle repos med DB repos med test DB
-        api = new Webapp(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db) );
+        api = new Fog(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db) );
         byte[] salt= Utils.generateSalt();
         byte[] secret=Utils.calculateSecret(salt,"password");
         customer=new Customer("customer","et sted","customer@jorden.dk",123,false,salt,secret);

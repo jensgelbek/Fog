@@ -173,7 +173,7 @@ title __ITEMS's Class Diagram__\n
           {static} + timestampToLocalDate()
       }
 
-      class api.Webapp {
+      class api.Fog {
           {static} - TITLE : String
           {static} - VERSION : int
           {static} - styklisteLinjer : StyklisteLinjeRepository
@@ -539,11 +539,11 @@ title __ITEMS's Class Diagram__\n
 
    @enduml
   api.Calc -up-|> domain.materials.Stykliste
-  api.Webapp o-- domain.items.CarportRepository : carports
-  api.Webapp o-- domain.items.CustomerRepository : customers
-  api.Webapp o-- domain.items.OrderRepository : orders
-  api.Webapp o-- domain.items.SellerRepository : sellers
-  api.Webapp o-- domain.materials.UnitMaterialRepository : unitMaterials
+  api.Fog o-- domain.items.CarportRepository : carports
+  api.Fog o-- domain.items.CustomerRepository : customers
+  api.Fog o-- domain.items.OrderRepository : orders
+  api.Fog o-- domain.items.SellerRepository : sellers
+  api.Fog o-- domain.materials.UnitMaterialRepository : unitMaterials
 
 
 @enduml
