@@ -8,8 +8,8 @@ public class Lists {
     String[] tag = {"Plasttrapezplader"};
     String[] tagRejs = {"Betontagsten - Rød", "Betontagsten - Teglrød", "Betontagsten - Brun", "Betontagsten - Sort", "Eternittag B6 - Grå", "Eternittag B6 - Sort", "Eternittag B6 - Mokka (brun)", "Eternittag B6 - Rødbrun", "Eternittag B6 - Teglrød", "Eternittag B7 - Grå", "Eternittag B7 - Sort", "Eternittag B7 - Mokka (brun)", "Eternittag B7 - Rødbrun", "Eternittag B7 - Teglrød", "Eternittag B7 - Rødflammet"};
     int[] tagHaldning = {25, 30, 35, 40, 45};
-    int[] shedWidthArr = {1500, 1800, 2100, 2700, 3000, 3300, 3600, 3900, 4200, 4500, 4800, 5100, 5400, 5700, 6000, 6300, 6600, 6900, 7200};
-    int[] shedLengthArr = {1500, 1800, 2100, 2700, 3000, 3300, 3600, 3900};
+    int[] shedWidthArr = {1800, 2100, 2700, 3000, 3300, 3600, 3900, 4200, 4500, 4800, 5100, 5400, 5700, 6000, 6300, 6600, 6900, 7200};
+    int[] shedLengthArr = { 1800, 2100, 2700, 3000, 3300, 3600, 3900};
 
     public Lists() {
         this.carportMeasure = carportMeasure;

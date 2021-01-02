@@ -128,7 +128,7 @@ public class Bestilling extends BaseServlet {
             } catch (Exception e) {
                 carportdto.shedLength = 0;
             }
-           StyklisteCalculator styklisteCalculator=new StyklisteCalculator(api);
+            StyklisteCalculator styklisteCalculator=new StyklisteCalculator(api);
             Stykliste stykliste=null;
             try {
                 stykliste=styklisteCalculator.generereStykliste(carportdto.width, carportdto.length, carportdto.shedWidth,carportdto.shedLength);
@@ -140,10 +140,7 @@ public class Bestilling extends BaseServlet {
 
         }
         if (req.getParameter("target").equals("tilbud")) {
-
-
-
-            if ((String) s.getAttribute("username") != null) {
+            if (((String) s.getAttribute("username") != null)&&((String) s.getAttribute("employer")!="yes")) {
                 var carportdto = CarportDTO.fromSession(req.getSession());
                 int width = Integer.parseInt(req.getParameter("width"));
 
@@ -179,7 +176,8 @@ public class Bestilling extends BaseServlet {
 
                 nextpage= "/minOrdre?ordre=" + orderid;
             } else {
-                System.out.println("TODO Kunde skal være logget ind");
+                resp.sendError(401, "Man skal være logget ind som kunde for at bestille.");
+                return;
             }
         }
         resp.sendRedirect(req.getContextPath() + nextpage);
