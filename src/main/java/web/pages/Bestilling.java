@@ -95,11 +95,6 @@ public class Bestilling extends BaseServlet {
             req.setAttribute("shedL", list.shedlength());
             CarportDTO.fromSession(req.getSession());
 
-            //req.setAttribute("sternLengthCalc", CarportDTO.fromSession(req.getSession()).sternLengthCalc());
-            // req.setAttribute("spaerCalc", CarportDTO.fromSession(req.getSession()).spaerCalc());
-
-            // req.setAttribute("tag2", req.getSession().getAttribute("tag2"));
-
 
             render("Bestilling", "/WEB-INF/webpages/bestilling.jsp", req, resp);
         } catch (ServletException | IOException e) {
@@ -139,10 +134,8 @@ public class Bestilling extends BaseServlet {
             s.setAttribute("price",price);
 
         }
+
         if (req.getParameter("target").equals("tilbud")) {
-
-
-
             if ((String) s.getAttribute("username") != null) {
                 var carportdto = CarportDTO.fromSession(req.getSession());
                 int width = Integer.parseInt(req.getParameter("width"));

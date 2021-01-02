@@ -85,8 +85,6 @@ public class DBCustomerRepository implements CustomerRepository {
             ps.setBytes(5, customer.getSalt());
             ps.setBytes(6, customer.getSecret());
             ps.executeUpdate();
-
-
             return customer;
 
         } catch (SQLException ex) {

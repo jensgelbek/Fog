@@ -53,9 +53,7 @@ public class Oprettelse extends BaseServlet {
             }
             resp.sendRedirect(req.getContextPath() + "/frontpage");
 
-
         }
-
 
         }
 

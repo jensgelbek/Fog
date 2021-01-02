@@ -1,0 +1,63 @@
+@startuml
+
+actor "Bruger"
+Bruger -> Oprettelse.java: Httprequest. doPost
+
+Oprettelse.java -> Customer.java: generateSalt();
+Oprettelse.java <- Customer.java: return Salt
+Oprettelse.java -> Customer.java: calculateSecret()
+Oprettelse.java <- Customer.java: return Secret
+
+
+Oprettelse.java -> Customer.java: new Customer
+
+Oprettelse.java <- Customer.java: return Customer
+Oprettelse.java -> api.Fog.java: commitCustomer
+api.Fog.java -> CustomerRepository: commitCustomer
+CustomerRepository -> DBCustomerRepository: commitCustomer
+
+DBCustomerRepository -> Oprettelse.java: return Customer
+Frontpage.java <- Oprettelse.java: Send redirect
+
+@enduml
+
+@startuml
+
+Bruger <- ShoppingCart.java: Add Quanity to OrdreLinie
+ShoppingCart.jsp -> ShoppingCart.java: doPost
+ShoppingCart.java <- DBTopRepository:
+ShoppingCart.jsp <- ShoppingCart.java: Add Bottom to OrdreLinie
+
+ShoppingCart.jsp <- ShoppingCart.java: Add Sum to OrdreLinie
+
+ShoppingCart.jsp -> ShoppingCart.java: add Bottom
+ShoppingCart.java -> api:
+api -> DBTopRepository:
+
+left to right direction
+actor "Bruger" as Bruger
+Bruger -> Bob: Authentication Request
+
+
+
+ShoppingCart.jsp -> ShoppingCart.java: doPost Top
+ShoppingCart.java -> api:
+api -> DBTopRepository:
+ShoppingCart.java <- DBTopRepository:
+ShoppingCart.jsp <- ShoppingCart.java: doGet Top to new OrdreLinie
+
+
+@enduml
+
+
+
+@startuml
+
+left to right direction
+actor "Alice" as Alice
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml

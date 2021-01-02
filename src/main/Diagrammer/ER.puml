@@ -148,8 +148,6 @@ entity Ordre  #White {
    --
    <size:13> FK: kundeEmail
    --
-   <size:13> FK: skurId
-   --
    <size:13> FK: carportId
    --
    * <size:12> pris
