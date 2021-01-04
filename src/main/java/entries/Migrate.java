@@ -35,6 +35,7 @@ public class Migrate {
     }
 
     public static void runMigration(int i,Database database) throws IOException, SQLException {
+        System.out.println(i);
         String migrationFile = String.format("migrate/%d.sql", i);
         InputStream stream = Migrate.class.getClassLoader().getResourceAsStream(migrationFile);
         if (stream == null) {

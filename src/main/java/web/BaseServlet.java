@@ -2,6 +2,7 @@ package web;
 
 import api.Fog;
 
+import entries.Migrate;
 import infrastructure.DBCarportRepository;
 import infrastructure.DBOrderRepository;
 import infrastructure.Database;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,10 +26,19 @@ public class BaseServlet extends HttpServlet {
     static {
         api = createApplication();
     }
-
+    private static boolean migrated=false;
     private static Fog createApplication() {
         Database db = new Database();
-
+        if (migrated==false) {
+            try {
+                Migrate.runMigrations(db);
+                migrated=true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        };
         return new Fog(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db) );
 
     }
