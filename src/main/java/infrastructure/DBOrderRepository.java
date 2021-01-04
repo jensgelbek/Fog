@@ -150,7 +150,6 @@ public class DBOrderRepository implements OrderRepository {
             if (rs.next()) {
                 id = rs.getInt(1);
             } else {
-                System.out.println("else");
                 throw new RuntimeException("Unexpected error");
             }
         } catch (SQLException throwables) {
@@ -167,14 +166,12 @@ public class DBOrderRepository implements OrderRepository {
             Connection con = db.getConnection();
             String SQL = "UPDATE ordre SET ordreDato=(?) WHERE id=(?)";
             PreparedStatement ps = con.prepareStatement(SQL);
-            System.out.println(ordreDato+" dato fra DB + orderid:"+ id);
             if (ordreDato != null) {
                 ps.setTimestamp(1, java.sql.Timestamp.valueOf(ordreDato.atStartOfDay()));
             } else {
                 throw new DBException("no date");
             }
             ps.setInt(2, id);
-            System.out.println(ps);
             ps.executeUpdate();
 
         } catch (SQLException ex) {

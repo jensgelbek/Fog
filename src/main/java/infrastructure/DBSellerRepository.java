@@ -94,7 +94,6 @@ public class DBSellerRepository implements SellerRepository {
             if (rs.next()) {
                 id = rs.getInt(1);
             } else {
-                System.out.println("else");
                 throw new RuntimeException("Unexpected error");
             }
         } catch (SQLException throwables) {
