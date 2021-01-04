@@ -13,7 +13,15 @@ public class DBStyklisteLinjeRepository implements StyklisteLinjeRepository {
     public DBStyklisteLinjeRepository(Database db) {
         this.db = db;
     }
-
+    @Override
+    public StykListeLinje find(int styklisteLinjeId) {
+        return null;
+    }
+    @Override
+    public int commit(StykListeLinje stykListeLinje, int ordreId) {
+        return -1;
+    }
+    /*
     @Override
     public StykListeLinje find(int styklisteLinjeId) {
         DBVolumeMateialRepository dbVolumeMateialRepository=new DBVolumeMateialRepository(db);
@@ -48,9 +56,9 @@ public class DBStyklisteLinjeRepository implements StyklisteLinjeRepository {
         }
         return stykListeLinje;
     }
+*/
 
-
-
+/*
     @Override
     public int commit(StykListeLinje stykListeLinje, int ordreId) {
 
@@ -78,7 +86,7 @@ public class DBStyklisteLinjeRepository implements StyklisteLinjeRepository {
         }
         return id;
     }
-
+*/
     @Override
     public void updateAntal(int id, int antal) {
         try {
