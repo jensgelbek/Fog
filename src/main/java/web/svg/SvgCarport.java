@@ -213,7 +213,7 @@ public class SvgCarport extends Tag {
         String viewH = String.valueOf(width + 100);
         String viewL = String.valueOf(length + 100);
         String viewBox = "0 0 " + viewH + " " + viewL;
-        System.out.println(viewBox);
+
 
         SvgOuter ramme = new SvgOuter(Integer.valueOf(viewH), Integer.valueOf(viewL), viewBox);
         ramme.add(lineW(width));
