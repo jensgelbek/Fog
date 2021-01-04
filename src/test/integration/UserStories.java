@@ -86,7 +86,7 @@ public class UserStories {
             throwables.printStackTrace();
         }
         //instantier alle repos med DB repos med test DB
-        api = new Fog(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db) );
+        api = new Fog(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteRepository(db),new DBStyklisteRepository(db),new DBMaterialRepository(db) );
         byte[] salt= Utils.generateSalt();
         byte[] secret=Utils.calculateSecret(salt,"password");
         customer=new Customer("customer","et sted","customer@jorden.dk",123,false,salt,secret);

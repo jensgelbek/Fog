@@ -68,12 +68,9 @@ public class Ordre extends BaseServlet {
             }
 
            carport.setLenght(Integer.parseInt(req.getParameter("length")));
-            System.out.println(req.getParameter("length")+req.getParameter("width")+req.getParameter("shedlength")+req.getParameter("shedwidth"));
            carport.setWidth(Integer.parseInt(req.getParameter("width")));
-            System.out.println(Integer.parseInt(req.getParameter("width")));
            carport.setShedLength(Integer.parseInt(req.getParameter("shedlength")));
            carport.setShedWidth(Integer.parseInt(req.getParameter("shedwidth")));
-            System.out.println("ny carport"+ carport);
             api.updateCarport(carport);
             try {
                 api.deletStykliste(orderId);
@@ -100,20 +97,12 @@ public class Ordre extends BaseServlet {
             //opdater antal
             int antal= Integer.parseInt(req.getParameter("antal"));
             api.updateStykListeLinjeAntal(styklistelinjeid, antal);
-           /* //opdater materiale (med ny længde)
-            StykListeLinje stykListeLinje=api.findStykListeLinje(styklistelinjeid);
-            int length= Integer.parseInt(req.getParameter("length"));
-            System.out.println(styklistelinjeid+" "+length+" "+stykListeLinje.getMateriale().getName());
-            Material material=api.findVolumeMaterialNameLenght(stykListeLinje.getMateriale().getName(),length);
-            System.out.println(material);
-            api.updateStykListeLinjeMaterialeId(styklistelinjeid,material.getId());*/
+
 
             resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+ordreId);
         }
         if (req.getParameter("editprice") != null) {
-            System.out.println("erinde");
             int newPrice= Integer.parseInt(req.getParameter("pris"));
-            System.out.println("new price: "+newPrice+ " orderid: "+ordreId);
             api.updateOrderPrice(ordreId,newPrice);
             resp.sendRedirect(req.getContextPath() + "/ordre?ordre="+ordreId);
         }

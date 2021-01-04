@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/frontpage")
+@WebServlet(urlPatterns = {"", "/frontpage"})
 public class Frontpage extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,7 +39,6 @@ public class Frontpage extends BaseServlet {
 
         //LOGIN
         if (req.getParameter("Loginemail") != null) {
-            System.out.println("grebet");
             String userName = req.getParameter("Loginemail");
             Customer customer = null;
             Seller seller=null;
@@ -86,9 +85,7 @@ public class Frontpage extends BaseServlet {
 
                 }
             }
-            // System.out.println(seller+" "+customer);
             if(seller==null&&customer==null){
-                System.out.println("fejl");
                 resp.sendError(401, "password og brugernavn passer ikke sammen");
             }
         }
