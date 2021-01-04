@@ -3,7 +3,6 @@ package api;
 import domain.items.*;
 import domain.materials.*;
 import infrastructure.DBMaterialRepository;
-import infrastructure.DBStyklisteLinjeRepository;
 
 
 import java.sql.SQLException;

@@ -25,7 +25,6 @@ public class RedigerMaterialer extends BaseServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name=req.getParameter("navn");
         int pris=Integer.parseInt(req.getParameter("pris"));
-        // System.out.println(name+pris);
         api.updateMaterialPrice(name,pris);
         resp.sendRedirect(req.getContextPath() + "/redigermaterialer");
 

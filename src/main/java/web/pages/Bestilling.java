@@ -38,7 +38,6 @@ public class Bestilling extends BaseServlet {
             carportList = new ArrayList<Carport>();
             s.setAttribute("carportList", carportList);
         }
-        // System.out.println(carportList);
         return carportList;
     }
 

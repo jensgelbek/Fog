@@ -27,7 +27,6 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                System.out.println("id="+id);
                 orderId=rs.getInt("ordreid");
                 int materialeId=rs.getInt("materialid");
                 int antal=rs.getInt("antal");
@@ -44,7 +43,6 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
 
             }
         } catch (SQLException | DBException ex) {
-            System.out.println("ikke fundet");
             throw new DBException(ex.getMessage());
         }
 
@@ -134,7 +132,17 @@ public class DBStyklisteRepository implements StyklisteRepository,StyklisteLinje
 
     @Override
     public void updateMaterial(int id, int materialId) {
+        try {
+            Connection con = db.getConnection();
+            String SQL = "UPDATE styklistelinje SET materialid=(?) WHERE id=(?);";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, materialId);
+            ps.setInt(2, id);
+            ps.executeUpdate();
 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

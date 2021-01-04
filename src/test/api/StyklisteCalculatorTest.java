@@ -12,7 +12,7 @@ class StyklisteCalculatorTest {
 
 
     Database db = new Database();
-    Fog api = new Fog(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteLinjeRepository(db), new DBStyklisteRepository(db), new DBMaterialRepository(db));
+    Fog api = new Fog(new DBOrderRepository(db), new DBCustomerRepository(db), new DBCarportRepository(db), new DBSellerRepository(db), new DBVolumeMateialRepository(db), new DBUnitMaterialRepository(db), new DBStyklisteRepository(db), new DBStyklisteRepository(db), new DBMaterialRepository(db));
     StyklisteCalculator styklisteCalculator = new StyklisteCalculator(api);
 
 
