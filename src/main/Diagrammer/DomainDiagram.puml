@@ -1,3 +1,59 @@
+
+@startuml
+left to right direction
+
+package domain {
+package java.lang.Exceptions {
+}
+package items {
+class Carport
+class Customer
+class Order
+class Seller
+
+interface itemRepositories {
+   CarportRepository
+   CustomerRepository
+   OrderRepository
+   SellerRepository
+}
+
+Class itemExceptions  {
+   CustomerNoFound
+   DBException
+   OfferNotFound
+   OrderNotFound
+}
+}
+package materials{
+
+interface materialRepositories {
+   MaterialRepository
+   StyklisteLinjeRepository
+   StyklisteRepository
+   UnitMaterialRepository
+   VolumenMaterialRepository
+}
+
+class Materials
+class Stykliste
+class StyklisteLinje
+class UnitMaterials
+class VolumenMaterial
+
+}
+Order "1" --o "1" Customer : contains
+Order "1" -o "1" Stykliste : contains
+Order "1" --o "1" Carport : contains
+Materials "1" o-- "0..1" VolumenMaterial : contains
+Materials "1" o-- "0..1" UnitMaterials : contains
+Stykliste "1" --* "Many" StyklisteLinje : aggregation
+Materials "1" o- "0..1" StyklisteLinje : contains
+itemExceptions --|> java.lang.Exceptions: Extends exception
+
+@enduml
+
+
 @startuml
 
 object Kunde

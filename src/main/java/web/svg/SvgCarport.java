@@ -188,7 +188,7 @@ public class SvgCarport extends Tag {
    }
 
     public static Tag textW(int width) {
-        String textW = "Bredde: " + Double.toString(width-70) + " mm";
+        String textW = "Bredde: " + Double.toString(Math.abs(width-70)*10) + " mm";
         Tag text = new Text(textW, -(width/2)-10, 15.0);
         text.withStyle("transform: rotate(-90deg)");
 
@@ -210,7 +210,12 @@ public class SvgCarport extends Tag {
         int newShedLength = shedLength/10;
         shedLength = newShedLength;
 
-        SvgOuter ramme = new SvgOuter(800, 800, "0 0 855 750");
+        String viewH = String.valueOf(width + 100);
+        String viewL = String.valueOf(length + 100);
+        String viewBox = "0 0 " + viewH + " " + viewL;
+        System.out.println(viewBox);
+
+        SvgOuter ramme = new SvgOuter(Integer.valueOf(viewH), Integer.valueOf(viewL), viewBox);
         ramme.add(lineW(width));
         ramme.add(lineL(width, length));
         ramme.add(textL(width, length));
