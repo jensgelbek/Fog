@@ -21,7 +21,7 @@ import java.util.List;
 
 public class BaseServlet extends HttpServlet {
     protected static final Fog api;
-    List<String > pagesForAll=List.of("/WEB-INF/webpages/bestilling.jsp","/WEB-INF/webpages/bestillingRejsning.jsp","/WEB-INF/webpages/frontpage.jsp","/WEB-INF/webpages/index.jsp",
+    List<String > pagesForAll=List.of("/WEB-INF/webpages/bestilling.jsp","/WEB-INF/webpages/frontpage.jsp","/WEB-INF/webpages/index.jsp",
             "/WEB-INF/webpages/kontakt.jsp","/WEB-INF/webpages/minOrdre.jsp","/WEB-INF/webpages/minside.jsp","/WEB-INF/webpages/oprettelse.jsp","/WEB-INF/errorpages/error.jsp");
     static {
         api = createApplication();
