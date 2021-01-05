@@ -36,7 +36,7 @@
 <c:if test="${requestScope.carport.shedWidth!=0}">
     med et skur på ${requestScope.carport.shedWidth/1000}*${requestScope.carport.shedLength/1000}m,
 </c:if>
-<c:if test="${requestScope.carport.rejsning==true}">
+<c:if test="${requestScope.carport.rejsning==false}">
     med et fladt tag med
 </c:if>
 <c:if test="${requestScope.carport.rejsning==false}">

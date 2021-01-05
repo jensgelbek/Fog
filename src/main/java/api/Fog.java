@@ -3,7 +3,6 @@ package api;
 import domain.items.*;
 import domain.materials.*;
 import infrastructure.DBMaterialRepository;
-import infrastructure.DBStyklisteLinjeRepository;
 
 
 import java.sql.SQLException;
@@ -194,9 +193,12 @@ public class Fog {
             e.printStackTrace();
         }
     }
+    /*
     public void commitStyklisteLinie(StykListeLinje stykListeLinje, int ordreId){
         styklisteLinjer.commit(stykListeLinje,ordreId);
     }
+    */
+
     public Stykliste findStykliste(int ordreId){
         try {
             return styklister.findStykliste(ordreId);
@@ -229,6 +231,7 @@ public class Fog {
     public void updateCarport(Carport carport){
         carports.update(carport);
     }
+
     public void updateStykListeLinjeAntal(int id,int antal){
         styklisteLinjer.updateAntal(id,antal);
     }
@@ -238,11 +241,11 @@ public class Fog {
     public void deletStykliste(int orderId){
         styklister.deleteStykliste(orderId);
     }
-
+/*
     public StykListeLinje findStykListeLinje(int id){
        return styklisteLinjer.find(id);
     }
-
+*/
     public void updateOrderPrice(int id, int newPrice){
         try {
             orders.updatePrice(id,newPrice);
