@@ -76,6 +76,70 @@ endif
 stop
 @enduml
 
+Aktivitets Diagram TO-BE 2
+@startuml
+skinparam wrapWidth 160
+skinparam activityFontSize 14
+|Kunde|
+start
+:Designer carport online;
+|IT SYSTEM|
+:Beregner tilbud og udfører stykliste;
+|Kunde|
+:Modtager autogenereret tilbud;
+
+if (
+   <size:14>Accept / Afslår
+   ) then (<size:14>accept)
+  |IT SYSTEM|
+  :Ordre;
+  stop
+else (<size:14>afslår)
+|IT SYSTEM|
+  :Afslår;
+  stop
+
+  |Kunde|
+  :Kontakt af sælger;
+
+  |Sælger|
+  :Ser orettet tilbud og stykliste;
+  :Gennemgår design og autogenereret stykliste;
+  :Kontakter kunden
+  for samtale evt. ordreredigering / specialpris / mersalg;
+  |Kunde|
+  :Samtale med sælger;
+  if (
+     <size:14>Accept / Afslår
+     ) then (<size:14>accept)
+    |IT SYSTEM|
+    :Ordre;
+    stop
+  else (<size:14>afslår)
+  |IT SYSTEM|
+    :Afslår;
+    stop
+
+
+@enduml
+
+
+
+|Kunde|
+:Bestil/Accepterer tilbud;
+|IT SYSTEM|
+:Ordre;
+stop
+
+|Kunde|
+:Afslår tilbud;
+|IT SYSTEM|
+:Afslået;
+stop
+
+
+
+
 |Kunde|
 :Kunden betaler, modtager materialer og stykliste;
 
