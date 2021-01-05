@@ -113,3 +113,22 @@ note "This note is connected\nto several objects." as N2
 (Start) .. N2
 N2 .. (Use)
 @enduml
+
+Use Case 6:
+@startuml
+left to right direction
+actor "Bruger" as Bruger
+
+rectangle "Opret bruger" {
+  usecase "Navbar\nOprette konto" as UC1
+  usecase "Form\nIndtast data" as UC2
+  usecase "Frontpage\nAktiv bruger" as UC3
+}
+
+Bruger --> UC1
+Bruger --> UC2
+Bruger --> UC3
+
+(UC2) <. UC1
+(UC3) <. UC2
+@enduml

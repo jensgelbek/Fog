@@ -1,0 +1,24 @@
+@startuml
+
+actor "Bruger"
+Bruger -> Oprettelse.java: Httprequest. doPost
+
+Oprettelse.java -> Customer.java: generateSalt();
+Oprettelse.java <-- Customer.java: return Salt
+Oprettelse.java -> Customer.java: calculateSecret()
+Oprettelse.java <-- Customer.java: return Secret
+
+
+Oprettelse.java -> Customer.java: new Customer
+
+Oprettelse.java <-- Customer.java: return Customer
+Oprettelse.java -> api.Fog.java: commitCustomer
+api.Fog.java -> CustomerRepository: commitCustomer
+CustomerRepository -> DBCustomerRepository: commitCustomer
+
+DBCustomerRepository --> Oprettelse.java: return Customer
+Frontpage.java <- Oprettelse.java: Send redirect
+Frontpage.java --> Bruger
+
+
+@enduml
