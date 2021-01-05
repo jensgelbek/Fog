@@ -5,15 +5,6 @@
 
     <div class="row" style="margin-top: 5em">
 
-        <div class="col-md-3">
-            <h6><a href="/bestilling"><b style="color: darkblue">CARPORT MED FLADT
-                TAG</b></a></h6>
-            <hr>
-            <h6><a href="http://localhost:8080/webapptemplate/bestillingRejsning"><b style="color: darkblue">CARPORT MED
-                REJSNING</b></a></h6>
-            <hr>
-
-        </div>
 
         <div class="col-md-9">
 
